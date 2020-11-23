@@ -1,0 +1,2 @@
+margin: auto
+    => Make div auto center
