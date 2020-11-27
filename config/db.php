@@ -1,8 +1,10 @@
 <?php
 define("SERVER_NAME", "localhost");
 define("USERNAME", "root");
-define("PASSWORD", "");
+define("PASSWORD", "toor");
 define("DB_NAME", "bigprojectone");
+
+// Sửa lỗi access denied phpMyAdmin nhưng ko xuất hiện ở web
 
 function sql_query($query_msg) {
     $connect = mysqli_connect(

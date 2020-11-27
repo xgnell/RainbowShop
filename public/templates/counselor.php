@@ -27,7 +27,7 @@
 
         width: 300px;
         height: 300px;
-        background-image: url(public/img/counselor/counselor_1.png);
+        background-image: url(/public/img/counselors/counselor_1.png);
         background-size: cover;
         margin: auto;
     }

@@ -1,0 +1,27 @@
+------- Create tables -----
+
+-- Create admins
+CREATE TABLE admins (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    gender BOOLEAN NOT NULL,
+    birth DATE,
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    passwd VARCHAR(100) NOT NULL,
+    rank INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Create customers
+CREATE TABLE customers (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(5) NOT NULL,
+    gender BOOLEAN NOT NULL,
+    birth DATE,
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(15) NOT NULL UNIQUE,
+    passwd VARCHAR(100) NOT NULL,
+    address VARCHAR(100),
+    PRIMARY KEY (id)
+);
