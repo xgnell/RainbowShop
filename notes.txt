@@ -1,2 +1,18 @@
 margin: auto
     => Make div auto center
+
+
+DB
+    Users
+    Items
+    
+
+Dựa trên số lượng bán của sản phẩm
+    => Xếp hạng: độ phổ biến
+
+Dựa trên thời gian nhập hàng
+    => Xếp hạng sản phẩm mới
+
+// Sản phẩm có lượt xem cao
+
++ Sửa lỗi isset() cho $_GET and $_POST
