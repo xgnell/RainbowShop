@@ -5,7 +5,7 @@
         background-color: #32373c;
         color: #eee;
         height: 100%;
-        width: 10%;
+        width: 200px;
         padding-top: 15px;
     }
     #page-menu * {
@@ -39,6 +39,8 @@
 </style>
 <div id="page-menu">
     <ul class="main-menu">
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check_signed_in.php"); ?>
+        <?php if (is_admin_rank(1)) { ?>
         <li>
             <a href="#">Admins</a>
             <ul class="sub-menu" hidden>
@@ -48,13 +50,14 @@
                 <!-- <li><a href="#">Delete Admin</a></li> -->
             </ul>
         </li>
+        <?php } ?>
         <li>
-            <a href="#">Users</a>
+            <a href="#">Customers</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/customers/customers_manager.php">All Users</a></li>
-                <li><a href="/manager/customers/customer_insert.php">Add User</a></li>
-                <!-- <li><a href="#">Update User</a></li> -->
-                <!-- <li><a href="#">Delete User</a></li> -->
+                <li><a href="/manager/customers/customers_manager.php">All Customers</a></li>
+                <li><a href="/manager/customers/customer_insert.php">Add Customer</a></li>
+                <!-- <li><a href="#">Update Customer</a></li> -->
+                <!-- <li><a href="#">Delete Customer</a></li> -->
             </ul>
         </li>
         <li>

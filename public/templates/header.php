@@ -36,11 +36,20 @@
 <nav id="nav-menu">
     <label class="menu-logo">Rainbow Kitty</label>
     <ul>
-        <li><a id="link-intro" href="#">Giới thiệu</a></li>
-        <li><a id="link-order" href="#">Đặt hàng</a></li>
-        <li><a id="link-contact" href="#">Liên hệ</a></li>
-        <li><a id="link-qna" href="#">Hỏi đáp</a></li>
+        <li><a id="link-intro" name="home" href="/public/home.php">Giới thiệu</a></li>
+        <li><a id="link-order" name="order" href="#">Đặt hàng</a></li>
+        <li><a id="link-contact" name="contact" href="/public/contact.php">Liên hệ</a></li>
+        <li><a id="link-qna" name="questions" href="#">Hỏi đáp</a></li>
         <!-- <li><a href="#">Giỏ hàng</a></li>
         <li><a href="#">Đăng nhập</a></li> -->
     </ul>
+    <script>
+        let menu_options = document.querySelectorAll("#nav-menu > ul > li > a");
+        for (let option of menu_options) {
+            if (option.name == "<?php if (PAGE_NAME !== null) { echo PAGE_NAME; } ?>") {
+                option.classList.add("current-option");
+                break;
+            }
+        }
+    </script>
 </nav>

@@ -1,28 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Delete Process</title>
-</head>
-<body>
+<?php 
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    // Check signed in
+    require_once($root_path . "/manager/templates/check_signed_in.php");
+    check_admin_signed_in(1);
+
+    require_once($root_path . "/config/db.php");
+
+    // Get admin id
+    $admin_id = $_GET["id"];
+
+    // Check for self delete
+    if ($_SESSION["id"] == $admin_id) {
+    ?>
+        <!-- //////////////////////////// Check delete self page ///////////////////// -->
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Check delete self</title>
+        </head>
+        <body>
+            <h1>You cannot delete yourself</h1>
+            <a href="/manager/admins/admins_manager.php">Back to admin manager</a>
+        </body>
+        </html>
+        <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
-
-        $admin_id = $_GET["id"];
-
+    } else {
+        // Delete selected admin from database
         sql_query("
-            DELETE FROM admin
+            DELETE FROM admins
             WHERE id=$admin_id;
         ");
-    ?>
-
-    <div id="notification">Success</div>
-
-    <script>
-        setTimeout(function() {
-            window.location.href = "/manager/admins/admins_manager.php";
-        }, 1000);
-    </script>
-</body>
-</html>
+        ?>
+        <!-- ///////////////////////////// Notification page //////////////////////// -->
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Admin Delete Process</title>
+        </head>
+        <body>
+            <?php include_once($root_path . "/manager/admins/admin_notification.php") ?>
+        </body>
+        </html>
+        <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+<?php } ?>

@@ -1,3 +1,10 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    
+    // Check signed in
+    require_once($root_path . "/manager/templates/check_signed_in.php");
+    check_admin_signed_in(2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

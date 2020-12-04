@@ -1,3 +1,30 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    
+    // Check signed in
+    require_once($root_path . "/manager/templates/check_signed_in.php");
+    check_admin_signed_in(1);
+
+    require_once($root_path . "/config/db.php");
+
+    // Get all input data
+    $admin_id = $_POST["id"];
+    $admin_name = $_POST["name"];
+    $admin_gender = $_POST["gender"];
+    $admin_birth = $_POST["birth"];
+    $admin_phone = $_POST["phone"];
+    $admin_email = $_POST["email"];
+    $admin_passwd = $_POST["passwd"];
+    $admin_rank = $_POST["rank"];
+
+    // Update selected admin in database
+    sql_query("
+        UPDATE admins
+        SET name='$admin_name', gender=$admin_gender, birth='$admin_birth' , phone='$admin_phone', email='$admin_email', passwd='$admin_passwd', rank=$admin_rank
+        WHERE id=$admin_id;
+    ");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,26 +33,6 @@
     <title>Admin Update Process</title>
 </head>
 <body>
-    <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
-
-        $admin_id = $_POST["id"];
-        $admin_name = $_POST["name"];
-        $admin_pass = $_POST["pass"];
-
-        sql_query("
-            UPDATE admin
-            SET name='$admin_name', pass='$admin_pass'
-            WHERE id=$admin_id;
-        ");
-    ?>
-
-    <div id="notification">Success</div>
-
-    <script>
-        setTimeout(function() {
-            window.location.href = "/manager/admins/admins_manager.php";
-        }, 1000);
-    </script>
+    <?php include_once($root_path. "/manager/admins/admin_notification.php") ?>
 </body>
 </html>

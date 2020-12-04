@@ -6,9 +6,9 @@
     <title>Sign in</title>
 </head>
 <body>
-    <form action="/manager/sign_in_process.php" method="POST">
-        <input type="text" name="name" placeholder="Enter your account name"><br>
-        <input type="password" name="pass" placeholder="Enter your account password"><br>
+    <form action="/manager/main/sign_in_process.php" method="POST">
+        Enter email: <input type="text" name="email"><br>
+        Enter password: <input type="password" name="passwd"><br>
         <input type="submit" value="Sign in">
         <input type="reset" value="Reset">
     </form>

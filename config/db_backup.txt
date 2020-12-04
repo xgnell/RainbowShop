@@ -20,8 +20,37 @@ CREATE TABLE customers (
     gender BOOLEAN NOT NULL,
     birth DATE,
     phone VARCHAR(15) NOT NULL UNIQUE,
-    email VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     passwd VARCHAR(100) NOT NULL,
     address VARCHAR(100),
     PRIMARY KEY (id)
+);
+
+-- Create item_types
+CREATE TABLE item_types (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- Create items
+CREATE TABLE items (
+	id INT AUTO_INCREMENT NOT null,
+    name VARCHAR(50) NOT NULL,
+    avatar VARCHAR(100),
+    price INT NOT NULL,
+    description VARCHAR(500),
+    id_type INT NOT NULL,
+    material VARCHAR(50),
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_type) REFERENCES item_types (id)
+);
+
+-- Create item_meta_data
+CREATE TABLE item_meta_data (
+	id_item INT NOT NULL,
+    color VARCHAR(30) NOT NULL,
+    size VARCHAR(30) NOT NULL,
+    amount INT NOT NULL,
+    PRIMARY KEY (id_item, color, size)
 );

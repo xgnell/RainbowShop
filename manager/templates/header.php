@@ -60,6 +60,13 @@
     </nav>
     <div class="user-panel">
         <img class="user-avatar" width="25px" src="/public/img/others/baseline_account_circle_black_18dp.png" alt="User Avatar">
-        <span class="user-name">User name</span>
+        <span class="user-name"><?php
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check_signed_in.php");
+            if (is_admin_signed_in()) {
+                echo $_SESSION["name"];
+            }
+        ?></span>
     </div>
+
+    <a href="/manager/main/sign_out.php" style="font-size: 20px; color: white;">Sign out</a>
 </div>

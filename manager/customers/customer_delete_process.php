@@ -1,3 +1,22 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+
+    // Check signed in
+    require_once($root_path . "/manager/templates/check_signed_in.php");
+    check_admin_signed_in(2);
+
+    require_once($root_path . "/config/db.php");
+
+    // Get customer id
+    $customer_id = $_GET["id"];
+
+    // Delete selected customer from database
+    sql_query("
+        DELETE FROM customers
+        WHERE id=$customer_id;
+    ");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +25,6 @@
     <title>User Delete Process</title>
 </head>
 <body>
-    <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
-
-        $user_id = $_GET["id"];
-
-        sql_query("
-            DELETE FROM user
-            WHERE id=$user_id;
-        ");
-    ?>
-
-    <div id="notification">Success</div>
-
-    <script>
-        setTimeout(function() {
-            window.location.href = "/manager/customers/customer_manager.php";
-        }, 1000);
-    </script>
+    <?php include_once($root_path . "/manager/customers/customer_notification.php") ?>
 </body>
 </html>

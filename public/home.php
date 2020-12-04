@@ -23,6 +23,7 @@
 </head>
 <body>
     <?php
+        define("PAGE_NAME", "home");
         include_once("templates/header.php");
         include_once("templates/item.php");
     ?>
