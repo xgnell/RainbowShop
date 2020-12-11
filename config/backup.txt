@@ -1,0 +1,59 @@
+<!-- <script>
+    let item_meta_data_profile = [];
+
+    // Change amount display when size change
+    function change_amount(current_item_id) {
+        let display_size = document.getElementById(`item-${current_item_id}-display-size`);
+        let display_amount = document.getElementById(`item-${current_item_id}-display-amount`);
+
+        // Get selected size option
+        let selected_size = display_size.options[display_size.selectedIndex].value;
+
+        // Display amount of associate size
+        let found = false;
+        let current_item_meta_data_profile = item_meta_data_profile[current_item_id];
+        for (let item of current_item_meta_data_profile) {
+            if (item['size'] === selected_size) {
+                found = true;
+                display_amount.innerHTML = item['amount'];
+                break;
+            }
+        }
+        if (!found) {
+            display_amount.innerHTML = 'No data';
+        }
+    }
+    console.log(item_meta_data_profile);
+</script> -->
+
+
+ <!-- <select id="item-<?= $item['id'] ?>-display-size" name="input_size" onchange="change_amount(<?= $item['id'] ?>)">
+    <!-- Auto generate
+</select>
+<script defer>
+    {
+        // Generate size options
+        let display_size = document.getElementById('item-<?= $item['id'] ?>-display-size');
+        let display_size_result = '';
+        <?php foreach($item_sizes as $item_size): ?>
+            display_size_result += '<option value="<?= $item_size["size"] ?>"><?= $item_size["size"] ?></option>';
+        <?php endforeach ?>
+        display_size.innerHTML = display_size_result;
+    }
+</script> -->
+
+
+foreach ($item_meta_data as $item_data) {
+    $data = [
+        "size" => $item_data["size"],
+        "amount" => $item_data["amount"],
+    ];
+    ?>
+    <script>
+        if (item_meta_data_profile['<?= $item["id"] ?>'] == undefined) {
+            item_meta_data_profile['<?= $item["id"] ?>'] = [];
+        }
+        item_meta_data_profile['<?= $item["id"] ?>'].push(<?= json_encode($data) ?>);
+    </script>
+    <?php
+}

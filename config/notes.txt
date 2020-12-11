@@ -1,0 +1,3 @@
+1. Xử lý vấn đề về sai lệch thời gian khi đặt hàng
+    => Server sai thời gian
+    => Customer truy cập sai thời gian (Thường lấy thông tin về thời gian trên server nên có thể không bị lỗi này)

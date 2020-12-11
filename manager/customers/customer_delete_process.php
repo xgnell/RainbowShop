@@ -13,7 +13,7 @@
     // Delete selected customer from database
     sql_query("
         DELETE FROM customers
-        WHERE id=$customer_id;
+        WHERE id = $customer_id;
     ");
 ?>
 

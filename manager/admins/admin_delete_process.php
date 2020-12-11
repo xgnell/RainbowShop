@@ -31,7 +31,7 @@
         // Delete selected admin from database
         sql_query("
             DELETE FROM admins
-            WHERE id=$admin_id;
+            WHERE id = $admin_id;
         ");
         ?>
         <!-- ///////////////////////////// Notification page //////////////////////// -->

@@ -33,7 +33,7 @@
             <div class="scrollable">
             <table id="content-table">
                 <tr>
-                    <td hidden class="title">Id</td>
+                    <!-- <td hidden class="title">Id</td> -->
                     <td class="title">Name</td>
                     <td class="title">Gender</td>
                     <td class="title">Birth</td>

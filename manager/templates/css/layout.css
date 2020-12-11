@@ -1,11 +1,12 @@
 .page-body {
     display: flex;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
 }
 .page-content {
     width: 100%;
     margin: 15px 15px 15px 15px;
+    /* padding: 15px 15px 15px 15px; */
 }
 
 #content-table {
@@ -22,6 +23,8 @@
 #content-table tr td {
     border: 1px black solid;
     padding: 5px 5px 5px 5px;
+    vertical-align: top;
+    text-align: center;
 }
 
 .scrollable {

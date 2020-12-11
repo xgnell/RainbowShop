@@ -17,7 +17,7 @@
     /* Display header menu */
     #admin-header .header-menu {
         margin-left: 7px;
-        font-size: 20px;
+        font-size: 17px;
     }
     #admin-header .header-menu ul li {
         display: inline-block;
@@ -47,7 +47,8 @@
         vertical-align: middle;
     }
     #admin-header .user-panel .user-name {
-        font-size: 20px;
+        font-size: 17px;
+        color: red;
     }
 </style>
 <div id="admin-header">
@@ -60,13 +61,12 @@
     </nav>
     <div class="user-panel">
         <img class="user-avatar" width="25px" src="/public/img/others/baseline_account_circle_black_18dp.png" alt="User Avatar">
-        <span class="user-name"><?php
+        <a class="user-name" href="#"><?php
             require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check_signed_in.php");
             if (is_admin_signed_in()) {
                 echo $_SESSION["name"];
             }
-        ?></span>
+        ?></a>
     </div>
-
-    <a href="/manager/main/sign_out.php" style="font-size: 20px; color: white;">Sign out</a>
+    <a href="/manager/main/sign_out.php" style="font-size: 17px; color: white;">Sign out</a>
 </div>

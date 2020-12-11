@@ -5,12 +5,13 @@
         background-color: #32373c;
         color: #eee;
         height: 100%;
-        width: 200px;
+        /* width: 200px; */
+        flex: 0 0 10em;
         padding-top: 15px;
     }
     #page-menu * {
         color: #eee;
-        font-size: 20px;
+        font-size: 17px;
     }
 
     /* Main menu */
@@ -31,10 +32,10 @@
     #page-menu .sub-menu {
         display: none;
         position: absolute;
-        left: 130px;
+        left: 150px;
         top: 0px;
         background-color: #32373c;
-        width: 150px;
+        width: 170px;
     }
 </style>
 <div id="page-menu">
@@ -46,8 +47,6 @@
             <ul class="sub-menu" hidden>
                 <li><a href="/manager/admins/admins_manager.php">All Admins</a></li>
                 <li><a href="/manager/admins/admin_insert.php">Add Admin</a></li>
-                <!-- <li><a href="#">Update Admin</a></li> -->
-                <!-- <li><a href="#">Delete Admin</a></li> -->
             </ul>
         </li>
         <?php } ?>
@@ -56,8 +55,13 @@
             <ul class="sub-menu" hidden>
                 <li><a href="/manager/customers/customers_manager.php">All Customers</a></li>
                 <li><a href="/manager/customers/customer_insert.php">Add Customer</a></li>
-                <!-- <li><a href="#">Update Customer</a></li> -->
-                <!-- <li><a href="#">Delete Customer</a></li> -->
+            </ul>
+        </li>
+        <li>
+            <a href="#">Items</a>
+            <ul class="sub-menu" hidden>
+                <li><a href="/manager/items/items_manager.php">All Items</a></li>
+                <li><a href="/manager/items/item_insert.php">Add item</a></li>
             </ul>
         </li>
         <li>
@@ -65,8 +69,6 @@
             <ul class="sub-menu" hidden>
                 <li><a href="/manager/questions/questions_manager.php">All Questions</a></li>
                 <li><a href="#">Add</a></li>
-                <!-- <li><a href="#">Update</a></li> -->
-                <!-- <li><a href="#">Delete</a></li> -->
             </ul>
         </li>
     </ul>
