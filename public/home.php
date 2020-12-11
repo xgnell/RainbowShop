@@ -29,20 +29,8 @@
     ?>
     <?php include_once("templates/slide-menu.php"); ?>
     <div class="disp-items panel">
-        <div class="disp-new-items">
-        <?php
-            for ($i = 0; $i < 4; $i++) {
-                spawn_item("/public/img/items/shirt.jpg", "10000$");
-            }
-        ?>
-        </div>
-        <div class="disp-polular-items">
-        <?php
-            for ($i = 0; $i < 4; $i++) {
-                spawn_item("/public/img/items/shirt.jpg", "50000$");
-            }
-        ?>
-        </div>
+        <?php include_once 'templates/disp-items/disp-new-items.php' ?>
+        <?php include_once 'templates/disp-items/disp-popular-items.php' ?>
     </div>
     <div class="disp-staff panel">
         <?php include_once("templates/counselor.php"); ?>
