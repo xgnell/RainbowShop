@@ -40,14 +40,14 @@
                         <td>
                             Nhập email tài khoản của bạn
                             <br>
-                            <input type="text" placeholder="Enter email">
+                            <input type="text" placeholder="Enter email" name="email_customer">
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Nhập password
                             <br>
-                            <input type="password" placeholder="Enter password">
+                            <input type="password" placeholder="Enter password" name="password">
                         </td>
                     </tr>
                     <tr>
