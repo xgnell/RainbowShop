@@ -5,9 +5,20 @@
         margin: 15px 15px 15px 15px;
     }
 </style>
-<?php function spawn_item($src, $price) { ?>
+<?php function spawn_item($item_id) { ?>
+    <?php
+        $item = sql_query("
+            SELECT *
+            FROM items
+            WHERE id = '$item_id';
+        ");
+        $item = mysqli_fetch_array($item);
+
+        $item_picture_src = "/public/img/items/";
+    ?>
     <div class="item">
-        <img src="<?php echo $src; ?>" alt="Ảnh sản phẩm"><br>
-        <h5><?php echo $price; ?></h5>
+        <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
+        <h3><?= $item["price"] ?>$</h3><br>
+        <input type="button" value="Add to cart">
     </div>
 <?php } ?>

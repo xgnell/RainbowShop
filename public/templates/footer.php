@@ -18,7 +18,7 @@
 <footer>
     <div class="sign-up">
         <h2 class="title">Đăng kí</h2><br>
-        <?php include_once("signup.php"); ?>
+        <?php include_once("sign-up.php"); ?>
     </div>
     <div class="contact">
         <h2 class="title">Liên hệ</h2><br>

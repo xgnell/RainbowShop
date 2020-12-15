@@ -56,17 +56,17 @@
     <nav class="header-menu">
         <ul>
             <li><a href="/public/home.php">Home page</a></li>
-            <li><a href="/manager/main/main_manager.php">Admin page</a></li>
+            <li><a href="/manager/main/main-manager.php">Admin page</a></li>
         </ul>
     </nav>
     <div class="user-panel">
         <img class="user-avatar" width="25px" src="/public/img/others/baseline_account_circle_black_18dp.png" alt="User Avatar">
         <a class="user-name" href="#"><?php
-            require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check_signed_in.php");
+            require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check-admin-signed-in.php");
             if (is_admin_signed_in()) {
-                echo $_SESSION["name"];
+                echo $_SESSION["user"]["admin"]["name"];
             }
         ?></a>
     </div>
-    <a href="/manager/main/sign_out.php" style="font-size: 17px; color: white;">Sign out</a>
+    <a href="/manager/main/sign-out.php" style="font-size: 17px; color: white;">Sign out</a>
 </div>

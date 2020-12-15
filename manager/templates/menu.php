@@ -40,34 +40,34 @@
 </style>
 <div id="page-menu">
     <ul class="main-menu">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check_signed_in.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check-admin-signed-in.php"); ?>
         <?php if (is_admin_rank(1)) { ?>
         <li>
             <a href="#">Admins</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/admins/admins_manager.php">All Admins</a></li>
-                <li><a href="/manager/admins/admin_insert.php">Add Admin</a></li>
+                <li><a href="/manager/admins/admins-manager.php">All Admins</a></li>
+                <li><a href="/manager/admins/admin-insert.php">Add Admin</a></li>
             </ul>
         </li>
         <?php } ?>
         <li>
             <a href="#">Customers</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/customers/customers_manager.php">All Customers</a></li>
-                <li><a href="/manager/customers/customer_insert.php">Add Customer</a></li>
+                <li><a href="/manager/customers/customers-manager.php">All Customers</a></li>
+                <li><a href="/manager/customers/customer-insert.php">Add Customer</a></li>
             </ul>
         </li>
         <li>
             <a href="#">Items</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/items/items_manager.php">All Items</a></li>
-                <li><a href="/manager/items/item_insert.php">Add item</a></li>
+                <li><a href="/manager/items/items-manager.php">All Items</a></li>
+                <li><a href="/manager/items/item-insert.php">Add item</a></li>
             </ul>
         </li>
         <li>
             <a href="#">Questions</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/questions/questions_manager.php">All Questions</a></li>
+                <li><a href="/manager/questions/questions-manager.php">All Questions</a></li>
                 <li><a href="#">Add</a></li>
             </ul>
         </li>

@@ -1,5 +1,3 @@
-------- Create tables -----
-
 -- Create admins
 CREATE TABLE admins (
 	id INT AUTO_INCREMENT,
@@ -9,14 +7,22 @@ CREATE TABLE admins (
     phone VARCHAR(15) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     passwd VARCHAR(100) NOT NULL,
-    rank INT NOT NULL,
-    PRIMARY KEY(id)
+    id_rank INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_rank) REFERENCES admin_ranks (id)
+);
+
+-- Create admin_rank
+CREATE TABLE admin_ranks (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    level INT NOT NULL
 );
 
 -- Create customers
 CREATE TABLE customers (
 	id INT AUTO_INCREMENT,
-    name VARCHAR(5) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     gender BOOLEAN NOT NULL,
     birth DATE,
     phone VARCHAR(15) NOT NULL UNIQUE,
@@ -29,7 +35,7 @@ CREATE TABLE customers (
 -- Create item_types
 CREATE TABLE item_types (
 	id INT AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
+    type VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -41,29 +47,32 @@ CREATE TABLE items (
     price INT NOT NULL,
     description VARCHAR(500),
     id_type INT NOT NULL,
-    --material VARCHAR(50),
-    color VARCHAR(10),
+    id_color INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (id_type) REFERENCES item_types (id)
+    FOREIGN KEY (id_type) REFERENCES item_types (id),
+    FOREIGN KEY (id_color) REFERENCES item_colors (id)
 );
 
--- Create item_meta_data
-CREATE TABLE item_meta_data (
+-- Create item_details
+CREATE TABLE item_details (
 	id_item INT NOT NULL,
-    --color VARCHAR(30) NOT NULL,
-    size VARCHAR(30) NOT NULL,
+    id_size INT NOT NULL,
     amount INT NOT NULL,
-    PRIMARY KEY (id_item, color, size)
+    PRIMARY KEY (id_item, id_size),
+    FOREIGN KEY (id_item) REFERENCES items (id),
+    FOREIGN KEY (id_size) REFERENCES item_sizes (id)
 );
 
 -- Create item_colors
 CREATE TABLE item_colors (
-    color VARCHAR(20),
-    PRIMARY KEY (color)
+    id INT AUTO_INCREMENT,
+    color VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 -- Create item_sizes
 CREATE TABLE item_sizes (
-	size VARCHAR(20),
-    PRIMARY KEY (size)
+    id INT AUTO_INCREMENT,
+	size VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id)
 );
