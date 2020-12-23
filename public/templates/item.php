@@ -1,7 +1,7 @@
 <style>
-    .item {
+    .display-item {
         text-align: center;
-        font-size: 27px;
+        font-size: 20px;
         margin: 15px 15px 15px 15px;
     }
 </style>
@@ -16,9 +16,9 @@
 
         $item_picture_src = "/public/img/items/";
     ?>
-    <div class="item">
+    <div class="display-item">
         <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
         <h3><?= $item["price"] ?>$</h3><br>
-        <input type="button" value="Add to cart">
+        <a href="/public/templates/add-item-to-cart.php?id=<?= $item_id ?>">Add item to cart</a>
     </div>
 <?php } ?>

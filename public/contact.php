@@ -10,6 +10,7 @@
     <?php
         define("PAGE_NAME", "contact");
         include_once("templates/header.php");
+        include_once("templates/menu.php");
     ?>
 </body>
 </html>

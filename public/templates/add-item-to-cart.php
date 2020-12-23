@@ -1,4 +1,8 @@
 <?php
-session_start();
 // Check for signed in
-if (isset)
+if (customer_signed_in()) {
+    // Add item to customer cart
+} else {
+    // Require sign in
+    sign_in_action();
+}

@@ -1,11 +1,10 @@
 <?php
     $root_path = $_SERVER["DOCUMENT_ROOT"];
-
+    
     define("PAGE_NAME", "home");
-    include_once($root_path . "/public/templates/item.php");
-
+    require_once($root_path . "/public/templates/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-
+    include_once($root_path . "/public/templates/item.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +30,11 @@
     </style>
 </head>
 <body>
-    <?php include_once($root_path . "/public/templates/header.php"); ?>
-    <?php include_once($root_path . "/public/templates/slide-menu.php"); ?>
+    <?php
+        include_once($root_path . "/public/templates/sign-in.php");
+        include_once($root_path . "/public/templates/header.php");
+        include_once($root_path . "/public/templates/menu.php");
+    ?>
     <?php
         $item_data = sql_query("
             SELECT id
