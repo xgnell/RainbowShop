@@ -5,26 +5,21 @@
         margin: 15px 15px 15px 15px;
     }
 </style>
-<?php function spawn_item($src, $price)
-{ ?>
+<?php function spawn_item($item_id) { ?>
+    <?php
+        $item = sql_query("
+            SELECT *
+            FROM items
+            WHERE id = '$item_id';
+        ");
+        $item = mysqli_fetch_array($item);
+
+        $item_picture_src = "/public/img/items/";
+    ?>
     <div class="item">
-        <!-- ảnh trên và mô tả -->
-        <div>
-            <img src="<?php echo $src; ?>" alt="Ảnh sản phẩm"><br>
-            <span class="description" name="description"></span>
-        </div>
-
-        <!-- Giá và thêm vào giỏ hàng -->
-        <div class='item_cart'>
-            <div style="width: 70%; background-color:aquamarine;">
-                <h5>Price: <?php echo $price; ?></h5>
-            </div>
-
-            <a href="">
-                <div style="width: 70%; background-color:blueviolet;">
-                    Thêm vào giỏ hàng
-                </div>
-            </a>
-        </div>
+        <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
+        <h3><?= $item["price"] ?>$</h3>
+        <br>
+        <input type="button" value="Add to cart">
     </div>
 <?php } ?>

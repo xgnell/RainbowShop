@@ -1,3 +1,12 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+
+    define("PAGE_NAME", "home");
+    include_once($root_path . "/public/templates/item.php");
+
+    require_once($root_path . "/config/db.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,41 +34,35 @@
 </head>
 
 <body>
+    <?php include_once($root_path . "/public/templates/header.php"); ?>
+    <?php include_once($root_path . "/public/templates/slide-menu.php"); ?>
     <?php
-    $root_path = $_SERVER["DOCUMENT_ROOT"];
-    define("PAGE_NAME", "home");
-    include_once("templates/header.php");
-    include_once("templates/item.php");
-    require_once($root_path . "/config/db.php");
+        $item_data = sql_query("
+            SELECT id
+            FROM items
+            LIMIT 4;
+        ");
     ?>
-    <?php include_once("templates/slide-menu.php"); ?>
     <div class="disp-items panel">
         <div class="disp-new-items">
-        <!-- Day la doan connect voi csdl -->
             <?php
-            $img_folder = 'public/img/items/';
-            // include 'templates/connect.php';
-            // $sql = 'select picture * price from items';
-            // $result = mysqli_query($connect, $sql);
-            $result = sql_query('select picture , price from items');
-            ?>
-            <?php foreach ($result as $each) : ?>
-                <?php spawn_item($img_folder . $each['picture'], $each['price'].'$');
-            ?>
-            <?php endforeach ?>
-        </div>
-        <div class="disp-polular-items">
-            <?php
-            for ($i = 0; $i < 4; $i++) {
-                spawn_item("/public/img/items/shirt.jpg", "50000$");
-            }
+                foreach ($item_data as $item) {
+                    spawn_item($item["id"]);
+                }
             ?>
         </div>
+        <!-- <div class="disp-polular-items">
+            <?php
+                for ($i = 0; $i < 4; $i++) {
+                    spawn_item("");
+                }
+            ?>
+        </div> -->
     </div>
     <div class="disp-staff panel">
-        <?php include_once("templates/counselor.php"); ?>
+        <?php include_once($root_path . "/public/templates/counselor.php"); ?>
     </div>
-    <?php include_once("templates/footer.php"); ?>
+    <?php include_once($root_path . "/public/templates/footer.php"); ?>
 </body>
 
 </html>
