@@ -9,20 +9,21 @@
         #div_all {
             margin: auto;
             margin-top: 10%;
-            background-color: khaki;
+            /* background-color: khaki; */
             width: 400px;
             height: 500px;
             vertical-align: auto;
+            color: #363e7e;
         }
         #div_login {
             width: 100%;
             height: 60%;
-            background-color: palegreen;
+            /* background-color: palegreen; */
         }
         #div_signup {
             width: 100%;
             height: 40%;
-            background-color:paleturquoise;
+            /* background-color:paleturquoise; */
         }
     </style>
 </head>
@@ -30,7 +31,7 @@
     <div id="div_all">
         <div id="div_login">
             <form action="login_process.php" method="post">
-                <table border="1">
+                <table border="1" style="width: 100%; height: 100%; padding: 13%;">
                     <tr>
                         <td>
                             <h2>Login</h2>
@@ -52,7 +53,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Login">
+                            <button>Log in</button>
                         </td>
                     </tr>
                 </table>
