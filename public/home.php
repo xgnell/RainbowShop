@@ -41,10 +41,10 @@
             // include 'templates/connect.php';
             // $sql = 'select picture * price from items';
             // $result = mysqli_query($connect, $sql);
-            $result = sql_query('select picture * price from items');
+            $result = sql_query('select picture , price from items');
             ?>
             <?php foreach ($result as $each) : ?>
-                <?php spawn_item($img_folder . $each['picture'], $each['price']);
+                <?php spawn_item($img_folder . $each['picture'], $each['price'].'$');
             ?>
             <?php endforeach ?>
         </div>
