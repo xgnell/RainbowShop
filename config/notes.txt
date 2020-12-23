@@ -18,3 +18,9 @@
             id
             name
         }
+
+----------------------------------------------
+Validate (JS + PHP)
+Notification
+All link active
+Check access permission

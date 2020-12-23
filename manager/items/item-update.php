@@ -52,7 +52,7 @@
                 Name: <input type="text" name="name" value="<?= $item["name"] ?>"><br>
                 Picture: <input type="button" id="btn-change-picture" onclick="change_picture()" value="Change picture">
                 <div id="display-picture">
-                    <img width="500px" src="<?= $item_picture_src . $item["picture"] ?>">
+                    <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>">
                     <!-- <input type="file" name="picture"> -->
                 </div>
                 <br>
