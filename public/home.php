@@ -12,8 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới thiệu</title>
+    <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
+    <link rel="icon" href="/public/img/socials/rk.png">
     <style>
         .disp-items>div {
             display: flex;
@@ -22,6 +23,9 @@
             background-color: white;
             border-radius: 7px; */
         }
+        #div_all {
+            background-color: brown;
+        }
 
         .panel {
             margin: 30px 30px 30px 30px;
@@ -29,42 +33,57 @@
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
         }
+        #div_all .menu {
+            position: sticky; top: 0;
+        }
     </style>
 </head>
 
 <body>
-    <?php
-        include_once($root_path . "/public/templates/sign-in.php");
-        include_once($root_path . "/public/templates/header.php");
-        include_once($root_path . "/public/templates/menu.php");
-    ?>
-    <?php
-        $item_data = sql_query("
-            SELECT id
-            FROM items
-            LIMIT 4;
-        ");
-    ?>
-    <div class="disp-items panel">
-        <div class="disp-new-items">
-            <?php
-                foreach ($item_data as $item) {
-                    spawn_item($item["id"]);
-                }
-            ?>
+    <div id="div_all">
+        <div>
+            <?php include_once($root_path . "/public/templates/header.php"); ?>
         </div>
-        <!-- <div class="disp-polular-items">
-            <?php
-                for ($i = 0; $i < 4; $i++) {
-                    spawn_item("");
-                }
-            ?>
-        </div> -->
-    </div>
-    <div class="disp-staff panel">
-        <?php include_once($root_path . "/public/templates/counselor.php"); ?>
-    </div>
-    <?php include_once($root_path . "/public/templates/footer.php"); ?>
-</body>
 
+        <div class="menu">
+            <?php include_once($root_path . "/public/templates/menu.php"); ?>
+        </div>
+        <div>
+            <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
+        </div>
+    
+        <?php
+            $item_data = sql_query("
+                SELECT id
+                FROM items
+                LIMIT 4;
+            ");
+        ?>
+        <div class="disp-items panel">
+            <div class="disp-new-items">
+                <?php
+                    foreach ($item_data as $item) {
+                        spawn_item($item["id"]);
+                    }
+                ?>
+            </div>
+            <!-- <div class="disp-polular-items">
+                <?php
+                    for ($i = 0; $i < 4; $i++) {
+                        spawn_item("");
+                    }
+                ?>
+            </div> -->
+        </div>
+    
+        <div class="disp-staff panel">
+            <?php include_once($root_path . "/public/templates/counselor.php"); ?>
+        </div>
+        
+        <!--///////////////  Here is include footer /////////////-->
+        <div>
+            <?php include_once($root_path . "/public/templates/footer.php"); ?>
+        </div>
+    </div>
+</body>
 </html>

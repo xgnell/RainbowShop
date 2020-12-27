@@ -2,8 +2,6 @@
     /* All menu */
     #nav-menu {
         width: 100%;
-        position: sticky;
-        top: 0;
         line-height: 50px;
         background-color: #21264f;
     }
@@ -26,12 +24,12 @@
     }
     /* Hover an option */
     #nav-menu ul li a:hover {
-        border-bottom: 4px #99ff00 solid;
+        border-bottom: 4px #ffffff solid;
     }
 
     /* Display highlight current selected option */
     #nav-menu .current-option {
-        border-bottom: 4px #99ff00 solid;
+        border-bottom: 4px #ffffff solid;
     }
 </style>
 <div id="nav-menu">
