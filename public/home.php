@@ -23,9 +23,6 @@
             background-color: white;
             border-radius: 7px; */
         }
-        #div_all {
-            background-color: brown;
-        }
 
         .panel {
             margin: 30px 30px 30px 30px;
@@ -33,14 +30,11 @@
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
         }
-        #div_all .menu {
-            position: sticky; top: 0;
-        }
     </style>
 </head>
 
 <body>
-    <div id="div_all">
+    <div>
         <div>
             <?php include_once($root_path . "/public/templates/header.php"); ?>
         </div>
