@@ -25,7 +25,7 @@
         }
 
         .panel {
-            margin: 30px 30px 30px 30px;
+            margin: 30px 10% 30px 10%;
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
@@ -42,6 +42,9 @@
         <div class="menu">
             <?php include_once($root_path . "/public/templates/menu.php"); ?>
         </div>
+        <!-- <div>
+            <?php include_once($root_path . "/public/templates/background.php"); ?>
+        </div> -->
         <div>
             <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
         </div>

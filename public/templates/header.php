@@ -12,7 +12,6 @@
         color: white;
         padding: 10px;
         font-size: 36px;
-        font-family: monospace;
         text-align: center;
     }
     #nav-header .menu-logo {
