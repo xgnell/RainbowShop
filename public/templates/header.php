@@ -3,7 +3,6 @@
         width: 100%;
         height: 80px;
         line-height: 100px;
-        /* background-color: #391; */
         background-color: #363e7e;
     }
     #nav-header .logo-name {
@@ -12,7 +11,6 @@
         color: white;
         padding: 10px;
         font-size: 36px;
-        text-align: center;
     }
     #nav-header .menu-logo {
         margin-left: 100px;
@@ -54,7 +52,9 @@
         </a>
     </div>
     <div class="logo-name">
-        Rainbow Kitty
+        <span>
+            Rainbow Kitty
+        </span>
     </div>
     <!-- Here is Cart and Account icon -->
     <div class="menu-cart-account">

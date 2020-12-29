@@ -1,20 +1,42 @@
 <style>
-    .background_all {
-        margin: 10px 0px 10px 0px;
+    #background_all {
+        margin: 20px 0px 20px 0px;
         height: 700px;
+        opacity: 0.6;
+        z-index: -999;
         background-color: black;
         background-image: url("/public/img/background/bg1.png");
         background-size: cover;
+        position: relative;    
+        background-color: rgba(0,0,0,1);
     }
     .content_bar {
-        background-color: blanchedalmond;
-        margin: auto;
         width: 100%;
         height: 90%;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .content_bar .content {
+        background-color:chartreuse;
+        width: 75%;
+        height: 80%;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
 </style>
-<div class="background_all">
+<div id="background_all">
     <div class="content_bar">
-        <input type="text" placeholder="Nhập tìm kiếm">
+        <div class="content">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" placeholder="Nhập tìm kiếm">
+            </span>
+        </div>
     </div>
 </div>

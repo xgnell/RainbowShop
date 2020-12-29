@@ -42,9 +42,9 @@
         <div class="menu">
             <?php include_once($root_path . "/public/templates/menu.php"); ?>
         </div>
-        <!-- <div>
+        <div>
             <?php include_once($root_path . "/public/templates/background.php"); ?>
-        </div> -->
+        </div>
         <div>
             <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
         </div>

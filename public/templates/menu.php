@@ -3,6 +3,7 @@
     #div_all_menu {
         width: 100%;
         background-color: #21264f;
+        z-index: 999;
     }
     .menu {
         position: sticky; top: 0;
