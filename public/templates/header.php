@@ -4,12 +4,14 @@
         height: 80px;
         line-height: 100px;
         background-color: #363e7e;
+        z-index: 999;
     }
     #nav-header .logo-name {
         float: left;
         height: 100%;
         color: white;
         padding: 10px;
+        z-index: 999;
         font-size: 36px;
     }
     #nav-header .menu-logo {
@@ -22,6 +24,7 @@
         float: left;
         /* background-color: #363e7e; */
         background-image: url('/public/img/socials/rk.png');
+        z-index: 999;
         background-size: cover;
     }
     /* #nav-header .menu-cart-account {
@@ -31,11 +34,13 @@
         float: right;
         height: 100%;
         margin-right: 100px;
+        z-index: 999;
     }
     #nav-header ul li {
         display: inline-block;
         margin-left: 15px;
         margin-right: 15px;
+        z-index: 999;
     }
     #nav-header ul li a {
         color: white;
@@ -43,6 +48,7 @@
         /* padding: 14px 20px 14px 20px; */
         text-transform: uppercase;
         /* border-radius: 7px; */
+        z-index: 999;
     }
 </style>
 <div id="nav-header" style="padding: 5px 7% 5px 7%;">

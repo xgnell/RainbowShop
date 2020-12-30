@@ -5,6 +5,7 @@
         position: fixed;
         width: 100vw;
         height: 100vh;
+        z-index: 999;
     }
     #sign-in-form > div {
         margin-top: 200px;
@@ -13,9 +14,11 @@
         text-align: center;
         background-color: white;
         border: 1px black solid;
+        z-index: 999;
     }
     #sign-in-form[hidden] {
         display: none;
+        z-index: 999;
     }
 </style>
 <div id="sign-in-form" hidden>
