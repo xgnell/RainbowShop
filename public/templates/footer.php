@@ -21,9 +21,9 @@
         font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
-    #div_content_inside .sign-up {
+    /*#div_content_inside .sign-up {
         width: 33%;
-    }
+    }*/
     #div_content_inside .contact {
         width: 34%;
     }
@@ -37,12 +37,12 @@
 
 <div id="div_all_footer">
     <div id="div_content_inside">
-        <div class="sign-up">
+        <!-- <div class="sign-up">
             <h2 class="title">Đăng kí</h2><br>
             <div>
-                <?php include_once("sign-up.php"); ?>
+                <?php //include_once("sign-up.php"); ?>
             </div>
-        </div>
+        </div> -->
 
         <div class="contact">
             <h2 class="title">Liên hệ</h2><br>

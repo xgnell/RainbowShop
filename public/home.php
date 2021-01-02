@@ -8,20 +8,22 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
-    <link rel="icon" href="/public/img/socials/rk.png">
+    <!-- <link rel="icon" href="/public/img/socials/rk.png"> -->
     <style>
-        .disp-items>div {
+        .disp-items > div {
             display: flex;
             justify-content: space-between;
-            /* margin: 20px 20px 20px 20px;
+            margin: 20px 20px 20px 20px;
+            padding: 10px 5px 10px 5px;
             background-color: white;
-            border-radius: 7px; */
+            border-radius: 7px;
+            height: 450px;
+            min-width: 800;
         }
 
         .panel {
@@ -35,19 +37,19 @@
 
 <body>
     <div>
-        <div>
+        <!-- <div> -->
             <?php include_once($root_path . "/public/templates/header.php"); ?>
-        </div>
+        <!-- </div> -->
 
-        <div class="menu">
+        <!-- <div class="menu"> -->
             <?php include_once($root_path . "/public/templates/menu.php"); ?>
-        </div>
-        <div>
-            <?php include_once($root_path . "/public/templates/background.php"); ?>
-        </div>
-        <div>
+        <!-- </div> -->
+        <!-- <div> -->
+            <!-- <?php //include_once($root_path . "/public/templates/background.php"); ?> -->
+        <!-- </div> -->
+        <!-- <div> -->
             <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
-        </div>
+        <!-- </div> -->
     
         <?php
             $item_data = sql_query("

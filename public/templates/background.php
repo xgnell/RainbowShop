@@ -3,14 +3,13 @@
         margin: 20px 0px 20px 0px;
         height: 700px;
         background-size: cover;
-        position: relative;    
+        /*position: relative;    */
         /* background-color: rgba(0,0,0,0.5); */
         background-image: url("/public/img/background/bg2.png");
     }
     .content_bar {
         width: 100%;
         height: 90%;
-
         position: absolute;
         top: 50%;
         left: 50%;
@@ -19,7 +18,6 @@
     .content_bar .content {
         width: 75%;
         height: 80%;
-
         position: absolute;
         top: 50%;
         left: 50%;
@@ -30,7 +28,8 @@
         border-radius: 100px;
         height: 60px;
         width: 500px;
-        position: relative; top: 50%; left: 90px;
+        position: relative;
+        top: 50%; left: 90px;
     }
     .content_bar .content .search_bar_in_background input {
         border-style: none;

@@ -40,7 +40,7 @@ if (mysqli_num_rows($result) == 1) {
     </head>
     <body>
         <h1>You typed wrong email or password</h1>
-        <a href="/public/home.php">Back</a>
+        <a style="cursor: pointer;" onclick="window.history.back()">Back</a>
     </body>
     </html>
     <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
