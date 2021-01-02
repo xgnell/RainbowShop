@@ -14,27 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
-    <link rel="icon" href="/public/img/socials/rk.png">
-    <style>
-        .disp-items>div {
-            display: flex;
-            justify-content: space-between;
-            /* margin: 20px 20px 20px 20px;
-            background-color: white;
-            border-radius: 7px; */
-        }
-
-        .panel {
-            margin: 30px 10% 30px 10%;
-            background-color: white;
-            border-radius: 7px;
-            box-shadow: 1px 1px 5px #ccc;
-        }
-    </style>
+    <link rel="icon" href="/public/img/socials/logo_1.png">
 </head>
 
 <body>
-    <div>
         <div>
             <?php include_once($root_path . "/public/templates/header.php"); ?>
         </div>
@@ -56,31 +39,12 @@
                 LIMIT 4;
             ");
         ?>
-        <div class="disp-items panel">
-            <div class="disp-new-items">
-                <?php
-                    foreach ($item_data as $item) {
-                        spawn_item($item["id"]);
-                    }
-                ?>
-            </div>
-            <!-- <div class="disp-polular-items">
-                <?php
-                    for ($i = 0; $i < 4; $i++) {
-                        spawn_item("");
-                    }
-                ?>
-            </div> -->
-        </div>
-    
-        <div class="disp-staff panel">
-            <?php include_once($root_path . "/public/templates/counselor.php"); ?>
-        </div>
+
+        <?php include_once($root_path . "/public/templates/disp-item.php"); ?>
         
         <!--///////////////  Here is include footer /////////////-->
         <div>
             <?php include_once($root_path . "/public/templates/footer.php"); ?>
         </div>
-    </div>
 </body>
 </html>

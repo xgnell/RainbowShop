@@ -23,7 +23,7 @@
         line-height: 60px;
         float: left;
         /* background-color: #363e7e; */
-        background-image: url('/public/img/socials/rk.png');
+        background-image: url('/public/img/socials/logo_1.png');
         z-index: 999;
         background-size: cover;
     }
@@ -57,11 +57,9 @@
         <a href="home.php">
         </a>
     </div>
-    <div class="logo-name">
-        <span>
+    <span class="logo-name">
             Rainbow Kitty
-        </span>
-    </div>
+    </span>
     <!-- Here is Cart and Account icon -->
     <div class="menu-cart-account">
         <ul>

@@ -14,11 +14,9 @@
         text-align: center;
         background-color: white;
         border: 1px black solid;
-        z-index: 999;
     }
     #sign-in-form[hidden] {
         display: none;
-        z-index: 999;
     }
 </style>
 <div id="sign-in-form" hidden>

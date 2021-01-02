@@ -6,6 +6,7 @@
         position: relative;    
         /* background-color: rgba(0,0,0,0.5); */
         background-image: url("/public/img/background/bg2.png");
+        z-index: 1;
     }
     .content_bar {
         width: 100%;

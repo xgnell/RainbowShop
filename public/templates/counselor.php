@@ -1,7 +1,19 @@
 <style>
-    #counselor {
+    .disp-items>div {
         display: flex;
+        justify-content: space-between;
+        /* margin: 20px 20px 20px 20px;
+        background-color: white;
+        border-radius: 7px; */
     }
+
+    .panel {
+        margin: 30px 10% 30px 10%;
+        background-color: white;
+        border-radius: 7px;
+        box-shadow: 1px 1px 5px #ccc;
+    }
+
     #counselor .counselor {
         width: 33%;
     }
@@ -27,38 +39,40 @@
 
         width: 300px;
         height: 300px;
-        background-image: url(/public/img/counselors/counselor_1.png);
+        background-image: url(/public/img/counselors/tu_van.jpg);
         background-size: cover;
         margin: auto;
     }
 </style>
 
-<div id="counselor">
-    <?php for ($i = 0; $i < 3; $i++) { ?>
-        <div class="counselor">
-            <div class="counselor-avatar">
+<div class="panel">
+    <div>
+        <?php for ($i = 0; $i < 3; $i++) { ?>
+            <div class="counselor">
+                <div class="counselor-avatar">
+                </div>
+                <br>
+                <div>
+                    Thông tin
+                </div>
             </div>
-            <br>
+        <?php } ?>
+        
+        <!-- <div class="second_counselor">
+            <div class="counselor_1_size counselor_1">
+            </div>
             <div>
                 Thông tin
             </div>
         </div>
-    <?php } ?>
+        
+        <div class="third_counselor">
+            <div class="counselor_1_size counselor_1">
     
-    <!-- <div class="second_counselor">
-        <div class="counselor_1_size counselor_1">
-        </div>
-        <div>
-            Thông tin
-        </div>
+            </div>
+            <div>
+                Thông tin
+            </div>
+        </div> -->
     </div>
-    
-    <div class="third_counselor">
-        <div class="counselor_1_size counselor_1">
-
-        </div>
-        <div>
-            Thông tin
-        </div>
-    </div> -->
 </div>
