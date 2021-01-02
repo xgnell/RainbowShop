@@ -7,7 +7,7 @@
         box-shadow: 1px 1px 5px #ccc;
         height: 500px;
         position: relative;
-        top: -180px;
+        top: -150px;
         z-index: 1;
     }
 
@@ -48,33 +48,30 @@
         height: 90%;
     }
     .panel .items .content-items {
-        background-color: palegreen;
         height: 95%;
-
+        width: 100%;
         position: relative;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .panel .items .content-items .item-types {
-        background-color: blueviolet;
+        float: left;
+        margin: 0px;
         width: 25%;
-        height: 95%;
-        
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-180%, -50%);
+        height: 100%;
+    }
+    .panel .items .content-items .item-types .item-each-type {
+        margin: 10px;
+        background-color: blue;
     }
     .panel .items .content-items .item-show {
+        float: left;
+        margin: 0px;
         background-color: red;
-        width: 25%;
-        height: 95%;
-        
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-180%, -50%);
+        width: 75%;
+        height: 100%;
+        display: flex;
     }
 </style>
 
@@ -102,7 +99,11 @@
     <div class="items">
         <div class="content-items">
             <div class="item-types">
-
+                <div class="item-each-type">T-shirt</div>
+                <div class="item-each-type">Hoodie</div>
+                <div class="item-each-type">Raglan</div>
+                <div class="item-each-type">Polo</div>
+                <div class="item-each-type">Oversize</div>
             </div>
             <div class="item-show">
                 <?php
