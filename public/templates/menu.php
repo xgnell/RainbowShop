@@ -71,7 +71,7 @@
             <li><a id="link-intro" name="home" href="/public/home.php">Giới thiệu</a></li>
             <li><a id="link-order" name="order" href="#">Đặt hàng</a></li>
             <li><a id="link-contact" name="contact" href="/public/contact.php">Liên hệ</a></li>
-            <li><a id="link-qna" name="questions" href="#">Hỏi đáp</a></li>
+            <li><a id="link-qna" name="questions" href="/public/qna.php">Hỏi đáp</a></li>
         </ul>
         <script>
             let menu_options = document.querySelectorAll("#nav-menu > ul > li > a");
