@@ -31,7 +31,9 @@ include_once($root_path . "/public/templates/item.php");
             width: 35%;
             padding: 20px;
             margin: auto;
+            background-color: #ffdec9;
         }
+
         #item-img .item-image {
             width: 100%;
             height: 65%;
@@ -40,32 +42,50 @@ include_once($root_path . "/public/templates/item.php");
         #item-detail {
             width: 65%;
             height: 100%;
-            padding: 20px;
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 0px;
+            background-color: #ccc;
         }
 
         #item-detail .item-name {
+            line-height: 29px;
             width: 100%;
+            background-color: #ffdec9;
             margin-bottom: 10px;
         }
 
         #item-detail .item-price {
+            line-height: 57px;
             width: 100%;
-            height: 100px;
+            /* height: 100px; */
+            background-color: #ffdec9;
             margin-bottom: 10px;
         }
-        #item-detail .div-number {
+
+        #item-detail .item-size {
             width: 100%;
-            height: 60px;
-            padding: 20px;
+            background-color: #ffdec9;
+            margin-bottom: 10px;
+        }
+
+        #item-detail .item-number {
+            background-color: #ffdec9;
+            width: 100%;
+            /* height: 60px; */
+            /* padding-top: 20px; */
             margin-bottom: 10px;
         }
 
         #item-detail .div-buy-item {
+            background-color: #ffdec9;
             width: 100%;
-            height: 60px;
-            padding: 20px;
+            /* height: 60px; */
+            /* padding-top: 20px; */
             margin-bottom: 10px;
         }
+
         #item-detail .div-buy-item .add-to-cart {
             width: 170px;
             height: 40px;
@@ -74,6 +94,7 @@ include_once($root_path . "/public/templates/item.php");
             border-style: solid;
             outline: none;
         }
+
         #item-detail .div-buy-item .move-to-cart {
             color: white;
             width: 170px;
@@ -110,48 +131,92 @@ include_once($root_path . "/public/templates/item.php");
     <?php include_once($root_path . "/public/templates/menu.php"); ?>
 
     <?php
-        $item_id = 24;
-        $item = sql_query("
+    $item_id = 24;
+    $item = sql_query("
             SELECT *
             FROM items
             WHERE id = '$item_id';
         ");
-        $item = mysqli_fetch_array($item);
+    $item = mysqli_fetch_array($item);
 
-        $item_picture_src = "/public/img/items/";
+    $item_picture_src = "/public/img/items/";
+    ?>
+    <?php
+        // Get item all size types
+        $item_sizes = sql_query("
+            SELECT *
+            FROM item_sizes;
+        ");
     ?>
     <div id="page-item">
         <div id="item-img">
+            <!-- ========== Ảnh sản phẩm ở đây ============= -->
             <div class="item-image">
                 <center>
                     <img src="<?= $item_picture_src . $item['picture'] ?>" alt="Ảnh sản phẩm">
                 </center>
             </div>
         </div>
+
+        <!-- ============= Thông tin về sản phẩm ================= -->
         <div id="item-detail">
-            <div class="item-name">
-                <h3>
-                    <?= $item["name"] ?>
-                </h3>
-            </div>
-            <div class="item-price">
-                <h1>
-                    <?= $item["price"] ?>
-                </h1>
-            </div>
-
-            <div class="div-number">
-                - 3 +
-            </div>
-            <div class="div-buy-item">
-                <a href="/public/home.php">
-                    <input type="button" value="Thêm vào giỏ hàng" class="add-to-cart">
-                </a>
-
-                <a href="/public/home.php">
-                    <input type="button" value="Mua ngay" class="move-to-cart">
-                </a>
-            </div>
+            <input type="text" value="<?php echo $item["id"] ?>" hidden>
+        <!-- ============= Form để chuyển các thông tin sang giỏ hàng =========== -->
+            <form action="/public/cart.php">
+                <table>
+                    <tr class="item-name">
+                        <td colspan="3">
+                            <h3>
+                                <?= $item["name"] ?>
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr class="item-price">
+                        <td colspan="3">
+                            <h1>
+                                <?= $item["price"] ?>
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr class="item-size">
+                        <td>
+                            <span>Size</span>
+                        </td>
+                        <td colspan="2">
+                            <?php foreach ($item_sizes as $each): ?>
+                                <label id="<?php echo $each['size']; ?>">
+                                    <input type="radio" name="size" id="<?php echo $each['size']; ?>"><?php echo $each['size']; ?>
+                                </label>
+                            <?php endforeach ?>
+                        </td>
+                    </tr>
+                    <tr class="item-number">
+                        <td>
+                            <span>Số lượng</span>
+                        </td>
+                        <td>
+                            <input type="button" value="-">
+                            <input type="number" value='1' name="number" style="width: 50px;">
+                            <input type="button" value="+">
+                        </td>
+                        <td>
+                            <span>
+                                Còn lại
+                                    <input type="text" value="12" disabled>
+                                sản phẩm
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="div-buy-item">
+                        <td colspan="3">
+                            <a href="/public/home.php">
+                                <button type="button" class="add-to-cart">Thêm vào giỏ hàng</button>
+                            </a>
+                            <button type="submit" class="move-to-cart">Mua ngay</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
 
