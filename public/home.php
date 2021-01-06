@@ -18,11 +18,12 @@
         .disp-items > div {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
             margin: 20px 20px 20px 20px;
             padding: 10px 5px 10px 5px;
             background-color: white;
             border-radius: 7px;
-            height: 450px;
+            /* height: 500px; */
             min-width: 800;
         }
 

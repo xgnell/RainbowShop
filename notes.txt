@@ -16,3 +16,32 @@ Dựa trên thời gian nhập hàng
 // Sản phẩm có lượt xem cao
 
 + Sửa lỗi isset() cho $_GET and $_POST
+
+------------------------
++ Thêm nút Esc để thoát Form đăng nhập (hoặc các loại form khác)
++ thêm nút Enter cho các input
++ Thêm thông báo số lượng sản phẩm vào icon giỏ hàng
+
++ Thêm lựa chọn ngôn ngữ Anh - Việt
+
++ Thêm chức năng tìm kiếm tương tự các sản phẩm khi đã thêm vào giỏ hàng
++ Thêm chức năng xóa toàn bộ giỏ hàng
++ Thêm khung hiển thị total sticky
++ Thông báo sản phẩm đã ở trong giỏ hàng
+
+- Tự chèn địa chỉ của người đặt vào lúc điền hóa đơn
+
+
+-------------------------
+// Kiem tra san pham da trong gio hang chua
+<?php
+    if (customer_signed_in() && array_key_exists($item_id, $_SESSION["user"]["customer"]["cart"])) {
+        ?>
+        <button disabled>Item in cart</button>
+        <?php
+    } else {
+        ?>
+        /////
+        <?php
+    }
+?>

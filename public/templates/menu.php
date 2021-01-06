@@ -76,7 +76,7 @@
         <script>
             let menu_options = document.querySelectorAll("#nav-menu > ul > li > a");
             for (let option of menu_options) {
-                if (option.name == "<?php if (PAGE_NAME !== null) { echo PAGE_NAME; } ?>") {
+                if (option.name == "<?php if (PAGE_NAME !== null) { echo PAGE_NAME; } else { echo "Unknown"; } ?>") {
                     option.classList.add("current-option");
                     break;
                 }
@@ -99,7 +99,7 @@
     const menu = document.getElementById('menu');
     let is_scrolled_down = false;
 
-    const limit_scroll_btn = 300;
+    const limit_scroll_btn = 100;
     const scroll_top_btn = document.getElementById('scroll-top-btn');
     let is_below = false;
 
