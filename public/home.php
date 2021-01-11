@@ -75,10 +75,6 @@
                 ?>
             </div> -->
         </div>
-    
-        <div class="disp-staff panel">
-            <?php include_once($root_path . "/public/templates/counselor.php"); ?>
-        </div>
         
         <!--///////////////  Here is include footer /////////////-->
         <div>

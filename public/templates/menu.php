@@ -62,7 +62,7 @@
         bottom: 30px;
         padding: 10px 10px 10px 10px;
         border-radius: 50px;
-        background-color: #21264F;
+        background-color: #00a2ff;
     }
 </style>
 <div id="menu">
