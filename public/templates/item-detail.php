@@ -10,7 +10,7 @@ include_once($root_path . "/public/templates/item.php");
 
 
 // Đoạn này ông ghép cái id zô nè
-$item_id = 1;
+$item_id = 22;
 
 
 
@@ -65,7 +65,7 @@ $item_sizes = sql_query("
         }
 
         #item-img .item-image {
-            /* background-color: #ff8030; */
+            background-color: #ff8030;
             margin: auto;
             /* width: 80%;
             height: 65%; */
@@ -92,7 +92,7 @@ $item_sizes = sql_query("
         #item-detail .item-price {
             line-height: 57px;
             width: 100%;
-            height: 200px;
+            height: 160px;
             /* background-color: #ffdec9; */
             margin-bottom: 10px;
         }
@@ -193,6 +193,8 @@ $item_sizes = sql_query("
             <!-- ============= Form để chuyển các thông tin sang giỏ hàng =========== -->
             <form action="/public/cart.php">
                 <table style="height: 100%; width: 100%; color: #363e7e;">
+                <input type="text" value="<?php echo $item_id; ?>">
+                <!-- Tên sản phẩm  -->
                     <tr class="item-name">
                         <td colspan="3">
                             <span style="font-size: 30px;">
@@ -200,6 +202,7 @@ $item_sizes = sql_query("
                             </span>
                         </td>
                     </tr>
+                <!-- Giá sản phẩm  -->
                     <tr class="item-price">
                         <td colspan="3">
                             <b>
@@ -209,6 +212,16 @@ $item_sizes = sql_query("
                             </b>
                         </td>
                     </tr>
+                <!-- Phần mô tả  -->
+                    <tr>
+                        <td style="vertical-align: top;">
+                            Mô tả
+                        </td>
+                        <td style="vertical-align: top;">
+                            <?php echo $item['description']; ?>
+                        </td>
+                    </tr>
+                <!-- Cột size -->
                     <tr class="item-size">
                         <td>
                             <span>Size</span>
@@ -221,6 +234,7 @@ $item_sizes = sql_query("
                             <?php endforeach ?>
                         </td>
                     </tr>
+                <!-- Cột số lượng -->
                     <tr class="item-number">
                         <td>
                             <span>Số lượng</span>
@@ -238,6 +252,7 @@ $item_sizes = sql_query("
                             </span>
                         </td> -->
                     </tr>
+                <!-- Cột thêm vào giỏ hàng -->
                     <tr class="div-buy-item">
                         <td colspan="3">
                             <a href="/public/home.php">
