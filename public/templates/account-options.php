@@ -1,7 +1,7 @@
 <style>
 	#account-options {
 		visibility: hidden;
-		z-index: 999;
+		z-index: 2;
 		position: absolute;
 		top: 75px;
 		right: 70px;

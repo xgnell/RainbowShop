@@ -1,35 +1,31 @@
 <?php
-$root_path = $_SERVER["DOCUMENT_ROOT"];
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
 
-define("PAGE_NAME", "home");
-require_once($root_path . "/public/templates/check-customer-signed-in.php");
-require_once($root_path . "/config/db.php");
-include_once($root_path . "/public/templates/item.php");
-?>
-<?php
+    define("PAGE_NAME", "home");
+    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/config/db.php");
+    include_once($root_path . "/public/templates/item.php");
 
-
-// Đoạn này ông ghép cái id zô nè
-$item_id = 1;
+    // Đoạn này ông ghép cái id zô nè
+    $item_id = 1;
 
 
 
-$item = sql_query("
-        SELECT *
-        FROM items
-        WHERE id = '$item_id';
-    ");
-$item = mysqli_fetch_array($item);
+    $item = sql_query("
+            SELECT *
+            FROM items
+            WHERE id = '$item_id';
+        ");
+    $item = mysqli_fetch_array($item);
 
-$item_picture_src = "/public/img/items/";
-?>
-<?php
-// Get item all size types
-$item_sizes = sql_query("
-        SELECT *
-        FROM item_sizes;
-    ");
-?>
+    $item_picture_src = "/public/img/items/";
+
+    // Get item all size types
+    $item_sizes = sql_query("
+            SELECT *
+            FROM item_sizes;
+        ");
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 

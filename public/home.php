@@ -16,7 +16,7 @@ include_once($root_path . "/public/templates/item.php");
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <link rel="icon" href="/public/img/socials/logo_1.png">
     <style>
-        /* .disp-items>div {
+        .disp-items > div {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -26,7 +26,7 @@ include_once($root_path . "/public/templates/item.php");
             border-radius: 7px;
             /* height: 500px; */
             min-width: 800;
-        }*/
+        }
 
         .panel {
             margin: 30px 10% 30px 10%;
@@ -47,11 +47,11 @@ include_once($root_path . "/public/templates/item.php");
     <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
 
     <?php
-    $item_data = sql_query("
-        SELECT id
-        FROM items
-        LIMIT 4;
-    ");
+        $item_data = sql_query("
+            SELECT id
+            FROM items
+            LIMIT 4;
+        ");
     ?>
         <div class="disp-items panel">
             <div class="disp-new-items">

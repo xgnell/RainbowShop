@@ -5,7 +5,7 @@
         width: 100%;
     }*/
     #menu {
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         top: 80px;
         width: 100%;
