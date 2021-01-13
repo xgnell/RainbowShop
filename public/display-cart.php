@@ -21,32 +21,54 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
+            width: 1110px;
+            min-height: 400px;
         }
         
-        .table-header-container {
+        /* .table-header-container {
             display: grid;
             grid-template-columns: 170px auto;
             gap: 20px;
+        } */
+
+        .notification {
+            width: 100%;
+            padding: 10%;
+            text-align: center;
+        }
+        .notification * {
+            margin-bottom: 15px;
         }
 
         .table-header {
             text-align: center;
             border: 2px white solid;
             border-collapse: collapse;
+            /* width: 100%; */
         }
         .table-header tr {
             border: 2px white solid;
         }
         .table-header tr th {
-            color: white;
+            /* color: white; */
             padding: 7px 0 7px 0;
-            background-color: #363e7e;
+            /* background-color: #363e7e; */
+            /* background-color: #f7f7f7; */
+            background-color: #dedede;
             border: 2px white solid;
         }
 
         .disp-total {
             display: flex;
             justify-content: space-between;
+        }
+
+        .btn-delete-all-cart {
+            color: gray;
+            cursor: pointer;
+        }
+        .btn-delete-all-cart:hover {
+            color: red;
         }
 
         .btn-buy {
@@ -75,72 +97,72 @@
     <?php include_once($root_path . "/public/templates/menu.php"); ?>
     <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
 
+    <div class="panel">
     <?php
         $total_price = 0;
         if (customer_signed_in()) {
             if (empty($_SESSION["user"]["customer"]["cart"])) {
                 // If there is no item in cart
                 ?>
-                <h1>Giỏ hàng hiện chưa có sản phẩm nào</h1>
-
-                <!-- Sau se quay lai trang san pham chi tiet -->
-                <a href="/public/home.php">Tiếp tục mua hàng</a>
+                <div class="notification">
+                    <h1>Giỏ hàng hiện chưa có sản phẩm nào</h1>
+                    <a href="/public/home.php">Quay lại mua hàng</a>
+                </div>
                 <?php
 
             } else {
                 // Table Titles
                 ?>
-                <div class="panel table-header-container">
-                    <div class="fake-div-picture"></div>
-                    <div class="fake-div-info">
-                        <table class="table-header">
-                            <tr>
-                                <!-- <th style="width: 205px; min-width: 205;">Ảnh sản phẩm</th> -->
-                                <th style="width: 205px; min-width: 205;">Giá</th>
-                                <th style="width: 155px; min-width: 155;">Loại</th>
-                                <th style="width: 100px; min-width: 100;">Màu</th>
-                                <th style="width: 125px; min-width: 125;">Kích thước</th>
-                                <th style="width: 260px; min-width: 260;">Số lượng</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <table class="table-header">
+                    <tr>
+                        <th style="width: 160px; min-width: 160px;">Ảnh</th>
+                        <th style="width: 170px; min-width: 170px;">Tên</th>
+                        <th style="width: 120px; min-width: 120px;">Giá</th>
+                        <th style="width: 120px; min-width: 120px;">Loại</th>
+                        <th style="width: 100px; min-width: 100px;">Màu</th>
+                        <th style="width: 100px; min-width: 100px;">Size</th>
+                        <th style="width: 200px; min-width: 200px;">Số lượng</th>
+                        <th style="width: 90px; min-width: 90px;"></th>
+                    </tr>
+                </table>
                 <?php
 
                 // Cart has items
                 foreach ($_SESSION["user"]["customer"]["cart"] as $item_id => $data) {
                     foreach ($data as $size_id => $amount) {
-                        $size_name = sql_query("
-                            SELECT size
-                            FROM item_sizes
-                            WHERE id = $size_id;
-                        ");
-                        $size_name = mysqli_fetch_array($size_name)["size"];
-                        $total_price += spawn_cart_item($item_id, $size_name, $amount);
+                        $total_price += spawn_cart_item($item_id, $size_id, $amount);
                     }
                 }
                 ?>
                 <!-- Total panel -->
-                <div class="panel">
-                    <div class="disp-total">
-                        <a href="#">Xoá toàn bộ giỏ hàng</a>
-                        <span style="font-size: 20px; color: red;">Tổng: <?= $total_price ?> VNĐ</span>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: flex-end;">
-                        <a class="btn-buy" onclick="document.getElementById('get-info-form').style.visibility = 'visible'">Mua hàng</a>
-                    </div>
+                <div class="disp-total">
+                    <a class="btn-delete-all-cart" onclick="confirm_delete_all_cart()">Xoá toàn bộ giỏ hàng</a>
+                    <span style="font-size: 20px; color: red; margin-right: 30px;">Tổng: <?= $total_price ?> VNĐ</span>
                 </div>
+                <br>
+                <div style="display: flex; justify-content: flex-end;">
+                    <a class="btn-buy" onclick="document.getElementById('get-info-form').style.visibility = 'visible'">Mua hàng</a>
+                </div>
+                <script defer>
+                    function confirm_delete_all_cart() {
+                        const yes = confirm("Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng ?");
+                        if (yes) {
+                            window.location.href = "/public/templates/delete-all-cart.php";
+                        }
+                    }
+                </script>
                 <?php
             }
         } else {
             ?>
-            <h1>Đăng nhập để thêm hàng vào giỏ</h1>
-            <!-- <a onclick="window.history.back()">Back</a> -->
+            <div class="notification">
+                <h1>Đăng nhập để thêm hàng vào giỏ</h1>
+                <a href="/public/home.php">Quay lại mua sắm</a>
+            </div>
             <?php
         }
     ?>
-
+    </div>
 
     <?php include_once($root_path . "/public/templates/footer.php"); ?>
 </body>

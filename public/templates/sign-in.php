@@ -74,19 +74,19 @@
         <a class="btn-close" onclick="document.getElementById('sign-in-form').style.visibility = 'hidden'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </a><br>
-        <span class="form-title">Sign in your account</span><br><br>
+        <span class="form-title">Đăng nhập</span><br><br>
         <form action="/public/templates/sign-in-process.php" method="POST">
             
             <div class="form-content">
                 <input type="text" name="email" placeholder="Email"><br><br>
-                <input type="password" name="passwd" placeholder="Password"><br><br>
+                <input type="password" name="passwd" placeholder="Mật khẩu"><br><br>
             </div>
             
-            <input class="btn-sign-in" type="submit" value="Sign in"><br><br>
+            <input class="btn-sign-in" type="submit" value="Đăng nhập"><br><br>
 
             <div class="form-footer">
-                <a href="/public/sign-up.php">Sign up an account</a>
-                <a href="#">Forget your account ?</a>
+                <a href="/public/sign-up.php">Tạo tài khoản mới</a>
+                <a href="#">Quên tài khoản ?</a>
             </div>
         </form>
     </div>

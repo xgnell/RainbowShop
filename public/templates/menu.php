@@ -68,8 +68,8 @@
 <div id="menu">
     <div id="nav-menu">
         <ul>
-            <li><a id="link-intro" name="home" href="/public/home.php">Giới thiệu</a></li>
-            <li><a id="link-order" name="order" href="#">Đặt hàng</a></li>
+            <li><a id="link-intro" name="home" href="/public/home.php">Sản phẩm</a></li>
+            <!-- <li><a id="link-order" name="order" href="#">Đặt hàng</a></li> -->
             <li><a id="link-contact" name="contact" href="/public/contact.php">Liên hệ</a></li>
             <li><a id="link-qna" name="questions" href="#">Hỏi đáp</a></li>
         </ul>

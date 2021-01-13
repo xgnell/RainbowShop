@@ -51,6 +51,14 @@ if (customer_signed_in()) {
 
         // Insert data
         foreach ($data as $size_id => $amount) {
+            // Update amount from items details
+            sql_cmd("
+                UPDATE item_details
+                SET amount = amount - $amount
+                WHERE id_item = $item_id AND id_size = $size_id;
+            ");
+            
+            // Insert into bill details
             sql_cmd("
                 INSERT INTO bill_details (
                     id_bill,

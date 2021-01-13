@@ -26,7 +26,12 @@ if (mysqli_num_rows($result) == 1) {
             "cart" => []
         ]
     ];
-    header("location:/public/home.php");
+    // header("location:/public/home.php");
+    ?>
+    <script>
+        window.history.back();
+    </script>
+    <?php
 } else {
     // Sign in failure
     ?>

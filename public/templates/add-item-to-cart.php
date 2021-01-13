@@ -5,6 +5,9 @@ session_start();
 $item_id = $_GET["id"];
 
 // Kiem tra san pham da o trong gio hang chua
+// ...
+
+// (Kiem tra trong kho con san pham hay ko)
 
 $_SESSION["user"]["customer"]["cart"][$item_id] = [
     1 => rand(10, 50),

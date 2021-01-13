@@ -1,6 +1,9 @@
 ==== Các công việc cần làm ====
 
-
+- [ ] Thay đổi title các trang
+- [ ] Trừ đi số lượng sản phẩm khi đặt hàng
+- [ ] Làm tính năng phân trang
+- [ ] Hiển thị sản phẩm hết hàng / hoặc số lượng sp = 0 thì ko hiển thị ra
 - [ ] Không hiển thị thông báo cho cách truy cập từ thanh địa chỉ
 
 - [ ] Thêm nút Esc để thoát Form đăng nhập (hoặc các loại form khác)
