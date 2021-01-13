@@ -12,9 +12,8 @@ $item_amount =$_GET["amount"];
 
 echo $item_amount;
 echo $item_size;
-$_SESSION["user"]["customer"]["cart"][$item_id]["size"] = [
-    $item_id => $item_amount,
-    $item_id => $item_size
+$_SESSION["user"]["customer"]["cart"][$item_id] = [
+    $item_id => $item_amount
     // 1 => rand(10, 50),
     // 2 => rand(10, 50),
     // 3 => rand(10, 50),
