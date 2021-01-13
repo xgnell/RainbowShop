@@ -5,7 +5,7 @@
         width: 100%;
     }*/
     #menu {
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         top: 80px;
         width: 100%;
@@ -62,21 +62,21 @@
         bottom: 30px;
         padding: 10px 10px 10px 10px;
         border-radius: 50px;
-        background-color: #21264F;
+        background-color: #00a2ff;
     }
 </style>
 <div id="menu">
     <div id="nav-menu">
         <ul>
-            <li><a id="link-intro" name="home" href="/public/home.php">Giới thiệu</a></li>
-            <li><a id="link-order" name="order" href="#">Đặt hàng</a></li>
+            <li><a id="link-intro" name="home" href="/public/home.php">Sản phẩm</a></li>
+            <!-- <li><a id="link-order" name="order" href="#">Đặt hàng</a></li> -->
             <li><a id="link-contact" name="contact" href="/public/contact.php">Liên hệ</a></li>
             <li><a id="link-qna" name="questions" href="/public/qna.php">Hỏi đáp</a></li>
         </ul>
         <script>
             let menu_options = document.querySelectorAll("#nav-menu > ul > li > a");
             for (let option of menu_options) {
-                if (option.name == "<?php if (PAGE_NAME !== null) { echo PAGE_NAME; } ?>") {
+                if (option.name == "<?php if (PAGE_NAME !== null) { echo PAGE_NAME; } else { echo "Unknown"; } ?>") {
                     option.classList.add("current-option");
                     break;
                 }
@@ -99,7 +99,7 @@
     const menu = document.getElementById('menu');
     let is_scrolled_down = false;
 
-    const limit_scroll_btn = 300;
+    const limit_scroll_btn = 100;
     const scroll_top_btn = document.getElementById('scroll-top-btn');
     let is_below = false;
 

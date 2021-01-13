@@ -1,7 +1,7 @@
 <style>
 	#account-options {
 		visibility: hidden;
-		z-index: 999;
+		z-index: 2;
 		position: absolute;
 		top: 75px;
 		right: 70px;
@@ -60,9 +60,9 @@
 	onmouseleave="document.getElementById('account-options').style.visibility = 'hidden'">
 	<span class="hello"><?= $_SESSION["user"]["customer"]["name"] ?></span><br>
 	<ul>
-		<li><a>Details</a></li>
-		<li><a>Delete account</a></li>
-		<li><a>Other options</a></li>
-		<li><a href="/public/templates/sign-out-process.php">Sign out</a></li>
+		<!-- <li><a>Profile</a></li> -->
+		<li><a href="/public/display-orders.php">Lịch sử mua hàng</a></li>
+		<!-- <li><a>Cài đặt</a></li> -->
+		<li><a href="/public/templates/sign-out-process.php">Đăng xuất</a></li>
 	</ul>
 </div>

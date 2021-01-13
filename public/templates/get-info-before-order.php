@@ -1,5 +1,5 @@
 <style>
-    #sign-in-form {
+    #get-info-form {
         visibility: hidden;
         position: fixed;
         display: flex;
@@ -10,10 +10,10 @@
         z-index: 3;
     }
 
-    #sign-in-form .form-frame {
-        margin-top: 150px;
+    #get-info-form .form-frame {
+        margin-top: 100px;
         width: 500px;
-        height: 400px;
+        height: 450px;
         text-align: center;
         background-color: white;
         box-shadow: 5px 15px 15px #5c5c5c;
@@ -21,90 +21,70 @@
         /*border: 1px black solid;*/
     }
 
-    #sign-in-form .form-content {
+    #get-info-form .form-content {
         text-align: left;
         margin: 5px 45px 5px 45px;
     }
-    #sign-in-form .form-content > input {
+    #get-info-form .form-content > input {
         width: 100%;
         height: 50px;
     }
 
-    #sign-in-form .form-title {
+    #get-info-form .form-title {
         font-size: 30px;
         font-weight: bold;
     }
 
-    #sign-in-form .btn-close {
+    #get-info-form .btn-close {
         cursor: pointer;
         position: relative;
         left: 220px;
         top: 5px;
     }
-    /*#sign-in-form .btn-close:hover {
+    /*#get-info-form .btn-close:hover {
         background-color: rgb(208, 209, 214);
     }*/
 
 
-    #sign-in-form .btn-sign-in {
+    #get-info-form .btn-order {
         cursor: pointer;
         width: 200px;
         height: 50px;
     }
 
-    #sign-in-form .form-footer {
+    /* #get-info-form .form-footer {
         display: flex;
         justify-content: space-around;
     }
-    #sign-in-form .form-footer a {
+    #get-info-form .form-footer a {
         padding: 5px 10px 5px 10px;
         border-radius: 3px;
         text-decoration: none;
         color: gray;
     }
-    #sign-in-form .form-footer a:hover {
+    #get-info-form .form-footer a:hover {
         color: black;
         background-color: rgb(208, 209, 214);
-    }
+    } */
 </style>
 
 
-<div id="sign-in-form">
+<div id="get-info-form">
     <div class="form-frame">
-        <a class="btn-close" onclick="document.getElementById('sign-in-form').style.visibility = 'hidden'">
+        <a class="btn-close" onclick="document.getElementById('get-info-form').style.visibility = 'hidden'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </a><br>
-        <span class="form-title">Đăng nhập</span><br><br>
-        <form action="/public/templates/sign-in-process.php" method="POST">
+        <span class="form-title">Thông tin người nhận</span>
+        <form action="/public/templates/process-order.php" method="POST">
             
             <div class="form-content">
-                <input type="text" name="email" placeholder="Email"><br><br>
-                <input type="password" name="passwd" placeholder="Mật khẩu"><br><br>
+            <input type="text" name="id_customer" value="<?= $_SESSION["user"]["customer"]["id"]?>" style="visibility: hidden;">
+                <input type="text" name="receiver" placeholder="Tên người nhận"><br><br>
+                <input type="text" name="phone" placeholder="Số điện thoại"><br><br>
+                <input type="text" name="address" placeholder="Địa chỉ"><br><br>
             </div>
             
-            <input class="btn-sign-in" type="submit" value="Đăng nhập"><br><br>
-
-            <div class="form-footer">
-                <a href="/public/sign-up.php">Tạo tài khoản mới</a>
-                <a href="#">Quên tài khoản ?</a>
-            </div>
+            <input class="btn-order" type="submit" value="Đặt hàng"><br><br>
         </form>
     </div>
 </div>
-
-
-<script>
-    function add_item_to_cart(item_id) {
-        <?php
-        if (customer_signed_in()) {
-            ?>
-            window.location.href = `/public/templates/item-detail.php?id=${item_id}`;
-            <?php
-        } else {
-            ?>
-            document.getElementById('sign-in-form').style.visibility = 'visible';
-            <?php
-        }
-        ?>
-    }
-</script>

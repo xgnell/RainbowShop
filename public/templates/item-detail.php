@@ -1,35 +1,29 @@
 <?php
-$root_path = $_SERVER["DOCUMENT_ROOT"];
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
 
-define("PAGE_NAME", "home");
-require_once($root_path . "/public/templates/check-customer-signed-in.php");
-require_once($root_path . "/config/db.php");
-include_once($root_path . "/public/templates/item.php");
-?>
-<?php
+    define("PAGE_NAME", "home");
+    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/config/db.php");
+    include_once($root_path . "/public/templates/item.php");
 
+    // Đoạn này ông ghép cái id zô nè
+    $item_id = $_GET['id'];
 
-// Đoạn này ông ghép cái id zô nè
-$item_id = 22;
+    $item = sql_query("
+            SELECT *
+            FROM items
+            WHERE id = '$item_id';
+        ");
+    $item = mysqli_fetch_array($item);
 
+    $item_picture_src = "/public/img/items/";
 
-
-$item = sql_query("
-        SELECT *
-        FROM items
-        WHERE id = '$item_id';
-    ");
-$item = mysqli_fetch_array($item);
-
-$item_picture_src = "/public/img/items/";
-?>
-<?php
-// Get item all size types
-$item_sizes = sql_query("
-        SELECT *
-        FROM item_sizes;
-    ");
-?>
+    // Get item all size types
+    $item_sizes = sql_query("
+            SELECT *
+            FROM item_sizes;
+        ");
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -191,9 +185,9 @@ $item_sizes = sql_query("
         <div id="item-detail">
             <input type="text" value="<?php echo $item["id"] ?>" hidden>
             <!-- ============= Form để chuyển các thông tin sang giỏ hàng =========== -->
-            <form action="/public/cart.php">
+            <form action="/public/templates/add-item-to-cart.php">
                 <table style="height: 100%; width: 100%; color: #363e7e;">
-                <input type="text" value="<?php echo $item_id; ?>">
+                <input type="hidden" name="id" value="<?php echo $item_id; ?>">
                 <!-- Tên sản phẩm  -->
                     <tr class="item-name">
                         <td colspan="3">
@@ -241,7 +235,7 @@ $item_sizes = sql_query("
                         </td>
                         <td>
                             <input type="button" value="-">
-                            <input type="number" value='1' name="number" style="width: 50px;">
+                            <input type="number" value='1' name="amount" style="width: 50px;">
                             <input type="button" value="+">
                         </td>
                         <!-- <td>

@@ -16,14 +16,15 @@ include_once($root_path . "/public/templates/item.php");
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <link rel="icon" href="/public/img/socials/logo_1.png">
     <style>
-        /* .disp-items>div {
+        .disp-items > div {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
             margin: 20px 20px 20px 20px;
             padding: 10px 5px 10px 5px;
             background-color: white;
             border-radius: 7px;
-            height: 450px;
+            /* height: 500px; */
             min-width: 800;
         }
 
@@ -32,7 +33,7 @@ include_once($root_path . "/public/templates/item.php");
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
-        } */
+        }
     </style>
 </head>
 
@@ -46,19 +47,33 @@ include_once($root_path . "/public/templates/item.php");
     <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
 
     <?php
-    $item_data = sql_query("
-                SELECT id
-                FROM items
-                LIMIT 4;
-            ");
+        $item_data = sql_query("
+            SELECT id
+            FROM items
+            LIMIT 4;
+        ");
     ?>
-
-    <?php include_once($root_path . "/public/templates/disp-item.php"); ?>
-
-    <?php include_once($root_path . "/public/templates/counselor.php"); ?>
-
-    <!--///////////////  Here is include footer /////////////-->
-    <?php include_once($root_path . "/public/templates/footer.php"); ?>
+        <div class="disp-items panel">
+            <div class="disp-new-items">
+                <?php
+                    foreach ($item_data as $item) {
+                        spawn_item($item["id"]);
+                    }
+                ?>
+            </div>
+            <!-- <div class="disp-polular-items">
+                <?php
+                    for ($i = 0; $i < 4; $i++) {
+                        spawn_item("");
+                    }
+                ?>
+            </div> -->
+        </div>
+        
+        <!--///////////////  Here is include footer /////////////-->
+        <div>
+            <?php include_once($root_path . "/public/templates/footer.php"); ?>
+        </div>
+    </div>
 </body>
-
 </html>

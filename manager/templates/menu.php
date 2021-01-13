@@ -65,6 +65,12 @@
             </ul>
         </li>
         <li>
+            <a href="#">Orders</a>
+            <ul class="sub-menu" hidden>
+                <li><a href="/manager/orders/orders-manager.php">All Order</a></li>
+            </ul>
+        </li>
+        <li>
             <a href="#">Questions</a>
             <ul class="sub-menu" hidden>
                 <li><a href="/manager/questions/questions-manager.php">All Questions</a></li>
