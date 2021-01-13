@@ -1,11 +1,12 @@
 <?php
-    $root_path = $_SERVER["DOCUMENT_ROOT"];
-    
-    define("PAGE_NAME", "signup");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+$root_path = $_SERVER["DOCUMENT_ROOT"];
+
+define("PAGE_NAME", "signup");
+require_once($root_path . "/public/templates/check-customer-signed-in.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,44 +49,46 @@
         }
     </style>
 </head>
+
 <body>
     <?php include_once($root_path . "/public/templates/header.php"); ?>
     <?php include_once($root_path . "/public/templates/menu.php"); ?>
 
     <div class="page-body">
-    <div class="panel">
-        <div class="form-title">Sign up</div>
-        <form action="/public/sign-up-process.php" method="POST">
-            <label>Name</label><span class="error"></span><br>
-            <input type="text" name="name"><br><br>
+        <div class="panel">
+            <div class="form-title">Sign up</div>
+            <form action="/public/sign-up-process.php" method="POST">
+                <label>Name</label><span class="error"></span><br>
+                <input type="text" name="name"><br><br>
 
-            <label>Email</label><span class="error"></span><br>
-            <input type="email" name="email"><br><br>
+                <label>Email</label><span class="error"></span><br>
+                <input type="email" name="email"><br><br>
 
-            <label>Gender</label><span class="error"></span><br>
-            <select name="gender">
-                <option value="0">Nữ</option>
-                <option value="1">Nam</option>
-            </select><br><br>
+                <label>Gender</label><span class="error"></span><br>
+                <select name="gender">
+                    <option value="0">Nữ</option>
+                    <option value="1">Nam</option>
+                </select><br><br>
 
-            <label>Password</label><span class="error"></span><br>
-            <input type="password" name="passwd" placeholder="Password"><br><br>
-            
-            <label>Address</label><span class="error"></span><br>
-            <input type="text" name="address"><br><br>
+                <label>Password</label><span class="error"></span><br>
+                <input type="password" name="passwd" placeholder="Password"><br><br>
 
-            <label>Birth</label><span class="error"></span><br>
-            <input type="date" name="birth"><br><br>
+                <label>Address</label><span class="error"></span><br>
+                <input type="text" name="address"><br><br>
 
-            <label>Phone</label><span class="error"></span><br>
-            <input type="number" name="phone"><br><br>
+                <label>Birth</label><span class="error"></span><br>
+                <input type="date" name="birth"><br><br>
 
-            <input class="btn-sign-up" type="submit" value="Sign up"><br><br>
+                <label>Phone</label><span class="error"></span><br>
+                <input type="number" name="phone"><br><br>
 
-        </form>
-    </div>
+                <input class="btn-sign-up" type="submit" value="Sign up"><br><br>
+
+            </form>
+        </div>
     </div>
 
     <?php include_once($root_path . "/public/templates/footer.php"); ?>
 </body>
+
 </html>
