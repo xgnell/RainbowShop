@@ -1,7 +1,7 @@
 <style>
     #background_all {
         position: relative;
-        top: 70px;
+        top: 0px;
         margin: 20px 0px 20px 0px;
         height: 700px;
         background-image: url("/public/img/background/bg2.png");

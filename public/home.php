@@ -46,29 +46,7 @@ include_once($root_path . "/public/templates/item.php");
 
     <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
 
-    <?php
-        $item_data = sql_query("
-            SELECT id
-            FROM items
-            LIMIT 4;
-        ");
-    ?>
-        <div class="disp-items panel">
-            <div class="disp-new-items">
-                <?php
-                    foreach ($item_data as $item) {
-                        spawn_item($item["id"]);
-                    }
-                ?>
-            </div>
-            <!-- <div class="disp-polular-items">
-                <?php
-                    for ($i = 0; $i < 4; $i++) {
-                        spawn_item("");
-                    }
-                ?>
-            </div> -->
-        </div>
+    <?php include_once($root_path . "/public/templates/disp-item.php"); ?>
         
         <!--///////////////  Here is include footer /////////////-->
         <div>
