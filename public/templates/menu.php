@@ -1,11 +1,7 @@
 <style>
     /* All menu */
-    /*.menu {
-        top: 0;
-        width: 100%;
-    }*/
     #menu {
-        z-index: 1;
+        z-index: 5;
         position: absolute;
         top: 80px;
         width: 100%;
@@ -70,8 +66,8 @@
         <ul>
             <li><a id="link-intro" name="home" href="/public/home.php">Sản phẩm</a></li>
             <!-- <li><a id="link-order" name="order" href="#">Đặt hàng</a></li> -->
-            <li><a id="link-contact" name="contact" href="/public/contact.php">Liên hệ</a></li>
-            <li><a id="link-qna" name="questions" href="/public/qna.php">Hỏi đáp</a></li>
+            <li><a id="link-contact" name="contact" href="#div_all_footer">Liên hệ</a></li>
+            <li><a id="link-qna" name="qna" href="/public/qna.php">Hỏi đáp</a></li>
         </ul>
         <script>
             let menu_options = document.querySelectorAll("#nav-menu > ul > li > a");

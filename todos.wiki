@@ -1,7 +1,7 @@
 ==== Các công việc cần làm ====
 
-- [ ] Thay đổi title các trang
-- [ ] Trừ đi số lượng sản phẩm khi đặt hàng
+- [X] Thay đổi title các trang
+- [X] Trừ đi số lượng sản phẩm khi đặt hàng
 - [ ] Làm tính năng phân trang
 - [ ] Hiển thị sản phẩm hết hàng / hoặc số lượng sp = 0 thì ko hiển thị ra
 - [ ] Không hiển thị thông báo cho cách truy cập từ thanh địa chỉ

@@ -1,27 +1,41 @@
 <?php
-session_start();
+    session_start();
 
-// Sau nay se gui ca 1 form nen theo phuong thuc POST
-$item_id = $_GET["id"];
-$item_size = $_GET["size"];
-$item_amount =$_GET["amount"];
-// Kiem tra san pham da o trong gio hang chua
-// ...
+    $item_id = $_POST["id"];
+    $item_size_id = $_POST["size_id"];
+    $item_amount = $_POST["amount"];
+    // Sau sửa lại redirect tối ưu hơn
+    $redirect = $_POST["redirect"];
 
-// (Kiem tra trong kho con san pham hay ko)
+    // Check if item in cart
+    if (array_key_exists($_SESSION["user"]["customer"]["cart"][$item_id], $item_size_id)) {
+        // Update
+        $_SESSION["user"]["customer"]["cart"][$item_id][$item_size_id] += $item_amount;
+    } else {
+        // Add new
+        $_SESSION["user"]["customer"]["cart"][$item_id][$item_size_id] = $item_amount;
+        // $size_data_in_db = sql_query("
+        //     SELECT *
+        //     FROM item_details
+        //     WHERE id_item = $item_id AND id_size = $item_size_id;
+        // ");
+        // if (mysqli_num_rows($size_data_in_db) != 0) {
+        // } else {
+        //     // Make error message
+        // }
+    }
 
-echo $item_amount;
-echo $item_size;
-$_SESSION["user"]["customer"]["cart"][$item_id] = [
-    $item_id => $item_amount
-    // 1 => rand(10, 50),
-    // 2 => rand(10, 50),
-    // 3 => rand(10, 50),
-    // "XXL" => rand(10, 50)
-];
+    // (Kiem tra trong kho con san pham hay ko)
+    // ...
+
+    if ($redirect == 0) {
+        header("location:/public/home.php");
+    } else {
+        header("location:/public/display-cart.php");
+    }
 ?>
-<script>
+<!-- <script>
     // Sau nay se dung AJAX => thong bao them hang thanh cong se xu ly bang ajax
     // Hoac neu de dang file thuong thi chen them mot thanh phan code de danh dau action => Nhung ko bao mat
     // window.history.back();
-</script>
+</script> -->

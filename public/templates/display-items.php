@@ -58,8 +58,8 @@
 
 </style>
 
-<!-- phan nay la noi dung cua phan title -->
 <div class="panel">
+    <!-- This is title -->
     <div class="title">
         <a href="#">
             <span class="title-item hover">

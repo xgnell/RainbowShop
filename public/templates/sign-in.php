@@ -93,18 +93,20 @@
 </div>
 
 
-<script>
-    function add_item_to_cart(item_id) {
+<!-- <script>
+    function add_item_to_cart() {
         <?php
         if (customer_signed_in()) {
             ?>
-            window.location.href = `/public/templates/item-detail.php?id=${item_id}`;
+            return true;
+            // window.location.href = `/public/templates/item-detail.php?id=${item_id}`;
             <?php
         } else {
             ?>
             document.getElementById('sign-in-form').style.visibility = 'visible';
+            return false;
             <?php
         }
         ?>
     }
-</script>
+</script> -->
