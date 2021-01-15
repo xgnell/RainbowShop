@@ -1,26 +1,23 @@
 ==== Các công việc cần làm ====
-<<<<<<< HEAD
 ------------------------------------------------------------------------------------------------------------------------------------
 Triệu
 
-- [ ] Phần admin: chỉnh sửa quyền admin
-- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
 - [ ] qna: thêm sửa xoá qna + qna trang khách hàng
+- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
+- [ ] Validate tất cả form có sờ tới
+- [ ] Phần admin: chỉnh sửa quyền admin
 - [ ] reponsive
 - [ ] Phân trang
 - [ ] làm footer
-- [ ] Validate tất cả form có sờ tới
 - [ ] Sắp xếp sản phẩm theo thời gian
 
 ------------------------------------------------------------------------------------------------------------------------------------
-=======
 
 - [ ] Mã hóa mật khẩu
 - [ ] Sửa lỗi hack qua url
 - [ ] Sơ đồ thực thể
 - [ ] Sửa lại cấu trúc cơ sở dữ liệu
 - [ ] Kiểm tra trình trạng hóa đơn trước khi duyệt
->>>>>>> c18d28f5a4ae87748d0cfbeeb50314abd17e6beb
 - [X] Thay đổi title các trang
 - [X] Trừ đi số lượng sản phẩm khi đặt hàng
 - [ ] Làm tính năng phân trang

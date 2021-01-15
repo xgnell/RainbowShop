@@ -74,7 +74,7 @@
             <a href="#">Questions</a>
             <ul class="sub-menu" hidden>
                 <li><a href="/manager/questions/questions-manager.php">All Questions</a></li>
-                <li><a href="#">Add</a></li>
+                <li><a href="/manager/questions/question-insert.php">Add</a></li>
             </ul>
         </li>
     </ul>
