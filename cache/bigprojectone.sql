@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2021 at 02:59 PM
+-- Generation Time: Jan 15, 2021 at 05:21 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -82,18 +82,6 @@ CREATE TABLE `bills` (
   `purchase_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bills`
---
-
-INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`) VALUES
-(7, 8, 'Huệ', 'Hà Nội', '1234569879', 2, '2021-01-11 05:35:08'),
-(8, 7, 'Ngoc', 'Ninh Bình', '231535234', 3, '2021-01-11 05:50:46'),
-(9, 8, 'Huệ', 'Huế', '1112223367', 2, '2021-01-11 05:51:51'),
-(10, 7, 'Lan', 'Quảng Ninh', '231535234', 2, '2021-01-13 03:56:47'),
-(11, 7, 'Ngoc Luui', 'Ngoc Lam', '1239876540', 1, '2021-01-13 08:26:21'),
-(12, 7, 'Ngoc', 'Ha Noi', '1112223335', 1, '2021-01-13 09:14:55');
-
 -- --------------------------------------------------------
 
 --
@@ -107,34 +95,6 @@ CREATE TABLE `bill_details` (
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bill_details`
---
-
-INSERT INTO `bill_details` (`id_bill`, `id_item`, `id_size`, `amount`, `price`) VALUES
-(7, 25, 1, 27, 342),
-(7, 25, 2, 46, 342),
-(7, 25, 4, 21, 342),
-(7, 26, 1, 18, 4335),
-(7, 26, 2, 26, 4335),
-(7, 26, 4, 17, 4335),
-(8, 24, 1, 10, 3332),
-(8, 24, 2, 33, 3332),
-(8, 24, 4, 16, 3332),
-(8, 25, 1, 34, 342),
-(8, 25, 2, 26, 342),
-(8, 25, 4, 43, 342),
-(9, 1, 1, 49, 5000),
-(9, 1, 2, 33, 5000),
-(9, 1, 4, 46, 5000),
-(9, 25, 1, 16, 342),
-(9, 25, 2, 15, 342),
-(9, 25, 4, 28, 342),
-(10, 25, 4, 14, 342),
-(11, 24, 2, 35, 3332),
-(11, 24, 4, 25, 3332),
-(12, 1, 1, 34, 5000);
 
 -- --------------------------------------------------------
 
@@ -178,15 +138,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `address`) VALUES
-(4, 'Trịnh Ngọc Hải', 1, '2020-11-18', '4555555551', 'hai08@gmail.com', '123', 'Quảng Nam'),
 (5, 'Hà', 0, '2018-01-10', '1112223365', 'ha@gmail.com', '123', 'Đà Nẵng'),
 (7, 'Ngọc', 0, '2016-12-07', '1112223367', 'ngoc@gmail.com', '123', 'Cần Thơ'),
-(8, 'Huệ', 0, '2020-12-28', '1239874424', 'hue@gmail.com', '456', 'Ninh Bình'),
-(9, 'Nguyễn Thành Đạt', 1, '2021-01-04', '0976228132', 'dat06@gmail.com', '456', 'Ngọc Lâm, Long Biên, Hà Nội'),
-(10, 'Tuấn Trần', 1, '2021-01-19', '0825311312', 'tuan@gmail.com', '123', 'Skypie'),
-(12, 'Ngà', 0, '2021-01-05', '0932116328', 'nga@gmail.com', '123', 'Laughing Tale'),
-(14, 'dfasdfdfadfdfff', 0, '2021-01-06', '125658234', 'dfae@gdfa.v', '123', 'dfae'),
-(16, 'dfadf', 0, '2021-01-12', '025369147', 'dfa3@fdadf', '123', 'dfa');
+(8, 'Huệ', 0, '2020-12-28', '1239874424', 'hue@gmail.com', '456', 'Ninh Bình');
 
 -- --------------------------------------------------------
 
@@ -209,11 +163,17 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `picture`, `price`, `description`, `id_type`, `id_color`) VALUES
-(1, 'Áo phông', 'shirt.jpg', 5000, 'Áo phông đơn giản nhưng đại diện cho sự cá tính và nét hiện đại. Addon', 1, 1),
-(22, 'test4', 'f79d08962917668bd8ed5f9e120201eb.png', 46345, 'test dfa 4 dfadf dafeaf', 4, 5),
-(24, 'test new', 'daddc749b8c8161a704d3afbe8c207df.png', 3332, 'new item', 3, 7),
-(25, 'Sp moi', 'f3b391fdce28c6768f4919d69d221a6e.png', 342, 'Orange', 1, 7),
-(26, 'Other', 'e476c3c7f8539966de14b8c871a69328.png', 4335, 'Pink panther', 1, 1);
+(27, 'Chess Club', 'f25cc4e39700dc633113ea005d7e56bf.png', 100000, 'Kẻ đi nước đầu tiên chưa chắc là kẻ chiến thắng', 1, 6),
+(28, 'Born to Shine', 'f3b391fdce28c6768f4919d69d221a6e.png', 130000, 'Quá sáng thì cũng không ai nhận ra', 1, 8),
+(29, 'Risk blue', 'eab2dd953f537b3434ec1f6b6d14cac1.png', 120000, 'Không cần bất cứ mô tả nào vì áo quá đỉnh', 1, 2),
+(30, 'Cool Donut', 'f2c4e6a6d92fd7cb1f9845909c17c283.jpeg', 153000, 'Donut cool ngầu', 5, 6),
+(31, 'Unique Eagle', 'e8ecd36dfaafea069b903bcf7ecfa918.png', 162000, 'Sự khác biệt làm nổi bật con người của chính bạn', 4, 6),
+(32, 'Triple Power', 'd7b65f4e24d3f14c9591765e420410a0.png', 158000, 'Triple power - Triple kill', 4, 2),
+(33, 'Dolphin Family', 'f79d08962917668bd8ed5f9e120201eb.png', 210000, 'Gia đình của bé cá', 2, 1),
+(34, 'The Black Wizard', 'e48427cc533da56efdebbe19e6af3e09.png', 280000, 'Give me your soul', 2, 1),
+(35, 'Shin The Pencil', '44c6b8b2d94caf6a09a566a4af3984e3.png', 169000, 'Shin so small and his pencil is small too', 1, 4),
+(36, 'Study change my life', 'c8e55bd75f9e1a44a0bd6129af2292db.png', 97000, 'Kẻ mang tri thức là kẻ mạnh', 1, 2),
+(37, 'A5', 'a9d41159a35e0240e6422466d2f472b8.png', 182000, 'Ngộ nghĩnh phá phách - phong cách trẻ trâu', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -237,7 +197,11 @@ INSERT INTO `item_colors` (`id`, `color`) VALUES
 (4, 'purple'),
 (5, 'red'),
 (6, 'white'),
-(7, 'yellow');
+(7, 'yellow'),
+(8, 'orange'),
+(9, 'pink'),
+(10, 'brown'),
+(11, 'gray');
 
 -- --------------------------------------------------------
 
@@ -256,21 +220,58 @@ CREATE TABLE `item_details` (
 --
 
 INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
-(1, 1, 8),
-(1, 2, 12),
-(1, 3, 5),
-(22, 1, 12),
-(22, 2, 7),
-(22, 3, 9),
-(24, 2, 20),
-(24, 3, 34),
-(24, 4, 21),
-(24, 5, 5),
-(25, 2, 12),
-(25, 4, 4),
-(26, 3, 12),
-(26, 4, 5),
-(26, 5, 5);
+(27, 1, 50),
+(27, 2, 12),
+(27, 4, 68),
+(27, 5, 30),
+(28, 1, 15),
+(28, 3, 200),
+(28, 4, 57),
+(29, 1, 843),
+(29, 2, 356),
+(29, 4, 345),
+(29, 6, 52),
+(30, 1, 23),
+(30, 2, 62),
+(30, 3, 23),
+(30, 4, 674),
+(30, 5, 33),
+(30, 6, 314),
+(31, 1, 53),
+(31, 2, 83),
+(31, 3, 452),
+(31, 4, 35),
+(32, 1, 453),
+(32, 2, 22),
+(32, 3, 6),
+(32, 4, 43),
+(32, 6, 23),
+(33, 1, 243),
+(33, 2, 21),
+(33, 4, 342),
+(33, 6, 432),
+(34, 1, 233),
+(34, 2, 51),
+(34, 3, 4),
+(34, 4, 234),
+(34, 6, 31),
+(35, 1, 231),
+(35, 2, 12),
+(35, 3, 12),
+(35, 4, 223),
+(35, 5, 34),
+(35, 6, 123),
+(36, 1, 31),
+(36, 2, 342),
+(36, 3, 3),
+(36, 4, 352),
+(36, 5, 12),
+(37, 1, 12),
+(37, 2, 12),
+(37, 3, 412),
+(37, 4, 51),
+(37, 5, 12),
+(37, 6, 34);
 
 -- --------------------------------------------------------
 
@@ -350,8 +351,8 @@ ALTER TABLE `bills`
 --
 ALTER TABLE `bill_details`
   ADD PRIMARY KEY (`id_bill`,`id_item`,`id_size`),
-  ADD KEY `id_item` (`id_item`),
-  ADD KEY `id_size` (`id_size`);
+  ADD KEY `id_size` (`id_size`),
+  ADD KEY `id_item` (`id_item`,`id_size`);
 
 --
 -- Indexes for table `bill_states`
@@ -439,13 +440,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `item_colors`
 --
 ALTER TABLE `item_colors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `item_sizes`
@@ -481,8 +482,7 @@ ALTER TABLE `bills`
 --
 ALTER TABLE `bill_details`
   ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
-  ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`id_item`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `bill_details_ibfk_3` FOREIGN KEY (`id_size`) REFERENCES `item_sizes` (`id`);
+  ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`id_item`,`id_size`) REFERENCES `item_details` (`id_item`, `id_size`);
 
 --
 -- Constraints for table `items`
