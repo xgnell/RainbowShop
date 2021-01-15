@@ -56,33 +56,33 @@ require_once($root_path . "/public/templates/check-customer-signed-in.php");
 
     <div class="page-body">
         <div class="panel">
-            <div class="form-title">Sign up</div>
+            <div class="form-title">Đăng ký</div>
             <form action="/public/sign-up-process.php" method="POST">
-                <label>Name</label><span class="error"></span><br>
+                <label>Tên</label><span class="error"></span><br>
                 <input type="text" name="name"><br><br>
 
                 <label>Email</label><span class="error"></span><br>
                 <input type="email" name="email"><br><br>
 
-                <label>Gender</label><span class="error"></span><br>
+                <label>Giới tính</label><span class="error"></span><br>
                 <select name="gender">
                     <option value="0">Nữ</option>
                     <option value="1">Nam</option>
                 </select><br><br>
 
-                <label>Password</label><span class="error"></span><br>
-                <input type="password" name="passwd" placeholder="Password"><br><br>
+                <label>Mật khẩu</label><span class="error"></span><br>
+                <input type="password" name="passwd" placeholder="Nhập mật khẩu"><br><br>
 
-                <label>Address</label><span class="error"></span><br>
+                <label>Địa chỉ</label><span class="error"></span><br>
                 <input type="text" name="address"><br><br>
 
-                <label>Birth</label><span class="error"></span><br>
+                <label>Ngày sinh</label><span class="error"></span><br>
                 <input type="date" name="birth"><br><br>
 
-                <label>Phone</label><span class="error"></span><br>
+                <label>Số điện thoại</label><span class="error"></span><br>
                 <input type="number" name="phone"><br><br>
 
-                <input class="btn-sign-up" type="submit" value="Sign up"><br><br>
+                <input class="btn-sign-up" type="submit" value="Đăng ký"><br><br>
 
             </form>
         </div>

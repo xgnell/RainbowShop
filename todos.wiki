@@ -1,5 +1,16 @@
 ==== Các công việc cần làm ====
+------------------------------------------------------------------------------------------------------------------------------------
+Triệu
 
+- [ ] Phần admin: chỉnh sửa quyền admin
+- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
+- [ ] qna: thêm sửa xoá qna + qna trang khách hàng
+- [ ] reponsive
+- [ ] Phân trang
+- [ ] làm footer
+- [ ] Validate tất cả form có sờ tới
+
+------------------------------------------------------------------------------------------------------------------------------------
 - [X] Thay đổi title các trang
 - [X] Trừ đi số lượng sản phẩm khi đặt hàng
 - [ ] Làm tính năng phân trang
