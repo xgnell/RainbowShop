@@ -9,6 +9,7 @@ Triệu
 - [ ] Phân trang
 - [ ] làm footer
 - [ ] Validate tất cả form có sờ tới
+- [ ] Sắp xếp sản phẩm theo thời gian
 
 ------------------------------------------------------------------------------------------------------------------------------------
 - [X] Thay đổi title các trang
