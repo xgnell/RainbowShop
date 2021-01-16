@@ -2,9 +2,9 @@
 ------------------------------------------------------------------------------------------------------------------------------------
 Triệu
 
-- [ ] qna: thêm sửa xoá qna + qna trang khách hàng
-- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
+- [X] qna: thêm sửa xoá qna + qna trang khách hàng
 - [ ] Validate tất cả form có sờ tới
+- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
 - [ ] Phần admin: chỉnh sửa quyền admin
 - [ ] reponsive
 - [ ] Phân trang
