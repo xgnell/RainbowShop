@@ -37,6 +37,7 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
+            min-width: 917px;
         }
 
         .notification {
@@ -52,13 +53,15 @@
             background-image: url("/public/img/background/bg1.png");
             background-size: cover;
             border-radius: 5px;
-            height: 450px;
+            height: 500px;
+            min-width: 917px;
         }
 
         .item-menu-area {
             display: inline-block;
             width: 95%;
             margin: 5px 25px 50px 25px;
+            min-width: 867px;
         }
         .item-menu-area .container {
             margin-top: 15px;
@@ -126,7 +129,7 @@
             flex-wrap: wrap; */
             /* justify-content: space-between; */
             display: grid;
-            grid-template-columns: auto auto auto auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             justify-content: center;
             align-content: center;
         }

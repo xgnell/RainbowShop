@@ -5,6 +5,7 @@
         height: 400px;
         position: relative;
         height: 300px;
+        min-width: 1000px;
         /* display: flex; */
     }
     #div_content_inside {

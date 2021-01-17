@@ -7,6 +7,7 @@
         /* margin: auto;
         z-index: 999; */
         margin-bottom: 90px;
+        min-width: 1000px;
     }
 
     #nav-header .logo-name {
