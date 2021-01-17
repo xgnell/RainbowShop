@@ -141,7 +141,7 @@ require_once($root_path . "/public/templates/check-customer-signed-in.php");
     
     function check_email() {
         var email = document.getElementById("email").value;
-        var email_pattern = /^[A-za-z0-9]+@[A-za-z]+$/;
+        var email_pattern = /^[A-za-z0-9]+@(gmail|yahoo|bkacad).(com|vn|gov)+$/;
         if (email_pattern.test(email)) {
             document.getElementById("email").style.borderColor = "#14e348";
             document.getElementById("error_email").innerHTML = "";
