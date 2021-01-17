@@ -7,7 +7,7 @@ Triệu
 - [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
 - [ ] Phần admin: chỉnh sửa quyền admin
 - [ ] reponsive
-- [ ] Phân trang
+- [X] Phân trang
 - [ ] làm footer
 - [ ] Sắp xếp sản phẩm theo thời gian
 

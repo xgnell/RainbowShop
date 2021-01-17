@@ -184,17 +184,39 @@
             </div>
             <div class="item-data-area">
                 <?php
+                // \\\\\\\\\\\\\\\\\\    Show all items
                     $query_item_data = "
                         SELECT id
                         FROM items
                         WHERE name LIKE '%$search%'
                     ";
+
                     if ($type_id == 0) {
                         $query_item_data .= ";";
                     } else {
                         $query_item_data .= " AND id_type = $type_id";
                     }
+                    // .................Count all item..................
                     $item_data = sql_query($query_item_data);
+                    $sum_items = mysqli_num_rows($item_data);
+                    $sum_items_a_page = 4;
+                    $sum_pages = ceil($sum_items / $sum_items_a_page);
+
+                    $page_now = 1;
+                    if(isset($_GET['page'])){
+                        $page_now = $_GET['page'];
+                    }
+
+                    $skip = ($page_now - 1) * $sum_items_a_page; 
+
+                    // \\\\\\\\\\\\\\\\\\\\      show item have limit
+                    $query_item_data = "
+                        SELECT id
+                        FROM items
+                        WHERE name LIKE '%$search%'
+                        limit $sum_items_a_page offset $skip
+                    ";
+                    $item_data = sql_query($query_item_data); // Kết quả đúng
 
 
                     if (mysqli_num_rows($item_data) == 0) {
@@ -209,6 +231,15 @@
                         }
                     }
                 ?>
+            </div>
+            <h1>Tổng số sản phẩm: <?php echo $sum_items ?></h1>
+            <br>
+            <div style="text-align:center;">
+                <?php for ($i = 1; $i <= $sum_pages; $i++) { ?>
+                    <a href="?page=<?php echo $i ?>&search=<?php echo $search ?>">
+                        <?php echo $i ?>
+                    </a>
+                <?php } ?>
             </div>
             <script defer>
                 function goto_item_details(item_id) {
