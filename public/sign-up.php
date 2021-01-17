@@ -13,6 +13,13 @@ require_once($root_path . "/public/templates/check-customer-signed-in.php");
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <title>Sign up</title>
     <style>
+        .error {
+            color: red;
+        }
+        .error_notice {
+            font-size: 15px;
+            color: red;
+        }
         .page-body {
             display: flex;
             justify-content: flex-end;
@@ -33,7 +40,7 @@ require_once($root_path . "/public/templates/check-customer-signed-in.php");
             font-size: 40px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -58,37 +65,137 @@ require_once($root_path . "/public/templates/check-customer-signed-in.php");
         <div class="panel">
             <div class="form-title">Đăng ký</div>
             <form action="/public/sign-up-process.php" method="POST">
-                <label>Tên</label><span class="error"></span><br>
-                <input type="text" name="name"><br><br>
+                <label>Tên</label><span class="error" id="error_name"></span>
+                <input type="text" name="name" id="name"><br>
+                <span class="error_notice" id="error_name_notice"></span><br>
 
-                <label>Email</label><span class="error"></span><br>
-                <input type="email" name="email"><br><br>
+                <label>Email</label><span class="error" id="error_email"></span><br>
+                <input type="text" name="email" id="email"><br>
+                <span class="error_notice" id="error_email_notice"></span><br>
 
                 <label>Giới tính</label><span class="error"></span><br>
                 <select name="gender">
                     <option value="0">Nữ</option>
                     <option value="1">Nam</option>
-                </select><br><br>
+                </select>
+                
+                <br><br>
 
-                <label>Mật khẩu</label><span class="error"></span><br>
-                <input type="password" name="passwd" placeholder="Nhập mật khẩu"><br><br>
+                <label>Mật khẩu</label><span class="error" id="error_passwd"></span><br>
+                <input type="password" name="passwd" placeholder="Nhập mật khẩu" id="passwd"><br>
+                <span class="error_notice" id="error_passwd_notice"></span><br>
 
-                <label>Địa chỉ</label><span class="error"></span><br>
-                <input type="text" name="address"><br><br>
+                <label>Địa chỉ</label><span class="error" id="error_address"></span><br>
+                <input type="text" name="address" id="address"><br>
+                <span class="error_notice" id="error_address_notice"></span><br>
 
                 <label>Ngày sinh</label><span class="error"></span><br>
                 <input type="date" name="birth"><br><br>
 
-                <label>Số điện thoại</label><span class="error"></span><br>
-                <input type="number" name="phone"><br><br>
+                <label>Số điện thoại</label><span class="error" id="error_phone_number"></span><br>
+                <input type="text" name="phone" id="phone_number"><br>
+                <span class="error_notice" id="error_phone_number_notice"></span><br>
 
-                <input class="btn-sign-up" type="submit" value="Đăng ký"><br><br>
+                <input class="btn-sign-up" type="submit" value="Đăng ký" onclick="return all_function()"><br>
 
             </form>
         </div>
     </div>
-
+    
     <?php include_once($root_path . "/public/templates/footer.php"); ?>
 </body>
 
+
+<script>
+    function check_phone_number() {
+        var phone_number = document.getElementById("phone_number").value;
+        var phone_number_pattern = /^(03|05|07|08|09)+([0-9]{8})\b$/;
+        if (phone_number_pattern.test(phone_number)) {
+            document.getElementById("phone_number").style.borderColor = "#14e348";
+            document.getElementById("error_phone_number").innerHTML = "";
+            document.getElementById("error_phone_number_notice").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("phone_number").style.borderColor = "red";
+            document.getElementById("error_phone_number").innerHTML = "*";
+            document.getElementById("error_phone_number_notice").innerHTML = "Thông tin về số điện thoại bị sai";
+            return false;
+        }
+    }
+
+    function check_name() {
+        var name = document.getElementById("name").value;
+        var name_pattern = /^[A-Za-z ]+$/;
+        if (name_pattern.test(name)) {
+            document.getElementById("name").style.borderColor = "#14e348";
+            document.getElementById("error_name").innerHTML = "";
+            document.getElementById("error_name_notice").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("name").style.borderColor = "red";
+            document.getElementById("error_name").innerHTML = "*";
+            document.getElementById("error_name_notice").innerHTML = "Thông tin về tên bị sai";
+            return false;
+        }
+    }
+    
+    function check_email() {
+        var email = document.getElementById("email").value;
+        var email_pattern = /^[A-za-z0-9]+@[A-za-z]+$/;
+        if (email_pattern.test(email)) {
+            document.getElementById("email").style.borderColor = "#14e348";
+            document.getElementById("error_email").innerHTML = "";
+            document.getElementById("error_email_notice").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("email").style.borderColor = "red";
+            document.getElementById("error_email").innerHTML = "*";
+            document.getElementById("error_email_notice").innerHTML = "Thông tin về email bị sai";
+            return false;
+        }
+    }
+    function check_passwd() {
+        var passwd = document.getElementById("passwd").value;
+        var passwd_pattern = /^[A-za-z0-9]+$/;
+        if (passwd_pattern.test(passwd)) {
+            document.getElementById("passwd").style.borderColor = "#14e348";
+            document.getElementById("error_passwd").innerHTML = "";
+            document.getElementById("error_passwd_notice").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("passwd").style.borderColor = "red";
+            document.getElementById("error_passwd").innerHTML = "*";
+            document.getElementById("error_passwd_notice").innerHTML = "Thiếu mật khẩu";
+            return false;
+        }
+    }
+    function check_address() {
+        var address = document.getElementById("address").value;
+        var address_pattern = /^[A-Za-z ]+$/;
+        if (address_pattern.test(address)) {
+            document.getElementById("address").style.borderColor = "#14e348";
+            document.getElementById("error_address").innerHTML = "";
+            document.getElementById("error_address_notice").innerHTML = "";
+            return true;
+        } else {
+            document.getElementById("address").style.borderColor = "red";
+            document.getElementById("error_address").innerHTML = "*";
+            document.getElementById("error_address_notice").innerHTML = "Thông tin địa chỉ bị sai";
+            return false;
+        }
+    }
+
+    function all_function() {
+        check_name();
+        check_email();
+        check_phone_number();
+        check_passwd();
+        check_address();
+        if (check_name() && check_email() && check_phone_number() && check_passwd() && check_address()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </html>
