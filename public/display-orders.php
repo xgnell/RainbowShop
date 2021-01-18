@@ -47,13 +47,13 @@
             /* padding: 5px 5px 5px 5px; */
         }
         .table-header tr:first-child {
-            position: relative;
+            /* position: relative; */
             /* box-shadow: 0px 5px 10px #ccc; */
 
         }
         .table-header tr:nth-child(odd) {
             background-color: #f2f2f2;
-            border: 10px white solid;
+            border: 5px white solid;
             /* padding: 10px 0 10px 0; */
             /* transition: 0.3s; */
         }
@@ -62,7 +62,7 @@
         }
         .table-header tr:nth-child(even) {
             background-color: #f2f2f2;
-            border: 10px white solid;
+            border: 5px white solid;
             /* padding: 10px 0 10px 0; */
             /* background-color: #ccc; */
             /* transition: 0.3s; */

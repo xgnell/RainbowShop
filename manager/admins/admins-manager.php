@@ -10,8 +10,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admins manager</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
+    <title>Quản lý admin</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <?php require_once($root_path . "/config/db.php"); ?>
@@ -37,18 +41,18 @@
 
             <div class="scrollable">
             <table id="content-table">
-                <tr>
+                <tr class="table-bar">
                     <!-- <td hidden class="title">Id</td> -->
-                    <td class="title">Name</td>
-                    <td class="title">Gender</td>
-                    <td class="title">Birth</td>
-                    <td class="title">Phone</td>
-                    <td class="title">Email</td>
-                    <td class="title">Password</td>
-                    <td class="title">Rank</td>
+                    <td>Tên</td>
+                    <td>Giới tính</td>
+                    <td>Ngày tháng năm sinh</td>
+                    <td>Điện thoại</td>
+                    <td>Email</td>
+                    <td>Mật khẩu</td>
+                    <td>Cấp độ</td>
 
-                    <td class="title">Update</td>
-                    <td class="title">Delete</td>
+                    <td>Sửa</td>
+                    <td>Xóa</td>
                 </tr>
                 <?php foreach($admins as $admin): ?>
                     <?php

@@ -14,14 +14,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Items manager</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
+    <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <style>
         #display-size {
             width: 100%;
-            height: 100%;
             border: 1px black solid;
             border-collapse: collapse;
             /* margin: 5px 5px 5px 5px; */
@@ -51,18 +54,18 @@
             ?>
             <div class="scrollable">
             <table id="content-table">
-                <tr>
-                    <td class="title">Name</td>
-                    <td class="title">Picture</td>
-                    <td class="title">Description</td>
-                    <td class="title">Price</td>
-                    <td class="title">Type</td>
-                    <td class="title">Color</td>
-                    <td class="title">Amount</td>
+                <tr class="table-bar" style="top: 0;">
+                    <td>Tên</td>
+                    <td>Ảnh</td>
+                    <td>Mô tả</td>
+                    <td>Giá</td>
+                    <td>Loại</td>
+                    <td>Màu</td>
+                    <td>Số lượng</td>
 
 
-                    <td class="title">Update</td>
-                    <td class="title">Delete</td>
+                    <td>Sửa</td>
+                    <td>Xóa</td>
                 </tr>
                 <?php foreach($items as $item): ?>
                     <?php
@@ -152,6 +155,24 @@
                         </td>
                     </tr>
                 <?php endforeach ?>
+
+                <tr class="table-bar" style="bottom: 0;">
+                    <td colspan="9">
+                        <a href="">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                    </td>
+                    <!-- <td class="title">Picture</td>
+                    <td class="title">Description</td>
+                    <td class="title">Price</td>
+                    <td class="title">Type</td>
+                    <td class="title">Color</td>
+                    <td class="title">Amount</td>
+
+
+                    <td class="title">Update</td>
+                    <td class="title">Delete</td> -->
+                </tr>
             </table>
             </div>
         </div>

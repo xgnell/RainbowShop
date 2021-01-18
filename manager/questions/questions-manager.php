@@ -10,8 +10,12 @@ check_admin_signed_in(2);
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions manager</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
+    <title>Quản lý câu hỏi</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <?php require_once($root_path . "/config/db.php"); ?>
@@ -33,13 +37,13 @@ check_admin_signed_in(2);
 
             <div class="scrollable">
                 <table id="content-table">
-                    <tr>
+                    <tr class="table-bar">
                         <!-- <td hidden class="title">Id</td> -->
-                        <td class="title">Câu hỏi</td>
-                        <td class="title">Câu trả lời</td>
+                        <td>Câu hỏi</td>
+                        <td>Câu trả lời</td>
 
-                        <td class="title">Update</td>
-                        <td class="title">Delete</td>
+                        <td>Sửa</td>
+                        <td>Xóa</td>
                     </tr>
                     <?php foreach ($qnas as $qna) : ?>
                         <tr>
@@ -53,7 +57,7 @@ check_admin_signed_in(2);
                 </table>
             </div>
             <br>
-            <a href="#">Add new</a>
+            <!-- <a href="#">Add new</a> -->
         </div>
     </div>
 </body>

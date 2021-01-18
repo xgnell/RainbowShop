@@ -12,10 +12,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
-    <title>Add Item</title>
+    <title>Quản lý sản phẩm</title>
     <style>
         #display-size {
             border: 1px black solid;
@@ -38,11 +42,11 @@
         <div class="page-content">
             <!-- Item insertion form -->
             <form action="/manager/items/item-insert-process.php" method="POST" enctype="multipart/form-data">
-                Enter name: <input type="text" name="name"><br>
-                Choose picture: <input type="file" name="picture"><br>
-                Enter price: <input type="number" name="price"><br>
-                Enter description: <textarea name="description" cols="50" rows="5"></textarea><br>
-                Choose type: <select name="type" id="display-type">
+                Tên: <input type="text" name="name"><br>
+                Ảnh: <input type="file" name="picture"><br>
+                Giá: <input type="number" name="price"><br>
+                Mô tả: <textarea name="description" cols="50" rows="5"></textarea><br>
+                Loại: <select name="type" id="display-type">
                     <!-- Auto generate item type options -->
                     <?php
                         $item_types = sql_query("
@@ -56,7 +60,7 @@
                         }
                     ?>
                 </select><br>
-                Choose color: <select name="color" id="display-color">
+                Màu: <select name="color" id="display-color">
                     <!-- Auto generate item color options -->
                     <?php
                         $item_colors = sql_query("
@@ -89,7 +93,7 @@
                         ?>
                     </tr>
                     <tr>
-                        <td>Amount</td>
+                        <td>Số lượng</td>
                         <?php
                             foreach ($item_sizes as $item_size) {
                                 ?>
@@ -100,8 +104,8 @@
                     </tr>
                 </table>
 
-                <input type="submit" value="Add">
-                <input type="reset" value="Reset">
+                <input type="submit" value="Thêm sản phẩm">
+                <input type="reset" value="Làm lại">
             </form>
         </div>
     </div>

@@ -46,6 +46,17 @@ Triệu
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+Để trang web có thể reponsive được
+	=> Giải quyết vấn đề về độ co dãn bảng
+	=> Thanh đổi hiển thị của thanh menu và menu option sổ xuống
+		-> Thanh slide menu phải tự ẩn đi khi
+		-> Menu trên header chỉ còn hiển thị icon
+
+- [ ] (Nhập lại mật khẩu khi đăng kí)
+- [ ] In format giá tiền có ngăn cách
+- [ ] Hiển thị ô màu với phần admin
+- [O] Sửa lại toàn bộ sang tiếng việt
+- [ ] Làm pop up cho icon trong bảng admin + giỏ hàng
 - [X] Sửa icon ở trang admin
 - [ ] Thêm các trang thông báo lỗi cho admin
 - [ ] Tạo trang chỉnh sửa thông tin cá nhân cho admin

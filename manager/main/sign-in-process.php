@@ -115,7 +115,11 @@ function display_admin_sign_in_failure($message, $admin_email_or_phone, $admin_p
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+
         <title>Đăng nhập thất bại</title>
         <link rel="stylesheet" href="/manager/templates/css/all.css">
         <link rel="stylesheet" href="/manager/main/css/sign-in-process-style.css">

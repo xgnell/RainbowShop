@@ -6,14 +6,14 @@ if (session_status() == PHP_SESSION_NONE) {
 function check_admin_signed_in(int $level) {
     if (!is_admin_signed_in()) {
         ?>
-        <h1>You must sign in as admin to reach this page</h1>
+        <h1>Bạn phải đăng nhập với quyền admin để truy cập</h1>
         <a href="/manager/main/sign-in.php">Sign in</a>
         <button onclick="window.history.back()">Back</button>
         <?php
         die();
     } else if (!is_admin_rank($level)) {
         ?>
-        <h1>your rank isn't enough to enter this page</h1>
+        <h1>Bạn không đủ quyền hạn để truy cập</h1>
         <!-- <a href="/manager/main/sign_in.php">Sign in</a> -->
         <button onclick="window.history.back()">Back</button>
         <?php

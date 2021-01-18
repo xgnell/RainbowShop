@@ -43,13 +43,13 @@
             border-collapse: collapse;
         }
         .table-header tr {
-            border: 15px white solid;
+            border: 5px white solid;
         }
 
         .table-header tr:first-child {
-            position: relative;
-            border: 20px white solid;
-            margin-bottom: 15px;
+            /* position: relative; */
+            border: 5px white solid;
+            /* margin-bottom: 15px; */
             /* box-shadow: 0px 3px 5px #ccc; */
 
         }
@@ -57,7 +57,7 @@
         /********************* Chia hàng chẵn lẻ ****************************/
         .table-header tr:nth-child(odd) {
             background-color: #f2f2f2;
-            border-bottom: 20px white solid;
+            border-bottom: 5px white solid;
         }
         .table-header tr:nth-child(odd):hover {
             background-color: #dedede;
@@ -65,7 +65,7 @@
 
         .table-header tr:nth-child(even) {
             background-color: #f2f2f2;
-            border-bottom: 20px white solid;
+            border-bottom: 5px white solid;
             /* background-color: #ccc; */
         }
         .table-header tr:nth-child(even):hover {

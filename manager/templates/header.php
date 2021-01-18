@@ -52,7 +52,7 @@
         <div id="account-options">
             <ul>
                 <a href="/public/display-orders.php"><li>Sửa thông tin</li></a>
-                <a href="/manager/main/sign-out.php"><li>Đăng xuất</li></a>
+                <a href="/manager/main/sign-out-process.php"><li>Đăng xuất</li></a>
             </ul>
         </div>
     </div>

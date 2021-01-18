@@ -18,7 +18,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
     <title>Quản lý hoá đơn</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
@@ -34,13 +38,13 @@
         <!-- Main content -->
         <div class="page-content">
             <table id="content-table">
-                <tr>
-                    <td class="title">Khách hàng</td>
-                    <td class="title">Người nhận</td>
-                    <td class="title">Địa chỉ nhận hàng</td>
-                    <td class="title">Điện thoại</td>
-                    <td class="title">Trạng thái</td>
-                    <td class="title">Thời điểm tạo</td>
+                <tr class="table-bar">
+                    <td>Khách hàng</td>
+                    <td>Người nhận</td>
+                    <td>Địa chỉ nhận hàng</td>
+                    <td>Điện thoại</td>
+                    <td>Trạng thái</td>
+                    <td>Thời điểm tạo</td>
                 </tr>
                 <?php
                     foreach ($bills as $bill) {

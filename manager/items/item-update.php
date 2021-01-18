@@ -23,8 +23,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Item</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    
+    <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <style>
@@ -50,16 +54,16 @@
             <!-- Item update form -->
             <form action="/manager/items/item-update-process.php" method="POST" enctype="multipart/form-data">
                 <input type="number" name="id" value="<?= $item_id ?>" hidden><br>
-                Name: <input type="text" name="name" value="<?= $item["name"] ?>"><br>
-                Picture: <input type="button" id="btn-change-picture" onclick="change_picture()" value="Change picture">
+                Tên: <input type="text" name="name" value="<?= $item["name"] ?>"><br>
+                Ảnh: <input type="button" id="btn-change-picture" onclick="change_picture()" value="Change picture">
                 <div id="display-picture">
                     <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>">
                     <!-- <input type="file" name="picture"> -->
                 </div>
                 <br>
-                Price: <input type="number" name="price" value="<?= $item["price"] ?>"><br>
-                Description: <textarea name="description" cols="50" rows="5"><?= $item["description"] ?></textarea><br>
-                Type: <select name="type" id="display-type">
+                Giá: <input type="number" name="price" value="<?= $item["price"] ?>"><br>
+                Mô tả: <textarea name="description" cols="50" rows="5"><?= $item["description"] ?></textarea><br>
+                Loại: <select name="type" id="display-type">
                     <!-- Auto generate item type options -->
                     <?php
                         $item_types = sql_query("
@@ -73,7 +77,7 @@
                         }
                     ?>
                 </select><br>
-                Color: <select name="color" id="display-color">
+                Màu: <select name="color" id="display-color">
                     <!-- Auto generate item color options -->
                     <?php
                         $item_colors = sql_query("
@@ -114,7 +118,7 @@
                         ?>
                     </tr>
                     <tr>
-                        <td>Amount</td>
+                        <td>Số lượng</td>
                         <?php
                             foreach ($item_sizes as $item_size) {
                                 ?>
@@ -139,8 +143,8 @@
                     </tr>
                 </table>
 
-                <input type="submit" value="Update">
-                <input type="reset" value="Reset">
+                <input type="submit" value="Xác nhận sửa">
+                <input type="reset" value="Làm lại">
             </form>
             <script defer>
                 // Create picture input if user want to change    

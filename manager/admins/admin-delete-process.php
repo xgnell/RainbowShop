@@ -18,11 +18,11 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Check delete self</title>
+            <title>Cảnh báo nguy hiểm</title>
         </head>
         <body>
-            <h1>You cannot delete yourself</h1>
-            <a href="/manager/admins/admins-manager.php">Back to admin manager</a>
+            <h1>Bạn không thể tự xóa chính mình (tự tử là không nên)</h1>
+            <a href="/manager/admins/admins-manager.php">Quay lại trang quản lý admin</a>
         </body>
         </html>
         <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
@@ -39,8 +39,12 @@
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Admin Delete Process</title>
+            <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+            <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="HandheldFriendly" content="true">
+            
+            <title>Quản lý admin</title>
         </head>
         <body>
             <?php include_once($root_path . "/manager/admins/admin-notification.php") ?>

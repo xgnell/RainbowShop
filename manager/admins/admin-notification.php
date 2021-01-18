@@ -6,7 +6,7 @@
     check_admin_signed_in(1);
 ?>
 <!-- Send notification to client -->
-<div id="notification">Success</div>
+<div id="notification">Thành công</div>
 <script>
     setTimeout(function() {
         window.location.href = "/manager/admins/admins-manager.php";

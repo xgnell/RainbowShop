@@ -65,7 +65,7 @@
                 </td>
 
                 <td>
-                    <a href="/public/order/display-orders-details.php?id=<?= $bill_id ?>">Chi tiết</a>
+                    <a href="/public/display-orders-details.php?id=<?= $bill_id ?>">Chi tiết</a>
                 </td>
             </tr>
         <!-- </table>
