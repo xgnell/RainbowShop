@@ -2,10 +2,9 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     define("PAGE_NAME", "cart");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    // include_once($root_path . "/public/templates/item.php");
-    include_once($root_path . "/public/templates/cart-item.php");
+    include_once($root_path . "/public/templates/cart/cart-item.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,13 +88,13 @@
 <body>
     <?php
         if (customer_signed_in()) {
-            include_once($root_path . "/public/templates/get-info-before-order.php");
+            include_once($root_path . "/public/templates/order/get-info-before-order.php");
         }
     ?>
 
-    <?php include_once($root_path . "/public/templates/header.php"); ?>
-    <?php include_once($root_path . "/public/templates/menu.php"); ?>
-    <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/header.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/menu.php"); ?>
+    <?php include_once($root_path . "/public/templates/account/sign-in.php"); ?>
 
     <div class="panel">
     <?php
@@ -147,7 +146,7 @@
                     function confirm_delete_all_cart() {
                         const yes = confirm("Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng ?");
                         if (yes) {
-                            window.location.href = "/public/templates/delete-all-cart.php";
+                            window.location.href = "/public/templates/cart/delete-all-cart.php";
                         }
                     }
                 </script>
@@ -164,6 +163,6 @@
     ?>
     </div>
 
-    <?php include_once($root_path . "/public/templates/footer.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
 </body>
 </html>

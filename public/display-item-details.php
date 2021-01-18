@@ -2,9 +2,9 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
 
     define("PAGE_NAME", "home");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    include_once($root_path . "/public/templates/item.php");
+    include_once($root_path . "/public/templates/item/item.php");
 
     $item_id = $_GET['id'];
 
@@ -201,8 +201,8 @@
 </head>
 
 <body>
-    <?php include_once($root_path . "/public/templates/header.php"); ?>
-    <?php include_once($root_path . "/public/templates/menu.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/header.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/menu.php"); ?>
 
     <div id="page-item">
         <div id="item-img">
@@ -215,7 +215,7 @@
         <div id="item-detail">
             <input type="text" value="<?php echo $item["id"] ?>" hidden>
             <!-- ============= Form để chuyển các thông tin sang giỏ hàng =========== -->
-            <form action="/public/templates/add-item-to-cart.php" method="POST">
+            <form action="/public/templates/cart/add-item-to-cart.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $item_id; ?>">
                 <table style="height: 100%; width: 100%;">
                 <!-- Tên sản phẩm  -->
@@ -364,6 +364,6 @@
             ?> -->
 
     <!--///////////////  Here is include footer /////////////-->
-    <?php include_once($root_path . "/public/templates/footer.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
 </body>
 </html>

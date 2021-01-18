@@ -2,8 +2,8 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     define("PAGE_NAME", "order");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
-    require_once($root_path . "/public/templates/order-item.php");
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
+    require_once($root_path . "/public/templates/order/order-item.php");
     require_once($root_path . "/config/db.php");
 ?>
 <!DOCTYPE html>
@@ -85,9 +85,9 @@
 <body>
     <!-- <div style="background-color: blue; display: inline-block; width: 100%;"> -->
     <div>
-    <?php include_once($root_path . "/public/templates/header.php"); ?>
-    <?php include_once($root_path . "/public/templates/menu.php"); ?>
-    <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/header.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/menu.php"); ?>
+    <?php include_once($root_path . "/public/templates/account/sign-in.php"); ?>
 
     <div class="panel">
         <?php
@@ -143,7 +143,7 @@
         ?>
     </div>
 
-    <?php include_once($root_path . "/public/templates/footer.php"); ?>
+    <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
     <!-- </div> -->
 </body>
 </html>

@@ -7,6 +7,7 @@
         /* margin: auto;
         z-index: 999; */
         margin-bottom: 90px;
+        min-width: 1000px;
     }
 
     #nav-header .logo-name {
@@ -62,9 +63,9 @@
 
 <?php
 if (customer_signed_in()) {
-    include_once($root_path . "/public/templates/account-options.php");
+    include_once($root_path . "/public/templates/account/account-options.php");
 } else {
-    include_once($root_path . "/public/templates/sign-in.php");
+    include_once($root_path . "/public/templates/account/sign-in.php");
 }
 ?>
 <div id="nav-header">

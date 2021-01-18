@@ -36,22 +36,33 @@
 #admin-header .header-menu ul a {
     color: white;
 }
+#admin-header .header-menu .menu-option-icon {
+    position: relative;
+    top: 5px;
+    margin-right: 5px;
+}
 
 /* Display User Account */
 #admin-header .user-panel {
     margin-right: 15px;
     padding: 0 10px 0 10px;
 }
+
+#admin-header .user-panel .account-display {
+    width: 100%;
+    cursor: pointer;
+}
 #admin-header .user-panel:hover {
     background-color: #585959;
 }
-#admin-header .user-panel * {
+
+#admin-header .user-panel .account-display * {
     margin: 0 5px 0 5px;
     vertical-align: middle;
 }
-#admin-header .user-panel .user-name {
+#admin-header .user-panel .account-display .user-name {
     font-size: 17px;
-    color: red;
+    color: white;
 }
 
 

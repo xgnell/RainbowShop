@@ -2,9 +2,9 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
 
     define("PAGE_NAME", "home");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    include_once($root_path . "/public/templates/item.php");
+    include_once($root_path . "/public/templates/item/item.php");
 
     $search = $_GET["search"] ?? "";
     $type_id = $_GET["type_id"] ?? 0;
@@ -37,6 +37,7 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
+            min-width: 917px;
         }
 
         .notification {
@@ -52,13 +53,15 @@
             background-image: url("/public/img/background/bg1.png");
             background-size: cover;
             border-radius: 5px;
-            height: 450px;
+            height: 500px;
+            min-width: 917px;
         }
 
         .item-menu-area {
             display: inline-block;
             width: 95%;
             margin: 5px 25px 50px 25px;
+            min-width: 867px;
         }
         .item-menu-area .container {
             margin-top: 15px;
@@ -126,7 +129,7 @@
             flex-wrap: wrap; */
             /* justify-content: space-between; */
             display: grid;
-            grid-template-columns: auto auto auto auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             justify-content: center;
             align-content: center;
         }
@@ -136,9 +139,9 @@
 
 <body>
     <!-- <div> -->
-        <?php include_once($root_path . "/public/templates/header.php"); ?>
-        <?php include_once($root_path . "/public/templates/menu.php"); ?>
-        <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
+        <?php include_once($root_path . "/public/templates/ui/header.php"); ?>
+        <?php include_once($root_path . "/public/templates/ui/menu.php"); ?>
+        <?php include_once($root_path . "/public/templates/account/sign-in.php"); ?>
 
         <!-- Display background -->
         <div class="panel">
@@ -182,17 +185,39 @@
             </div>
             <div class="item-data-area">
                 <?php
+                // \\\\\\\\\\\\\\\\\\    Show all items
                     $query_item_data = "
                         SELECT id
                         FROM items
                         WHERE name LIKE '%$search%'
                     ";
+
                     if ($type_id == 0) {
                         $query_item_data .= ";";
                     } else {
                         $query_item_data .= " AND id_type = $type_id";
                     }
+                    // .................Count all item..................
                     $item_data = sql_query($query_item_data);
+                    $sum_items = mysqli_num_rows($item_data);
+                    $sum_items_a_page = 4;
+                    $sum_pages = ceil($sum_items / $sum_items_a_page);
+
+                    $page_now = 1;
+                    if(isset($_GET['page'])){
+                        $page_now = $_GET['page'];
+                    }
+
+                    $skip = ($page_now - 1) * $sum_items_a_page; 
+
+                    // \\\\\\\\\\\\\\\\\\\\      show item have limit
+                    $query_item_data = "
+                        SELECT id
+                        FROM items
+                        WHERE name LIKE '%$search%'
+                        limit $sum_items_a_page offset $skip
+                    ";
+                    $item_data = sql_query($query_item_data); // Kết quả đúng
 
 
                     if (mysqli_num_rows($item_data) == 0) {
@@ -207,6 +232,15 @@
                         }
                     }
                 ?>
+            </div>
+            <h1>Tổng số sản phẩm: <?php echo $sum_items ?></h1>
+            <br>
+            <div style="text-align:center;">
+                <?php for ($i = 1; $i <= $sum_pages; $i++) { ?>
+                    <a href="?page=<?php echo $i ?>&search=<?php echo $search ?>">
+                        <?php echo $i ?>
+                    </a>
+                <?php } ?>
             </div>
             <script defer>
                 function goto_item_details(item_id) {
@@ -226,7 +260,7 @@
         </div>
         
         <!--///////////////  Here is include footer /////////////-->
-        <?php include_once($root_path . "/public/templates/footer.php"); ?>
+        <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
     <!-- </div> -->
 </body>
 </html>

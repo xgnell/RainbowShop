@@ -165,7 +165,7 @@
                                 <?php
                                     if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] > 1) {
                                         ?>
-                                        <a href="/public/templates/change-item-amount.php?action=0&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 5px 0 0 5px;">
+                                        <a href="/public/templates/item/change-item-amount.php?action=0&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 5px 0 0 5px;">
                                             -
                                         </a>
                                         <?php
@@ -194,7 +194,7 @@
 
                                     if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] < $remain_amount) {
                                         ?>
-                                        <a href="/public/templates/change-item-amount.php?action=1&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 0 5px 5px 0;">
+                                        <a href="/public/templates/item/change-item-amount.php?action=1&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 0 5px 5px 0;">
                                             +
                                         </a>
                                         <?php
@@ -211,7 +211,7 @@
                     </td>
 
                     <td style="width: 70px; min-width: 70px;">
-                        <a class="btn-function" href="/public/templates/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>"
+                        <a class="btn-function" href="/public/templates/item/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>"
                             onmouseover="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'visible'"
                             onmouseout="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'hidden'">
                             

@@ -75,7 +75,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </a><br>
         <span class="form-title">Thông tin người nhận</span>
-        <form action="/public/templates/process-order.php" method="POST">
+        <form action="/public/templates/order/process-order.php" method="POST">
             
             <div class="form-content">
             <input type="text" name="id_customer" value="<?= $_SESSION["user"]["customer"]["id"]?>" style="visibility: hidden;">

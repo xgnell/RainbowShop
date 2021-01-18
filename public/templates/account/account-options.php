@@ -63,6 +63,6 @@
 		<!-- <li><a>Profile</a></li> -->
 		<li><a href="/public/display-orders.php">Lịch sử mua hàng</a></li>
 		<!-- <li><a>Cài đặt</a></li> -->
-		<li><a href="/public/templates/sign-out-process.php">Đăng xuất</a></li>
+		<li><a href="/public/templates/account/sign-out-process.php">Đăng xuất</a></li>
 	</ul>
 </div>

@@ -1,12 +1,60 @@
 ==== Các công việc cần làm ====
+------------------------------------------------------------------------------------------------------------------------------------
+Triệu
 
+- [X] qna: thêm sửa xoá qna + qna trang khách hàng
+- [ ] Validate tất cả form có sờ tới
+- [ ] khách hàng: giao diện trang home và trang sản phẩm chi tiết( thêm chức năng tìm kiém chi tiết hơn)
+- [ ] Phần admin: chỉnh sửa quyền admin
+- [ ] reponsive
+- [X] Phân trang
+- [ ] làm footer
+- [ ] Sắp xếp sản phẩm theo thời gian
+
+----- Cần sửa / thêm
+### Trang đăng kí
+	- [ ] Tách biệt các phần tên, email, ... bằng margin
+	- [ ] Thêm luôn phần background vào sau phần đăng kí (chọn background khác với trang sản phẩm - trang chủ)
+	- [ ] Sửa giao diện các thanh input, nút button
+			% (Phần này ông có thể tham khảo thanh input trên trang đăng nhập của admin), để cho đồng bộ giao diện
+			% Ví dụ: border của thanh input cho nhỏ lại, thêm padding để phần text bên trong có khoảng cách so với border, ...
+
+	- [ ] Khi validate chú ý validate rõ lỗi
+			% Nếu người dùng chưa nhập gì (để trống) thì ko nên báo lỗi là sai, mà phải báo lỗi là không được để trống hoặc chưa nhập
+
+
+	- [ ] Phần validate (Phần validate này phức tạp nên mình cũng phải làm chuẩn)
+			% Đầu số bây giờ có rất nhiều, khó có thể liệt kê ra hết nên mình chỉ validate đầu số bắt đầu từ số 0 thôi
+			% Phần email: cái đuôi email có thể có rất nhiều, ko chỉ là yahoo, gmail, bkacad, ... nên là ông phải tìm cái validate khác hoặc lấy cái phần regex trong trang đăng nhập admin của tôi (Tôi cũng ko chắc là cái đấy đúng hoàn toàn)
+			% Phần password nên cho phép thêm các kí tự, validate độ dài tối thiểu (độ dài ngắn quá ko bảo mật)
+			% Phần địa chỉ mình có cả số nhà, ... nên trong validate phải cho phép thêm số
+			% Phần all_function tôi sửa lại cho ông, ông thử xem nó có hoạt động đúng ko.
+			% Ông xem có thể tối ưu được code javascript ở đâu thì cố gắng tối ưu
+
+	- [ ] Phần trang xử lý: sign-up-process
+			% Phải validate cả ở phía backend bằng PHP (ông xem qua trang đăng nhập admin của tôi)
+			% Sửa lại phần giao diện thông báo trong trang xử lý (Ông xem qua trang xử lý đăng nhập admin của tôi)
+
+### Trang sản phẩm
+	- [ ] Không nên hiện phần tổng số sản phẩm trên trang
+	- [ ] Phần phân trang có thể hiện border bao ngoài quanh một số, làm đậm phần background của số trang hiện tại
+			% Cái border có thể giống như trên thanh tìm kiếm hoặc nút search
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+- [ ] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
 - [ ] Luôn phải kiểm tra xem đã đăng nhập chưa ở bất cứ trang nào (để đề phòng copy link xong chạy ở nơi chưa đăng nhập)
 - [ ] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)
 - [ ] Hiển thị gì đó trong trang web lỗi (trang 404, ...)
 - [ ] Ngăn cấm data race
 - [ ] Xử lý trùng đăng nhập, đăng xuất các tài khoản, hóa đơn, ... (Ví dụ trong chế độ ẩn danh)
 - [ ] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
-- [ ] Lưu lại cả thời gian duyệt/hủy của đơn hàng 
+- [ ] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
 - [ ] Validate form giỏ hàng
 - [ ] Kiểm tra số lượng trong kho
 - [ ] Hiển thị hóa đơn có cột tổng tiền và phần hóa đơn chi tiết có tổng tiền bên dưới

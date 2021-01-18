@@ -2,9 +2,9 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     define("PAGE_NAME", "contact");
-    require_once($root_path . "/public/templates/check-customer-signed-in.php");
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    include_once($root_path . "/public/templates/item.php");
+    include_once($root_path . "/public/templates/item/item.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +16,8 @@
     <link rel="icon" href="/public/img/socials/logo_1.png">
 </head>
 <body style="background-color: #999999;">
-    <?php require_once($root_path . '/public/templates/header.php'); ?>
-    <?php require_once($root_path . '/public/templates/menu.php'); ?>
-    <?php require_once($root_path . '/public/templates/footer.php'); ?>
+    <?php require_once($root_path . '/public/templates/ui/header.php'); ?>
+    <?php require_once($root_path . '/public/templates/ui/menu.php'); ?>
+    <?php require_once($root_path . '/public/templates/ui/footer.php'); ?>
 </body>
 </html>
