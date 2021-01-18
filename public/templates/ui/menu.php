@@ -2,11 +2,11 @@
     /* All menu */
     #menu {
         z-index: 5;
-        position: absolute;
-        top: 80px;
+        position: sticky;
+        top: 0px;
         width: 100%;
         background-color: #21264f;
-        /*transition: top 0.3s;*/
+        /* transition: top 0.3s; */
         min-width: 1000px;
     }
     #nav-menu {
@@ -88,47 +88,47 @@
     Demo search bar
 </div> -->
 
-<a href="#nav-header" id="scroll-top-btn" >
+<a href="#" id="scroll-top-btn" >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </a>
 
 <script>
-    let prevScrollPos = window.pageYOffset;
-    const limit_menu = 80;
-    const menu = document.getElementById('menu');
-    let is_scrolled_down = false;
+    // let prevScrollPos = window.pageYOffset;
+    // const limit_menu = 80;
+    // const menu = document.getElementById('menu');
+    // let is_scrolled_down = false;
 
-    const limit_scroll_btn = 100;
+    const limit_scroll_btn = 300;
     const scroll_top_btn = document.getElementById('scroll-top-btn');
     let is_below = false;
 
     window.onscroll = function() {
         // Check for menu sticky
-        if (window.pageYOffset > limit_menu) {
-            if (is_scrolled_down === false) {
-                menu.style.position = 'fixed';
-                menu.style.top = '0px';
-                setTimeout(() => {
-                    menu.style.transition = 'top 0.3s';
-                }, 5);
-                // menu.style.transition = 'top 0.3s';
-                is_scrolled_down = true;
-            }
-            const currentScrollPos = window.pageYOffset;
-            if (prevScrollPos > currentScrollPos) {
-                menu.style.top = "0";
-            } else {
-                menu.style.top = "-50px";
-            }
-            prevScrollPos = currentScrollPos;
-        } else {
-            if (is_scrolled_down === true) {
-                menu.style.position = 'absolute';
-                menu.style.top = '80px';
-                menu.style.transition = null;
-                is_scrolled_down = false;
-            }
-        }
+        // if (window.pageYOffset > limit_menu) {
+        //     if (is_scrolled_down === false) {
+        //         menu.style.position = 'fixed';
+        //         menu.style.top = '0px';
+        //         setTimeout(() => {
+        //             menu.style.transition = 'top 0.3s';
+        //         }, 5);
+        //         // menu.style.transition = 'top 0.3s';
+        //         is_scrolled_down = true;
+        //     }
+        //     const currentScrollPos = window.pageYOffset;
+        //     if (prevScrollPos > currentScrollPos) {
+        //         menu.style.top = "0";
+        //     } else {
+        //         menu.style.top = "-50px";
+        //     }
+        //     prevScrollPos = currentScrollPos;
+        // } else {
+        //     if (is_scrolled_down === true) {
+        //         menu.style.position = 'absolute';
+        //         menu.style.top = '80px';
+        //         menu.style.transition = null;
+        //         is_scrolled_down = false;
+        //     }
+        // }
 
         // Check for scroll button appearance
         if (window.pageYOffset > limit_scroll_btn && is_below === false) {

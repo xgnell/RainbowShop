@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// session_start();
 function check_customer_signed_in() {
     if (!customer_signed_in()) {
         ?>

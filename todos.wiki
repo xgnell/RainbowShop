@@ -46,7 +46,11 @@ Triệu
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
-
+- [X] Sửa icon ở trang admin
+- [ ] Thêm các trang thông báo lỗi cho admin
+- [ ] Tạo trang chỉnh sửa thông tin cá nhân cho admin
+- [O] Phân lại toàn bộ file css, js
+- [ ] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
 - [ ] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
 - [ ] Luôn phải kiểm tra xem đã đăng nhập chưa ở bất cứ trang nào (để đề phòng copy link xong chạy ở nơi chưa đăng nhập)
 - [ ] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)

@@ -1,37 +1,63 @@
-.page-body {
-    /* display: flex; */
+:root {
+    --slide-menu-size: 150px;
+
+    --table-title-background-color: #ccc;
+    --table-border-color: #ccc;
+    --table-hover-color: #f0f0f0;
+
+    --btn-action-hover-color: #ccc;
+}
+
+.page-body {    /* display: flex; */
     display: grid;
-    grid-template-columns: 150px auto;
-    height: 100vh;
+    grid-template-columns: var(--slide-menu-size) auto;
+    height: 94vh;
     width: 100vw;
 }
 .page-content {
+    overflow: scroll;
+    /* background-color: green; */
+    display: inline-block;
+    box-sizing: border-box;
     width: 100%;
-    margin: 15px 15px 15px 15px;
-    /* padding: 15px 15px 15px 15px; */
+    padding: 15px 15px 15px 15px;
 }
 
 #content-table {
     width: 100%;
-    border: 1px black solid;
+    border: 1px var(--table-border-color) solid;
     border-collapse: collapse;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 #content-table .title {
-    font-size: 25px;
     font-weight: bold;
-    background-color: gray;
+    background-color: var(--table-title-background-color);
+}
+#content-table tr:hover {
+    background-color: var(--table-hover-color);
 }
 #content-table tr td {
-    border: 1px black solid;
+    border: 1px var(--table-border-color) solid;
+    /* border-bottom: 1px #ccc solid; */
     padding: 5px 5px 5px 5px;
     vertical-align: top;
     text-align: center;
+    vertical-align: middle;
+}
+
+#content-table .btn-action {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+#content-table .btn-action:hover {
+    background-color: var(--btn-action-hover-color);
 }
 
 .scrollable {
+    /* background-color: blue; */
     width: 100%;
-    max-height: 85%;
-    overflow-x: auto;
-    overflow-y: auto;
+    max-height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }

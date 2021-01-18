@@ -3,7 +3,7 @@
 ?>
 <link rel="stylesheet" href="/manager/templates/css/header-style.css">
 <div id="admin-header">
-    <span class="page-title">Dashboard</span>
+    <!-- <span class="page-title">Admin</span> -->
 
     <div class="page-header">
     <nav class="header-menu">
@@ -51,8 +51,8 @@
         <!-- Menu con chứa các options của tài khoản -->
         <div id="account-options">
             <ul>
-                <li><a href="/public/display-orders.php">Sửa thông tin</a></li>
-                <li><a href="/manager/main/sign-out.php">Đăng xuất</a></li>
+                <a href="/public/display-orders.php"><li>Sửa thông tin</li></a>
+                <a href="/manager/main/sign-out.php"><li>Đăng xuất</li></a>
             </ul>
         </div>
     </div>

@@ -6,7 +6,7 @@
         background-color: #363e7e;
         /* margin: auto;
         z-index: 999; */
-        margin-bottom: 90px;
+        /* margin-bottom: 90px; */
         min-width: 1000px;
     }
 
@@ -66,6 +66,11 @@ if (customer_signed_in()) {
     include_once($root_path . "/public/templates/account/account-options.php");
 } else {
     include_once($root_path . "/public/templates/account/sign-in.php");
+}
+
+require_once($root_path . "/manager/templates/check-admin-signed-in.php");
+if (is_admin_signed_in()) {
+    include_once($root_path . "/manager/templates/header.php");
 }
 ?>
 <div id="nav-header">

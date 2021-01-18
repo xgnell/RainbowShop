@@ -1,15 +1,19 @@
 /* General */
 #page-menu {
+    --page-menu-background-color: #32373c;
+    --page-menu-foreground-color: #eee;
+    --page-menu-hover: #585959;
+
     position: relative;
-    background-color: #32373c;
-    color: #eee;
+    background-color: var(--page-menu-background-color);
+    color: var(--page-menu-foreground-color);
     height: 100%;
     /* width: 200px; */
     flex: 0 0 10em;
     padding-top: 15px;
 }
 #page-menu * {
-    color: #eee;
+    color: var(--page-menu-foreground-color);
     font-size: 17px;
 }
 
@@ -17,19 +21,18 @@
 #page-menu .main-menu li {
     width: 100%;
     padding: 10px 0 10px 15px;
-    /* margin: 10px 0 10px 0; */
     position: relative;
     cursor: pointer;
 }
 #page-menu .main-menu li:hover {
-    background-color: #585959;
+    background-color: var(--page-menu-hover);
 }
 #page-menu .main-menu li:hover .sub-menu {
     display: block;
 }
 
 #page-menu .main-menu .current-option {
-    background-color: #585959;
+    background-color: var(--page-menu-hover);
 }
 
 /* Sub menu */
@@ -38,6 +41,6 @@
     position: absolute;
     left: 150px;
     top: 0px;
-    background-color: #32373c;
+    background-color: var(--page-menu-background-color);
     width: 220px;
 }

@@ -1,10 +1,17 @@
 /* General */
 #admin-header {
-    background-color: #32373c;
-    color: #eee;
-    line-height: 35px;
+    --admin-header-foreground-color: #eee;
+    --admin-header-background-color: #32373c;
+
+    --admin-header-menu-hover: #585959;
+
+    background-color: var(--admin-header-background-color);
+    color: var(--admin-header-foreground-color);
+    line-height: 30px;
     width: 100%;
     display: flex;
+    align-items: center;
+    height: 6vh;
 }
 
 /* Display page title */
@@ -27,11 +34,11 @@
 }
 #admin-header .header-menu ul li {
     display: inline-block;
-    margin: 0 10px 0 10px;
+    margin: 0px 5px 0 5px;
     padding: 0px 10px 0px 10px;
 }
 #admin-header .header-menu ul li:hover {
-    background-color: #585959;
+    background-color: var(--admin-header-menu-hover);
 }
 #admin-header .header-menu ul a {
     color: white;
@@ -53,7 +60,7 @@
     cursor: pointer;
 }
 #admin-header .user-panel:hover {
-    background-color: #585959;
+    background-color: var(--admin-header-menu-hover);
 }
 
 #admin-header .user-panel .account-display * {
@@ -76,7 +83,7 @@
     right: 10px;
     width: 200px;
     height: 300px;
-    background-color: #32373c;
+    background-color: var(--admin-header-background-color);
     padding: 15px 5px 15px 5px;
     text-align: center;
 }
@@ -85,7 +92,7 @@
     content: "";
     width: 20px;
     height: 20px;
-    background-color: #32373c;
+    background-color: var(--admin-header-background-color);
     position: absolute;
     top: -5px;
     left: 130px;
@@ -103,8 +110,8 @@
     padding: 3px 10px 3px 10px;
 }
 #admin-header #account-options ul li:hover {
-    background-color: #585959;
+    background-color: var(--admin-header-menu-hover);
 }
-#admin-header #account-options ul li a {
+#admin-header #account-options ul a {
     color: white;
 }

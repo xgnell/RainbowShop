@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// session_start();
 function check_admin_signed_in(int $level) {
     if (!is_admin_signed_in()) {
         ?>
