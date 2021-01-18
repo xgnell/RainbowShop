@@ -1,0 +1,98 @@
+/************************ Admin sign in form *******************************/
+#admin-sign-in-form {
+    --background-color-all: #f1f1f1;
+    --background-color-form: white;
+
+    --border-color-form-and-input:  #ccc;
+    --border-color-input-when-focus:  #007CBA;
+
+    --btn-sign-in-foreground-color: white;
+    --btn-sign-in-background-color: #007CBA;
+    --btn-sign-in-hover-color: #006ea6;
+
+    --link-forget-account-foreground-color: gray;
+    --link-forget-account-hover-color: black;
+    --link-forget-account-hover-background-color: #dedede;
+
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-all);
+}
+
+#admin-sign-in-form .container {
+    width: 400px;
+    height: 400px;
+    padding: 15px 15px 15px 15px;
+    border: 1px var(--border-color-form-and-input) solid;
+    background-color: white;
+}
+
+#admin-sign-in-form .admin-form-header {
+    text-align: center;
+    /* background-color: blue; */
+}
+
+/* #admin-sign-in-form .admin-form-content {
+    border: 1px black solid;
+} */
+#admin-sign-in-form .admin-form-content .input-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#admin-sign-in-form .admin-form-content input {
+    width: 100%;
+    border: 1px var(--border-color-form-and-input) solid;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#admin-sign-in-form .admin-form-content .input-data {
+    height: 50px;
+}
+#admin-sign-in-form .admin-form-content .input-data:focus {
+    border: 1px var(--border-color-input-when-focus) solid;
+}
+#admin-sign-in-form .admin-form-content .btn-sign-in {
+    margin-top: 30px;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--btn-sign-in-foreground-color);
+    background-color: var(--btn-sign-in-background-color);
+}
+#admin-sign-in-form .admin-form-content .btn-sign-in:hover {
+    background-color: var(--btn-sign-in-hover-color);
+}
+#admin-sign-in-form .admin-form-content .display-error {
+    display: inline-block;
+    /* background-color: blue; */
+    width: 100%;
+    font-size: 0.95em;
+    padding-bottom: 10px;
+    color: red;
+}
+#admin-sign-in-form .admin-form-content .display-error::after {
+    display: inline-block;
+    content: "";
+    height: 15px;
+}
+
+#admin-sign-in-form .admin-form-footer {
+    margin-top: 10px;
+    text-align: center;
+    /* background-color: red; */
+}
+#admin-sign-in-form .admin-form-footer .link-forget-account {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    color: var(--link-forget-account-foreground-color);
+}
+#admin-sign-in-form .admin-form-footer .link-forget-account:hover {
+    color: var(--link-forget-account-hover-color);
+    background-color: var(--link-forget-account-hover-background-color);
+}

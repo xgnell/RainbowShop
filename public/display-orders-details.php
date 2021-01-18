@@ -22,10 +22,10 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
-            width: 1030px;
             min-height: 400px;
         }
 
+        /* Bảng thông báo */
         .notification {
             width: 100%;
             padding: 10%;
@@ -35,23 +35,62 @@
             margin-bottom: 15px;
         }
 
+
+        /* Bảng hiển thị các sản phẩm của hóa đơn */
         .table-header {
+            width: 100%;
             text-align: center;
-            border: 2px white solid;
             border-collapse: collapse;
-            /* width: 100%; */
         }
         .table-header tr {
-            border: 2px white solid;
+            border: 15px white solid;
         }
-        .table-header tr th {
-            /* color: white; */
-            padding: 7px 0 7px 0;
-            /* background-color: #363e7e; */
-            /* background-color: #f7f7f7; */
+
+        .table-header tr:first-child {
+            position: relative;
+            border: 20px white solid;
+            margin-bottom: 15px;
+            /* box-shadow: 0px 3px 5px #ccc; */
+
+        }
+
+        /********************* Chia hàng chẵn lẻ ****************************/
+        .table-header tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            border-bottom: 20px white solid;
+        }
+        .table-header tr:nth-child(odd):hover {
             background-color: #dedede;
-            border: 2px white solid;
         }
+
+        .table-header tr:nth-child(even) {
+            background-color: #f2f2f2;
+            border-bottom: 20px white solid;
+            /* background-color: #ccc; */
+        }
+        .table-header tr:nth-child(even):hover {
+            background-color: #dedede;
+            /* background-color: #ccc; */
+            /* transition: 0.3s; */
+        }
+
+        .table-header .display-total {
+            text-align: left;
+        }
+        /****************************************************/
+
+
+        /********************** Các cột ************************/
+        .table-header tr th {
+            background-color: #363e7e;
+            color: white;
+            padding: 5px 10px 5px 10px;
+        }
+        .table-header tr td {
+            padding: 5px 10px 5px 10px;
+        }
+        /***************************************************/
+
     </style>
 </head>
 <body>
@@ -71,25 +110,42 @@
             ?>
             <table class="table-header">
                 <tr>
-                    <th style="width: 160px; min-width: 160px;">Ảnh</th>
+                    <!-- <th style="width: 160px; min-width: 160px;">Ảnh</th>
                     <th style="width: 170px; min-width: 170px;">Tên</th>
                     <th style="width: 120px; min-width: 120px;">Giá</th>
                     <th style="width: 120px; min-width: 120px;">Loại</th>
                     <th style="width: 100px; min-width: 100px;">Màu</th>
                     <th style="width: 100px; min-width: 100px;">Size</th>
-                    <th style="width: 215px; min-width: 215px;">Số lượng</th>
+                    <th style="width: 215px; min-width: 215px;">Số lượng</th> -->
+                    <th>Ảnh</th>
+                    <th>Tên</th>
+                    <th>Giá</th>
+                    <th>Loại</th>
+                    <th>Màu</th>
+                    <th>Size</th>
+                    <th>Số lượng</th>
+                </tr>
+
+                <?php
+                $total = 0;
+                foreach ($bill_data_details as $bill_data) {
+                    $total += $bill_data["amount"] * $bill_data["price"];
+                    spawn_order_detail_item(
+                        $bill_data["id_item"],
+                        $bill_data["id_size"],
+                        $bill_data["amount"],
+                        $bill_data["price"]
+                    );
+                }
+                ?>
+
+                <tr class="display-total">
+                    <th colspan="7">
+                        Tổng tiền: <?= $total ?>
+                    </th>
                 </tr>
             </table>
             <?php
-
-            foreach ($bill_data_details as $bill_data) {
-                spawn_order_detail_item(
-                    $bill_data["id_item"],
-                    $bill_data["id_size"],
-                    $bill_data["amount"],
-                    $bill_data["price"]
-                );
-            }
         } else {
             ?>
             <div class="notification">

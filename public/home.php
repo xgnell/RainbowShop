@@ -135,6 +135,7 @@
 </head>
 
 <body>
+    <!-- <div> -->
         <?php include_once($root_path . "/public/templates/header.php"); ?>
         <?php include_once($root_path . "/public/templates/menu.php"); ?>
         <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
@@ -225,9 +226,7 @@
         </div>
         
         <!--///////////////  Here is include footer /////////////-->
-        <div>
-            <?php include_once($root_path . "/public/templates/footer.php"); ?>
-        </div>
-    </div>
+        <?php include_once($root_path . "/public/templates/footer.php"); ?>
+    <!-- </div> -->
 </body>
 </html>

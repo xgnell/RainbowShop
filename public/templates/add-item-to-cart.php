@@ -8,21 +8,12 @@
     $redirect = $_POST["redirect"];
 
     // Check if item in cart
-    if (array_key_exists($_SESSION["user"]["customer"]["cart"][$item_id], $item_size_id)) {
+    if (array_key_exists($item_size_id, $_SESSION["user"]["customer"]["cart"][$item_id])) {
         // Update
         $_SESSION["user"]["customer"]["cart"][$item_id][$item_size_id] += $item_amount;
     } else {
         // Add new
         $_SESSION["user"]["customer"]["cart"][$item_id][$item_size_id] = $item_amount;
-        // $size_data_in_db = sql_query("
-        //     SELECT *
-        //     FROM item_details
-        //     WHERE id_item = $item_id AND id_size = $item_size_id;
-        // ");
-        // if (mysqli_num_rows($size_data_in_db) != 0) {
-        // } else {
-        //     // Make error message
-        // }
     }
 
     // (Kiem tra trong kho con san pham hay ko)

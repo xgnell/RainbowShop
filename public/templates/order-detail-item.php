@@ -1,5 +1,5 @@
 <style>
-    .order-detail-item {
+    /* .order-detail-item {
         margin: 30px 0 30px 0;
         padding: 15px 10px 15px 10px;
         background-color: white;
@@ -72,10 +72,10 @@
         border: 1px #ccc solid;
         padding: 10px 10px 10px 10px;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 20%);
-    }
+    } */
 </style>
 <?php function spawn_order_detail_item($item_id, $size_id, $amount, $price) { ?>
-    <?php
+        <?php
         $item = sql_query("
             SELECT *
             FROM items
@@ -107,7 +107,7 @@
         $item_picture_src = "/public/img/items/";
     ?>
 
-    <div class="order-detail-item">
+    <!-- <div class="order-detail-item"> -->
         <!-- <div class="div-title">
             <h4 class="item-name"><?= $item["name"] ?></h4>
             <div class="functions">
@@ -115,34 +115,34 @@
             </div>
         </div> -->
 
-        <div class="item-details">
-            <table class="table-info">
+        <!-- <div class="item-details">
+            <table class="table-info"> -->
                 <tr>
-                    <td style="width: 150px; min-width: 150px;">
+                    <td>
                         <img width="100px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
                     </td>
 
-                    <td style="width: 170px; min-width: 170px">
+                    <td>
                         <span><?= $item["name"] ?></span>
                     </td>
 
-                    <td style="width: 120px; min-width: 120px;">
+                    <td>
                         <span><?= $price ?> đ</span>
                     </td>
 
-                    <td style="width: 120px; min-width: 120px;">
+                    <td>
                         <span><?= $item_type ?></span>
                     </td>
 
-                    <td style="width: 100px; min-width: 100px;">
-                        <span class="disp-color" style="background-color: <?= $item_color ?>;"></span>
+                    <td>
+                        <span class="disp-color" style="background-color: <?= $item_color ?> !important;"></span>
                     </td>
 
-                    <td style="width: 100px; min-width: 100px;">
+                    <td>
                         <span><?= $size_name ?></span>
                     </td>
 
-                    <td style="width: 200px; min-width: 200px;">
+                    <td>
                         <span><?= $amount ?></span>
                     </td>
 
@@ -151,9 +151,9 @@
                     </td> -->
 
                 </tr>
-            </table>
+            <!-- </table>
 
-        </div>
+        </div> -->
 
-    </div>
+    <!-- </div> -->
 <?php } ?>

@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .order-item .table-info {
         border: 2px white solid;
         border-collapse: collapse;
@@ -17,7 +17,7 @@
         background-color: #f7f7f7;
         padding: 10px 10px 10px 10px;
     }
-</style>
+</style> -->
 <?php function spawn_order_item($bill_id) { ?>
     <?php
         $bill = sql_query("
@@ -35,26 +35,31 @@
         $bill_state = mysqli_fetch_array($bill_state)["state"];
     ?>
 
-    <div class="order-item">
-        <table class="table-info">
+    <!-- <div class="order-item">
+        <table class="table-info"> -->
             <tr>
-                <td style="width: 200px; min-width: 200px">
+                <!-- style="width: 200px; min-width: 200px" -->
+                <td>
                     <span><?= $bill["receiver"] ?></span>
                 </td>
 
-                <td style="width: 270px; min-width: 270px;">
+                <!-- style="width: 270px; min-width: 270px;" -->
+                <td>
                     <span><?= $bill["address"] ?></span>
                 </td>
 
-                <td style="width: 120px; min-width: 120px;">
+                <!-- style="width: 120px; min-width: 120px;" -->
+                <td>
                     <span><?= $bill["phone"] ?></span>
                 </td>
 
-                <td style="width: 200px; min-width: 200px;">
+                <!-- style="width: 200px; min-width: 200px;" -->
+                <td>
                     <span><?= $bill["purchase_time"] ?></span>
                 </td>
 
-                <td style="width: 170px; min-width: 170px;">
+                <!-- style="width: 170px; min-width: 170px;" -->
+                <td>
                     <!-- Lam noi bat mau sac cua trang thai -->
                     <span><?= $bill_state ?></span>
                 </td>
@@ -63,6 +68,6 @@
                     <a href="/public/display-orders-details.php?id=<?= $bill_id ?>">Chi tiết</a>
                 </td>
             </tr>
-        </table>
-    </div>
+        <!-- </table>
+    </div> -->
 <?php } ?>

@@ -2,7 +2,6 @@
     #div_all_footer {
         background-color: #363e7e;
         color: white;
-        height: 400px;
         position: relative;
         height: 300px;
         /* display: flex; */

@@ -1,5 +1,7 @@
 .page-body {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 150px auto;
     height: 100vh;
     width: 100vw;
 }

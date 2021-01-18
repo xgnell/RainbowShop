@@ -1,5 +1,19 @@
 ==== Các công việc cần làm ====
 
+- [ ] Luôn phải kiểm tra xem đã đăng nhập chưa ở bất cứ trang nào (để đề phòng copy link xong chạy ở nơi chưa đăng nhập)
+- [ ] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)
+- [ ] Hiển thị gì đó trong trang web lỗi (trang 404, ...)
+- [ ] Ngăn cấm data race
+- [ ] Xử lý trùng đăng nhập, đăng xuất các tài khoản, hóa đơn, ... (Ví dụ trong chế độ ẩn danh)
+- [ ] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
+- [ ] Lưu lại cả thời gian duyệt/hủy của đơn hàng 
+- [ ] Validate form giỏ hàng
+- [ ] Kiểm tra số lượng trong kho
+- [ ] Hiển thị hóa đơn có cột tổng tiền và phần hóa đơn chi tiết có tổng tiền bên dưới
+- [ ] Phía khách hàng thì đơn nào được lưu trước thì hiển thị trước, nhưng ở phía admin thì ưu tiên đẩy các đơn chưa duyệt lên đầu
+
+- [ ] Kiểm tra mật khẩu đủ mạnh hay không khi đăng kí tài khoản mới (tối thiểu 6 kí tự, gồm cả chữ và số)
+- [ ] Hiển thị phần header của admin ở trang chủ nếu đăng nhập bằng quyền admin
 - [ ] Mã hóa mật khẩu
 - [ ] Sửa lỗi hack qua url
 - [ ] Sơ đồ thực thể

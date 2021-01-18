@@ -57,6 +57,8 @@
         right: 30px;
         bottom: 30px;
         padding: 10px 10px 10px 10px;
+        width: 45px;
+        height: 45px;
         border-radius: 50px;
         background-color: #00a2ff;
     }

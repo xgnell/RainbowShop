@@ -1,108 +1,48 @@
-<style>
-    /* General */
-    #page-menu {
-        position: relative;
-        background-color: #32373c;
-        color: #eee;
-        height: 100%;
-        /* width: 200px; */
-        flex: 0 0 10em;
-        padding-top: 15px;
-    }
-    #page-menu * {
-        color: #eee;
-        font-size: 17px;
-    }
-
-    /* Main menu */
-    #page-menu .main-menu li {
-        width: 100%;
-        padding: 5px 0 5px 15px;
-        margin-bottom: 10px;
-        position: relative;
-    }
-    #page-menu .main-menu li:hover {
-        background-color: #585959;
-    }
-    #page-menu .main-menu li:hover .sub-menu {
-        display: block;
-    }
-
-    /* Sub menu */
-    #page-menu .sub-menu {
-        display: none;
-        position: absolute;
-        left: 150px;
-        top: 0px;
-        background-color: #32373c;
-        width: 170px;
-    }
-</style>
+<link rel="stylesheet" href="/manager/templates/css/menu-style.css">
+<script defer src="/manager/templates/js/menu-action.js"></script>
 <div id="page-menu">
     <ul class="main-menu">
+        
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check-admin-signed-in.php"); ?>
         <?php if (is_admin_rank(1)) { ?>
-        <li>
-            <a href="#">Admins</a>
+        <li class="<?php if (MENU_OPTION == "admin") echo "current-option"; ?>">
+            <a href="#">Admin</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/admins/admins-manager.php">All Admins</a></li>
-                <li><a href="/manager/admins/admin-insert.php">Add Admin</a></li>
+                <a href="/manager/admins/admins-manager.php"><li>Xem tất cả admin</li></a>
+                <a href="/manager/admins/admin-insert.php"><li>Thêm admin mới</li></a>
             </ul>
         </li>
         <?php } ?>
-        <li>
-            <a href="#">Customers</a>
+        
+        <li class="<?php if (MENU_OPTION == "customer") echo "current-option"; ?>">
+            <a href="#">Khách hàng</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/customers/customers-manager.php">All Customers</a></li>
-                <li><a href="/manager/customers/customer-insert.php">Add Customer</a></li>
+                <a href="/manager/customers/customers-manager.php"><li>Xem tất cả khách hàng</li></a>
+                <a href="/manager/customers/customer-insert.php"><li>Thêm khách hàng mới</li></a>
             </ul>
         </li>
-        <li>
-            <a href="#">Items</a>
+        
+        <li class="<?php if (MENU_OPTION == "item") echo "current-option"; ?>">
+            <a href="#">Sản phẩm</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/items/items-manager.php">All Items</a></li>
-                <li><a href="/manager/items/item-insert.php">Add item</a></li>
+                <a href="/manager/items/items-manager.php"><li>Xem tất cả sản phẩm</li></a>
+                <a href="/manager/items/item-insert.php"><li>Thêm sản phẩm mới</li></a>
             </ul>
         </li>
-        <li>
-            <a href="#">Orders</a>
+        
+        <li class="<?php if (MENU_OPTION == "order") echo "current-option"; ?>">
+            <a href="#">Hóa đơn</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/orders/orders-manager.php">All Order</a></li>
+                <a href="/manager/orders/orders-manager.php"><li>Xem tất cả hóa đơn</li></a>
             </ul>
         </li>
-        <li>
-            <a href="#">Questions</a>
+        
+        <li class="<?php if (MENU_OPTION == "faq") echo "current-option"; ?>">
+            <a href="#">FAQ</a>
             <ul class="sub-menu" hidden>
-                <li><a href="/manager/questions/questions-manager.php">All Questions</a></li>
-                <li><a href="#">Add</a></li>
+                <a href="/manager/questions/questions-manager.php"><li>Xem tất cả</li></a>
+                <a href="#"><li>Thêm mới</li></a>
             </ul>
         </li>
     </ul>
 </div>
-<script>
-    let menu_options = document.querySelectorAll('#page-menu .main-menu > li');
-    for (let option of menu_options) {
-        option.is_opened = false;
-        let children = option.children;
-
-        // Get <a> tag
-        let option_name = children[0];
-        // Get <ul> tag -> submenu
-        let submenu = children[1];
-
-        // Set events
-        option_name.onclick = function() {
-            if (option.is_opened) {
-                // Close submenu
-                submenu.hidden = true;
-                option.is_opened = false;
-            } else {
-                // Open submenu
-                submenu.hidden = false;
-                option.is_opened = true;
-            }
-            
-        }
-
-    }
-</script>

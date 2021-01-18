@@ -1,4 +1,5 @@
 <?php
+    define("MENU_OPTION", "customer");
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in

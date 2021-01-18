@@ -15,12 +15,15 @@
     <title>Show orders</title>
     <style>
         .panel {
+            /* position: absolute; */
+            display: inline-block;
             margin: 30px 5% 30px 5%;
             padding: 15px 15px 15px 15px;
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
-            width: 1210px;
+            width: 90%;
+            /* min-width: 1210px; */
             min-height: 400px;
         }
 
@@ -34,12 +37,54 @@
         }
 
         .table-header {
+            /* border-radius: 5px; */
+            text-align: center;
+            width: 100%;
+            /* border-top: 1px black solid; */
+            /* border-bottom: 1px #ccc solid; */
+            /* border: 1px #ccc solid; */
+            border-collapse: collapse;
+            /* padding: 5px 5px 5px 5px; */
+        }
+        .table-header tr:first-child {
+            position: relative;
+            /* box-shadow: 0px 5px 10px #ccc; */
+
+        }
+        .table-header tr:nth-child(odd) {
+            background-color: #f2f2f2;
+            border: 10px white solid;
+            /* padding: 10px 0 10px 0; */
+            /* transition: 0.3s; */
+        }
+        .table-header tr:nth-child(odd):hover {
             background-color: #dedede;
-            padding: 5px 5px 5px 5px;
+        }
+        .table-header tr:nth-child(even) {
+            background-color: #f2f2f2;
+            border: 10px white solid;
+            /* padding: 10px 0 10px 0; */
+            /* background-color: #ccc; */
+            /* transition: 0.3s; */
+        }
+        .table-header tr:nth-child(even):hover {
+            background-color: #dedede;
+        }
+        .table-header tr th {
+            background-color: #363e7e;
+            color: white;
+            padding: 5px 10px 5px 10px;
+            /* border-top: 1px #ccc solid; */
+        }
+        .table-header tr td {
+            padding: 5px 10px 5px 10px;
+            /* border-top: 1px #ccc solid; */
         }
     </style>
 </head>
 <body>
+    <!-- <div style="background-color: blue; display: inline-block; width: 100%;"> -->
+    <div>
     <?php include_once($root_path . "/public/templates/header.php"); ?>
     <?php include_once($root_path . "/public/templates/menu.php"); ?>
     <?php include_once($root_path . "/public/templates/sign-in.php"); ?>
@@ -71,25 +116,22 @@
                     ?>
                     <table class="table-header">
                         <tr>
-                            <th style="width: 220px; min-width: 220px;">Người nhận</th>
-                            <th style="width: 270px; min-width: 270px;">Địa chỉ nhận hàng</th>
-                            <th style="width: 160px; min-width: 160px;">Điện thoại</th>
-                            <th style="width: 200px; min-width: 200px;">Thời gian đặt hàng</th>
-                            <th style="width: 200px; min-width: 200px;">Tình trạng</th>
-                            <th style="width: 105px; min-width: 105px"></th>
+                            <th>Người nhận</th>
+                            <th>Địa chỉ nhận hàng</th>
+                            <th>Điện thoại</th>
+                            <th>Thời gian đặt hàng</th>
+                            <th>Tình trạng</th>
+                            <th></th>
                         </tr>
+                        <?php
+                        foreach ($orders as $order) {
+                            spawn_order_item($order["id"]);
+                        }
+                        ?>
                     </table>
                     <?php
 
-                    foreach ($orders as $order) {
-                        spawn_order_item($order["id"]);
-                    }
-
                 }
-                /*
-                    img - receive - address - phone - purchase-time - state
-                    (state can use icon + popup)
-                */
             } else {
                 ?>
                 <div class="notification">
@@ -102,5 +144,6 @@
     </div>
 
     <?php include_once($root_path . "/public/templates/footer.php"); ?>
+    <!-- </div> -->
 </body>
 </html>

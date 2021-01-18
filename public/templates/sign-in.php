@@ -7,7 +7,7 @@
         width: 100vw;
         height: 100vh;
         background: rgba(43, 43, 43, 0.5);
-        z-index: 3;
+        z-index: 10;
     }
 
     #sign-in-form .form-frame {
