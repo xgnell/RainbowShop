@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2021 at 05:21 AM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Generation Time: Jan 19, 2021 at 07:21 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,6 +82,14 @@ CREATE TABLE `bills` (
   `purchase_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`) VALUES
+(13, 5, 'Ha', 'Ha Noi', '0123456789', 1, '2021-01-15 05:45:07'),
+(14, 5, 'Ha', 'Ha Noi', '0123456789', 3, '2021-01-15 11:40:57');
+
 -- --------------------------------------------------------
 
 --
@@ -95,6 +103,15 @@ CREATE TABLE `bill_details` (
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bill_details`
+--
+
+INSERT INTO `bill_details` (`id_bill`, `id_item`, `id_size`, `amount`, `price`) VALUES
+(13, 27, 5, 6, 100000),
+(13, 32, 6, 4, 158000),
+(14, 28, 4, 1000000, 130000);
 
 -- --------------------------------------------------------
 
@@ -172,8 +189,9 @@ INSERT INTO `items` (`id`, `name`, `picture`, `price`, `description`, `id_type`,
 (33, 'Dolphin Family', 'f79d08962917668bd8ed5f9e120201eb.png', 210000, 'Gia đình của bé cá', 2, 1),
 (34, 'The Black Wizard', 'e48427cc533da56efdebbe19e6af3e09.png', 280000, 'Give me your soul', 2, 1),
 (35, 'Shin The Pencil', '44c6b8b2d94caf6a09a566a4af3984e3.png', 169000, 'Shin so small and his pencil is small too', 1, 4),
-(36, 'Study change my life', 'c8e55bd75f9e1a44a0bd6129af2292db.png', 97000, 'Kẻ mang tri thức là kẻ mạnh', 1, 2),
-(37, 'A5', 'a9d41159a35e0240e6422466d2f472b8.png', 182000, 'Ngộ nghĩnh phá phách - phong cách trẻ trâu', 1, 2);
+(36, 'Study change my life But i can do any thing', 'c8e55bd75f9e1a44a0bd6129af2292db.png', 97000, 'Kẻ mang tri thức là kẻ mạnh', 1, 2),
+(37, 'A5', 'a9d41159a35e0240e6422466d2f472b8.png', 182000, 'Ngộ nghĩnh phá phách - phong cách trẻ trâu', 1, 2),
+(38, 'Áo siêu đẹp', '7b5c39d3479f582a78ae65b6a6267a80.png', 123, 'Áo siêu sịn siêu đẹp nè', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -223,10 +241,10 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (27, 1, 50),
 (27, 2, 12),
 (27, 4, 68),
-(27, 5, 30),
+(27, 5, 24),
 (28, 1, 15),
 (28, 3, 200),
-(28, 4, 57),
+(28, 4, -999943),
 (29, 1, 843),
 (29, 2, 356),
 (29, 4, 345),
@@ -245,7 +263,7 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (32, 2, 22),
 (32, 3, 6),
 (32, 4, 43),
-(32, 6, 23),
+(32, 6, 19),
 (33, 1, 243),
 (33, 2, 21),
 (33, 4, 342),
@@ -271,7 +289,11 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (37, 3, 412),
 (37, 4, 51),
 (37, 5, 12),
-(37, 6, 34);
+(37, 6, 34),
+(38, 1, 32145),
+(38, 2, 454),
+(38, 3, 43),
+(38, 5, 321);
 
 -- --------------------------------------------------------
 
@@ -317,6 +339,29 @@ INSERT INTO `item_types` (`id`, `type`) VALUES
 (4, 'Polo'),
 (3, 'Raglan'),
 (1, 'T-shirt');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qna`
+--
+
+CREATE TABLE `qna` (
+  `id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `qna`
+--
+
+INSERT INTO `qna` (`id`, `question`, `answer`) VALUES
+(1, 'Địa chỉ shop ở đâu ý nhỉ?', 'Shop ở trong tim bạn đó <3'),
+(2, 'Tại sao shop lại nhiều đồ đẹp thế?', 'Bởi vì shop có 1 đội thiết kế rất oki đó'),
+(3, 'Khi nào thì shop mở cửa đơn khách vậy?', 'Lúc nào shop cũng chờ đón bạn nhé'),
+(5, 'Làm sao để biết size thế nào là vừa?', 'Hiện Rainbow Kitty đang cung cấp sẵn bảng size để khách hàng có căn cứ lựa chọn. 1 bảng có thông tin chiều cao, cân nặng và 1 bảng là thông số đo của áo. Vì chọn size theo chiều cao, cân nặng chỉ mang tính chất ước lượng, bạn nên tham khảo thêm bảng thông số chiều dài, chiều rộng của áo để có thể lựa chọn size cho phù hợp. Rất đơn giản, bạn hãy lấy một chiếc áo mà mình đang mặc vừa và thoải mái nhất đo 2 thông số: dài áo và rộng vai, sau đó đối chiếu với bảng size mà Sales cung cấp để biết được size vừa với mình nhất nhé!'),
+(6, 'Vậy thì những chiếc áo tuyệt đẹp đó được bán với giá bao nhiêu?\r\n\r\n', 'Ồ thực sự thì không hề đắt đâu, bạn hãy cứ yên tâm mua sắm nhé');
 
 --
 -- Indexes for dumped tables
@@ -403,6 +448,12 @@ ALTER TABLE `item_types`
   ADD UNIQUE KEY `name` (`type`);
 
 --
+-- Indexes for table `qna`
+--
+ALTER TABLE `qna`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -422,7 +473,7 @@ ALTER TABLE `admin_ranks`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `bill_states`
@@ -434,13 +485,13 @@ ALTER TABLE `bill_states`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `item_colors`
@@ -459,6 +510,12 @@ ALTER TABLE `item_sizes`
 --
 ALTER TABLE `item_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `qna`
+--
+ALTER TABLE `qna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
