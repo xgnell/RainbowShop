@@ -4,6 +4,7 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
+    require_once($root_path . "/config/img.php");
     include_once($root_path . "/public/templates/item/item.php");
 
     $item_id = $_GET['id'];
@@ -21,8 +22,6 @@
         WHERE id = {$item["id_type"]};
     ");
     $item_type = mysqli_fetch_array($item_type)["type"];
-
-    $item_picture_src = "/public/img/items/";
 
     // Get item all size types possible
     $item_sizes = sql_query("
@@ -42,7 +41,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
-    <link rel="icon" href="/public/img/socials/logo_1.png">
     <style>
         #page-item {
             margin-top: 80px;
@@ -76,7 +74,7 @@
             margin: auto;
             /* width: 80%;
             height: 65%; */
-            background-image: url('<?= $item_picture_src . $item['picture'] ?>');
+            background-image: url('<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>');
             width: 400px;
             height: 400px;
             background-size: cover;

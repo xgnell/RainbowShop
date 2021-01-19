@@ -4,7 +4,7 @@
         top: 0px;
         margin: 20px 0px 20px 0px;
         height: 700px;
-        background-image: url("/public/img/background/bg2.png");
+        background-image: url("/public/assets/backgrounds/bg2.png");
         background-size: cover;
         z-index: 1;
     }

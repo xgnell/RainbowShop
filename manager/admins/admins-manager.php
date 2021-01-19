@@ -41,14 +41,13 @@
 
             <div class="scrollable">
             <table id="content-table">
-                <tr class="table-bar">
+                <tr class="table-bar-header">
                     <!-- <td hidden class="title">Id</td> -->
                     <td>Tên</td>
                     <td>Giới tính</td>
                     <td>Ngày tháng năm sinh</td>
                     <td>Điện thoại</td>
                     <td>Email</td>
-                    <td>Mật khẩu</td>
                     <td>Cấp độ</td>
 
                     <td>Sửa</td>
@@ -70,7 +69,6 @@
                         <td><?= $admin['birth'] ?></td>
                         <td><?= $admin['phone'] ?></td>
                         <td><?= $admin['email'] ?></td>
-                        <td><?= $admin['passwd'] ?></td>
                         <td><?= $admin_rank_name ?></td>
 
                         <td>

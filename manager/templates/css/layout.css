@@ -1,7 +1,8 @@
 :root {
     --slide-menu-size: 150px;
 
-    --table-title-background-color: #ccc;
+    --table-header-background-color: #ccc;
+    --table-footer-background-color: #ccc;
     --table-border-color: #ccc;
     --table-hover-color: #f0f0f0;
 
@@ -29,13 +30,25 @@
     border-collapse: collapse;
     /* font-size: 20px; */
 }
-#content-table .table-bar {
+#content-table .table-bar-header {
     position: sticky;
 }
-#content-table .table-bar > td {
+#content-table .table-bar-header > td {
     font-weight: bold;
-    background-color: var(--table-title-background-color);
+    background-color: var(--table-header-background-color);
 }
+
+#content-table .table-bar-footer {
+    /* border: 1px var(--table-border-color) solid; */
+    position: sticky;
+}
+#content-table .table-bar-footer > td {
+    border: 0;
+    border: 1px var(--table-border-color) solid;
+    /* font-weight: bold; */
+    background-color: var(--table-footer-background-color);
+}
+
 #content-table tr:hover {
     background-color: var(--table-hover-color);
 }

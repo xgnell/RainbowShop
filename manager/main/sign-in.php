@@ -34,7 +34,7 @@
                     
                     <div class="input-container">
                         <div class="display-error" id="display-error-email-or-phone"></div>
-                        <input class="input-data" id="input-email-or-phone" type="text" name="email_or_phone" placeholder="Nhập email hoặc số điện thoại" value="<?= $email_or_phone ?? "" ?>"><br>
+                        <input class="input-data" id="input-email-or-phone" type="text" name="email_or_phone" placeholder="Nhập email hoặc số điện thoại" value="<?= $email_or_phone ?? "" ?>" autofocus><br>
                     </div>
 
                     <div class="input-container">

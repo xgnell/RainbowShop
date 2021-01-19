@@ -52,13 +52,31 @@ Triệu
 		-> Thanh slide menu phải tự ẩn đi khi
 		-> Menu trên header chỉ còn hiển thị icon
 
+- [O] Set min/max cho các cột trong các bảng
+- [X] Chỉnh lại toàn bộ đường dẫn + tên ảnh
+- [X] Chỉnh lại thông tin chi tiết của các bảng phần admin
+- [ ] Phân lại quyền admin (Chỉ có 1 thằng super admin)
+- [ ] Thêm tính năng tìm kiếm (nâng cao) cho phần admin + Chức năng lọc (cũng giống tìm kiếm nâng cao nhưng chỉ áp dụng với những cột có select - option)
+		% Các thanh tìm kiếm / lọc được đặt dưới thành title và cũng sticky
+- [ ] Thêm các giao diện (Thêm mới), sửa phần giao diện + validate giao form phần admin, phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
+- [ ] Kiểm tra đăng nhập khi làm bất cứ cái gì (để tránh vào trang ẩn danh táy máy)
+- [ ] Thêm được 3 tính năng chi tiết vào tài liệu
+- [ ] Làm phần sửa thông tin admin
+- [ ] Nối với phần FAQ
+- [X] Thêm vào một cột trong bảng trạng thái hóa đơn đó là màu sắc trạng thái
+- [X] Thay toàn bộ phần admin chức năng bằng các icon (Ví dụ chỗ duyệt / hủy hóa đơn)
+- [ ] Tạo thêm bảng thông tin liên hệ
+- [ ] Tạo thêm bảng background lưu trữ ảnh background, xong đó làm phần background tự scroll được
+- [ ] Sửa font cho web
+- [ ] Ưu tiên đẩy hóa đơn đang chờ duyệt lên đầu tiên (hoặc có chức năng lọc)
+
+- [ ] Giới hạn thời gian của phiên làm việc (và tại sao lại như thế)
 - [ ] (Nhập lại mật khẩu khi đăng kí)
-- [ ] In format giá tiền có ngăn cách
-- [ ] Hiển thị ô màu với phần admin
+- [X] In format giá tiền có ngăn cách (Còn phần hiển thị hóa đơn chi tiết)
+- [X] Hiển thị ô màu với phần admin (Còn phần hiển thị hóa đơn chi tiết)
 - [O] Sửa lại toàn bộ sang tiếng việt
-- [ ] Làm pop up cho icon trong bảng admin + giỏ hàng
 - [X] Sửa icon ở trang admin
-- [ ] Thêm các trang thông báo lỗi cho admin
+- [O] Thêm các trang thông báo lỗi cho admin
 - [ ] Tạo trang chỉnh sửa thông tin cá nhân cho admin
 - [O] Phân lại toàn bộ file css, js
 - [ ] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
@@ -147,7 +165,6 @@ Triệu
 - [ ] Xử lý vấn đề về sai lệch thời gian khi đặt hàng
         %% Server sai thời gian
         %% Customer truy cập sai thời gian (Thường lấy thông tin về thời gian trên server nên có thể không bị lỗi này)
-
 
 - [ ] Viết tài liệu
 - [ ] Làm slide

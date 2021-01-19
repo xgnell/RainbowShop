@@ -29,7 +29,7 @@
 
         <!-- Main content -->
         <div class="page-content">
-            <h1>Trang chủ admin</h1>
+            <h1>Xin chào <?= $_SESSION["user"]["admin"]["name"] ?></h1>
         </div>
 
     </div>

@@ -47,17 +47,17 @@
 </style>
 <?php function spawn_item($item_id) { ?>
     <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/img.php");
+
         $item = sql_query("
             SELECT *
             FROM items
             WHERE id = '$item_id';
         ");
         $item = mysqli_fetch_array($item);
-
-        $item_picture_src = "/public/img/items/";
     ?>
     <div class="display-item" onclick="goto_item_details(<?= $item_id ?>)">
-        <img width="200px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
+        <img width="200px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
         <span class="item-name" id="name-item"><?= $item["name"] ?></span><br><br>
         <span class="item-price"><?= $item["price"] ?>đ</span><br>
         <!-- <a class="btn-add-to-cart" onclick="add_item_to_cart(<?= $item_id ?>)">Add item to cart</a> -->
