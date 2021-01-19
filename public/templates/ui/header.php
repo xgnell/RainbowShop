@@ -28,7 +28,7 @@
         font-weight: bold;
         line-height: 60px;
         float: left;
-        background-image: url('/public/img/socials/logo_1.png');
+        background-image: url('/public/assets/logos/rainbow-kitty.png');
         /* z-index: 999; */
         background-size: cover;
     }

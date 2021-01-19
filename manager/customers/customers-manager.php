@@ -37,14 +37,13 @@
 
             <div class="scrollable">
             <table id="content-table">
-                <tr class="table-bar">
+                <tr class="table-bar-header">
                     <!-- <td hidden class="title">Id</td> -->
                     <td>Tên</td>
                     <td>Giới tính</td>
                     <td>Ngày tháng năm sinh</td>
                     <td>Điện thoại</td>
                     <td>Email</td>
-                    <td>Mật khẩu</td>
                     <td>Địa chỉ</td>
 
                     <td>Sửa</td>
@@ -57,7 +56,6 @@
                         <td><?= $customer['birth'] ?></td>
                         <td><?= $customer['phone'] ?></td>
                         <td><?= $customer['email'] ?></td>
-                        <td><?= $customer['passwd'] ?></td>
                         <td><?= $customer['address'] ?></td>
 
                         <td>

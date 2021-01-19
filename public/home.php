@@ -55,7 +55,7 @@
         }
 
         .background {
-            background-image: url("/public/img/background/bg1.png");
+            background-image: url("/public/assets/backgrounds/bg1.png");
             background-size: cover;
             border-radius: 5px;
             height: 500px;

@@ -8,7 +8,6 @@
 
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/img.php");
-    $item_picture_src = IMG_SRC . "items/";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +24,17 @@
     <style>
         #display-size {
             width: 100%;
-            border: 1px black solid;
+            border: 1px #ccc solid;
             border-collapse: collapse;
             /* margin: 5px 5px 5px 5px; */
         }
+        #display-size tr th {
+            border: 1px #ccc solid;
+            padding: 5px 5px 5px 5px;
+        }
         #display-size tr td {
-            border: 1px black solid;
-            /* padding: 5px 5px 5px 5px; */
+            border: 1px #ccc solid;
+            padding: 5px 5px 5px 5px;
         }
     </style>
 </head>
@@ -54,11 +57,11 @@
             ?>
             <div class="scrollable">
             <table id="content-table">
-                <tr class="table-bar" style="top: 0;">
+                <tr class="table-bar-header" style="top: 0;">
                     <td>Tên</td>
                     <td>Ảnh</td>
                     <td>Mô tả</td>
-                    <td>Giá</td>
+                    <td>Giá (VNĐ)</td>
                     <td>Loại</td>
                     <td>Màu</td>
                     <td>Số lượng</td>
@@ -94,11 +97,23 @@
                     ?>
                     <tr>
                         <td><?= $item['name'] ?></td>
-                        <td><img style="height: 100px;" src="<?= $item_picture_src . $item['picture'] ?>"></td>
+                        <td><img style="height: 100px;" src="<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>"></td>
                         <td><?= $item['description'] ?></td>
-                        <td><?= $item['price'] ?> VNĐ</td>
+                        <td>
+                            <?= number_format($item['price'], 0, ',', '.') ?>
+                        </td>
                         <td><?= $item_type ?></td>
-                        <td><?= $item_color ?></td>
+                        <td>
+                            <div style="
+                                    display: inline-block;
+                                    width: 20px; height: 20px;
+                                    background-color: <?= $item_color ?>;
+                                    <?php
+                                        if ($item_color == 'white')
+                                            echo 'border: 1px black solid;';
+                                    ?>">
+                            </div>
+                        </td>
                         <td>
                             <?php
                                 // Get item all size types
@@ -113,7 +128,7 @@
                                     <?php
                                         foreach ($item_sizes as $item_size) {
                                             ?>
-                                            <td><?= $item_size["size"] ?></td>
+                                            <th><?= $item_size["size"] ?></th>
                                             <?php
                                         }
                                     ?>
@@ -156,22 +171,12 @@
                     </tr>
                 <?php endforeach ?>
 
-                <tr class="table-bar" style="bottom: 0;">
+                <tr class="table-bar-footer" style="bottom: 0;">
                     <td colspan="9">
                         <a href="">1</a>
                         <a href="">2</a>
                         <a href="">3</a>
                     </td>
-                    <!-- <td class="title">Picture</td>
-                    <td class="title">Description</td>
-                    <td class="title">Price</td>
-                    <td class="title">Type</td>
-                    <td class="title">Color</td>
-                    <td class="title">Amount</td>
-
-
-                    <td class="title">Update</td>
-                    <td class="title">Delete</td> -->
                 </tr>
             </table>
             </div>

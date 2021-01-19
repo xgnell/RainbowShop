@@ -110,13 +110,6 @@
             ?>
             <table class="table-header">
                 <tr>
-                    <!-- <th style="width: 160px; min-width: 160px;">Ảnh</th>
-                    <th style="width: 170px; min-width: 170px;">Tên</th>
-                    <th style="width: 120px; min-width: 120px;">Giá</th>
-                    <th style="width: 120px; min-width: 120px;">Loại</th>
-                    <th style="width: 100px; min-width: 100px;">Màu</th>
-                    <th style="width: 100px; min-width: 100px;">Size</th>
-                    <th style="width: 215px; min-width: 215px;">Số lượng</th> -->
                     <th>Ảnh</th>
                     <th>Tên</th>
                     <th>Giá</th>

@@ -93,6 +93,8 @@
 </style>
 <?php function spawn_cart_item($item_id, $size_id, $amount) { ?>
     <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/img.php");
+
         $item = sql_query("
             SELECT *
             FROM items
@@ -120,8 +122,6 @@
             WHERE id = {$item['id_color']};
         ");
         $item_color = mysqli_fetch_array($item_color)["color"];
-
-        $item_picture_src = "/public/img/items/";
     ?>
 
     <div class="cart-item">
@@ -136,7 +136,7 @@
             <table class="table-info">
                 <tr>
                     <td style="width: 150px; min-width: 150px;">
-                        <img width="100px" src="<?= $item_picture_src . $item["picture"] ?>"><br>
+                        <img width="100px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
                     </td>
 
                     <td style="width: 170px; min-width: 170px">
