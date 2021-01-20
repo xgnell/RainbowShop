@@ -85,7 +85,7 @@
             <input class="btn-sign-in" type="submit" value="Đăng nhập"><br><br>
 
             <div class="form-footer">
-                <a href="/public/account/sign-up.php">Tạo tài khoản mới</a>
+                <a href="/public/templates/account/sign-up.php">Tạo tài khoản mới</a>
                 <a href="#">Quên tài khoản ?</a>
             </div>
         </form>
