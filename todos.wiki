@@ -52,10 +52,27 @@ Triệu
 		-> Thanh slide menu phải tự ẩn đi khi
 		-> Menu trên header chỉ còn hiển thị icon
 
+- [ ] Test giao diện
+- [ ] Test bảo mật
+	* [ ] Test validate
+	* [ ] Test XSS
+	* [ ] Test SQL Injection
+	* [ ] Test URL
+
+- [ ] Test đa trình duyệt
+- [ ] Test reponsive
+- [ ] Test chức năng
+-----------------------------
+
+- [ ] Thêm ô hiển thị màu vào phần chọn màu của sản phẩm
+- [ ] Sắp xếp lại thứ tự SIZE
+- [ ] Regex tiếng việt
+- [O] Chỉnh lại format của input date - time (Còn các trang khách hàng)
+- [X] Hiển thị mã hóa đơn
 - [O] Set min/max cho các cột trong các bảng
 - [X] Chỉnh lại toàn bộ đường dẫn + tên ảnh
 - [X] Chỉnh lại thông tin chi tiết của các bảng phần admin
-- [ ] Phân lại quyền admin (Chỉ có 1 thằng super admin)
+- [O] Phân lại quyền admin (Chỉ có 1 thằng super admin)
 - [ ] Thêm tính năng tìm kiếm (nâng cao) cho phần admin + Chức năng lọc (cũng giống tìm kiếm nâng cao nhưng chỉ áp dụng với những cột có select - option)
 		% Các thanh tìm kiếm / lọc được đặt dưới thành title và cũng sticky
 - [ ] Thêm các giao diện (Thêm mới), sửa phần giao diện + validate giao form phần admin, phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
@@ -79,15 +96,15 @@ Triệu
 - [O] Thêm các trang thông báo lỗi cho admin
 - [ ] Tạo trang chỉnh sửa thông tin cá nhân cho admin
 - [O] Phân lại toàn bộ file css, js
-- [ ] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
-- [ ] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
+- [&] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
+- [&] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
 - [ ] Luôn phải kiểm tra xem đã đăng nhập chưa ở bất cứ trang nào (để đề phòng copy link xong chạy ở nơi chưa đăng nhập)
 - [ ] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)
 - [ ] Hiển thị gì đó trong trang web lỗi (trang 404, ...)
 - [ ] Ngăn cấm data race
 - [ ] Xử lý trùng đăng nhập, đăng xuất các tài khoản, hóa đơn, ... (Ví dụ trong chế độ ẩn danh)
 - [ ] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
-- [ ] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
+- [&] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
 - [ ] Validate form giỏ hàng
 - [ ] Kiểm tra số lượng trong kho
 - [ ] Hiển thị hóa đơn có cột tổng tiền và phần hóa đơn chi tiết có tổng tiền bên dưới

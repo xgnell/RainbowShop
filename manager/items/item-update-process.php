@@ -6,7 +6,7 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
-    //require_once($root_path . "/config/img.php");
+    require_once($root_path . "/config/img.php");
 
     // Get all size in database
     $item_sizes_data_from_db = sql_query("
@@ -18,7 +18,6 @@
     $item_id = $_POST["id"];
     $item_name = $_POST["name"];
     
-    $item_picture_src = "../../public/img/items/";
     $item_picture_name = "";
     // Get old picture name
     $item_old_picture = sql_query("
@@ -32,9 +31,9 @@
         $item_picture = $_FILES["picture"];
         // Handle picture
         $item_picture_name = $item_picture["name"];
-        move_uploaded_file($item_picture["tmp_name"], $item_picture_src . $item_picture_name);
+        move_uploaded_file($item_picture["tmp_name"], ITEM_IMAGE_SOURCE_PATH . $item_picture_name);
         // Delete old picture
-        unlink($item_picture_src . $item_old_picture["picture"]);
+        unlink(ITEM_IMAGE_SOURCE_PATH . $item_old_picture["picture"]);
     } else {
         $item_picture_name = $item_old_picture["picture"];
     }

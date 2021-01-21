@@ -41,7 +41,7 @@
             <a href="#">FAQ</a>
             <ul class="sub-menu" hidden>
                 <a href="/manager/questions/questions-manager.php"><li>Xem tất cả</li></a>
-                <a href="#"><li>Thêm mới</li></a>
+                <a href="/manager/questions/question-insert.php"><li>Thêm mới</li></a>
             </ul>
         </li>
     </ul>

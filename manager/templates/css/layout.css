@@ -77,3 +77,140 @@
     overflow-x: scroll;
     overflow-y: scroll;
 }
+
+/* Edit table */
+.edit-table {
+    width: 60%;
+}
+.edit-table input {
+    width: 300px;
+    min-width: 300px;
+    height: 40px;
+    border: 1px #ccc solid;
+    padding: 5px 10px 5px 10px;
+}
+.edit-table input:hover,
+.edit-table input:focus {
+    border: 1px #32373c solid;
+}
+
+.edit-table textarea {
+    padding: 5px 10px 5px 10px;
+    font-size: 1.2em;
+    resize: none;
+    width: 300px;
+    min-width: 300px;
+    height: 100px;
+    min-height: 100px;
+}
+
+.edit-table textarea:focus,
+.edit-table textarea:hover {
+    border: 1px #32373c solid;
+}
+
+.edit-table select {
+    background-color: white;
+    border: 1px #ccc solid;
+    width: 300px;
+    height: 40px;
+    padding: 5px 10px 5px 10px;
+}
+.edit-table select:hover {
+    border: 1px #32373c solid;
+}
+
+.edit-table .select-date select:first-child {
+    width: 90px;
+    min-width: 90px;
+}
+.edit-table .select-date select:nth-child(2) {
+    width: 90px;
+    min-width: 90px;
+}
+.edit-table .select-date select:last-child {
+    width: 110px;
+    min-width: 110px;
+}
+
+.edit-table tr td {
+    vertical-align: top;
+}
+
+.edit-table .table-title {
+    padding-top: 5px;
+    width: 200px;
+    min-width: 200px;
+}
+
+.edit-table .display-error {
+    color: red;
+    display: inline-block;
+    height: 20px;
+    margin: 3px 0 5px 0;
+}
+.edit-table .action-area {
+    display: flex;
+}
+.edit-table .action-area input {
+    width: 150px;
+    min-width: 150px;
+    cursor: pointer;
+    border: 1px #32373c solid;
+    background-color: #dedede;
+    /* height: 40px; */
+    margin: 5px 10px 5px 10px;
+}
+.edit-table .action-area input[type=submit] {
+    background-color: #585959;
+    color: white;
+}
+.edit-table .action-area input[type=submit]:hover {
+    background-color: #32373c;
+}
+
+.edit-table .action-area input[type=reset]:hover {
+    background-color: #ccc;
+}
+.edit-table #display-color {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+
+/* Size table */
+.size-table {
+    margin-left: 20px;
+    border: 1px #ccc solid;
+    padding: 15px 15px 15px 15px;
+}
+.size-table .table-title {
+    padding-top: 5px;
+    width: 150px;
+    min-width: 150px;
+    height: 40px;
+}
+.size-table tr td {
+    vertical-align: top;
+}
+
+.size-table input {
+    width: 200px;
+    min-width: 200px;
+    height: 40px;
+    border: 1px #ccc solid;
+    padding: 5px 10px 5px 10px;
+}
+.size-table input:hover,
+.size-table input:focus {
+    border: 1px #32373c solid;
+}
+
+.size-table .display-error {
+    color: red;
+    display: inline-block;
+    height: 20px;
+    margin: 3px 0 5px 0;
+}
