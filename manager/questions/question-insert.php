@@ -36,35 +36,46 @@
     <div class="page-body">
         <!-- Slide menu -->
         <?php include_once($root_path . "/manager/templates/menu.php"); ?>
-        <div>
+        <!-- Main content -->
+        <div class="page-content">
             <form action="/manager/questions/question-insert-process.php">
-                <table>
+                <table class="edit-table">
                     <tr>
-                        <td>
-                            Nhập câu hỏi:
+                        <td class="table-title" rowspan="2">
+                            Câu hỏi:
                         </td>
                         <td>
                             <textarea name="question" cols="30" rows="5"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Nhập câu trả lời:
+                        <td class="display-error" id="display-error-question"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="table-title" rowspan="2">
+                            Câu trả lời:
                         </td>
                         <td>
                             <textarea name="answer" cols="30" rows="5"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="reset" value="Viết lại">
-                            <input type="submit" value="Nộp luôn">
+                        <td class="display-error" id="display-error-answer"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <div class="action-area">
+                                <input type="submit" value="Thêm mới">
+                                <input type="reset" value="Làm lại">
+                            </div>
                         </td>
                     </tr>
+
                 </table>
             </form>
+
         </div>
     </div>
 </body>

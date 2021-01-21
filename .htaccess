@@ -1,2 +1,4 @@
 DirectoryIndex public/home.php
 Options -Indexes
+ErrorDocument 404 /notification/error404.php
+ErrorDocument 403 /notification/error403.php

@@ -1,0 +1,38 @@
+#error-page {
+    --background-color-all: white;
+
+    --display-error-code-color: red;
+    --display-explain-color: red;
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color-all);
+}
+#error-page * {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#error-page .container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#error-page .picture img {
+    width: 300px;
+}
+#error-page .content {
+    margin-top: -50px;
+}
+
+#error-page .display-error-code {
+    font-size: 3em;
+    color: var(--display-error-code-color);
+}
+#error-page .display-explain {
+    font-size: 1.2em;
+    color: var(--display-explain-color);
+}

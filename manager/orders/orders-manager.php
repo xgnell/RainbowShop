@@ -11,7 +11,8 @@
     // Get all orders
     $bills = sql_query("
         SELECT *
-        FROM bills;
+        FROM bills
+        ORDER BY id_state ASC;
     ");
 ?>
 <!DOCTYPE html>
@@ -28,6 +29,7 @@
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <style>
         :root {
+            --min-width--display-bill-id: 130px;
             --min-width--display-customer-name: 130px;
             --min-width--display-receiver: 130px;
             --min-width--display-address: 200px;
@@ -62,6 +64,7 @@
         <div class="page-content">
             <table id="content-table">
                 <tr class="table-bar-header">
+                    <td style="min-width: var(--min-width--display-bill-id);">Mã hóa đơn</td>
                     <td style="min-width: var(--min-width--display-customer-name);">Khách hàng</td>
                     <td style="min-width: var(--min-width--display-receiver);">Người nhận</td>
                     <td style="min-width: var(--min-width--display-address);">Địa chỉ nhận hàng</td>
@@ -90,6 +93,7 @@
 
                         <!-- Display UI -->
                         <tr>
+                            <td>ID<?= $bill["id"] ?></td>
                             <td><?= $customer_name ?></td>
                             <td><?= $bill["receiver"] ?></td>
                             <td><?= $bill["address"] ?></td>

@@ -39,10 +39,10 @@
         <div class="page-content">
             <!-- Customer update form -->
             <form action="/manager/questions/question-update-process.php" method="POST">
-            <table>
-                <input type="number" name="id" value="<?= $qna["id"] ?>" hidden><br>
+            <input type="number" name="id" value="<?= $qna["id"] ?>" hidden>
+            <table class="edit-table">
                 <tr>
-                    <td>
+                    <td class="table-title" rowspan="2">
                         Câu hỏi:
                     </td>
                     <td>
@@ -50,7 +50,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="display-error" id="display-error-question"></td>
+                </tr>
+
+                <tr>
+                    <td class="table-title" rowspan="2">
                         Câu trả lời:
                     </td>
                     <td>
@@ -58,14 +62,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        <input type="submit" value="Confirm">
-                        <input type="reset" value="Reset">
+                    <td class="display-error" id="display-error-answer"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <div class="action-area">
+                            <input type="submit" value="Xác nhận sửa">
+                            <input type="reset" value="Làm lại">
+                        </div>
                     </td>
                 </tr>
+
             </table>
             </form>
         </div>

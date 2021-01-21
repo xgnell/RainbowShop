@@ -96,11 +96,11 @@
                         $item_type = mysqli_fetch_array($item_type)["type"];
 
                         $item_color = sql_query("
-                            SELECT color
+                            SELECT code
                             FROM item_colors
                             WHERE id = {$item["id_color"]};
                         ");
-                        $item_color = mysqli_fetch_array($item_color)["color"];
+                        $item_color = mysqli_fetch_array($item_color)["code"];
 
                         $size_name = sql_query("
                             SELECT size

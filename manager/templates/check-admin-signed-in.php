@@ -1,23 +1,34 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/notification-page.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// session_start();
 function check_admin_signed_in(int $level) {
-    if (!is_admin_signed_in()) {
-        ?>
-        <h1>Bạn phải đăng nhập với quyền admin để truy cập</h1>
-        <a href="/manager/main/sign-in.php">Sign in</a>
-        <button onclick="window.history.back()">Back</button>
-        <?php
-        die();
-    } else if (!is_admin_rank($level)) {
-        ?>
-        <h1>Bạn không đủ quyền hạn để truy cập</h1>
-        <!-- <a href="/manager/main/sign_in.php">Sign in</a> -->
-        <button onclick="window.history.back()">Back</button>
-        <?php
-        die();
+    // if (!is_admin_signed_in()) {
+    //     display_notification_page(
+    //         false,
+    //         "Quản lý admin",
+    //         "Không thể truy cập",
+    //         "Bạn không có quyền truy cập trang này",
+    //     );
+    //     exit();
+    // } else if (!is_admin_rank($level)) {
+    //     display_notification_page(
+    //         false,
+    //         "Quản lý admin",
+    //         "Không thể truy cập",
+    //         "Bạn không đủ quyền hạn để truy cập trang này",
+    //     );
+    //     exit();
+    // }
+    if (!is_admin_signed_in() || !is_admin_rank($level)) {
+        display_notification_page(
+            false,
+            "Quản lý admin",
+            "Không thể truy cập",
+            "Không tìm thấy trang",
+        );
+        exit();
     }
 }
 function is_admin_signed_in(): bool {

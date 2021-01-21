@@ -5,6 +5,7 @@
 <div id="admin-header">
     <!-- <span class="page-title">Admin</span> -->
 
+    <!-- Header menu -->
     <div class="page-header">
     <nav class="header-menu">
         <ul>
@@ -23,6 +24,7 @@
         </ul>
     </nav>
 
+    <!-- User account -->
     <div class="user-panel"
         onmouseover="document.getElementById('account-options').style.visibility = 'visible'"
         onmouseleave="document.getElementById('account-options').style.visibility = 'hidden'">
@@ -51,7 +53,7 @@
         <!-- Menu con chứa các options của tài khoản -->
         <div id="account-options">
             <ul>
-                <a href="/public/display-orders.php"><li>Sửa thông tin</li></a>
+                <a href="/manager/admins/admin-update.php?id=<?= $_SESSION["user"]["admin"]["id"] ?>"><li>Sửa thông tin</li></a>
                 <a href="/manager/main/sign-out-process.php"><li>Đăng xuất</li></a>
             </ul>
         </div>

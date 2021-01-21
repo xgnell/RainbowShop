@@ -28,10 +28,6 @@
             border-collapse: collapse;
             /* margin: 5px 5px 5px 5px; */
         }
-        #display-size tr th {
-            border: 1px #ccc solid;
-            padding: 5px 5px 5px 5px;
-        }
         #display-size tr td {
             border: 1px #ccc solid;
             padding: 5px 5px 5px 5px;
@@ -82,11 +78,11 @@
 
                         // Get item color
                         $item_color = sql_query("
-                            SELECT color
+                            SELECT code
                             FROM item_colors
                             WHERE id = {$item["id_color"]};
                         ");
-                        $item_color = mysqli_fetch_array($item_color)["color"];
+                        $item_color = mysqli_fetch_array($item_color)["code"];
 
                         // Get all item detail data
                         $item_details = sql_query("
@@ -128,7 +124,7 @@
                                     <?php
                                         foreach ($item_sizes as $item_size) {
                                             ?>
-                                            <th><?= $item_size["size"] ?></th>
+                                            <td><?= $item_size["size"] ?></td>
                                             <?php
                                         }
                                     ?>
