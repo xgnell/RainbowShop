@@ -116,6 +116,25 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                             </td>
                             <td>
                             <span>
+                                <select name="birth_day">
+                                    <?php 
+                                    $start_date = 1;
+                                    $end_date   = 31;
+                                    for( $j=$start_date; $j<=$end_date; $j++ ) {
+                                        echo '<option value='.$j.'>'.$j.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </span>
+                            <span>
+                                <select name="birth_month">
+                                    <?php for( $m=1; $m<=12; ++$m ) {
+                                    ?>
+                                    <option value="<?php echo $m; ?>" id="<?php echo $m; ?>"><?php echo "Tháng " . $m; ?></option>
+                                    <?php } ?>
+                                </select> 
+                            </span>
+                            <span>
                                 <select name="birth_year">
                                     <?php 
                                     $year = date('Y');
@@ -126,27 +145,7 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                                     }
                                     ?>
                                 </select>
-                                </span>
-                                <span>
-                                <select name="birth_month">
-                                    <?php for( $m=1; $m<=12; ++$m ) { 
-                                    $month_label = date('F', mktime(0, 0, 0, $m, 1));
-                                    ?>
-                                    <option value="<?php echo $m; ?>" id="<?php echo $m; ?>"><?php echo $month_label; ?></option>
-                                    <?php } ?>
-                                </select> 
-                                </span>
-                                <span>
-                                <select name="birth_day">
-                                    <?php 
-                                    $start_date = 1;
-                                    $end_date   = 31;
-                                    for( $j=$start_date; $j<=$end_date; $j++ ) {
-                                        echo '<option value='.$j.'>'.$j.'</option>';
-                                    }
-                                    ?>
-                                </select>
-                                </span>
+                            </span>
                             </td>
                         </tr>
                     <!-- Địa chỉ   -->
@@ -156,7 +155,6 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                             </td>
                             <td>
                                 <?php include_once($root_path . "/select-city/index.php"); ?>
-                                <!-- <input type="text" name="address" id="address" placeholder="Nhập địa chỉ của bạn" class="input"> -->
                             </td>
                         </tr>
                     <!-- Số điện thoại -->

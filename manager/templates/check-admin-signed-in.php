@@ -26,7 +26,7 @@ function check_admin_signed_in(int $level) {
             false,
             "Quản lý admin",
             "Không thể truy cập",
-            "Không tìm thấy trang",
+            "Không tìm thấy trang"
         );
         exit();
     }
