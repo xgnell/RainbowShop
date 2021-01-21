@@ -47,8 +47,8 @@
             /* padding: 5px 5px 5px 5px; */
         }
         .table-header tr:first-child {
-            /* position: relative; */
-            /* box-shadow: 0px 5px 10px #ccc; */
+            position: relative;
+            box-shadow: 0px 5px 10px #ccc;
 
         }
         .table-header tr:nth-child(odd) {

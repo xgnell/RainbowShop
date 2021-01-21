@@ -238,7 +238,6 @@
                     }
                 ?>
             </div>
-            <h1>Tổng số sản phẩm: <?php echo $sum_items ?></h1>
             <br>
             <div style="text-align:center;">
                 <?php for ($i = 1; $i <= $sum_pages; $i++) { ?>
