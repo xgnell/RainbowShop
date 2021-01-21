@@ -73,10 +73,11 @@ Triệu
 - [ ] Test chức năng
 -----------------------------
 
-- [ ] Thêm ô hiển thị màu vào phần chọn màu của sản phẩm
-- [ ] Sắp xếp lại thứ tự SIZE
+- [O] Luôn hỏi trước khi xóa
+- [X] Thêm ô hiển thị màu vào phần chọn màu của sản phẩm
+- [X] Sắp xếp lại thứ tự SIZE
 - [ ] Regex tiếng việt
-- [O] Chỉnh lại format của input date - time (Còn các trang khách hàng)
+- [X] Chỉnh lại format của input date - time
 - [X] Hiển thị mã hóa đơn
 - [O] Set min/max cho các cột trong các bảng
 - [X] Chỉnh lại toàn bộ đường dẫn + tên ảnh
@@ -84,26 +85,26 @@ Triệu
 - [O] Phân lại quyền admin (Chỉ có 1 thằng super admin)
 - [ ] Thêm tính năng tìm kiếm (nâng cao) cho phần admin + Chức năng lọc (cũng giống tìm kiếm nâng cao nhưng chỉ áp dụng với những cột có select - option)
 		% Các thanh tìm kiếm / lọc được đặt dưới thành title và cũng sticky
-- [ ] Thêm các giao diện (Thêm mới), sửa phần giao diện + validate giao form phần admin, phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
+- [O] Thêm các giao diện (Thêm mới), sửa phần giao diện + validate giao form phần admin, phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
 - [ ] Kiểm tra đăng nhập khi làm bất cứ cái gì (để tránh vào trang ẩn danh táy máy)
 - [ ] Thêm được 3 tính năng chi tiết vào tài liệu
-- [ ] Làm phần sửa thông tin admin
-- [ ] Nối với phần FAQ
+- [X] Làm phần sửa thông tin admin
+- [X] Nối với phần FAQ
 - [X] Thêm vào một cột trong bảng trạng thái hóa đơn đó là màu sắc trạng thái
 - [X] Thay toàn bộ phần admin chức năng bằng các icon (Ví dụ chỗ duyệt / hủy hóa đơn)
-- [ ] Tạo thêm bảng thông tin liên hệ
+- [O] Tạo thêm bảng thông tin liên hệ
 - [ ] Tạo thêm bảng background lưu trữ ảnh background, xong đó làm phần background tự scroll được
 - [ ] Sửa font cho web
-- [ ] Ưu tiên đẩy hóa đơn đang chờ duyệt lên đầu tiên (hoặc có chức năng lọc)
+- [X] Ưu tiên đẩy hóa đơn đang chờ duyệt lên đầu tiên (hoặc có chức năng lọc)
 
-- [ ] Giới hạn thời gian của phiên làm việc (và tại sao lại như thế)
+- [ ] (Giới hạn thời gian của phiên làm việc (và tại sao lại như thế)
 - [ ] (Nhập lại mật khẩu khi đăng kí)
 - [X] In format giá tiền có ngăn cách (Còn phần hiển thị hóa đơn chi tiết)
 - [X] Hiển thị ô màu với phần admin (Còn phần hiển thị hóa đơn chi tiết)
-- [O] Sửa lại toàn bộ sang tiếng việt
+- [X] Sửa lại toàn bộ sang tiếng việt
 - [X] Sửa icon ở trang admin
-- [O] Thêm các trang thông báo lỗi cho admin
-- [ ] Tạo trang chỉnh sửa thông tin cá nhân cho admin
+- [X] Thêm các trang thông báo lỗi cho admin
+- [X] Tạo trang chỉnh sửa thông tin cá nhân cho admin
 - [O] Phân lại toàn bộ file css, js
 - [&] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
 - [&] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
@@ -113,35 +114,35 @@ Triệu
 - [ ] Ngăn cấm data race
 - [ ] Xử lý trùng đăng nhập, đăng xuất các tài khoản, hóa đơn, ... (Ví dụ trong chế độ ẩn danh)
 - [ ] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
-- [&] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
+- [O] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
 - [ ] Validate form giỏ hàng
 - [ ] Kiểm tra số lượng trong kho
 - [ ] Hiển thị hóa đơn có cột tổng tiền và phần hóa đơn chi tiết có tổng tiền bên dưới
 - [ ] Phía khách hàng thì đơn nào được lưu trước thì hiển thị trước, nhưng ở phía admin thì ưu tiên đẩy các đơn chưa duyệt lên đầu
 
-- [ ] Kiểm tra mật khẩu đủ mạnh hay không khi đăng kí tài khoản mới (tối thiểu 6 kí tự, gồm cả chữ và số)
-- [ ] Hiển thị phần header của admin ở trang chủ nếu đăng nhập bằng quyền admin
+- [ ] (Kiểm tra mật khẩu đủ mạnh hay không khi đăng kí tài khoản mới (tối thiểu 6 kí tự, gồm cả chữ và số))
+- [X] Hiển thị phần header của admin ở trang chủ nếu đăng nhập bằng quyền admin
 - [ ] Mã hóa mật khẩu
 - [ ] Sửa lỗi hack qua url
 - [ ] Sơ đồ thực thể
 - [ ] Sửa lại cấu trúc cơ sở dữ liệu
-- [ ] Kiểm tra trình trạng hóa đơn trước khi duyệt
+- [ ] Kiểm tra tình trạng hóa đơn trước khi duyệt
 - [X] Thay đổi title các trang
 - [X] Trừ đi số lượng sản phẩm khi đặt hàng
 - [ ] Làm tính năng phân trang
 - [ ] Hiển thị sản phẩm hết hàng / hoặc số lượng sp = 0 thì ko hiển thị ra
 - [ ] Không hiển thị thông báo cho cách truy cập từ thanh địa chỉ
 
-- [ ] Thêm nút Esc để thoát Form đăng nhập (hoặc các loại form khác)
+- [ ] (Thêm nút Esc để thoát Form đăng nhập (hoặc các loại form khác))
 - [ ] thêm nút Enter cho các input
 - [ ] Thêm thông báo số lượng sản phẩm vào icon giỏ hàng
 
-- [ ] Thêm lựa chọn ngôn ngữ Anh - Việt
+- [ ] (Thêm lựa chọn ngôn ngữ Anh - Việt)
 - [X] Thêm phần xem hóa đơn vào option của tài khoản
 
 - [ ] Thêm chức năng tìm kiếm tương tự các sản phẩm khi đã thêm vào giỏ hàng
 - [X] Thêm chức năng xóa toàn bộ giỏ hàng
-- [ ] Thêm khung hiển thị total sticky
+- [O] Thêm khung hiển thị total sticky
 - [ ] Thông báo sản phẩm đã ở trong giỏ hàng
 
 - [ ] Tự chèn địa chỉ của người đặt vào lúc điền hóa đơn
@@ -164,7 +165,7 @@ Triệu
 - [ ] (Xem xét lưu trữ giỏ hàng lâu dài)
 - [ ] Sửa account options tự thoát khi ko sử dụng
 
-- [ ] Giải quyết vấn đề về sai lệch thời gian trong trang web
+- [ ] (Giải quyết vấn đề về sai lệch thời gian trong trang web
         %% Ảnh hưởng tới hóa đơn
         %% (Có thể cấm người dùng truy cập trang web nếu thời gian sai lệch với thời gian thế giới)
 

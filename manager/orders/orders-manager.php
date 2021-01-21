@@ -11,7 +11,8 @@
     // Get all orders
     $bills = sql_query("
         SELECT *
-        FROM bills;
+        FROM bills
+        ORDER BY id_state ASC;
     ");
 ?>
 <!DOCTYPE html>

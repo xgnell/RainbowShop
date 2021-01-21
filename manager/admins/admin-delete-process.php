@@ -1,54 +1,97 @@
-<?php 
-    $root_path = $_SERVER["DOCUMENT_ROOT"];
-    // Check signed in
-    require_once($root_path . "/manager/templates/check-admin-signed-in.php");
-    check_admin_signed_in(1);
+<?php
+/** Validate
+ * Kiểm tra tính hợp lệ của id (Xem có đúng là số hay không, có nằm trong giới hạn hay ko)
+ * Kiểm tra id admin có tồn tại trong db hay ko
+ * Kiểm tra không cho phép xóa bản thân
+ * Kiểm tra không cho phép admin cấp độ thấp xóa admin cấp độ cao
+ */
 
-    require_once($root_path . "/config/db.php");
+$root_path = $_SERVER["DOCUMENT_ROOT"];
+// Check signed in
+require_once($root_path . "/manager/templates/check-admin-signed-in.php");
+check_admin_signed_in(1);
 
-    // Get admin id
-    $admin_id = $_GET["id"];
+require_once($root_path . "/config/db.php");
+require_once($root_path . "/manager/templates/notification-page.php");
 
-    // Check for self delete
-    if ($_SESSION["user"]["admin"]["id"] == $admin_id) {
-    ?>
-        <!-- //////////////////////////// Check delete self page ///////////////////// -->
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Cảnh báo nguy hiểm</title>
-        </head>
-        <body>
-            <h1>Bạn không thể tự xóa chính mình (tự tử là không nên)</h1>
-            <a href="/manager/admins/admins-manager.php">Quay lại trang quản lý admin</a>
-        </body>
-        </html>
-        <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-    <?php
-    } else {
-        // Delete selected admin from database
-        sql_cmd("
-            DELETE FROM admins
-            WHERE id = $admin_id;
-        ");
-        ?>
-        <!-- ///////////////////////////// Notification page //////////////////////// -->
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-            <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-            <meta name="HandheldFriendly" content="true">
-            
-            <title>Quản lý admin</title>
-        </head>
-        <body>
-            <?php include_once($root_path . "/manager/admins/admin-notification.php") ?>
-        </body>
-        </html>
-        <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-<?php } ?>
+// Lấy id của admin từ url
+$admin_id = $_GET["id"];
+
+/* Kiểm tra tính hợp lệ của id */
+$id_regex = "/^[0-9]+$/";
+if (!preg_match($id_regex, $admin_id) ||
+    (preg_match($id_regex, $admin_id) && $admin_id < 1)
+) {
+    display_notification_page(
+        false,
+        "Quản lý admin",
+        "Không thể xóa admin",
+        "Admin không tồn tại",
+        "/manager/admins/admins-manager.php"
+    );
+    exit();
+}
+
+/* Kiểm tra id admin có tồn tại trong csdl hay không */
+$admin = sql_query("
+    SELECT *
+    FROM admins
+    WHERE id = $admin_id;
+");
+if (mysqli_num_rows($admin) != 1) {
+    display_notification_page(
+        false,
+        "Quản lý admin",
+        "Không thể xóa admin",
+        "Admin không tồn tại",
+        "/manager/admins/admins-manager.php"
+    );
+    exit();
+}
+
+/* Không cho phép tự delete mình */
+$current_admin_id = $_SESSION["user"]["admin"]["id"];
+if ($current_admin_id == $admin_id) {
+    display_notification_page(
+        false,
+        "Quản lý admin",
+        "Không thể xóa admin",
+        "Bạn không thể xóa chính mình",
+        "/manager/admins/admins-manager.php"
+    );
+    exit();
+}
+
+/* Không cho phép admin delete super admin */
+$admin = mysqli_fetch_array($admin);
+$admin_rank = sql_query("
+    SELECT level
+    FROM admin_ranks
+    WHERE id = {$admin["id_rank"]};
+");
+$admin_rank = mysqli_fetch_array($admin_rank)["level"];
+$current_admin_rank = $_SESSION["user"]["admin"]["rank"]["level"];
+if ($current_admin_rank >= $admin_rank) {
+    display_notification_page(
+        false,
+        "Quản lý admin",
+        "Không thể xóa admin",
+        "Bạn không có đủ quyền hạn để xóa admin này",
+        "/manager/admins/admins-manager.php"
+    );
+    exit();
+}
+
+
+/******************************* Cho phép xóa admin ***************************************/
+sql_cmd("
+    DELETE FROM admins
+    WHERE id = $admin_id;
+");
+display_notification_page(
+    true,
+    "Quản lý admin",
+    "Thực hiện thành công",
+    "",
+    "/manager/admins/admins-manager.php"
+);
