@@ -3,6 +3,11 @@ $root_path = $_SERVER["DOCUMENT_ROOT"];
 
 define("PAGE_NAME", "signup");
 require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
+
+if (isset($_SESSION['user']['customer'])) {
+    header('location:/public/home.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,13 +30,13 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
             margin: 50px 15% 50px 15%;
             display: flex;
             justify-content: center;
-            background-image: url("/public/assets/backgrounds/bg-sign-up.jpg");
-            background-size: cover;
+            /* background-image: url("/public/assets/backgrounds/bg-sign-up.jpg");
+            background-size: cover; */
         }
 
         .panel {
             right: 30px;
-            width: 500px;
+            width: 700px;
             /*height: 700px;*/
             background-color: rgba(255, 255, 255, 0.8);
             /* box-shadow: 1px 1px 5px #ccc; */
@@ -92,7 +97,7 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                                 <label>Họ và Tên</label><span class="error" id="error_name"><br>
                             </td>
                             <td>
-                                <input type="text" name="name" id="name" placeholder="Nhập tên của bạn" class="input">
+                                <input type="text" name="name" id="name" placeholder="Nhập tên của bạn" class="input" autocomplete="off">
                             </td>
                         </tr>
                     <!-- Giới tính -->
@@ -163,7 +168,7 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                                 <label>Số điện thoại</label><span class="error" id="error_phone_number"></span>
                             </td>
                             <td>
-                                <input type="text" name="phone" id="phone_number" class="input" placeholder="Nhập số điện thoại">
+                                <input type="text" name="phone" id="phone_number" class="input" placeholder="Nhập số điện thoại" autocomplete="off">
                             </td>
                         </tr>
                     <!-- Email -->
@@ -172,7 +177,7 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
                                 <label>Email</label><span class="error" id="error_email"></span><br>
                             </td>
                             <td>
-                                <input type="text" name="email" id="email" placeholder="Nhập email" class="input">
+                                <input type="text" name="email" id="email" placeholder="Nhập email" class="input" autocomplete="off">
                             </td>
                         </tr>
                     <!-- Mật khẩu -->
@@ -296,9 +301,9 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
         var district = document.getElementById("district");
         var city_selected = city.value;
         var district_selected = district.value;
-        console.log(city_selected);
+        var xa = document.getElementById("xa").value;
 
-        if (city_selected == "" || district_selected == ""){
+        if (city_selected == "" || district_selected == "" || xa == ""){
             document.getElementById("error_address").innerHTML = " *";
             return false;
         } else {

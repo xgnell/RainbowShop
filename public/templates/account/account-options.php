@@ -60,7 +60,7 @@
 	onmouseleave="document.getElementById('account-options').style.visibility = 'hidden'">
 	<span class="hello"><?= $_SESSION["user"]["customer"]["name"] ?></span><br>
 	<ul>
-		<!-- <li><a>Profile</a></li> -->
+		<li><a href="/public/templates/account/update-account.php?id=<?php echo $_SESSION["user"]["customer"]["id"] ?>">Chỉnh sửa thông tin</a></li>
 		<li><a href="/public/display-orders.php">Lịch sử mua hàng</a></li>
 		<!-- <li><a>Cài đặt</a></li> -->
 		<li><a href="/public/templates/account/sign-out-process.php">Đăng xuất</a></li>

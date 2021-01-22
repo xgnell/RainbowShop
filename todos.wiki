@@ -3,8 +3,8 @@
 Triệu
 
 - [X] qna: thêm sửa xoá qna + qna trang khách hàng
-- [ ] Validate tất cả form có sờ tới
-- [ ] Validate ở phần back-end
+- [X] Validate tất cả form có sờ tới
+- [X] Validate ở phần back-end
 - [X] Làm tính năng chọn tỉnh thành phố xã
 - [ ] Chức năng tìm kiếm nâng cao (Ko cho khách huỷ hàng, phải liên hệ mk mới được hủy)
 - [ ] thông báo có bao nhiêu sản phẩm trong giỏ hàng

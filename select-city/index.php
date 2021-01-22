@@ -2,6 +2,9 @@
     <table>
         <tr>
             <td>
+                <input type="text" placeholder="VD: Số 1, Ngọc Thuỵ" style="margin-right: 15px;" id="xa" autocomplete="off" name="select_xa">
+            </td>
+            <td>
                 <select style="width: 90%;" name="select_tinh" id="city"></select>
             </td>
             <td>
