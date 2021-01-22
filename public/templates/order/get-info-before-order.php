@@ -79,12 +79,59 @@
             
             <div class="form-content">
             <input type="text" name="id_customer" value="<?= $_SESSION["user"]["customer"]["id"]?>" style="visibility: hidden;">
-                <input type="text" name="receiver" placeholder="Tên người nhận"><br><br>
-                <input type="text" name="phone" placeholder="Số điện thoại"><br><br>
-                <input type="text" name="address" placeholder="Địa chỉ"><br><br>
+                <input style="padding-left: 10px;" type="text" name="receiver" placeholder="Tên người nhận" id="receiver" autocomplete="off"><br><br>
+                <input style="padding-left: 10px;" type="text" name="phone" placeholder="Số điện thoại" id="phone" autocomplete="off"><br><br>
+                <input style="padding-left: 10px;" type="text" name="address" placeholder="Địa chỉ" id="address" autocomplete="off"><br><br>
             </div>
             
-            <input class="btn-order" type="submit" value="Đặt hàng"><br><br>
+            <input class="btn-order" type="submit" value="Đặt hàng" onclick="return submit_order()"><br><br>
         </form>
     </div>
 </div>
+
+<script>
+    function check_receiver() {
+        var receiver = document.getElementById("receiver").value;
+        var receiver_pattern = /^[A-Za-z ]+$/;
+        if (receiver_pattern.test(receiver)) {
+            document.getElementById("receiver").style.borderColor = "#14e348";
+            return true;
+        } else {
+            document.getElementById("receiver").style.borderColor = "red";
+            return false;
+        }
+    }
+    function check_address() {
+        var address = document.getElementById("address").value;
+        var address_pattern = /^[A-Za-z ]+$/;
+        if (address_pattern.test(address)) {
+            document.getElementById("address").style.borderColor = "#14e348";
+            return true;
+        } else {
+            document.getElementById("address").style.borderColor = "red";
+            return false;
+        }
+    }
+    function check_phone() {
+        var phone = document.getElementById("phone").value;
+        var phone_pattern = /^(03|05|07|08|09)+([0-9]{8})\b$/;
+        if (phone_pattern.test(phone)) {
+            document.getElementById("phone").style.borderColor = "#14e348";
+            return true;
+        } else {
+            document.getElementById("phone").style.borderColor = "red";
+            return false;
+        }
+    }
+
+    function submit_order() {
+        check_receiver();
+        check_phone();
+        check_address();
+        if (check_receiver() && check_phone() && check_address()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
