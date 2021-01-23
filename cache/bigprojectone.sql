@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2021 at 02:08 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.32
+-- Generation Time: Jan 23, 2021 at 03:16 PM
+-- Server version: 10.4.16-MariaDB
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,6 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `id_rank`) VALUES
-(6, 'admin1', 1, '2020-12-17', '1239874440', 'admin1@gmail.com', '123', 2),
 (8, 'admin2', 0, '2020-12-16', '1112223337', 'admin2@gmail.com', '123', 1);
 
 -- --------------------------------------------------------
@@ -87,8 +86,31 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`) VALUES
-(13, 5, 'Ha', 'Ha Noi', '0123456789', 1, '2021-01-15 05:45:07'),
-(14, 5, 'Ha', 'Ha Noi', '0123456789', 3, '2021-01-15 11:40:57');
+(13, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 04:03:55'),
+(14, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 08:23:46'),
+(15, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 3, '2021-01-17 17:50:17'),
+(16, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-19 05:45:22'),
+(17, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 3, '2021-01-19 09:06:24'),
+(18, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 1, '2021-01-19 10:27:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bill_actions`
+--
+
+CREATE TABLE `bill_actions` (
+  `id` int(11) NOT NULL,
+  `action` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bill_actions`
+--
+
+INSERT INTO `bill_actions` (`id`, `action`) VALUES
+(1, 'Duyệt hóa đơn'),
+(2, 'Hủy hóa đơn');
 
 -- --------------------------------------------------------
 
@@ -109,9 +131,27 @@ CREATE TABLE `bill_details` (
 --
 
 INSERT INTO `bill_details` (`id_bill`, `id_item`, `id_size`, `amount`, `price`) VALUES
-(13, 27, 5, 6, 100000),
-(13, 32, 6, 4, 158000),
-(14, 28, 4, 1000000, 130000);
+(13, 27, 2, 3, 100000),
+(13, 28, 1, 8, 130000),
+(13, 37, 2, 3, 182000),
+(14, 28, 4, 2, 130000),
+(15, 28, 1, 3, 130000),
+(16, 29, 2, 1, 120000),
+(17, 34, 1, 3, 280000),
+(18, 30, 3, 3, 153000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bill_logs`
+--
+
+CREATE TABLE `bill_logs` (
+  `id_bill` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_action` int(11) NOT NULL,
+  `action_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -121,17 +161,18 @@ INSERT INTO `bill_details` (`id_bill`, `id_item`, `id_size`, `amount`, `price`) 
 
 CREATE TABLE `bill_states` (
   `id` int(11) NOT NULL,
-  `state` varchar(50) NOT NULL
+  `state` varchar(50) NOT NULL,
+  `color` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bill_states`
 --
 
-INSERT INTO `bill_states` (`id`, `state`) VALUES
-(1, 'Đang chờ duyệt'),
-(2, 'Đã duyệt'),
-(3, 'Đã hủy');
+INSERT INTO `bill_states` (`id`, `state`, `color`) VALUES
+(1, 'Đang chờ duyệt', 'blue'),
+(2, 'Đã duyệt', 'green'),
+(3, 'Đã hủy', 'red');
 
 -- --------------------------------------------------------
 
@@ -189,9 +230,8 @@ INSERT INTO `items` (`id`, `name`, `picture`, `price`, `description`, `id_type`,
 (33, 'Dolphin Family', 'f79d08962917668bd8ed5f9e120201eb.png', 210000, 'Gia đình của bé cá', 2, 1),
 (34, 'The Black Wizard', 'e48427cc533da56efdebbe19e6af3e09.png', 280000, 'Give me your soul', 2, 1),
 (35, 'Shin The Pencil', '44c6b8b2d94caf6a09a566a4af3984e3.png', 169000, 'Shin so small and his pencil is small too', 1, 4),
-(36, 'Study change my life But i can do any thing', 'c8e55bd75f9e1a44a0bd6129af2292db.png', 97000, 'Kẻ mang tri thức là kẻ mạnh', 1, 2),
-(37, 'A5', 'a9d41159a35e0240e6422466d2f472b8.png', 182000, 'Ngộ nghĩnh phá phách - phong cách trẻ trâu', 1, 2),
-(38, 'Áo siêu đẹp', '7b5c39d3479f582a78ae65b6a6267a80.png', 123, 'Áo siêu sịn siêu đẹp nè', 1, 3);
+(36, 'Study change my life', 'c8e55bd75f9e1a44a0bd6129af2292db.png', 97000, 'Kẻ mang tri thức là kẻ mạnh', 1, 2),
+(37, 'A5', 'a9d41159a35e0240e6422466d2f472b8.png', 182000, 'Vượt qua gian nan - Đập tan thử thách - Ngộ nghĩnh phá phách - phong cách trẻ trâu', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -201,25 +241,26 @@ INSERT INTO `items` (`id`, `name`, `picture`, `price`, `description`, `id_type`,
 
 CREATE TABLE `item_colors` (
   `id` int(11) NOT NULL,
-  `color` varchar(20) NOT NULL
+  `code` varchar(20) NOT NULL,
+  `color` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `item_colors`
 --
 
-INSERT INTO `item_colors` (`id`, `color`) VALUES
-(1, 'black'),
-(2, 'blue'),
-(3, 'green'),
-(4, 'purple'),
-(5, 'red'),
-(6, 'white'),
-(7, 'yellow'),
-(8, 'orange'),
-(9, 'pink'),
-(10, 'brown'),
-(11, 'gray');
+INSERT INTO `item_colors` (`id`, `code`, `color`) VALUES
+(1, 'black', 'đen'),
+(2, 'blue', 'xanh lam'),
+(3, 'green', 'xanh lục'),
+(4, 'purple', 'tím'),
+(5, 'red', 'đỏ'),
+(6, 'white', 'trắng'),
+(7, 'yellow', 'vàng'),
+(8, 'orange', 'cam'),
+(9, 'pink', 'hồng'),
+(10, 'brown', 'nâu'),
+(11, 'gray', 'xám');
 
 -- --------------------------------------------------------
 
@@ -239,19 +280,19 @@ CREATE TABLE `item_details` (
 
 INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (27, 1, 50),
-(27, 2, 12),
+(27, 2, 9),
 (27, 4, 68),
-(27, 5, 24),
-(28, 1, 15),
+(27, 5, 30),
+(28, 1, 4),
 (28, 3, 200),
-(28, 4, -999943),
+(28, 4, 55),
 (29, 1, 843),
-(29, 2, 356),
+(29, 2, 355),
 (29, 4, 345),
 (29, 6, 52),
 (30, 1, 23),
 (30, 2, 62),
-(30, 3, 23),
+(30, 3, 20),
 (30, 4, 674),
 (30, 5, 33),
 (30, 6, 314),
@@ -263,12 +304,12 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (32, 2, 22),
 (32, 3, 6),
 (32, 4, 43),
-(32, 6, 19),
+(32, 6, 23),
 (33, 1, 243),
 (33, 2, 21),
 (33, 4, 342),
 (33, 6, 432),
-(34, 1, 233),
+(34, 1, 230),
 (34, 2, 51),
 (34, 3, 4),
 (34, 4, 234),
@@ -285,15 +326,11 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (36, 4, 352),
 (36, 5, 12),
 (37, 1, 12),
-(37, 2, 12),
+(37, 2, 9),
 (37, 3, 412),
 (37, 4, 51),
 (37, 5, 12),
-(37, 6, 34),
-(38, 1, 32145),
-(38, 2, 454),
-(38, 3, 43),
-(38, 5, 321);
+(37, 6, 34);
 
 -- --------------------------------------------------------
 
@@ -311,11 +348,11 @@ CREATE TABLE `item_sizes` (
 --
 
 INSERT INTO `item_sizes` (`id`, `size`) VALUES
-(1, 'L'),
-(2, 'M'),
-(3, 'S'),
-(4, 'XL'),
-(5, 'XS'),
+(1, 'XS'),
+(2, 'S'),
+(3, 'M'),
+(4, 'L'),
+(5, 'XL'),
 (6, 'XXL');
 
 -- --------------------------------------------------------
@@ -392,12 +429,26 @@ ALTER TABLE `bills`
   ADD KEY `id_state` (`id_state`);
 
 --
+-- Indexes for table `bill_actions`
+--
+ALTER TABLE `bill_actions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `bill_details`
 --
 ALTER TABLE `bill_details`
   ADD PRIMARY KEY (`id_bill`,`id_item`,`id_size`),
   ADD KEY `id_size` (`id_size`),
   ADD KEY `id_item` (`id_item`,`id_size`);
+
+--
+-- Indexes for table `bill_logs`
+--
+ALTER TABLE `bill_logs`
+  ADD PRIMARY KEY (`id_bill`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_action` (`id_action`);
 
 --
 -- Indexes for table `bill_states`
@@ -461,7 +512,7 @@ ALTER TABLE `qna`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `admin_ranks`
@@ -473,7 +524,13 @@ ALTER TABLE `admin_ranks`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `bill_actions`
+--
+ALTER TABLE `bill_actions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bill_states`
@@ -485,13 +542,13 @@ ALTER TABLE `bill_states`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `item_colors`
@@ -540,6 +597,14 @@ ALTER TABLE `bills`
 ALTER TABLE `bill_details`
   ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
   ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`id_item`,`id_size`) REFERENCES `item_details` (`id_item`, `id_size`);
+
+--
+-- Constraints for table `bill_logs`
+--
+ALTER TABLE `bill_logs`
+  ADD CONSTRAINT `bill_logs_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
+  ADD CONSTRAINT `bill_logs_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `bill_logs_ibfk_3` FOREIGN KEY (`id_action`) REFERENCES `bill_actions` (`id`);
 
 --
 -- Constraints for table `items`
