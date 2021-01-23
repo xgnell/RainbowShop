@@ -72,11 +72,38 @@ Triệu
 - [ ] Test reponsive
 - [ ] Test chức năng
 -----------------------------
+Các tính năng nổi bật trên trang
+	- Tìm kiếm nâng cao
+	- Lọc
+	- Thống kê (Có thể chỉ cần thống kê để trang chủ admin không trống + Hiển thị sản phẩm nổi bật)
 
+-----------------------------
+Đang sửa js confirm ở phần admin
+
+- [ ] Bỏ tất cả các đoạn code js sang file khác để tránh sửa đổi trực tiếp
+- [ ] Chuyển thẻ a sang dạng onclick để tránh copy link bằng chuột phải
+
+- [ ] Thêm confirm
+- [ ] Chuyển từ innerHTML sang textContent
+- [ ] Validate url để tránh nhét các đoạn code XSS
+- [ ] Bỏ space, ' " ; , ở password
+- [ ] Không cho phép nhập sai mật khẩu quá 3 lần
+- [ ] Tạo animation cho các popup
+- [X] Đổi tên file commonjs sang generate-day.js và sửa trong các trang khác
+- [O] Sửa lại tất cả các trang admin để hoạt động với giao diện mới
+- [O] validate giao form phần admin
 - [O] Luôn hỏi trước khi xóa
+- [ ] Phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
+- [ ] Kiểm tra đăng nhập khi làm bất cứ cái gì (để tránh vào trang ẩn danh táy máy)
+- [&] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
+- [ ] Thêm giới tính thứ 3 + Thêm trường giả (Chọn giới tính)
+- [ ] Regex tiếng việt
+
+- [ ] Thêm được 3 tính năng chi tiết vào tài liệu
+
+- [O] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
 - [X] Thêm ô hiển thị màu vào phần chọn màu của sản phẩm
 - [X] Sắp xếp lại thứ tự SIZE
-- [ ] Regex tiếng việt
 - [X] Chỉnh lại format của input date - time
 - [X] Hiển thị mã hóa đơn
 - [O] Set min/max cho các cột trong các bảng
@@ -85,18 +112,17 @@ Triệu
 - [O] Phân lại quyền admin (Chỉ có 1 thằng super admin)
 - [ ] Thêm tính năng tìm kiếm (nâng cao) cho phần admin + Chức năng lọc (cũng giống tìm kiếm nâng cao nhưng chỉ áp dụng với những cột có select - option)
 		% Các thanh tìm kiếm / lọc được đặt dưới thành title và cũng sticky
-- [O] Thêm các giao diện (Thêm mới), sửa phần giao diện + validate giao form phần admin, phân trang phần admin (Lựa chọn được số lượng sản phẩm tối đa trên 1 trang - Cho chọn theo danh sách có sẵn)
-- [ ] Kiểm tra đăng nhập khi làm bất cứ cái gì (để tránh vào trang ẩn danh táy máy)
-- [ ] Thêm được 3 tính năng chi tiết vào tài liệu
+- [X] Thêm các giao diện (Thêm mới), sửa phần giao diện
 - [X] Làm phần sửa thông tin admin
 - [X] Nối với phần FAQ
 - [X] Thêm vào một cột trong bảng trạng thái hóa đơn đó là màu sắc trạng thái
 - [X] Thay toàn bộ phần admin chức năng bằng các icon (Ví dụ chỗ duyệt / hủy hóa đơn)
 - [O] Tạo thêm bảng thông tin liên hệ
-- [ ] Tạo thêm bảng background lưu trữ ảnh background, xong đó làm phần background tự scroll được
+- [ ] (Tạo thêm bảng background lưu trữ ảnh background, xong đó làm phần background tự scroll được
 - [ ] Sửa font cho web
 - [X] Ưu tiên đẩy hóa đơn đang chờ duyệt lên đầu tiên (hoặc có chức năng lọc)
 
+- [ ] Thêm chức năng quản lý ảnh đại diện người dùng (Nếu ko có dùng sẵn ảnh mặc định tùy theo giới tính)
 - [ ] (Giới hạn thời gian của phiên làm việc (và tại sao lại như thế)
 - [ ] (Nhập lại mật khẩu khi đăng kí)
 - [X] In format giá tiền có ngăn cách (Còn phần hiển thị hóa đơn chi tiết)
@@ -107,18 +133,15 @@ Triệu
 - [X] Tạo trang chỉnh sửa thông tin cá nhân cho admin
 - [O] Phân lại toàn bộ file css, js
 - [&] Làm chức năng tìm kiếm, lọc, phân trang trên admin 
-- [&] Validate password để tránh các kí tự đặc biệt như XSS hay SQL Injection (Nói chung phải validate ở mọi thẻ input)
-- [ ] Luôn phải kiểm tra xem đã đăng nhập chưa ở bất cứ trang nào (để đề phòng copy link xong chạy ở nơi chưa đăng nhập)
-- [ ] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)
-- [ ] Hiển thị gì đó trong trang web lỗi (trang 404, ...)
+- [X] Sửa phần đăng nhập theo quyền (đã đăng nhập với quyền admin hay super admin, ...)
+- [X] Hiển thị gì đó trong trang web lỗi (trang 404, ...)
 - [ ] Ngăn cấm data race
 - [ ] Xử lý trùng đăng nhập, đăng xuất các tài khoản, hóa đơn, ... (Ví dụ trong chế độ ẩn danh)
-- [ ] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
-- [O] Lưu lại cả thời gian duyệt/hủy của đơn hàng / admin nào duyệt hay hủy
+- [X] Hiển thị phần admin header ở trang khách hàng nếu đã đăng nhập admin
 - [ ] Validate form giỏ hàng
 - [ ] Kiểm tra số lượng trong kho
 - [ ] Hiển thị hóa đơn có cột tổng tiền và phần hóa đơn chi tiết có tổng tiền bên dưới
-- [ ] Phía khách hàng thì đơn nào được lưu trước thì hiển thị trước, nhưng ở phía admin thì ưu tiên đẩy các đơn chưa duyệt lên đầu
+- [X] Phía khách hàng thì đơn nào được lưu trước thì hiển thị trước, nhưng ở phía admin thì ưu tiên đẩy các đơn chưa duyệt lên đầu
 
 - [ ] (Kiểm tra mật khẩu đủ mạnh hay không khi đăng kí tài khoản mới (tối thiểu 6 kí tự, gồm cả chữ và số))
 - [X] Hiển thị phần header của admin ở trang chủ nếu đăng nhập bằng quyền admin
@@ -134,7 +157,7 @@ Triệu
 - [ ] Không hiển thị thông báo cho cách truy cập từ thanh địa chỉ
 
 - [ ] (Thêm nút Esc để thoát Form đăng nhập (hoặc các loại form khác))
-- [ ] thêm nút Enter cho các input
+- [ ] (thêm nút Enter cho các input
 - [ ] Thêm thông báo số lượng sản phẩm vào icon giỏ hàng
 
 - [ ] (Thêm lựa chọn ngôn ngữ Anh - Việt)
@@ -151,17 +174,9 @@ Triệu
         %% Hiển thị phần đánh giá sản phẩm ở trang sản phẩm chi tiết
 
 - [ ] Thống kê giá sản phẩm theo thời gian
-- [ ] Mã hóa mật khẩu trong cơ sở dữ liệu
 
-- [ ] Validate form customer
-	* [ ] Sử dụng cả JS và PHP
-	* [ ] Thêm chức năng tự động thay đổi
-			%% Ngày tháng năm sinh tách biệt
-			%% Địa chỉ nhà, tỉnh thành phố khác biệt
-			%% Thêm giới tính thứ 3
-
-- [ ] Thêm ajax vào trang web
-- [ ] Thêm reponsive vào trang web
+- [ ] (Thêm ajax vào trang web
+- [ ] (Thêm reponsive vào trang web
 - [ ] (Xem xét lưu trữ giỏ hàng lâu dài)
 - [ ] Sửa account options tự thoát khi ko sử dụng
 
@@ -169,29 +184,10 @@ Triệu
         %% Ảnh hưởng tới hóa đơn
         %% (Có thể cấm người dùng truy cập trang web nếu thời gian sai lệch với thời gian thế giới)
 
-- [ ] Refactor lại code customer
+- [ ] (Refactor lại code customer
 - [ ] Chỉnh sửa phần footer
-- [ ] Chỉnh sửa cơ sở dữ liệu (nếu cần)
 
 - [ ] (Thêm chức năng phóng to hình ảnh ở trang xem sản phẩm chi tiết)
 
-- [ ] Chỉnh lại admin page
-	* [ ] Làm lại trang giao diện Admin cho đẹp
-            %% Chuyển giao diện từ flexbox sang grid
-            %% Bổ sung khả năng scroll mượt
-            %% Sửa thanh header -> Phần đăng nhập của admin
-            %% Sửa phần bảng hiện thị
-            %% Sửa phần form nhập liệu
-
-	* [ ] Validate form
-	* [ ] Quản lý admin => Quyền 1 SuperAdmin duy nhất
-	* [ ] Thêm chức năng quản lý ảnh đại diện người dùng (Nếu ko có dùng sẵn ảnh mặc định tùy theo giới tính)
-	* [ ] Thêm phần quản lý đơn hàng + Chức năng duyệt hàng
-	* [ ] Thêm chức năng [tìm kiếm][phân trang | có cuộn trang][thống kê]
-
-- [ ] Xử lý vấn đề về sai lệch thời gian khi đặt hàng
-        %% Server sai thời gian
-        %% Customer truy cập sai thời gian (Thường lấy thông tin về thời gian trên server nên có thể không bị lỗi này)
-
-- [ ] Viết tài liệu
-- [ ] Làm slide
+- [O] Viết tài liệu
+- [O] Làm slide

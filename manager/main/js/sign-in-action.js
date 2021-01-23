@@ -5,17 +5,17 @@ function validate_email_or_phone() {
     const input_email_phone = document.getElementById('input-email-or-phone').value;
 
     if (input_email_phone.length === 0) {
-        display_error_email_or_phone.innerHTML = "* Email hoặc số điện thoại không được để trống";
+        display_error_email_or_phone.textContent = "* Email hoặc số điện thoại không được để trống";
         return false;
     }
 
     const regex_form = /^((0[0-9]{9,9})|(([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+))$/;
     if (!regex_form.test(input_email_phone)) {
-        display_error_email_or_phone.innerHTML = "* Email hoặc số điện thoại không hợp lệ";
+        display_error_email_or_phone.textContent = "* Email hoặc số điện thoại không hợp lệ";
         return false;
     }
 
-    display_error_email_or_phone.innerHTML = "";
+    display_error_email_or_phone.textContent = "";
     return true;
 }
 
@@ -23,11 +23,11 @@ function validate_password() {
     const input_password = document.getElementById('input-passwd').value;
 
     if (input_password.length === 0) {
-        display_error_password.innerHTML = "* Mật khẩu không được để trống";
+        display_error_password.textContent = "* Mật khẩu không được để trống";
         return false;
     }
 
-    display_error_password.innerHTML = "";
+    display_error_password.textContent = "";
     return true;
 }
 

@@ -144,10 +144,11 @@
 }
 
 .edit-table .display-error {
+    font-size: 0.9em;
     color: red;
     display: inline-block;
     height: 20px;
-    margin: 3px 0 5px 0;
+    margin: 3px 0 15px 0;
 }
 .edit-table .action-area {
     display: flex;
@@ -209,8 +210,9 @@
 }
 
 .size-table .display-error {
+    font-size: 0.9em;
     color: red;
     display: inline-block;
     height: 20px;
-    margin: 3px 0 5px 0;
+    margin: 3px 0 15px 0;
 }

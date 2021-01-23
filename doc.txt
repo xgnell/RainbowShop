@@ -1,0 +1,59 @@
+• Admin
+    ◦ Đăng nhập
+    ◦ Đăng xuất
+    ◦ Quản lý tài khoản khách hàng
+        + Xem các tài khoản khách hàng
+        + Thêm tài khoản khách hàng
+        + Sửa tài khoản khách hàng
+        + Xóa tài khoản khách hàng
+        + Tìm kiếm tài khoản khách hàng
+        + Lọc tài khoản khách hàng
+    ◦ Quản lý sản phẩm
+        + Xem các sản phẩm
+        + Thêm sản phẩm
+        + Sửa sản phẩm
+        + Xóa sản phẩm
+        + Tìm kiếm sản phẩm
+        + Lọc sản phẩm
+    ◦ Quản lý hóa đơn
+        + Xem các hóa đơn
+        + Xem hóa đơn chi tiết
+        + Duyệt hóa đơn
+    ◦ Quản lý các câu hỏi phổ biến của khách hàng (Q&A)
+        + Xem các câu hỏi và câu trả lời
+        + Thêm câu hỏi và câu trả lời
+        + Sửa câu hỏi và câu trả lời
+        + Xóa câu hỏi và câu trả lời
+
+
+
+• Super Admin
+    ◦ Bao gồm các chức năng của Admin
+    ◦ Quản lý tài khoản admin
+        + Xem các tài khoản admin
+        + Thêm tài khoản admin
+        + Sửa tài khoản admin
+        + Xóa tài khoản admin
+        + Tìm kiếm tài khoản admin
+        + Lọc tài khoản admin
+
+
+
+• Khách hàng chưa có tài khoản
+    ◦ Đăng ký tài khoản mới
+    ◦ Xem thông tin đầy đủ của sản phẩm
+    ◦ Tìm kiếm sản phẩm
+    ◦ Lọc sản phẩm
+    ◦ Xem các câu hỏi phổ biến và câu trả lời tương ứng (Q&A)
+
+
+
+• Khách hàng có tài khoản
+    ◦ Bao gồm các chức năng của Khách hàng chưa có tài khoản
+    ◦ Đăng nhập
+    ◦ Đăng xuất
+    ◦ Chỉnh sửa thông tin cá nhân
+    ◦ Thêm hàng vào giỏ hàng
+    ◦ Xem giỏ hàng
+    ◦ Đặt hàng
+    ◦ Xem lịch sử mua hàng (danh sách các hóa đơn)

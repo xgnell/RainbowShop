@@ -5,6 +5,7 @@ require_once($root_path . "/config/db.php");
 // Lấy các thông tin được gửi lên từ form
 $admin_email_or_phone = $_POST["email_or_phone"];
 $admin_passwd = $_POST["passwd"];
+$admin_passwd = preg_replace('/(\'|\;|\ |\"|\#)/', '', $admin_passwd);
 
 
 // Validate các thông tin gửi lên
@@ -31,12 +32,12 @@ if (is_numeric($admin_email_or_phone)) {
         } else {
             // Tài khoản không tồn tại
             $is_sign_in_success = false;
-            display_admin_sign_in_failure("Bạn nhập sai số điện thoại hoặc mật khẩu! Vui lòng thử lại", $admin_phone, $admin_passwd);
+            display_admin_sign_in_failure("Bạn nhập sai số điện thoại hoặc mật khẩu! Vui lòng thử lại", $admin_phone);
             exit();
         }
 
     } else {
-        display_admin_sign_in_failure("Số điện thoại $admin_phone không hợp lệ! Vui lòng thử lại", $admin_phone, $admin_passwd);
+        display_admin_sign_in_failure("Số điện thoại $admin_phone không hợp lệ! Vui lòng thử lại", $admin_phone);
         exit();
     }
 } else {
@@ -60,17 +61,15 @@ if (is_numeric($admin_email_or_phone)) {
         } else {
             // Tài khoản không tồn tại
             $is_sign_in_success = false;
-            display_admin_sign_in_failure("Bạn nhập sai email hoặc mật khẩu! Vui lòng thử lại", $admin_email, $admin_passwd);
+            display_admin_sign_in_failure("Bạn nhập sai email hoặc mật khẩu! Vui lòng thử lại", $admin_email);
             exit();
         }
 
     } else {
-        display_admin_sign_in_failure("Email $admin_email không hợp lệ! Vui lòng thử lại", $admin_email, $admin_passwd);
+        display_admin_sign_in_failure("Email $admin_email không hợp lệ! Vui lòng thử lại", $admin_email);
         exit();
     }
 }
-
-
 
 // Đăng nhập thành công
 if ($sign_in_success) {
@@ -102,14 +101,14 @@ if ($sign_in_success) {
     header("location:/manager/main/main-manager.php");
 } else {
     // Đăng nhập thất bại
-    display_admin_sign_in_failure("Bạn nhập sai email, số điện thoại hoặc mật khẩu", $admin_email_or_phone, $admin_passwd);
+    display_admin_sign_in_failure("Bạn nhập sai email, số điện thoại hoặc mật khẩu", $admin_email_or_phone);
 }
 
 
 
 
 
-function display_admin_sign_in_failure($message, $admin_email_or_phone, $admin_passwd) {
+function display_admin_sign_in_failure($message, $admin_email_or_phone) {
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -130,7 +129,6 @@ function display_admin_sign_in_failure($message, $admin_email_or_phone, $admin_p
                 <h2 style="color: red;"><?= $message ?></h2>
                 <form action="/manager/main/sign-in.php" method="POST">
                     <input type="text" name="email_or_phone" value="<?= $admin_email_or_phone ?>" hidden>
-                    <input type="password" name="passwd" value="<?= $admin_passwd ?>" hidden>
                     <input id="btn-try-again" type="submit" value="Thử lại">
                 </form>
             </div>

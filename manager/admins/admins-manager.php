@@ -5,6 +5,8 @@
     // Check signed in
     require_once($root_path . "/manager/templates/check-admin-signed-in.php");
     check_admin_signed_in(1);
+
+    require_once($root_path . "/config/db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@
     <title>Quản lý admin</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
-    <?php require_once($root_path . "/config/db.php"); ?>
+    <script src="/manager/templates/js/confirm-action.js"></script>
 </head>
 <body>
     <!-- Header menu -->
@@ -80,7 +82,7 @@
                             <?php
                                 if ($admin["id"] != $_SESSION["user"]["admin"]["id"]) {
                                     ?>
-                                    <a class="btn-action" onclick="confirm_delete(<?= $admin['id'] ?>)">
+                                    <a class="btn-action" onclick="confirm_action('Bạn có thực sự muốn xóa admin này ?', '/manager/admins/admin-delete-process.php?id=<?= $admin['id'] ?>')">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                                     </a>
                                     <?php
@@ -96,12 +98,5 @@
         </div>
 
     </div>
-    <script>
-        function confirm_delete(admin_id) {
-            if (confirm('Bạn có thực sự muốn xóa admin này ?')) {
-                window.location.href = `/manager/admins/admin-delete-process.php?id=${admin_id}`;
-            }
-        }
-    </script>
 </body>
 </html>

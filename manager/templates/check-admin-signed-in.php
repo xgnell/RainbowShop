@@ -9,7 +9,7 @@ function check_admin_signed_in(int $level) {
     //         false,
     //         "Quản lý admin",
     //         "Không thể truy cập",
-    //         "Bạn không có quyền truy cập trang này",
+    //         "Bạn không có quyền truy cập trang này"
     //     );
     //     exit();
     // } else if (!is_admin_rank($level)) {
@@ -17,7 +17,7 @@ function check_admin_signed_in(int $level) {
     //         false,
     //         "Quản lý admin",
     //         "Không thể truy cập",
-    //         "Bạn không đủ quyền hạn để truy cập trang này",
+    //         "Bạn không đủ quyền hạn để truy cập trang này"
     //     );
     //     exit();
     // }
@@ -26,7 +26,7 @@ function check_admin_signed_in(int $level) {
             false,
             "Quản lý admin",
             "Không thể truy cập",
-            "Không tìm thấy trang",
+            "Không tìm thấy trang"
         );
         exit();
     }

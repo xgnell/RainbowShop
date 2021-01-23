@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <title>Quản lý admin</title>
-    <script src="/manager/templates/js/common.js"></script>
+    <script src="/manager/templates/js/generate-day.js"></script>
+    <script src="/manager/templates/js/common-validate.js"></script>
 </head>
 <body>
     <!-- Header menu -->
@@ -32,7 +33,16 @@
         <!-- Main content -->
         <div class="page-content">
             <!-- Admin insertion form -->
-            <form action="/manager/admins/admin-insert-process.php" method="POST">
+            <form onsubmit="
+                return validate_all({
+                    name: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Tên không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'],
+                    phone: [/^0[0-9]{9,9}$/, 'Số điện thoại không hợp lệ (Chỉ chứa số, số mở đầu phải bằng 0 và đủ 10 số)'],
+                    email: [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Email không hợp lệ'],
+                    passwd: true,
+                },
+                ['gender', 'birth']);
+                "
+                action="/manager/admins/admin-insert-process.php" method="POST">
                 <table class="edit-table">
                     <!-- Tên -->
                     <tr>
@@ -54,8 +64,10 @@
                         </td>
                         <td>
                             <select id="select-gender" name="gender">
+                                <option value="" disabled selected hidden>Chọn giới tính</option>
                                 <option value="1">Nam</option>
                                 <option value="0">Nữ</option>
+                                <option value="2">Giới tính khác</option>
                             </select>
                         </td>
                     </tr>
@@ -69,8 +81,15 @@
                             Ngày tháng năm sinh
                         </td>
                         <td class="select-date">
-                            <select name="day" id="select-day">
-                                <option value="" disabled selected hidden>Ngày</option>
+                            <select name="year" id="select-year" onchange="generate_day()">
+                                <option value="" disabled selected hidden>Năm</option>
+                                <?php
+                                    for ($year = date("Y"); $year >= 1900; $year--) {
+                                        ?>
+                                        <option value="<?= $year ?>"><?= $year ?></option>
+                                        <?php
+                                    }
+                                ?>
                             </select>
                             <select name="month" id="select-month" onchange="generate_day()">
                                 <option value="" disabled selected hidden>Tháng</option>
@@ -82,20 +101,10 @@
                                     }
                                 ?>
                             </select>
-                            <select name="year" id="select-year" onchange="generate_day()">
-                                <option value="" disabled selected hidden>Năm</option>
-                                <?php
-                                    for ($year = date("Y"); $year >= 1900; $year--) {
-                                        ?>
-                                        <option value="<?= $year ?>"><?= $year ?></option>
-                                        <?php
-                                    }
-                                ?>
+                            <select name="day" id="select-day">
+                                <option value="" disabled selected hidden>Ngày</option>
                             </select>
                         </td>
-                        <!-- <td>
-                            <input type="date" placeholder="dd.mm.yyyy" name="birth">
-                        </td> -->
                     </tr>
                     <tr>
                         <td class="display-error" id="display-error-birth"></td>

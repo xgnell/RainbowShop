@@ -3,7 +3,7 @@ function generate_day(default_day) {
 
     let month = parseInt(document.getElementById('select-month').value);
     let year = parseInt(document.getElementById('select-year').value);
-    console.log(month);
+    
     let max_day = 0;
     if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
         max_day = 31;
