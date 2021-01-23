@@ -47,8 +47,8 @@
             /* padding: 5px 5px 5px 5px; */
         }
         .table-header tr:first-child {
-            /* position: relative; */
-            /* box-shadow: 0px 5px 10px #ccc; */
+            position: relative;
+            box-shadow: 0px 5px 10px #ccc;
 
         }
         .table-header tr:nth-child(odd) {
@@ -79,6 +79,19 @@
         .table-header tr td {
             padding: 5px 10px 5px 10px;
             /* border-top: 1px #ccc solid; */
+        }
+
+        #delete_order {
+            width: 500px;
+            height: 300px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 100%;
+            box-shadow: 0px 5px 10px #ccc;
+            display: none;
         }
     </style>
 </head>
@@ -122,6 +135,7 @@
                             <th>Thời gian đặt hàng</th>
                             <th>Tình trạng</th>
                             <th></th>
+                            <th>Huỷ</th>
                         </tr>
                         <?php
                         foreach ($orders as $order) {
@@ -141,6 +155,22 @@
                 <?php
             }
         ?>
+    </div>
+
+    <div id="delete_order" style="padding: 20px; align-items: center;">
+        <div style="padding-bottom: 30px;">
+            <h1 style="text-align: center;">Thông báo</h1>
+            <button style="position: absolute; top:10px; right:10px;" onclick="show_delete_info()">X</button>
+        </div>
+        <div style="text-align: center; font-size:20px;">
+            Bạn phải liên hệ trực tiếp cho chúng tôi với số máy được lưu ở phía dưới
+            hoặc đến trực tiếp trụ sở công ty
+            <br>
+            <br>
+            <br>
+            <br>
+            Xin chân thành cảm ơn!
+        </div>
     </div>
 
     <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>

@@ -30,6 +30,7 @@
         WHERE id_item = $item_id;
     ");
 
+    $image_patch = "/public/assets/items/"
     // Check for amount of size in database
     // ...
 ?>
@@ -39,11 +40,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Sản phẩm: <?php echo $item['name']; ?></title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <style>
         #page-item {
-            margin-top: 80px;
+            margin-top: 40px;
             margin-bottom: 40px;
             margin-left: 10%;
             margin-right: 10%;
@@ -195,6 +196,28 @@
             color: black;
         }
 
+        .same-item {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            margin-left: 10%;
+            margin-right: 10%;
+            background-color: white;
+            width: 80%;
+            border-radius: 7px;
+            box-shadow: 1px 1px 5px #ccc;
+        }
+        .same-item .show-same-item {
+            background-color: white;
+            border-radius: 7px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .same-item .show-same-item .small-item {
+            float: left;
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: #ccc;
+        }
     </style>
 </head>
 
@@ -219,7 +242,7 @@
                 <!-- Tên sản phẩm  -->
                     <tr class="item-name">
                         <td colspan="3">
-                            <span style="font-size: 50px;">
+                            <span style="font-size: 45px;">
                                 <?= $item["name"] ?>
                             </span>
                         </td>
@@ -315,9 +338,37 @@
         </div>
         <div id="div-description">
             <div style="width: 90%;">
-                <span style="font-size: 25px; font-weight: bold;">Mô tả sản phẩm</span>
+                <span style="font-size: 30px; font-weight: bold;">Mô tả sản phẩm</span>
                 <br><br>
                 <span style="font-size: 18px;"><?php echo $item['description']; ?></span>
+            </div>
+        </div>
+    </div>
+    <div class="same-item">
+        <div style="padding-left: 80px; padding-top:20px; font-size: 30px; font-weight: bold;" >Sản phẩm tương tự</div>
+        <div class="show-same-item">
+            <div style="display: flex; justify-content:center;">
+                <?php
+                $sql = "
+                    select *
+                    from items
+                    where id_type = ('$item[id_type]') and id != '$item[id]'
+                    limit 7
+                ";
+                    $same_item = sql_query($sql);
+                ?>
+                <?php foreach ($same_item as $each) { ?>
+                    <input type="text" name="id" value="<?php echo $each['id']; ?>" hidden>
+                    <a href="/public/display-item-details.php?id=<?php echo $each['id']; ?>">
+                        <div style="margin-left: 10px; margin-right:10px">
+                            <span style="width: 150px;">
+                                <img src="<?php echo $image_patch . $each["picture"] ?>" alt="<?php echo $each["picture"] ?>" style="width: 150px;">
+                            </span>
+                            <br>
+                            <span><?php echo $each["name"] ?></span>
+                        </div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </div>

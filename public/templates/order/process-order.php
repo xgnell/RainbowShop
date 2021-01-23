@@ -4,6 +4,10 @@ $root_path = $_SERVER["DOCUMENT_ROOT"];
 require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
 require_once($root_path . "/config/db.php");
 
+if (empty($_POST["receiver"]) || empty($_POST["id_customer"]) || empty($_POST["phone"]) || empty($_POST["address"])) {
+	header('location:/public/templates/order/fail.php');
+}
+
 if (customer_signed_in()) {
     $customer_id = $_POST["id_customer"];   
     $receiver = $_POST["receiver"];
