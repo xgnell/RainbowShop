@@ -65,9 +65,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1">Nam</option>
-                                <option value="0">Nữ</option>
-                                <option value="2">Giới tính khác</option>
+                                <option value="1">Nữ</option>
+                                <option value="2">Nam</option>
+                                <option value="3">Giới tính khác</option>
                             </select>
                         </td>
                     </tr>

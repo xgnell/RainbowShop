@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2021 at 03:16 PM
+-- Generation Time: Jan 24, 2021 at 06:55 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -43,7 +43,11 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `id_rank`) VALUES
-(8, 'admin2', 0, '2020-12-16', '1112223337', 'admin2@gmail.com', '123', 1);
+(8, 'Đặng Hoàng Nam', 2, '2020-12-16', '0983221316', 'hoangnam@gmail.com', '123', 1),
+(17, 'Hương', 1, '1997-04-01', '0912556327', 'huong123@gmail.com', 'abcd1234', 2),
+(18, 'Tuấn', 2, '1993-05-31', '0976311269', 'tuankhi@gmail.com', 'abcd1234', 2),
+(19, 'Đạt', 2, '2000-10-01', '0892176312', 'Dat09@gmail.com', 'abcd1234', 2),
+(20, 'Trần Thùy Linh', 1, '2016-05-10', '0313236168', 'linhlonglanh@bkacad.edu.vn', 'abcd1234', 2);
 
 -- --------------------------------------------------------
 
@@ -177,6 +181,26 @@ INSERT INTO `bill_states` (`id`, `state`, `color`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `type`, `value`) VALUES
+(1, 'Điện thoại', '19001221'),
+(2, 'Địa chỉ', 'Tầng 28, Tòa nhà trung tâm Lotte Hà Nội, 54 Liễu Giai, phường Cống Vị, Quận Ba Đình, Hà Nội.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
@@ -196,9 +220,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `address`) VALUES
-(5, 'Hà', 0, '2018-01-10', '1112223365', 'ha@gmail.com', '123', 'Đà Nẵng'),
-(7, 'Ngọc', 0, '2016-12-07', '1112223367', 'ngoc@gmail.com', '123', 'Cần Thơ'),
-(8, 'Huệ', 0, '2020-12-28', '1239874424', 'hue@gmail.com', '456', 'Ninh Bình');
+(5, 'Hà', 1, '2018-01-10', '0983226319', 'ha@gmail.com', '123', 'Đà Nẵng'),
+(7, 'Ngọc', 1, '2016-12-07', '0521369442', 'ngoc@gmail.com', '123', 'Cần Thơ'),
+(8, 'Huệ', 1, '2020-12-28', '0363912348', 'hue@gmail.com', '456', 'Ninh Bình');
 
 -- --------------------------------------------------------
 
@@ -457,6 +481,12 @@ ALTER TABLE `bill_states`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -512,7 +542,7 @@ ALTER TABLE `qna`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `admin_ranks`
@@ -537,6 +567,12 @@ ALTER TABLE `bill_actions`
 --
 ALTER TABLE `bill_states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customers`

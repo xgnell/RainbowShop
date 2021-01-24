@@ -11,14 +11,19 @@ function remove_ascent (name) {
     return name;
 }
 
-function display_error(which_error, message) {
+function display_error(obj, which_error, message) {
+    if (message !== '') {
+        obj.classList.add('have-error');
+    } else {
+        obj.classList.remove('have-error');
+    }
     which_error.textContent = message;
 }
 
 /* Kiểm tra trống */
 function is_not_blank(input, which_error) {
-    if (input.length === 0) {
-        display_error(which_error, 'Không được để trống');
+    if (input.value.length === 0) {
+        display_error(input, which_error, 'Không được để trống');
         return false;
     }
     return true;
@@ -26,62 +31,67 @@ function is_not_blank(input, which_error) {
 
 /* Kiểm tra regex */
 function is_pass_regex(input, which_error, regex_pattern, message) {
-    if (!regex_pattern.test(input)) {
-        display_error(which_error, message);
+    if (!regex_pattern.test(input.value)) {
+        display_error(input, which_error, message);
         return false;
     }
     return true;
 }
 
 function is_valid_input(type, regex, message) {
-    let input_data = document.getElementById(`input-${type}`).value;
+    let input = document.getElementById(`input-${type}`);
     let error = document.getElementById(`display-error-${type}`);
 
-    if (!is_not_blank(input_data, error)) return false;
-    if (!is_pass_regex(input_data, error, regex, message)) return false;
+    if (!is_not_blank(input, error)) return false;
+    if (!is_pass_regex(input, error, regex, message)) return false;
 
-    display_error(error, '');
+    display_error(input, error, '');
     return true;
 }
 
 function is_valid_select(type) {
-    let select_data = document.getElementById(`select-${type}`).value;
+    let select = document.getElementById(`select-${type}`);
     let error = document.getElementById(`display-error-${type}`);
 
-    if (select_data === '') {
-        display_error(error, 'Không được để trống, phải lựa chọn');
+    if (select.value === '') {
+        display_error(select, error, 'Không được để trống, phải lựa chọn');
         return false;
     }
 
-    display_error(error, '');
+    display_error(select, error, '');
     return true;
 }
 
 
 
 function is_valid_name(regex, message) {
-    let input_data = document.getElementById(`input-name`).value;
+    let input = document.getElementById(`input-name`);
+    let input_data = input.value;
     let error = document.getElementById(`display-error-name`);
 
-    if (!is_not_blank(input_data, error)) return false;
+    if (!is_not_blank(input, error)) return false;
 
     /* Kiểm tra regex */
     input_data = remove_ascent(input_data);
-    if (!is_pass_regex(input_data, error, regex, message)) return false;
+    if (!regex.test(input_data)) {
+        display_error(input, error, message);
+        return false;
+    }
 
-    display_error(error, '');
+    display_error(input, error, '');
     return true;
 }
 
 function is_valid_password(check_power) {
-    let input_data = document.getElementById(`input-passwd`).value;
+    let input = document.getElementById(`input-passwd`);
+    let input_data = input.value;
     let error = document.getElementById(`display-error-passwd`);
 
-    if (!is_not_blank(input_data, error)) return false;
+    if (!is_not_blank(input, error)) return false;
 
     // Kiểm tra các kí tự đặc biệt của mật khẩu
     if ((/(\'|\"|\#|\;|\ )/).test(input_data)) {
-        display_error(error, 'Mật khẩu chứa các kí tự không hợp lệ: "\'", "\"", ";", "#", khoảng trắng');
+        display_error(input, error, 'Mật khẩu chứa các kí tự không hợp lệ: "\'", "\"", ";", "#", khoảng trắng');
         return false;
     }
 
@@ -104,44 +114,57 @@ function is_valid_password(check_power) {
         //     return false;
         // }
         if (!(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/).test(input_data)) {
-            display_error(error, 'Mật khẩu không đủ mạnh (Phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép)');
+            display_error(input, error, 'Mật khẩu không đủ mạnh (Phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép)');
             return false;
         }
     }
 
-    display_error(error, '');
+    display_error(input, error, '');
+    console.log('Pass here');
     return true;
 }
 
 
 function is_valid_birth() {
-    let select_day = document.getElementById(`select-day`).value;
-    let select_month = document.getElementById(`select-month`).value;
-    let select_year = document.getElementById(`select-year`).value;
+    let select_day = document.getElementById(`select-day`);
+    let select_month = document.getElementById(`select-month`);
+    let select_year = document.getElementById(`select-year`);
 
     let error = document.getElementById(`display-error-birth`);
 
     let error_message = '';
     let is_passed = true;
 
-    if (select_day === '') {
+    if (select_day.value === '') {
         error_message += 'Ngày ';
+        select_day.classList.add('have-error');
         is_passed = false;
+    } else {
+        select_day.classList.remove('have-error');
     }
-    if (select_month === '') {
+
+    if (select_month.value === '') {
         error_message += 'Tháng ';
+        select_month.classList.add('have-error');
         is_passed = false;
+    } else {
+        select_month.classList.remove('have-error');
     }
-    if (select_year === '') {
+
+    if (select_year.value === '') {
         error_message += 'Năm ';
+        select_year.classList.add('have-error');
         is_passed = false;
+    } else {
+        select_year.classList.remove('have-error');
     }
+
     if (!is_passed) {
-        display_error(error, `${error_message}không được để trống, phải lựa chọn`);
+        error.textContent = `${error_message}không được để trống, phải lựa chọn`;
         return false;
     }
 
-    display_error(error, '');
+    error.textContent = '';
     return true;
 }
 

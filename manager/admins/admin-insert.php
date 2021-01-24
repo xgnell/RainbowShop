@@ -76,9 +76,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1" <?php if ($admin_gender == 1) echo "selected"; ?> >Nam</option>
-                                <option value="0" <?php if ($admin_gender == 0) echo "selected"; ?> >Nữ</option>
-                                <option value="2" <?php if ($admin_gender == 2) echo "selected"; ?> >Giới tính khác</option>
+                                <option value="1" <?php if ($admin_gender == 1) echo "selected"; ?> >Nữ</option>
+                                <option value="2" <?php if ($admin_gender == 2) echo "selected"; ?> >Nam</option>
+                                <option value="3" <?php if ($admin_gender == 3) echo "selected"; ?> >Giới tính khác</option>
                             </select>
                         </td>
                     </tr>
@@ -113,8 +113,7 @@
                                 ?>
                             </select>
                             <select name="birth_day" id="select-day">
-                                <!-- <option value="" disabled selected hidden>Ngày</option> -->
-                                <option value="1" selected>1</option>
+                                <option value="" disabled selected hidden>Ngày</option>
                             </select>
                         </td>
                     </tr>
@@ -176,7 +175,7 @@
         </div>
     </div>
     <script>
-        // generate_day(<?= intval($admin_birth_day) ?>);
+        generate_day(<?= intval($admin_birth_day) ?>);
     </script>
 </body>
 </html>

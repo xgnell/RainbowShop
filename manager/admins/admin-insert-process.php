@@ -33,7 +33,7 @@ $admin_passwd = $_POST["passwd"] ?? null;
 /***** Validate dữ liệu *****/
 $regex = [
     'name' => "/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/",
-    'gender' => "/^[0-2]$/",
+    'gender' => "/^[1-3]$/",
     'phone' => "/^0[0-9]{9,9}$/",
     'email' => "/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/"
 ];

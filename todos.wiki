@@ -79,10 +79,16 @@ Các tính năng nổi bật trên trang
 
 -----------------------------
 Đang sửa js confirm ở phần admin
+Đang sửa validate phần admin, còn admin-update
+
 
 - [ ] Bỏ tất cả các đoạn code js sang file khác để tránh sửa đổi trực tiếp
 - [ ] Chuyển thẻ a sang dạng onclick để tránh copy link bằng chuột phải
 
+- [ ] Thay đổi tên bảng qna
+- [ ] Thay đổi lại toàn bộ option giới tính trong phần khách hàng
+- [X] Thêm viền màu đỏ khi thẻ input bị lỗi
+- [ ] Thêm db và trang sửa thông tin liên hệ
 - [ ] Thêm confirm
 - [ ] Chuyển từ innerHTML sang textContent
 - [ ] Validate url để tránh nhét các đoạn code XSS

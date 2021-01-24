@@ -216,3 +216,7 @@
     height: 20px;
     margin: 3px 0 15px 0;
 }
+
+.have-error {
+    border: 1px red solid !important;
+}
