@@ -95,7 +95,7 @@
                             $birth_year = date("Y", $db_birth);
                         ?>
                         <td class="select-date">
-                            <select name="year" id="select-year" onchange="generate_day()">
+                            <select name="birth_year" id="select-year" onchange="generate_day()">
                                 <option value="" disabled selected hidden>Năm</option>
                                 <?php
                                     for ($year = date("Y"); $year >= 1900; $year--) {
@@ -105,7 +105,7 @@
                                     }
                                 ?>
                             </select>
-                            <select name="month" id="select-month" onchange="generate_day()">
+                            <select name="birth_month" id="select-month" onchange="generate_day()">
                                 <option value="" disabled selected hidden>Tháng</option>
                                 <?php
                                     for ($month = 1; $month <= 12; $month++) {
@@ -115,7 +115,7 @@
                                     }
                                 ?>
                             </select>
-                            <select name="day" id="select-day">
+                            <select name="birth_day" id="select-day">
                                 <option value="" disabled selected hidden>Ngày</option>
                             </select>
                         </td>

@@ -19,7 +19,7 @@ function generate_day(default_day) {
 
     let day_options = '<option value="" disabled selected hidden>Ngày</option>';
     for (let i = 1; i <= max_day; i++) {
-        if (default_day !== undefined && default_day === i) {
+        if (default_day !== undefined && default_day !== "" && default_day === i) {
             day_options += `<option value="${i}" selected>${i}</option>`
         } else {
             day_options += `<option value="${i}">${i}</option>`

@@ -1,4 +1,13 @@
 <?php
+if (basename($_SERVER['PHP_SELF']) == "notification-page.php") {
+    display_notification_page(
+        false,
+        "Quản lý admin",
+        "404",
+        "Không tìm thấy trang",
+        "/manager/main/main-manager.php"
+);
+}
 function display_notification_page($state, $title, $message, $explain, $return_path = null) {
     ?>
     <!DOCTYPE html>

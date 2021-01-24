@@ -7,6 +7,17 @@
     check_admin_signed_in(1);
 
     require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
+
+    // Lấy dữ liệu được gửi trả lại nếu có
+    $admin_name = $_POST["name"] ?? "";
+    $admin_gender = $_POST["gender"] ?? "";
+
+    $admin_birth_year = $_POST["birth_year"] ?? "";
+    $admin_birth_month = $_POST["birth_month"] ?? "";
+    $admin_birth_day = $_POST["birth_day"] ?? "";
+
+    $admin_phone = $_POST["phone"] ?? "";
+    $admin_email = $_POST["email"] ?? "";
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +61,7 @@
                             Tên
                         </td>
                         <td>
-                            <input id="input-name" type="text" name="name">
+                            <input id="input-name" type="text" name="name" value="<?= $admin_name ?>">
                         </td>
                     </tr>
                     <tr>
@@ -65,9 +76,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1">Nam</option>
-                                <option value="0">Nữ</option>
-                                <option value="2">Giới tính khác</option>
+                                <option value="1" <?php if ($admin_gender == 1) echo "selected"; ?> >Nam</option>
+                                <option value="0" <?php if ($admin_gender == 0) echo "selected"; ?> >Nữ</option>
+                                <option value="2" <?php if ($admin_gender == 2) echo "selected"; ?> >Giới tính khác</option>
                             </select>
                         </td>
                     </tr>
@@ -81,28 +92,29 @@
                             Ngày tháng năm sinh
                         </td>
                         <td class="select-date">
-                            <select name="year" id="select-year" onchange="generate_day()">
+                            <select name="birth_year" id="select-year" onchange="generate_day()">
                                 <option value="" disabled selected hidden>Năm</option>
                                 <?php
                                     for ($year = date("Y"); $year >= 1900; $year--) {
                                         ?>
-                                        <option value="<?= $year ?>"><?= $year ?></option>
+                                        <option value="<?= $year ?>" <?php if (intval($admin_birth_year) == $year) echo "selected"; ?> ><?= $year ?></option>
                                         <?php
                                     }
                                 ?>
                             </select>
-                            <select name="month" id="select-month" onchange="generate_day()">
+                            <select name="birth_month" id="select-month" onchange="generate_day()">
                                 <option value="" disabled selected hidden>Tháng</option>
                                 <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                        <option value="<?= $month ?>"><?= $month ?></option>
+                                        <option value="<?= $month ?>" <?php if (intval($admin_birth_month) == $month) echo "selected"; ?> ><?= $month ?></option>
                                         <?php
                                     }
                                 ?>
                             </select>
-                            <select name="day" id="select-day">
-                                <option value="" disabled selected hidden>Ngày</option>
+                            <select name="birth_day" id="select-day">
+                                <!-- <option value="" disabled selected hidden>Ngày</option> -->
+                                <option value="1" selected>1</option>
                             </select>
                         </td>
                     </tr>
@@ -116,7 +128,7 @@
                             Điện thoại
                         </td>
                         <td>
-                            <input id="input-phone" type="text" name="phone">
+                            <input id="input-phone" type="text" name="phone" value="<?= $admin_phone ?>">
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +141,7 @@
                             Email
                         </td>
                         <td>
-                            <input id="input-email" type="text" name="email">
+                            <input id="input-email" type="text" name="email" value="<?= $admin_email ?>">
                         </td>
                     </tr>
                     <tr>
@@ -164,7 +176,7 @@
         </div>
     </div>
     <script>
-        generate_day();
+        // generate_day(<?= intval($admin_birth_day) ?>);
     </script>
 </body>
 </html>

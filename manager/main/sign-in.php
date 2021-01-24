@@ -5,8 +5,8 @@
     }
 
     // Lấy dữ liệu từ lần nhập form trước (nếu có)
-    $email_or_phone = $_POST["email_or_phone"] ?? null;
-    $passwd = $_POST["passwd"] ?? null;
+    $email_or_phone = $_POST["email_or_phone"] ?? "";
+    $passwd = $_POST["passwd"] ?? "";
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +34,12 @@
                     
                     <div class="input-container">
                         <div class="display-error" id="display-error-email-or-phone"></div>
-                        <input class="input-data" id="input-email-or-phone" type="text" name="email_or_phone" placeholder="Nhập email hoặc số điện thoại" value="<?= $email_or_phone ?? "" ?>" autofocus><br>
+                        <input class="input-data" id="input-email-or-phone" type="text" name="email_or_phone" placeholder="Nhập email hoặc số điện thoại" value="<?= $email_or_phone ?>" autofocus><br>
                     </div>
 
                     <div class="input-container">
                         <div class="display-error" id="display-error-passwd"></div>
-                        <input class="input-data" id="input-passwd" type="password" name="passwd" placeholder="Nhập mật khẩu" value="<?= $passwd ?? "" ?>"><br>
+                        <input class="input-data" id="input-passwd" type="password" name="passwd" placeholder="Nhập mật khẩu" value="<?= $passwd ?>"><br>
                     </div>
 
                     <input class="btn-sign-in" type="submit" value="Đăng nhập">
