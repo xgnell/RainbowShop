@@ -91,10 +91,14 @@ if (!isset($_SESSION['user']['customer'])) {
         $sql = "
             select *
             from customers
-            where id = '$customer_id'
+            where id = '$customer_id';
         ";
 
-        $customer = mysqli_fetch_all(sql_query($sql));
+        $customers = sql_query($sql);
+
+        $customer = mysqli_fetch_array($customers);
+
+        echo $customer;
     ?>
 
     <div class="page-body">
@@ -109,7 +113,7 @@ if (!isset($_SESSION['user']['customer'])) {
                                 <label>Họ và Tên</label><span class="error" id="error_name"><br>
                             </td>
                             <td>
-                                <input type="text" name="name" id="name" placeholder="Nhập tên của bạn" class="input" autocomplete="off" value="<?php echo $customer['name'] ?>">
+                                <input type="text" name="name" id="name" placeholder="Nhập tên của bạn" class="input" autocomplete="off">
                             </td>
                         </tr>
                     <!-- Giới tính -->

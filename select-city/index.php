@@ -2,13 +2,13 @@
     <table>
         <tr>
             <td>
-                <input type="text" placeholder="VD: Số 1, Ngọc Thuỵ" style="margin-right: 15px;" id="xa" autocomplete="off" name="select_xa">
+                <input type="text" placeholder="VD: Số 1, Ngọc Thuỵ" id="xa" name="select_xa" class="select">
             </td>
             <td>
-                <select style="width: 90%;" name="select_tinh" id="city"></select>
+                <select name="select_tinh" id="city" class="select"></select>
             </td>
             <td>
-                <select style="width: 100%;" name="select_huyen" id="district"></select>
+                <select name="select_huyen" id="district" class="select"></select>
             </td>
         </tr>
     </table>

@@ -18,20 +18,12 @@ if (isset($_SESSION['user']['customer'])) {
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <title>Sign up</title>
     <style>
-        .error {
-            color: red;
-        }
-        .error_notice {
-            font-size: 15px;
-            color: red;
-        }
         .page-body {
             padding: 5%;
-            margin: 50px 15% 50px 15%;
+            min-width: 700px;
+            /* margin: 50px 15% 50px 15%; */
             display: flex;
             justify-content: center;
-            /* background-image: url("/public/assets/backgrounds/bg-sign-up.jpg");
-            background-size: cover; */
         }
 
         .panel {
@@ -43,42 +35,55 @@ if (isset($_SESSION['user']['customer'])) {
             padding: 20px 30px 20px 30px;
         }
 
-        .form-title {
-            font-size: 40px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
+        .panel .form-title {
+            display: flex;
+            justify-content: center;
             margin-bottom: 20px;
         }
-
-        .input {
-            margin-top: 5px;
-            font-size: 1em;
-            height: 30px;
+        .panel .form-sign-up {
             width: 100%;
-            border-top: 0px;
-            border-left: 0px;
-            border-right: 0px;
-            outline: none;
         }
 
-        .title-input {
-            height: 45px;
-            line-height: 10px;
-        }
-        
-        .title-input label {
-            font-weight: bold;
-            font-size: 1em;
-            font-style: italic;
+        .panel .form-sign-up .display-error {
+            color: red;
         }
 
-        .button-submit {
-            margin-top: 40px;
-            width: 100%;
-            height: 50px;
+        .panel .form-sign-up .title {
+            font-size: 15px;
+            width: 200px;
+            height: 40px;
+            padding-bottom: 5px;
+        }
+
+        .panel .form-sign-up .input {
+            font-size: 15px;
+            width: 400px;
+            min-width: 300px;
+            height: 40px;
+            padding: 5px 10px 5px 10px;
+            border: 1px #ccc solid;
+        }
+        .panel .form-sign-up .select {
+            font-size: 15px;
+            width: 124px;
+            height: 40px;
+            border: 1px #ccc solid;
+            margin-right: 10px;
+        }
+
+        .panel .form-sign-up .bottom {
+            width: 300px;
+            min-width: 200px;
+            height: 40px;
+        }
+
+        table tr td {
+            margin-bottom: 20px;
         }
     </style>
+    <script src="/manager/templates/js/generate-day.js"></script>
+    <script src="/manager/templates/js/common-validate.js"></script>
+
 </head>
 
 <body>
@@ -88,111 +93,137 @@ if (isset($_SESSION['user']['customer'])) {
     <div class="page-body">
         <div>
             <div class="panel">
-                <div class="form-title">Đăng ký</div>
-                <form action="/public/templates/account/sign-up-process.php" method="POST">
-                    <table style="width: 100%">
+                <h1 class="form-title">Đăng ký</h1>
+                <form onsubmit="
+                    return validate_all({
+                        name: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Tên không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'],
+                        phone: [/^0[0-9]{9,9}$/, 'Số điện thoại không hợp lệ (Chỉ chứa số, số mở đầu phải bằng 0 và đủ 10 số)'],
+                        email: [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Email không hợp lệ'],
+                        passwd: true,
+                    },
+                    ['gender', 'birth']);
+                    "
+                    action="/public/templates/account/sign-up-process.php"
+                    method="POST">
+                    <table class="form-sign-up">
                     <!-- Đây là Họ tên -->
                         <tr>
-                            <td style="width: 120px" class="title-input">
-                                <label>Họ và Tên</label><span class="error" id="error_name"><br>
+                            <td rowspan="2" class="title">
+                                <label>Họ và Tên</label>
                             </td>
                             <td>
-                                <input type="text" name="name" id="name" placeholder="Nhập tên của bạn" class="input" autocomplete="off">
+                                <input type="text" name="name" id="input-name" placeholder="Nhập tên của bạn" class="input">
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-name"></td>
                         </tr>
                     <!-- Giới tính -->
                         <tr>
-                            <td class="title-input">
-                                <label>Giới tính</label><span class="error" id="error_gender"><br>
+                            <td rowspan="2" class="title">
+                                <label>Giới tính</label>
                             </td>
                             <td>
-                                <label id="men" style="margin-right: 30px;">
-                                    <input type="radio" name="gender" id="men" value="1">Nam
-                                </label>
-                                <label id="women">
-                                    <input type="radio" name="gender" id="women" value="0">Nữ
-                                </label>
+                                <select id="select-gender" name="gender" class="input">
+                                    <option value="" disabled selected hidden>Chọn giới tính</option>
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                    <option value="2">Giới tính khác</option>
+                                </select>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-gender"></td>
                         </tr>
                     <!-- Ngày sinh -->
                         <tr>
-                            <td class="title-input">
-                                <label>Ngày sinh</label><span class="error"></span>
+                            <td rowspan="2" class="title">
+                                <label>Ngày sinh</label>
                             </td>
                             <td>
-                            <span>
-                                <select name="birth_day">
-                                    <?php 
-                                    $start_date = 1;
-                                    $end_date   = 31;
-                                    for( $j=$start_date; $j<=$end_date; $j++ ) {
-                                        echo '<option value='.$j.'>'.$j.'</option>';
-                                    }
+                                <select name="birth_year" id="select-year" onchange="generate_day()" class="select">
+                                    <option value="" disabled selected hidden>Năm</option>
+                                    <?php
+                                        for ($year = date("Y"); $year >= 1900; $year--) {
+                                            ?>
+                                            <option value="<?= $year ?>"><?= $year ?></option>
+                                            <?php
+                                        }
                                     ?>
                                 </select>
-                            </span>
-                            <span>
-                                <select name="birth_month">
-                                    <?php for( $m=1; $m<=12; ++$m ) {
-                                    ?>
-                                    <option value="<?php echo $m; ?>" id="<?php echo $m; ?>"><?php echo "Tháng " . $m; ?></option>
-                                    <?php } ?>
-                                </select> 
-                            </span>
-                            <span>
-                                <select name="birth_year">
-                                    <?php 
-                                    $year = date('Y');
-                                    $min = $year - 100;
-                                    $max = $year;
-                                    for( $i=$max; $i>=$min; $i-- ) {
-                                        echo '<option value='.$i.' id='.$i.'>'.$i.'</option>';
-                                    }
+                                <select name="birth_month" id="select-month" onchange="generate_day()" class="select">
+                                    <option value="" disabled selected hidden>Tháng</option>
+                                    <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
+                                            <option value="<?= $month ?>"><?= $month ?></option>
+                                            <?php
+                                        }
                                     ?>
                                 </select>
-                            </span>
+                                <select name="birth_day" id="select-day" class="select">
+                                    <option value="" disabled selected hidden>Ngày</option>
+                                </select>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-birth"></td>
                         </tr>
                     <!-- Địa chỉ   -->
                         <tr>
-                            <td class="title-input">
-                                <label>Địa chỉ</label><span class="error" id="error_address"></span>
+                            <td rowspan="2" class="title">
+                                <label>Địa chỉ</label>
                             </td>
                             <td>
                                 <?php include_once($root_path . "/select-city/index.php"); ?>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-address"></td>
+                        </tr>
                     <!-- Số điện thoại -->
                         <tr>
-                            <td class="title-input">
-                                <label>Số điện thoại</label><span class="error" id="error_phone_number"></span>
+                            <td rowspan="2" class="title">
+                                <label>Số điện thoại</label>
                             </td>
                             <td>
-                                <input type="text" name="phone" id="phone_number" class="input" placeholder="Nhập số điện thoại" autocomplete="off">
+                                <input type="text" name="phone" id="input-phone" class="input" placeholder="Nhập số điện thoại">
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-phone"></td>
                         </tr>
                     <!-- Email -->
                         <tr>
-                            <td class="title-input">
-                                <label>Email</label><span class="error" id="error_email"></span><br>
+                            <td rowspan="2" class="title">
+                                <label>Email</label>
                             </td>
                             <td>
-                                <input type="text" name="email" id="email" placeholder="Nhập email" class="input" autocomplete="off">
+                                <input type="text" name="email" id="input-email" placeholder="Nhập email" class="input">
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="display-error" id="display-error-email"></td>
                         </tr>
                     <!-- Mật khẩu -->
                         <tr>
-                            <td class="title-input">
-                                <label>Mật khẩu</label><span class="error" id="error_passwd"></span>
+                            <td rowspan="2" class="title">
+                                <label>Mật khẩu</label>
                             </td>
                             <td>
-                                <input type="password" name="passwd" placeholder="Nhập mật khẩu" id="passwd" class="input">
+                                <input type="password" name="passwd" placeholder="Nhập mật khẩu" id="input-passwd" class="input">
                             </td>
                         </tr>
-
                         <tr>
-                            <td colspan="2">
-                                <input class="btn-sign-up button-submit" type="submit" value="Đăng ký" onclick="return all_function()">
+                            <td class="display-error" id="display-error-passwd"></td>
+                        </tr>
+                    <!-- Thực thi -->
+                        <tr>
+                            <td colspan="2" style="height: 50px;">
+                                <div class="action-area">
+                                    <input type="submit" value="Đăng ký" class="bottom">
+                                    <input type="reset" value="Điền lại" class="bottom">
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -204,140 +235,19 @@ if (isset($_SESSION['user']['customer'])) {
     <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
 </body>
 
-
 <script>
-    // function year(year) {
-    //     return year;
-    // }
-    // function month(month) {
-    //     return month;
-    // }
-    // function day(year, month) {
-    //     switch (month) {
-    //         case 1:
-    //         case 3:
-    //         case 5:
-    //         case 7:
-    //         case 8:
-    //         case 10:
-    //         case 12:
-    //             day = 31;
-    //             break;
-    //         case 4:
-    //         case 6:
-    //         case 9:
-    //         case 11:
-    //             day = 30;
-    //             break;
-    //         case 2:
-    //             if (year % 400 == 0) {
-    //                 day = 29;
-    //             } else if (year % 4 == 0) {
-    //                 day = 29;
-    //             } else {
-    //                 day = 28;
-    //             }
-    //     }
-    // }
-    function check_name() {
-        var name = document.getElementById("name").value;
-        var name_pattern = /^[A-Za-z ]+$/;
-        if (name_pattern.test(name)) {
-            document.getElementById("name").style.borderColor = "#14e348";
-            document.getElementById("error_name").innerHTML = "";
-            return true;
-        } else {
-            document.getElementById("name").style.borderColor = "red";
-            document.getElementById("error_name").innerHTML = " *";
-            return false;
-        }
-    }
-    function check_gender() {
-        var radios = document.getElementsByName("gender");
-        var formValid = false;
-
-        var i = 0;
-        while (!formValid && i < radios.length) {
-            if (radios[i].checked) formValid = true;
-            i++;        
-        }
-
-        if (!formValid) {
-            document.getElementById("error_gender").innerHTML = " *";
-            return false;
-        } else {
-            document.getElementById("error_gender").innerHTML = "";
-            return true;
-        }
-    }
-    function check_email() {
-        var email = document.getElementById("email").value;
-        var email_pattern = /^[A-za-z0-9]+@(gmail|yahoo|bkacad).(com|vn|gov)+$/;
-        if (email_pattern.test(email)) {
-            document.getElementById("email").style.borderColor = "#14e348";
-            document.getElementById("error_email").innerHTML = "";
-            return true;
-        } else {
-            document.getElementById("email").style.borderColor = "red";
-            document.getElementById("error_email").innerHTML = " *";
-            return false;
-        }
-    }
-    function check_passwd() {
-        var passwd = document.getElementById("passwd").value;
-        var passwd_pattern = /^[A-za-z0-9]+$/;
-        if (passwd_pattern.test(passwd)) {
-            document.getElementById("passwd").style.borderColor = "#14e348";
-            document.getElementById("error_passwd").innerHTML = "";
-            return true;
-        } else {
-            document.getElementById("passwd").style.borderColor = "red";
-            document.getElementById("error_passwd").innerHTML = " *";
-            return false;
-        }
-    }
     function check_address() {
-        var city = document.getElementById("city");
-        var district = document.getElementById("district");
-        var city_selected = city.value;
-        var district_selected = district.value;
-        var xa = document.getElementById("xa").value;
-
-        if (city_selected == "" || district_selected == "" || xa == ""){
-            document.getElementById("error_address").innerHTML = " *";
+        var city = document.getElementById('city').value;
+        var district = document.getElementById('district').value;
+        var xa = document.getElementById('xa').value;
+        if (city == "" || district == 0 || xa == 0) {
+            document.getElementById('display-error-address').innerHTML = "Không được để trống địa chỉ";
             return false;
         } else {
-            document.getElementById("error_address").innerHTML = "";
+            document.getElementById('display-error-address').innerHTML = "";
             return true;
         }
     }
-    function check_phone_number() {
-        var phone_number = document.getElementById("phone_number").value;
-        var phone_number_pattern = /^(03|05|07|08|09)+([0-9]{8})\b$/;
-        if (phone_number_pattern.test(phone_number)) {
-            document.getElementById("phone_number").style.borderColor = "#14e348";
-            document.getElementById("error_phone_number").innerHTML = "";
-            return true;
-        } else {
-            document.getElementById("phone_number").style.borderColor = "red";
-            document.getElementById("error_phone_number").innerHTML = " *";
-            return false;
-        }
-    }
-
-    function all_function() {
-        check_name();
-        check_gender();
-        check_email();
-        check_phone_number();
-        check_passwd();
-        check_address();
-        // check_address();
-        if (check_name() && check_email() && check_phone_number() && check_passwd() && check_gender() && check_address()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    generate_day();
 </script>
 </html>
