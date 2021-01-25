@@ -44,5 +44,12 @@
                 <a href="/manager/questions/question-insert.php"><li>Thêm mới</li></a>
             </ul>
         </li>
+        <li class="<?php if (MENU_OPTION == "background") echo "current-option"; ?>">
+            <a href="#">Custom background</a>
+            <ul class="sub-menu" hidden>
+                <a href="/manager/backgrounds/background-manager.php"><li>Xem tất cả</li></a>
+                <a href="/manager/backgrounds/background-insert.php"><li>Thêm mới</li></a>
+            </ul>
+        </li>
     </ul>
 </div>
