@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2021 at 06:55 PM
+-- Generation Time: Jan 25, 2021 at 04:17 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -72,6 +72,18 @@ INSERT INTO `admin_ranks` (`id`, `name`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `backgrounds`
+--
+
+CREATE TABLE `backgrounds` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `picture` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bills`
 --
 
@@ -82,20 +94,23 @@ CREATE TABLE `bills` (
   `address` varchar(100) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `id_state` int(11) NOT NULL,
-  `purchase_time` datetime NOT NULL
+  `purchase_time` datetime NOT NULL,
+  `id_admin` int(11) DEFAULT NULL,
+  `id_action` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`) VALUES
-(13, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 04:03:55'),
-(14, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 08:23:46'),
-(15, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 3, '2021-01-17 17:50:17'),
-(16, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-19 05:45:22'),
-(17, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 3, '2021-01-19 09:06:24'),
-(18, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 1, '2021-01-19 10:27:59');
+INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`, `id_admin`, `id_action`, `updated_at`) VALUES
+(13, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 04:03:55', 8, 1, '2021-01-13 02:54:43'),
+(14, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 08:23:46', 8, 1, '2021-01-27 03:17:22'),
+(15, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 3, '2021-01-17 17:50:17', 17, 2, '2021-01-28 03:17:11'),
+(16, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-19 05:45:22', 18, 1, '2021-01-28 03:16:01'),
+(17, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 3, '2021-01-19 09:06:24', 17, 2, '2021-01-25 03:00:44'),
+(18, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 1, '2021-01-19 10:27:59', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,19 +158,6 @@ INSERT INTO `bill_details` (`id_bill`, `id_item`, `id_size`, `amount`, `price`) 
 (16, 29, 2, 1, 120000),
 (17, 34, 1, 3, 280000),
 (18, 30, 3, 3, 153000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bill_logs`
---
-
-CREATE TABLE `bill_logs` (
-  `id_bill` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `id_action` int(11) NOT NULL,
-  `action_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -445,12 +447,20 @@ ALTER TABLE `admin_ranks`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `backgrounds`
+--
+ALTER TABLE `backgrounds`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `bills`
 --
 ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_customer` (`id_customer`),
-  ADD KEY `id_state` (`id_state`);
+  ADD KEY `id_state` (`id_state`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_action` (`id_action`);
 
 --
 -- Indexes for table `bill_actions`
@@ -465,14 +475,6 @@ ALTER TABLE `bill_details`
   ADD PRIMARY KEY (`id_bill`,`id_item`,`id_size`),
   ADD KEY `id_size` (`id_size`),
   ADD KEY `id_item` (`id_item`,`id_size`);
-
---
--- Indexes for table `bill_logs`
---
-ALTER TABLE `bill_logs`
-  ADD PRIMARY KEY (`id_bill`),
-  ADD KEY `id_admin` (`id_admin`),
-  ADD KEY `id_action` (`id_action`);
 
 --
 -- Indexes for table `bill_states`
@@ -551,6 +553,12 @@ ALTER TABLE `admin_ranks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `backgrounds`
+--
+ALTER TABLE `backgrounds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
@@ -625,7 +633,9 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `bills`
   ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`id_state`) REFERENCES `bill_states` (`id`);
+  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`id_state`) REFERENCES `bill_states` (`id`),
+  ADD CONSTRAINT `bills_ibfk_3` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id`),
+  ADD CONSTRAINT `bills_ibfk_4` FOREIGN KEY (`id_action`) REFERENCES `bill_actions` (`id`);
 
 --
 -- Constraints for table `bill_details`
@@ -633,14 +643,6 @@ ALTER TABLE `bills`
 ALTER TABLE `bill_details`
   ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
   ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`id_item`,`id_size`) REFERENCES `item_details` (`id_item`, `id_size`);
-
---
--- Constraints for table `bill_logs`
---
-ALTER TABLE `bill_logs`
-  ADD CONSTRAINT `bill_logs_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
-  ADD CONSTRAINT `bill_logs_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id`),
-  ADD CONSTRAINT `bill_logs_ibfk_3` FOREIGN KEY (`id_action`) REFERENCES `bill_actions` (`id`);
 
 --
 -- Constraints for table `items`

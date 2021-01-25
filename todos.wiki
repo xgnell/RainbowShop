@@ -81,10 +81,12 @@ Các tính năng nổi bật trên trang
 Đang sửa js confirm ở phần admin
 Đang sửa validate phần admin, còn admin-update
 
+- [X] Bill table: + id_admin , updated_at
 
 - [ ] Bỏ tất cả các đoạn code js sang file khác để tránh sửa đổi trực tiếp
 - [ ] Chuyển thẻ a sang dạng onclick để tránh copy link bằng chuột phải
 
+- [ ] Thêm bảng lưu trữ ảnh background
 - [ ] Thay đổi tên bảng qna
 - [ ] Thay đổi lại toàn bộ option giới tính trong phần khách hàng
 - [X] Thêm viền màu đỏ khi thẻ input bị lỗi
