@@ -30,6 +30,16 @@
         WHERE id_item = $item_id;
     ");
 
+    // Get color item
+    $item_color = sql_query("
+        select code
+        from item_colors
+        join items
+        on item_colors.id = items.id_color
+        where items.id = '$item_id'
+    ");
+    $item_color = mysqli_fetch_array($item_color)['code'];
+
     $image_patch = "/public/assets/items/"
     // Check for amount of size in database
     // ...
@@ -257,6 +267,24 @@
                             </b>
                         </td>
                     </tr>
+                <!-- Màu sắc -->
+                    <tr>
+                        <td>
+                            <span>Màu sắc</span>
+                        </td>
+                        <td>
+                            <div style="
+                                display: inline-block;
+                                width: 20px; height: 20px;
+                                background-color: <?= $item_color ?>;
+                                <?php
+                                    if ($item_color == 'white')
+                                        echo 'border: 1px black solid;';
+                                ?>">
+                            </div>
+                        </td>
+                    </tr>
+                <!-- Loại sản phẩm -->
                     <tr class="item-type">
                         <td>
                             <span">Loại</span>
