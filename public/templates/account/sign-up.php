@@ -81,8 +81,8 @@ if (isset($_SESSION['user']['customer'])) {
             margin-bottom: 20px;
         }
     </style>
-    <script src="/manager/templates/js/generate-day.js"></script>
-    <script src="/manager/templates/js/common-validate.js"></script>
+    <script src="/public/templates/js/common-validate.js"></script>
+    <script src="/public/templates/js/generate-day.js"></script>
 
 </head>
 
@@ -99,6 +99,7 @@ if (isset($_SESSION['user']['customer'])) {
                         name: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Tên không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'],
                         phone: [/^0[0-9]{9,9}$/, 'Số điện thoại không hợp lệ (Chỉ chứa số, số mở đầu phải bằng 0 và đủ 10 số)'],
                         email: [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Email không hợp lệ'],
+                        address: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Địa chỉ không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'], 
                         passwd: true,
                     },
                     ['gender', 'birth']);
@@ -175,7 +176,7 @@ if (isset($_SESSION['user']['customer'])) {
                                 <label>Địa chỉ</label>
                             </td>
                             <td>
-                                <?php include_once($root_path . "/select-city/index.php"); ?>
+                                <input type="text" name="address" id="input-address" class="input" placeholder="Nhập địa chỉ">
                             </td>
                         </tr>
                         <tr>
