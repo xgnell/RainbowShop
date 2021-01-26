@@ -67,7 +67,23 @@
                     ?>
                     <tr>
                         <td><?= $admin['name'] ?></td>
-                        <td><?php if ($admin['gender'] == 1) echo "Nam"; else echo "Nữ" ?></td>
+                        <td>
+                            <?php
+                                switch ($admin['gender']) {
+                                    case 1:
+                                        echo "Nữ";
+                                        break;
+                                    case 2:
+                                        echo "Nam";
+                                        break;
+                                    case 3:
+                                        echo "Giới tính khác";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            ?>
+                        </td>
                         <td><?= $admin['birth'] ?></td>
                         <td><?= $admin['phone'] ?></td>
                         <td><?= $admin['email'] ?></td>

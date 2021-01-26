@@ -81,21 +81,35 @@ Các tính năng nổi bật trên trang
 Đang sửa js confirm ở phần admin
 Đang sửa validate phần admin, còn admin-update
 
+? Khi thêm admin mới, cho mật khẩu là mặc định hay là nhập mật khẩu mới
+? Khi xóa admin thì phần hóa đơn được duyệt bởi admin sẽ ntn (Kể cả khi xóa kiểu cascade thì cũng chỉ lưu lại được id của admin chứ ko lưu được các thông tin khác)
+	=> Nếu tạo ra bảng log, thì có thể lưu trữ một vài thông tin của phần admin như (id, tên, email, ... tất nhiên có thể gây dư thừa dữ liệu)
+
+- [X] Sửa from_option thành from
+- [X] Xóa phần select city
+- [X] Thêm setting cho phần trang thông báo (tên nút Quay lại)
+- [ ] Xóa hết mấy trang linh tinh khi chạy hoàn thiện đồ án
+- [X] Validate truy cập cho các trang trong config
+- [X] Thay đổi lại thư mục img chuyển nó sang default
+
+- [ ] Sửa bảng hóa đơn, làm giao diện, validate toàn bộ trang admin, thêm phần thông tin liên hệ, thêm phần background, Thêm phần quên tài khoản, Làm phân trang
+- [X] Refactor code phần kiểm tra admin đăng nhập
+- [X] Thêm chức năng reset mật khẩu cho admin
 - [X] Bill table: + id_admin , updated_at
 
 - [ ] Bỏ tất cả các đoạn code js sang file khác để tránh sửa đổi trực tiếp
-- [ ] Chuyển thẻ a sang dạng onclick để tránh copy link bằng chuột phải
+- [ ] (Chuyển thẻ a sang dạng onclick để tránh copy link bằng chuột phải
 
-- [ ] Thêm bảng lưu trữ ảnh background
-- [ ] Thay đổi tên bảng qna
+- [X] Thêm bảng lưu trữ ảnh background
+- [ ] (Thay đổi tên bảng qna
 - [ ] Thay đổi lại toàn bộ option giới tính trong phần khách hàng
 - [X] Thêm viền màu đỏ khi thẻ input bị lỗi
-- [ ] Thêm db và trang sửa thông tin liên hệ
-- [ ] Thêm confirm
-- [ ] Chuyển từ innerHTML sang textContent
+- [O] Thêm db và trang sửa thông tin liên hệ
+- [O] Thêm confirm
+- [O] Chuyển từ innerHTML sang textContent
 - [ ] Validate url để tránh nhét các đoạn code XSS
-- [ ] Bỏ space, ' " ; , ở password
-- [ ] Không cho phép nhập sai mật khẩu quá 3 lần
+- [X] Bỏ space, ' " ; , ở password
+- [ ] (Không cho phép nhập sai mật khẩu quá 3 lần
 - [ ] Tạo animation cho các popup
 - [X] Đổi tên file commonjs sang generate-day.js và sửa trong các trang khác
 - [O] Sửa lại tất cả các trang admin để hoạt động với giao diện mới

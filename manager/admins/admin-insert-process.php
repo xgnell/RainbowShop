@@ -1,5 +1,6 @@
 <?php
 /** Validate
+ * Kiểm tra có thông được gửi lên không
  * Kiểm tra tính hợp lệ (không phân biệt trống hay ko)
  * Kiểm tra có bị trùng lặp trong cơ sở dữ liệu hay không (phone, email)
  * Kiểm tra passwd có đủ mạnh hay không
@@ -15,20 +16,35 @@ check_admin_signed_in(1);
 
 require_once($root_path . "/config/db.php");
 require_once($root_path . "/manager/admins/admin-notification.php");
+require_once($root_path . "/manager/templates/notification-page.php");
 
 // Lấy tất cả dữ liệu từ form gửi lên
-$admin = [
-    'name' => $_POST["name"] ?? null,
-    'gender' => $_POST["gender"] ?? null,
+$admin = null;
+if (!empty($_POST)) {
+    $admin = [
+        'name' => $_POST["name"] ?? null,
+        'gender' => $_POST["gender"] ?? null,
+        
+        'birth_year' => $_POST["birth_year"] ?? null,
+        'birth_month' => $_POST["birth_month"] ?? null,
+        'birth_day' => $_POST["birth_day"] ?? null,
     
-    'birth_year' => $_POST["birth_year"] ?? null,
-    'birth_month' => $_POST["birth_month"] ?? null,
-    'birth_day' => $_POST["birth_day"] ?? null,
+        'phone' => $_POST["phone"] ?? null,
+        'email' => $_POST["email"] ?? null
+    ];
+    $admin_passwd = $_POST["passwd"] ?? null;
+} else {
+    display_notification_page(
+        false,
+        $notification_title,
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay về trang trước đó
+    );
+    exit();
+}
 
-    'phone' => $_POST["phone"] ?? null,
-    'email' => $_POST["email"] ?? null
-];
-$admin_passwd = $_POST["passwd"] ?? null;
 
 /***** Validate dữ liệu *****/
 $regex = [
@@ -58,6 +74,7 @@ if ($admin['name'] == null || !preg_match($regex["name"], $admin_name)) {
         $notification_title,
         "Tên không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -71,6 +88,7 @@ if ($admin['gender'] == null || !preg_match($regex["gender"], $admin["gender"]))
         $notification_title,
         "Giới tính không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -84,6 +102,7 @@ if ($admin['birth_year'] == null || !is_numeric($admin['birth_year']) || $admin[
         $notification_title,
         "Năm sinh không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -95,6 +114,7 @@ if ($admin['birth_month'] == null || !is_numeric($admin['birth_month']) || $admi
         $notification_title,
         "Tháng sinh không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -130,6 +150,7 @@ if ($admin['birth_day'] == null || !is_numeric($admin['birth_day']) ||
         $notification_title,
         "Ngày sinh không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -143,6 +164,7 @@ if ($admin['phone'] == null || !preg_match($regex['phone'], $admin['phone'])) {
         $notification_title,
         "Số điện thoại không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -160,6 +182,7 @@ if (mysqli_num_rows($admin_phone) != 0) {
         $notification_title,
         "Số điện thoại đã tồn tại",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -173,6 +196,7 @@ if ($admin['email'] == null || !preg_match($regex['email'], $admin['email'])) {
         $notification_title,
         "Email không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -190,6 +214,7 @@ if (mysqli_num_rows($admin_email) != 0) {
         $notification_title,
         "Email đã tồn tại",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -203,6 +228,7 @@ if ($admin_passwd == null || preg_match('/(\'|\"|\#|\;|\ )/', $admin_passwd)) {
         $notification_title,
         "Mật khẩu không hợp lệ",
         "",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -215,6 +241,7 @@ if (!preg_match("/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z
         $notification_title,
         "Mật khẩu không đủ mạnh",
         "Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép",
+        "Thử lại",
         $return_path,
         $admin
     );
@@ -236,19 +263,19 @@ sql_cmd("
     VALUES (
         '{$admin["name"]}',
         {$admin["gender"]},
-        '{$admin_birth}',
+        '$admin_birth',
         '{$admin["phone"]}',
         '{$admin["email"]}',
         '$admin_passwd',
         2
     );
 ");
-display_admin_notification_page(
+display_notification_page(
     true,
     $notification_title,
     "Thêm admin thành công",
     "",
-    "/manager/admins/admins-manager.php",
-    []
+    "Xem danh sách admin",
+    "/manager/admins/admins-manager.php"
 );
 

@@ -3,9 +3,7 @@
     ◦ Đăng xuất
     ◦ Quản lý tài khoản khách hàng
         + Xem các tài khoản khách hàng
-        + Thêm tài khoản khách hàng
-        + Sửa tài khoản khách hàng
-        + Xóa tài khoản khách hàng
+        + Khóa tài khoản khách hàng
         + Tìm kiếm tài khoản khách hàng
         + Lọc tài khoản khách hàng
     ◦ Quản lý sản phẩm
@@ -24,7 +22,9 @@
         + Thêm câu hỏi và câu trả lời
         + Sửa câu hỏi và câu trả lời
         + Xóa câu hỏi và câu trả lời
-
+    ◦ Quản lý thông tin liên hệ
+        + Xem các thông tin liên hệ
+        + Sửa các thông tin liên hệ
 
 
 • Super Admin
@@ -32,7 +32,7 @@
     ◦ Quản lý tài khoản admin
         + Xem các tài khoản admin
         + Thêm tài khoản admin
-        + Sửa tài khoản admin
+        + Sửa tài khoản admin (chỉ được reset mật khẩu)
         + Xóa tài khoản admin
         + Tìm kiếm tài khoản admin
         + Lọc tài khoản admin

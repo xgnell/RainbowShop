@@ -41,8 +41,8 @@
     border: 1px black solid;
 } */
 #admin-sign-in-form .admin-form-content .input-container {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 5px;
 }
 #admin-sign-in-form .admin-form-content input {
     width: 100%;
@@ -57,7 +57,7 @@
     border: 1px var(--border-color-input-when-focus) solid;
 }
 #admin-sign-in-form .admin-form-content .btn-sign-in {
-    margin-top: 30px;
+    margin-top: 20px;
     height: 50px;
     font-weight: bold;
     cursor: pointer;
@@ -72,7 +72,7 @@
     /* background-color: blue; */
     width: 100%;
     font-size: 0.95em;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     color: red;
 }
 #admin-sign-in-form .admin-form-content .display-error::after {

@@ -1,5 +1,11 @@
 <?php
 // error_reporting(0);
+require_once($_SERVER["DOCUMENT_ROOT"] . "/notification/display-error-page.php");
+if (basename($_SERVER['PHP_SELF']) == "db.php") {
+    display_error_page(404, "Không tìm thấy trang");
+    exit();
+}
+
 
 define("SERVER_NAME", "localhost");
 define("USERNAME", "root");

@@ -1,15 +1,24 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/notification-page.php");
-if (basename($_SERVER['PHP_SELF']) == "notification-page.php") {
+if (basename($_SERVER['PHP_SELF']) == "admin-notification.php") {
     display_notification_page(
         false,
         "Quản lý admin",
         "404",
         "Không tìm thấy trang",
-        "/manager/main/main-manager.php"
+        "Quay lại"
+        // Quay về trang trước đó
 );
 }
-function display_admin_notification_page($state, $title, $message, $explain, $return_path, $data) {
+function display_admin_notification_page(
+    $state,
+    $title,
+    $message,
+    $explain,
+    $return_title,
+    $return_path,
+    $data)
+{
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -62,12 +71,12 @@ function display_admin_notification_page($state, $title, $message, $explain, $re
                                 <input hidden type="password" name="passwd" value="<?= $data['passwd'] ?>">
 
                                 <!-- Quay lại -->
-                                <button class="btn-back">Quay lại</button>
+                                <button class="btn-back"><?= $return_title ?></button>
                             </form>
                             <?php
                         } else {
                             ?>
-                                <button class="btn-back" onclick="window.location.href = '<?= $return_path ?>'">Quay lại</button>
+                                <button class="btn-back" onclick="window.location.href = '<?= $return_path ?>'"><?= $return_title ?></button>
                             <?php
                         }
                     ?>
