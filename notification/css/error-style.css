@@ -4,6 +4,11 @@
     --display-error-code-color: red;
     --display-explain-color: red;
 
+    --btn-back-foreground-color: white;
+    --btn-back-background-color: #585959;
+    --btn-back-background-color-hover: #32373c;
+    --btn-back-border-color: #ccc;
+
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -35,4 +40,17 @@
 #error-page .display-explain {
     font-size: 1.2em;
     color: var(--display-explain-color);
+}
+
+#error-page .btn-back {
+    display: inline-block;
+    font-size: 1.5em;
+    padding: 7px 25px 7px 25px;
+    color: var(--btn-back-foreground-color);
+    cursor: pointer;
+    background-color: var(--btn-back-background-color);
+    border: 1px var(--btn-back-border-color) solid;
+}
+#error-page .btn-back:hover {
+    background-color: var(--btn-back-background-color-hover);
 }

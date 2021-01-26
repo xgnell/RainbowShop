@@ -1,10 +1,25 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    require_once($root_path . "/manager/templates/check-admin-signed-in.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
+    if (basename($_SERVER['PHP_SELF']) == "menu.php") {
+        display_notification_page(
+            false,
+            "Quản lý admin",
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay về trang trước
+        );
+        exit();
+    }
+?>
 <link rel="stylesheet" href="/manager/templates/css/menu-style.css">
 <script defer src="/manager/templates/js/menu-action.js"></script>
 <div id="page-menu">
     <ul class="main-menu">
         
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/check-admin-signed-in.php"); ?>
-        <?php if (is_admin_rank(1)) { ?>
+        <?php if (is_admin_rank_valid(1)) { ?>
         <li class="<?php if (MENU_OPTION == "admin") echo "current-option"; ?>">
             <a href="#">Admin</a>
             <ul class="sub-menu" hidden>

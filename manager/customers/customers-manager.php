@@ -52,7 +52,23 @@
                 <?php foreach($customers as $customer): ?>
                     <tr>
                         <td><?= $customer['name'] ?></td>
-                        <td><?php if ($customer['gender'] == 1) echo "Nam"; else echo "Nữ" ?></td>
+                        <td>
+                            <?php
+                                switch ($customer['gender']) {
+                                    case 1:
+                                        echo "Nữ";
+                                        break;
+                                    case 2:
+                                        echo "Nam";
+                                        break;
+                                    case 3:
+                                        echo "Giới tính khác";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            ?>
+                        </td>
                         <td><?= $customer['birth'] ?></td>
                         <td><?= $customer['phone'] ?></td>
                         <td><?= $customer['email'] ?></td>

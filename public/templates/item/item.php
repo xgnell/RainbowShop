@@ -47,7 +47,7 @@
 </style>
 <?php function spawn_item($item_id) { ?>
     <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/img.php");
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/default.php");
 
         $item = sql_query("
             SELECT *

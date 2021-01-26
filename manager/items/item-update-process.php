@@ -6,7 +6,7 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/img.php");
+    require_once($root_path . "/config/default.php");
 
     // Get all size in database
     $item_sizes_data_from_db = sql_query("

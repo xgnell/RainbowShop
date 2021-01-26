@@ -4,7 +4,7 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/img.php");
+    require_once($root_path . "/config/default.php");
     include_once($root_path . "/public/templates/item/item.php");
 
     $item_id = $_GET['id'];

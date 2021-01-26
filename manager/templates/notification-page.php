@@ -5,10 +5,18 @@ if (basename($_SERVER['PHP_SELF']) == "notification-page.php") {
         "Quản lý admin",
         "404",
         "Không tìm thấy trang",
-        "/manager/main/main-manager.php"
+        "Quay lại"
+        // Quay về trang trước
 );
 }
-function display_notification_page($state, $title, $message, $explain, $return_path = null) {
+function display_notification_page(
+    $state,
+    $title,
+    $message,
+    $explain,
+    $return_title = null,
+    $return_path = null)
+{
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -34,19 +42,16 @@ function display_notification_page($state, $title, $message, $explain, $return_p
                     <?php } ?>
                 </div>
                 <div class="content">
-                    <?php if ($state == false) { ?>
-                        <p>Oh no, oh no, no no no no no no!</p>
-                    <?php } ?>
                     <p class="display-message"><?= $message ?></p>
                     <p class="display-explain"><?= $explain ?></p>
                     <?php
                         if ($return_path == null) {
                             ?>
-                            <button class="btn-back" onclick="window.history.back()">Quay lại</button>
+                            <button class="btn-back" onclick="window.history.back()"><?= $return_title ?></button>
                             <?php
                         } else {
                             ?>
-                            <button class="btn-back" onclick="window.location.href = '<?= $return_path ?>'">Quay lại</button>
+                            <button class="btn-back" onclick="window.location.href = '<?= $return_path ?>'"><?= $return_title ?></button>
                             <?php
                         }
                     ?>

@@ -74,9 +74,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1" <?php if ($customer["gender"] == 0) echo "selected"; ?> >Nữ</option>
-                                <option value="2" <?php if ($customer["gender"] == 1) echo "selected"; ?> >Nam</option>
-                                <option value="3" <?php if ($customer["gender"] == 2) echo "selected"; ?> >Giới tính khác</option>
+                                <option value="1" <?php if ($customer["gender"] == 1) echo "selected"; ?> >Nữ</option>
+                                <option value="2" <?php if ($customer["gender"] == 2) echo "selected"; ?> >Nam</option>
+                                <option value="3" <?php if ($customer["gender"] == 3) echo "selected"; ?> >Giới tính khác</option>
                             </select>
                         </td>
                     </tr>

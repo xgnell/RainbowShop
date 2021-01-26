@@ -9,15 +9,17 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
 
     // Lấy dữ liệu được gửi trả lại nếu có
-    $admin_name = $_POST["name"] ?? "";
-    $admin_gender = $_POST["gender"] ?? "";
+    $admin = [
+        'name' => $_POST["name"] ?? "",
+        'gender' => $_POST["gender"] ?? "",
+        
+        'birth_year' => $_POST["birth_year"] ?? "",
+        'birth_month' => $_POST["birth_month"] ?? "",
+        'birth_day' => $_POST["birth_day"] ?? "",
 
-    $admin_birth_year = $_POST["birth_year"] ?? "";
-    $admin_birth_month = $_POST["birth_month"] ?? "";
-    $admin_birth_day = $_POST["birth_day"] ?? "";
-
-    $admin_phone = $_POST["phone"] ?? "";
-    $admin_email = $_POST["email"] ?? "";
+        'phone' => $_POST["phone"] ?? "",
+        'email' => $_POST["email"] ?? ""
+    ];
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +63,7 @@
                             Tên
                         </td>
                         <td>
-                            <input id="input-name" type="text" name="name" value="<?= $admin_name ?>">
+                            <input id="input-name" type="text" name="name" value="<?= $admin["name"] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -76,9 +78,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1" <?php if ($admin_gender == 1) echo "selected"; ?> >Nữ</option>
-                                <option value="2" <?php if ($admin_gender == 2) echo "selected"; ?> >Nam</option>
-                                <option value="3" <?php if ($admin_gender == 3) echo "selected"; ?> >Giới tính khác</option>
+                                <option value="1" <?php if ($admin["gender"] == 1) echo "selected"; ?> >Nữ</option>
+                                <option value="2" <?php if ($admin["gender"] == 2) echo "selected"; ?> >Nam</option>
+                                <option value="3" <?php if ($admin["gender"] == 3) echo "selected"; ?> >Giới tính khác</option>
                             </select>
                         </td>
                     </tr>
@@ -97,7 +99,7 @@
                                 <?php
                                     for ($year = date("Y"); $year >= 1900; $year--) {
                                         ?>
-                                        <option value="<?= $year ?>" <?php if (intval($admin_birth_year) == $year) echo "selected"; ?> ><?= $year ?></option>
+                                        <option value="<?= $year ?>" <?php if (intval($admin["birth_year"]) == $year) echo "selected"; ?> ><?= $year ?></option>
                                         <?php
                                     }
                                 ?>
@@ -107,7 +109,7 @@
                                 <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                        <option value="<?= $month ?>" <?php if (intval($admin_birth_month) == $month) echo "selected"; ?> ><?= $month ?></option>
+                                        <option value="<?= $month ?>" <?php if (intval($admin["birth_month"]) == $month) echo "selected"; ?> ><?= $month ?></option>
                                         <?php
                                     }
                                 ?>
@@ -127,7 +129,7 @@
                             Điện thoại
                         </td>
                         <td>
-                            <input id="input-phone" type="text" name="phone" value="<?= $admin_phone ?>">
+                            <input id="input-phone" type="text" name="phone" value="<?= $admin["phone"] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -140,7 +142,7 @@
                             Email
                         </td>
                         <td>
-                            <input id="input-email" type="text" name="email" value="<?= $admin_email ?>">
+                            <input id="input-email" type="text" name="email" value="<?= $admin["email"] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -175,7 +177,7 @@
         </div>
     </div>
     <script>
-        generate_day(<?= intval($admin_birth_day) ?>);
+        generate_day(<?= intval($admin["birth_day"]) ?>);
     </script>
 </body>
 </html>

@@ -76,7 +76,7 @@
 </style>
 <?php function spawn_order_detail_item($item_id, $size_id, $amount, $price) { ?>
         <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/img.php");
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/config/default.php");
         
         $item = sql_query("
             SELECT *

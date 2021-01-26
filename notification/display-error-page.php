@@ -25,6 +25,7 @@ function display_error_page($error_code, $message) {
                     <p></p>
                     <p class="display-error-code"><?= $error_code ?></p>
                     <p class="display-explain"><?= $message ?></p>
+                    <button class="btn-back" onclick="window.history.back()">Quay lại</button>
                 </div>
             </div>
         </div>

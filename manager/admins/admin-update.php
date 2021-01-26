@@ -1,5 +1,6 @@
 <?php
     define("MENU_OPTION", "admin");
+    $notification_title = "Quản lý admin";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
@@ -7,14 +8,62 @@
     check_admin_signed_in(1);
 
     require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
+    require_once($root_path . "/manager/admins/admin-notification.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
 
-    // Get selected admin
-    $admin_id = $_GET["id"];
-    $admin = mysqli_fetch_array(sql_query("
+    
+    // Lấy thông tin admin được gửi lên
+    $admin_id = $_GET["id"] ?? null;
+    if ($admin_id == null) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay về trang trước đó
+        );
+        exit();
+    }
+
+    $id_db = sql_query("
         SELECT *
         FROM admins
-        WHERE id=$admin_id;
-    "));
+        WHERE id = $admin_id;
+    ");
+    if (mysqli_num_rows($id_db) != 1) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay về trang trước đó
+        );
+        exit();
+    }
+
+    if (!empty($_POST)) {
+        $admin = [
+            'id' => $admin_id,
+            'name' => $_POST["name"] ?? "",
+            'gender' => $_POST["gender"] ?? "",
+            
+            'birth_year' => $_POST["birth_year"] ?? "",
+            'birth_month' => $_POST["birth_month"] ?? "",
+            'birth_day' => $_POST["birth_day"] ?? "",
+
+            'phone' => $_POST["phone"] ?? "",
+            'email' => $_POST["email"] ?? "",
+            'passwd' => ""
+        ];
+    } else {
+        $admin = mysqli_fetch_array(sql_query("
+            SELECT *
+            FROM admins
+            WHERE id = $admin_id;
+        "));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -74,9 +123,9 @@
                         <td>
                             <select id="select-gender" name="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
-                                <option value="1" <?php if ($admin["gender"] == 0) echo "selected"; ?> >Nữ</option>
-                                <option value="2" <?php if ($admin["gender"] == 1) echo "selected"; ?> >Nam</option>
-                                <option value="3" <?php if ($admin["gender"] == 2) echo "selected"; ?> >Giới tính khác</option>
+                                <option value="1" <?php if ($admin["gender"] == 1) echo "selected"; ?> >Nữ</option>
+                                <option value="2" <?php if ($admin["gender"] == 2) echo "selected"; ?> >Nam</option>
+                                <option value="3" <?php if ($admin["gender"] == 3) echo "selected"; ?> >Giới tính khác</option>
                             </select>
                         </td>
                     </tr>
@@ -90,10 +139,19 @@
                             Ngày tháng năm sinh
                         </td>
                         <?php
-                            $db_birth = strtotime($admin["birth"]);
-                            $birth_day = date("d", $db_birth);
-                            $birth_month = date("m", $db_birth);
-                            $birth_year = date("Y", $db_birth);
+                            $birth_day = null;
+                            $birth_month = null;
+                            $birth_year = null;
+                            if (array_key_exists("birth", $admin)) {
+                                $db_birth = strtotime($admin["birth"]);
+                                $birth_day = date("d", $db_birth);
+                                $birth_month = date("m", $db_birth);
+                                $birth_year = date("Y", $db_birth);
+                            } else {
+                                $birth_day = $admin["birth_day"];
+                                $birth_month = $admin["birth_month"];
+                                $birth_year = $admin["birth_year"];
+                            }
                         ?>
                         <td class="select-date">
                             <select name="birth_year" id="select-year" onchange="generate_day()">
@@ -158,7 +216,20 @@
                             Mật khẩu
                         </td>
                         <td>
-                            <input id="input-passwd" type="password" name="passwd" value="<?= $admin["passwd"] ?>">
+                            <?php
+                                if ($admin["id"] == $_SESSION["user"]["admin"]["id"]) {
+                                    ?>
+                                    <input id="input-passwd" type="password" name="passwd" value="<?= $admin["passwd"] ?>">
+                                    <?php
+                                } else {
+                                    ?>
+                                    <select name="reset-passwd">
+                                        <option value="keep" selected>Giữ mật khẩu cũ</option>
+                                        <option value="reset">Khôi phục về mật khẩu mặc đinh</option>
+                                    </select>                                    
+                                    <?php
+                                }
+                            ?>
                         </td>
                     </tr>
                     <tr>

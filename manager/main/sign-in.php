@@ -33,13 +33,13 @@
                 <form onsubmit="admin_sign_in_form_validate(event)" action="/manager/main/sign-in-process.php" method="POST">
                     
                     <div class="input-container">
-                        <div class="display-error" id="display-error-email-or-phone"></div>
                         <input class="input-data" id="input-email-or-phone" type="text" name="email_or_phone" placeholder="Nhập email hoặc số điện thoại" value="<?= $email_or_phone ?>" autofocus><br>
+                        <div class="display-error" id="display-error-email-or-phone"></div>
                     </div>
 
                     <div class="input-container">
-                        <div class="display-error" id="display-error-passwd"></div>
                         <input class="input-data" id="input-passwd" type="password" name="passwd" placeholder="Nhập mật khẩu" value="<?= $passwd ?>"><br>
+                        <div class="display-error" id="display-error-passwd"></div>
                     </div>
 
                     <input class="btn-sign-in" type="submit" value="Đăng nhập">

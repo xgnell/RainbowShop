@@ -1,5 +1,11 @@
 <?php
 // error_reporting(0);
+require_once($_SERVER["DOCUMENT_ROOT"] . "/notification/display-error-page.php");
+if (basename($_SERVER['PHP_SELF']) == "db.php") {
+    display_error_page(404, "Không tìm thấy trang");
+    exit();
+}
+
 
 define("SERVER_NAME", "localhost");
 define("USERNAME", "root");
@@ -8,6 +14,8 @@ define("DB_NAME", "bigprojectone");
 
 // Sửa lỗi access denied phpMyAdmin nhưng ko xuất hiện ở web
 
+
+// Hàm trả về có return
 function sql_query(string $query_msg) {
     $connect = mysqli_connect(
         SERVER_NAME,
@@ -32,6 +40,7 @@ function sql_query(string $query_msg) {
     return $result;
 }
 
+// Hàm này không trả về gì cả
 function sql_cmd(string $query_msg) {
     $connect = mysqli_connect(
         SERVER_NAME,

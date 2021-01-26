@@ -4,10 +4,17 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
+    require_once($root_path . "/config/background.php");
     include_once($root_path . "/public/templates/item/item.php");
 
     $search = $_GET["search"] ?? "";
     $type_id = $_GET["type_id"] ?? 0;
+
+    $background = mysqli_fetch_array(sql_query("
+        select *
+        from backgrounds
+        where id = 5
+    "));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +49,7 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
-            min-width: 917px;
+            /* min-width: 917px; */
         }
 
         .notification {
@@ -55,11 +62,8 @@
         }
 
         .background {
-            background-image: url("/public/assets/backgrounds/bg1.png");
-            background-size: cover;
             border-radius: 5px;
-            height: 500px;
-            min-width: 917px;
+            height: 550px;
         }
 
         .item-menu-area {
@@ -150,9 +154,10 @@
 
         <!-- Display background -->
         <div class="panel">
-            <div class="background">
-            </div>
+        <!-- <div> -->
+            <?php include_once('/xampp/htdocs/bigprojectone/public/templates/ui/backgrounds/background.php')?>
         </div>
+        <!-- </div> -->
 
         <!-- Display items -->
         <div class="panel">
