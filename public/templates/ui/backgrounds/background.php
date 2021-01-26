@@ -2,6 +2,7 @@
     $backgrounds = sql_query("
         select *
         from backgrounds
+        where id = 1
     ");
 ?>
 
@@ -23,9 +24,9 @@
             <?php endforeach ?>
         </div>
     </div>
-
+<!-- 
     <button id="prev">Prev</button>
-    <button id="next">Next</button>
+    <button id="next">Next</button> -->
     <!-- <script src="background.js"></script> -->
 </body>
 

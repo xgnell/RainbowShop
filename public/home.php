@@ -13,7 +13,6 @@
     $background = mysqli_fetch_array(sql_query("
         select *
         from backgrounds
-        where id = 5
     "));
 ?>
 <!DOCTYPE html>
