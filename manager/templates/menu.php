@@ -29,13 +29,11 @@
         </li>
         <?php } ?>
         
+        <a href="/manager/customers/customers-manager.php">
         <li class="<?php if (MENU_OPTION == "customer") echo "current-option"; ?>">
-            <a href="#">Khách hàng</a>
-            <ul class="sub-menu" hidden>
-                <a href="/manager/customers/customers-manager.php"><li>Xem tất cả khách hàng</li></a>
-                <a href="/manager/customers/customer-insert.php"><li>Thêm khách hàng mới</li></a>
-            </ul>
+            Khách hàng
         </li>
+        </a>
         
         <li class="<?php if (MENU_OPTION == "item") echo "current-option"; ?>">
             <a href="#">Sản phẩm</a>
@@ -45,12 +43,11 @@
             </ul>
         </li>
         
+        <a href="/manager/orders/orders-manager.php">
         <li class="<?php if (MENU_OPTION == "order") echo "current-option"; ?>">
-            <a href="#">Hóa đơn</a>
-            <ul class="sub-menu" hidden>
-                <a href="/manager/orders/orders-manager.php"><li>Xem tất cả hóa đơn</li></a>
-            </ul>
+            Hóa đơn    
         </li>
+        </a>
         
         <li class="<?php if (MENU_OPTION == "faq") echo "current-option"; ?>">
             <a href="#">FAQ</a>

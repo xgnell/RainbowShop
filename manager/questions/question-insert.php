@@ -1,4 +1,7 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
+    define("MENU_OPTION", "qna");
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
@@ -17,6 +20,7 @@
     <title>Quản lý câu hỏi</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <script src="/manager/templates/js/common-validate.js"></script>
     <?php require_once($root_path . "/config/db.php"); ?>
     <style>
         #display-size {
@@ -38,14 +42,16 @@
         <?php include_once($root_path . "/manager/templates/menu.php"); ?>
         <!-- Main content -->
         <div class="page-content">
-            <form action="/manager/questions/question-insert-process.php">
+            <form onsubmit="return validate_simple(['question', 'answer']);"
+                action="/manager/questions/question-insert-process.php" method="POST">
+                
                 <table class="edit-table">
                     <tr>
                         <td class="table-title" rowspan="2">
                             Câu hỏi:
                         </td>
                         <td>
-                            <textarea name="question" cols="30" rows="5"></textarea>
+                            <textarea name="question" id="input-question"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +63,7 @@
                             Câu trả lời:
                         </td>
                         <td>
-                            <textarea name="answer" cols="30" rows="5"></textarea>
+                            <textarea name="answer" id="input-answer"></textarea>
                         </td>
                     </tr>
                     <tr>

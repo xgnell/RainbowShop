@@ -1,5 +1,8 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
     define("MENU_OPTION", "item");
+    $notification_title = "Quản lý sản phẩm";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
@@ -8,15 +11,89 @@
 
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/default.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
 
     // Get selected item
-    $item_id = $_GET["id"];
-    $item = sql_query("
+    $item_id = $_GET["id"] ?? null;
+    if ($item_id == null) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay về trang trước đó
+        );
+        exit();
+    }
+    if (!is_numeric($item_id)) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước đó
+        );
+        exit();
+    }
+    $id_db = sql_query("
         SELECT *
         FROM items
         WHERE id = $item_id;
     ");
-    $item = mysqli_fetch_array($item);
+    if (mysqli_num_rows($id_db) != 1) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay về trang trước đó
+        );
+        exit();
+    }
+
+
+    $item = null;
+    if (!empty($_POST)) {
+        // Lấy dữ liệu được gửi ngược lại
+        $item_sizes_data_from_db = sql_query("
+            SELECT *
+            FROM item_sizes;
+        ");
+        $item = [
+            'name' => $_POST["name"] ?? "",
+            'price' => $_POST["price"] ?? "",
+            'description' => htmlspecialchars($_POST["description"] ?? null) ?? "",
+            'id_type' => $_POST["type"] ?? "",
+            'id_color' => $_POST["color"] ?? ""
+        ];
+    
+        $item_sizes = [];
+        foreach ($item_sizes_data_from_db as $item_size_from_db) {
+            $get_size = $_POST["size-" . $item_size_from_db["id"]] ?? "0";
+            $item_sizes[$item_size_from_db["id"]] = $get_size;
+        }
+        $item['sizes'] = $item_sizes;
+
+        $item['picture'] = sql_query("
+            SELECT picture
+            FROM items
+            WHERE id = $item_id;
+        ");
+        $item['picture'] = mysqli_fetch_array($item['picture'])["picture"];
+    } else {
+        $item = sql_query("
+            SELECT *
+            FROM items
+            WHERE id = $item_id;
+        ");
+        $item = mysqli_fetch_array($item);
+    } 
+
+    // Xu ly van de ve anh
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +107,7 @@
     <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <script src="/manager/templates/js/common-validate.js"></script>
     <style>
         #btn-change-picture {
             margin-bottom: 5px;
@@ -52,7 +130,13 @@
         <!-- Main content -->
         <div class="page-content">
             <!-- Item update form -->
-            <form action="/manager/items/item-update-process.php" method="POST" enctype="multipart/form-data">
+            <form onsubmit="return validate_all_for_item({
+                    'name': [/^(?:[a-zA-Z0-9]+\ ?)+[a-zA-Z0-9]$/, 'Tên không hợp lệ (Không chấp nhận các kí tự đặc biệt)'],
+                    'price': null,
+                },
+                ['type', 'color'],
+                ['description']);"
+                action="/manager/items/item-update-process.php" method="POST" enctype="multipart/form-data">
                 <input type="number" name="id" value="<?= $item_id ?>" hidden><br>
                 <div style="width: 100%; display: flex;">
                     <table class="edit-table">
@@ -78,7 +162,6 @@
                                 <input id="btn-change-picture" type="button" onclick="change_picture()" value="Change picture">
                                 <div id="display-picture">
                                     <img width="300px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>">
-                                    <!-- <input type="file" name="picture"> -->
                                 </div>
                             </td>
                         </tr>
@@ -157,7 +240,6 @@
 
                                         echo json_encode($color_data);
                                     ?>;
-                                    console.log(color_data);
                                 </script>
                                 <?php
                                     $item_color_code = sql_query("
@@ -210,12 +292,23 @@
                             FROM item_sizes;
                         ");
 
-                        // Get all item detail data
-                        $item_details = sql_query("
-                            SELECT *
-                            FROM item_details
-                            WHERE id_item = {$item["id"]};
-                        ");
+
+                        $item_details = [];
+                        if (empty($item['sizes'])) {
+                            // Get all item detail data
+                            $item_details = sql_query("
+                                SELECT *
+                                FROM item_details
+                                WHERE id_item = {$item["id"]};
+                            ");
+                        } else {
+                            foreach ($item['sizes'] as $size_id => $amount) {
+                                array_push($item_details, [
+                                    'id_size' => $size_id,
+                                    'amount' => $amount
+                                ]);
+                            }
+                        }
                     ?>
                     <table class="size-table">
                         <!-- Phần title -->
@@ -241,12 +334,17 @@
                                             foreach ($item_details as $item_data) {
                                                 if ($item_data["id_size"] == $item_size["id"]) {
                                                     $found = true;
-                                                    echo "<input name=\"size-{$item_size["id"]}\" type=\"number\" value=\"{$item_data["amount"]}\">";
+                                                    ?>
+                                                        <input id="input-size-<?= $item_size['size'] ?>" name="size-<?= $item_size["id"] ?>" type="number" value="<?= $item_data["amount"] ?>">
+                                                    <?php
                                                     break;
                                                 }
                                             }
                                             if (!$found) {
-                                                echo "<input name=\"size-{$item_size["id"]}\" type=\"number\" value=\"0\">";
+                                                ?>
+                                                <input id="input-size-<?= $item_size["size"] ?>" name="size-<?= $item_size["id"] ?>" type="number" value="0">
+
+                                                <?php
                                             }
                                         ?>
                                     </td>
@@ -274,7 +372,7 @@
                         is_display_old_picture = false;
 
                         btn_change_picture.value = 'Use previous picture';
-                        display_picture.innerHTML = '<input type="file" name="picture">';
+                        display_picture.innerHTML = '<input type="file" id="input-picture" name="picture">';
                     } else {
                         is_display_old_picture = true;
                         
@@ -298,6 +396,49 @@
                             break;
                         }
                     }
+                }
+
+                function is_valid_size() {
+                    let is_passed = true;
+                    <?php foreach ($item_sizes as $item_size): ?>
+                        {
+                            let inside_passed = true;
+                            let input = document.getElementById(`input-size-<?= $item_size["size"] ?>`);
+                            let error = document.getElementById(`display-error-size-<?= $item_size["size"] ?>`);
+                            
+                            if (!is_not_blank(input, error)) {
+                                if (inside_passed) inside_passed = false;
+                            }
+
+                            // Kiểm tra số lượng có phải số không
+                            if (isNaN(input.value)) {
+                                display_error(input, error, "Size phải là số");
+                                if (inside_passed) inside_passed = false;
+                            }
+
+                            // Kiểm tra số lượng ko âm
+                            if (parseFloat(input.value) < 0) {
+                                display_error(input, error, "Size không thể là số âm");
+                                if (inside_passed) inside_passed = false;
+                            }
+
+                            if (inside_passed) {
+                                display_error(input, error, '');
+                            } else {
+                                if (is_passed) is_passed = false;
+                            }
+                        }
+                    <?php endforeach ?>
+                    return is_passed;
+                }
+                function validate_all_for_item(regex_list, select_list, textarea_list = null) {
+                    let is_passed = validate_all(regex_list, select_list, textarea_list);
+
+                    if (!is_valid_size()) {
+                        if (is_passed) is_passed = false;
+                    }
+
+                    return is_passed;
                 }
             </script>
         </div>

@@ -89,13 +89,47 @@ Các tính năng nổi bật trên trang
 	- Thống kê (Có thể chỉ cần thống kê để trang chủ admin không trống + Hiển thị sản phẩm nổi bật)
 
 -----------------------------
-Đang sửa js confirm ở phần admin
-Đang sửa validate phần admin, còn admin-update
+Validate item (image)
+Tao + Validate phan contact
+Tim kiem can ban
+Thong ke
+- [X] Sua, khong cho xoa admin (Khoa admin => Khong cho dang nhap)
+(Validate background
 
-? Khi thêm admin mới, cho mật khẩu là mặc định hay là nhập mật khẩu mới
-? Khi xóa admin thì phần hóa đơn được duyệt bởi admin sẽ ntn (Kể cả khi xóa kiểu cascade thì cũng chỉ lưu lại được id của admin chứ ko lưu được các thông tin khác)
-	=> Nếu tạo ra bảng log, thì có thể lưu trữ một vài thông tin của phần admin như (id, tên, email, ... tất nhiên có thể gây dư thừa dữ liệu)
+-- Khach hang
+Kiem tra truoc khi dang ki, dang nhap co la admin hay ko
++ Validate from dang nhap (Validate) -> Khoa
++ Gio hang + (Hoa don + Phan trang)
++ Validate Search
 
+Prevent access templates pages
+
+Giao dien trang thong bao
+
++ Fix size trang sp chi tiet
+
+Hien thi sp noi bat
+
+QnA -> XSS
+
+
+Đang sửa validate + Thêm người duyệt/hủy ở phía hóa đơn
+Đang thêm trang sửa thông tin liên hệ
+
+
+- [X] Set min-width cho phan san pham
+- [X] Validate phần xóa sản phẩm
+- [X] Confim xóa sản phẩm
+- [ ] Xem lại phần sửa ảnh của sản phẩm update
+- [O] Thêm htmpspecialchars vào bất cứ chỗ nào có dữ liệu hiển thị ra trên màn hình
+- [X] Chặn Document Expired trên các trang tự động điền form được gửi về từ POST
+
+- [X] Validate form sign in chặt chẽ hơn
+- [X] Thêm chức năng khóa admin
+- [ ] Kiểm tra sự liên kết giữa phần hóa đơn phía khách hàng và admin
+- [ ] Sửa lại giao diện các trang liên hệ sau
+- [X] Sửa lại menu admin với những phần chỉ có 1 option ở submenu
+- [X] Thêm chức năng chặn khách hàng
 - [X] Sửa from_option thành from
 - [X] Xóa phần select city
 - [X] Thêm setting cho phần trang thông báo (tên nút Quay lại)

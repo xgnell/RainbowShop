@@ -22,7 +22,7 @@ require_once($root_path . "/manager/templates/notification-page.php");
 $admin = null;
 if (!empty($_POST)) {
     $admin = [
-        'name' => $_POST["name"] ?? null,
+        'name' => htmlspecialchars($_POST["name"] ?? null),
         'gender' => $_POST["gender"] ?? null,
         
         'birth_year' => $_POST["birth_year"] ?? null,
@@ -258,7 +258,8 @@ sql_cmd("
         phone,
         email,
         passwd,
-        id_rank
+        id_rank,
+        id_state
     )
     VALUES (
         '{$admin["name"]}',
@@ -267,7 +268,8 @@ sql_cmd("
         '{$admin["phone"]}',
         '{$admin["email"]}',
         '$admin_passwd',
-        2
+        2,
+        1
     );
 ");
 display_notification_page(

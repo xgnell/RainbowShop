@@ -1,11 +1,41 @@
 <?php
     define("MENU_OPTION", "order");
+    $notification_title = "Quản lý hóa đơn";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
     require_once($root_path . "/manager/templates/check-admin-signed-in.php");
     require_once($root_path . "/config/db.php");
     check_admin_signed_in(2);
+
+    require_once($root_path . "/config/default.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
+
+
+    $page = $_GET['page'] ?? 1;
+    $item_per_page = DEFAULT_ITEM_PER_PAGE;
+
+    // Kiểm tra tính hợp lệ của page
+    if (!is_numeric($page)) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước đó
+        );
+        exit();
+    }
+
+    // Lấy tổng số sản phẩm
+    $count = sql_query("
+        SELECT COUNT(id) as number_of_items
+        FROM bills;
+    ");
+    $count = mysqli_fetch_array($count)["number_of_items"];
+    // Tính số trang
+    $number_of_page = ceil($count / $item_per_page);
 
 
     // Get all orders
@@ -29,9 +59,9 @@
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <style>
         :root {
-            --min-width--display-bill-id: 130px;
-            --min-width--display-customer-name: 130px;
-            --min-width--display-receiver: 130px;
+            --min-width--display-bill-id: 80px;
+            --min-width--display-customer-name: 100px;
+            --min-width--display-receiver: 100px;
             --min-width--display-address: 200px;
             --min-width--display-phone: 130px;
 
@@ -39,6 +69,8 @@
             --min-width--display-state: 100px;
 
             --min-width--display-purchase-time: 130px;
+            --min-width--display-admin: 150px;
+
             --min-width--display-detail-btn: 100px;
         }
         #display-state a {
@@ -71,6 +103,9 @@
                     <td style="min-width: var(--min-width--display-phone);">Điện thoại</td>
                     <td colspan="2">Trạng thái</td>
                     <td style="min-width: var(--min-width--display-purchase-time);">Thời điểm tạo</td>
+                    <td style="min-width: var(--min-width--display-admin);">Admin thực hiện</td>
+                    <td style="min-width: var(--min-width--display-admin);">Thời điểm thực hiện</td>
+
                     <td style="min-width: var(--min-width--display-detail-btn);">Chi tiết</td>
                 </tr>
                 <?php
@@ -81,6 +116,16 @@
                             WHERE id = {$bill["id_customer"]};
                         ");
                         $customer_name = mysqli_fetch_array($customer_name)["name"];
+
+                        $admin_name = "";
+                        if ($bill["id_admin"] != null) {
+                            $admin_name = sql_query("
+                                SELECT name
+                                FROM admins
+                                WHERE id = {$bill["id_admin"]};
+                            ");
+                            $admin_name = mysqli_fetch_array($admin_name)["name"];
+                        }
 
                         $bill_state = sql_query("
                             SELECT state, color
@@ -150,6 +195,15 @@
                             </td>
 
                             <td><?= $bill["purchase_time"] ?></td>
+
+                            <td>
+                                <?= $admin_name ?>
+                            </td>
+
+                            <td>
+                                <?= $bill['updated_at'] ?>
+                            </td>
+
                             <td>
                                 <!-- View detail orders -->
                                 <a href="/manager/orders/order-details-manager.php?id=<?= $bill["id"] ?>">
@@ -161,6 +215,18 @@
                         <?php
                     }
                 ?>
+
+                <tr class="table-bar-footer" style="bottom: 0;">
+                    <td colspan="12">
+                        <?php
+                            for ($i = 1; $i <= $number_of_page; $i++ ) {
+                                ?>
+                                    <a class="page-number <?php if ($page == $i) echo "current-page"; ?>" href="/manager/orders/orders-manager.php?page=<?= $i ?>"><?= $i ?></a>
+                                <?php
+                            }
+                            ?>
+                    </td>
+                </tr>
             </table>
         </div>
 

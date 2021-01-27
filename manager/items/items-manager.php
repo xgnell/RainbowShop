@@ -1,5 +1,6 @@
 <?php
     define("MENU_OPTION", "item");
+    $notification_title = "Quản lý sản phẩm";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
@@ -8,6 +9,34 @@
 
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/default.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
+
+
+    $page = $_GET['page'] ?? 1;
+    $item_per_page = DEFAULT_ITEM_PER_PAGE;
+
+    // Kiểm tra tính hợp lệ của page
+    if (!is_numeric($page)) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước đó
+        );
+        exit();
+    }
+
+    // Lấy tổng số sản phẩm
+    $count = sql_query("
+        SELECT COUNT(id) as number_of_items
+        FROM items;
+    ");
+    $count = mysqli_fetch_array($count)["number_of_items"];
+    // Tính số trang
+    $number_of_page = ceil($count / $item_per_page);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +50,7 @@
     <title>Quản lý sản phẩm</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <script src="/manager/templates/js/confirm-action.js"></script>
     <style>
         #display-size {
             width: 100%;
@@ -46,15 +76,19 @@
         <div class="page-content">
             <?php
                 // Get all items
+                $offset = $item_per_page * ($page - 1);
                 $items = sql_query("
                     SELECT *
-                    FROM items;
+                    FROM items
+                    LIMIT $item_per_page
+                    OFFSET $offset;
                 ");
+                
             ?>
             <div class="scrollable">
             <table id="content-table">
                 <tr class="table-bar-header" style="top: 0;">
-                    <td>Tên</td>
+                    <td style="min-width: 130px;">Tên</td>
                     <td>Ảnh</td>
                     <td>Mô tả</td>
                     <td>Giá (VNĐ)</td>
@@ -160,7 +194,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn-action" href="/manager/items/item-delete-process.php?id=<?= $item['id'] ?>">
+                            <a class="btn-action" onclick="confirm_action('Bạn có chắc chắn muốn xóa sản phẩm này ?', '/manager/items/item-delete-process.php?id=<?= $item['id'] ?>')">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                             </a>
                         </td>
@@ -169,9 +203,13 @@
 
                 <tr class="table-bar-footer" style="bottom: 0;">
                     <td colspan="9">
-                        <a href="">1</a>
-                        <a href="">2</a>
-                        <a href="">3</a>
+                        <?php
+                            for ($i = 1; $i <= $number_of_page; $i++ ) {
+                                ?>
+                                    <a class="page-number <?php if ($page == $i) echo "current-page"; ?>" href="/manager/items/items-manager.php?page=<?= $i ?>"><?= $i ?></a>
+                                <?php
+                            }
+                        ?>
                     </td>
                 </tr>
             </table>

@@ -55,15 +55,14 @@ $regex = [
 ];
 /* Kiểm tra tính hợp lệ */
 // Kiểm tra id
-if (!is_numeric($admin["id"])) {
+if ($admin['id'] == null || !is_numeric($admin["id"])) {
     display_notification_page(
         false,
         $notification_title,
-        "Mã admin không hợp lệ",
-        "",
-        // "Có phải bạn đã truy cập trái phép để sửa mã của admin ?",
-        "Xem danh sách admin",
-        "/manager/admins/admins-manager.php"
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
     );
     exit();
 }
@@ -76,14 +75,14 @@ if (mysqli_num_rows($admin_id) != 1) {
     display_notification_page(
         false,
         $notification_title,
-        "Admin không tồn tại",
-        "",
-        // "Có phải bạn đã truy cập trái phép để sửa mã của admin ?",
-        "Xem danh sách admin",
-        "/manager/admins/admins-manager.php"
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
     );
     exit();
 }
+$return_path .= "?id={$admin['id']}";
 
 // Kiểm tra tên
 function remove_ascent ($name) {

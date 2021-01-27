@@ -97,22 +97,6 @@ function is_valid_password(check_power) {
 
     // Kiểm tra độ mạnh mật khẩu
     if (check_power) {
-        // if (input_data.length < 8) {
-        //     display_error(error, 'Mật khẩu không đủ mạnh (Tối thiểu 8 kí tự)');
-        //     return false;
-        // }
-
-        // if (
-        //     (/[a-z]/g).test(input_data) &&
-        //     (/[A-Z]/g).test(input_data) &&
-        //     (/[0-9]/g).test(input_data)
-        // ) {
-        //     // Mật khẩu đủ mạnh
-        // }
-        // else {
-        //     display_error(error, 'Mật khẩu không đủ mạnh (Phải chứa cả số và chữ)');
-        //     return false;
-        // }
         if (!(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/).test(input_data)) {
             display_error(input, error, 'Mật khẩu không đủ mạnh (Phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép)');
             return false;
@@ -168,9 +152,50 @@ function is_valid_birth() {
     return true;
 }
 
+function is_valid_price() {
+    let input = document.getElementById(`input-price`);
+    let error = document.getElementById(`display-error-price`);
+
+    // Kiểm tra trống
+    if (!is_not_blank(input, error)) return false;
+
+    // Kiểm tra giá có phải số không
+    if (isNaN(input.value)) {
+        display_error(input, error, "Giá phải là số (Không chấp nhận chữ cái hoặc các kí tự đặc biệt)");
+        return false;
+    }
+
+    // Kiểm tra không phải số âm
+    if (parseFloat(input.value) < 0) {
+        display_error(input, error, "Giá không thể là số âm");
+        return false;
+    }
+
+    display_error(input, error, '');
+    return true;
+}
+
+
+function validate_simple(input_list) {
+    let is_passed = true;
+    for (const type of input_list) {
+        let input = document.getElementById(`input-${type}`);
+        let error = document.getElementById(`display-error-${type}`);
+
+        if (!is_not_blank(input, error)) {
+            if (is_passed) is_passed = false;
+        } else {
+            display_error(input, error, '');
+        }
+
+    }
+
+    return is_passed;
+}
+
 
 // Hàm validate chính
-function validate_all(regex_list, select_list) {
+function validate_all(regex_list, select_list, textarea_list = null) {
     let is_passed = true;
 
     if ('name' in regex_list) {
@@ -188,8 +213,14 @@ function validate_all(regex_list, select_list) {
         }
     }
 
+    if ('price' in regex_list) {
+        if (!is_valid_price()) {
+            if (is_passed == true) is_passed = false;
+        }
+    }
+
     for (const [name, data] of Object.entries(regex_list)) {
-        if (name != 'name' && name != 'passwd') {
+        if (name != 'name' && name != 'passwd' && name != 'price') {
             const [regex, message] = data;
             if (!is_valid_input(name, regex, message)) {
                 if (is_passed == true) is_passed = false;
@@ -208,6 +239,12 @@ function validate_all(regex_list, select_list) {
             if (!is_valid_select(name)) {
                 if (is_passed == true) is_passed = false;
             }
+        }
+    }
+
+    if (textarea_list != null) {
+        if (!validate_simple(textarea_list)) {
+            if (is_passed == true) is_passed = false;
         }
     }
 
