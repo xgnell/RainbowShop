@@ -23,7 +23,17 @@
         );
         exit();
     }
-
+    if (!is_numeric($admin_id)) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước đó
+        );
+        exit();
+    }
     $id_db = sql_query("
         SELECT *
         FROM admins

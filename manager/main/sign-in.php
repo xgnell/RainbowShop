@@ -1,12 +1,25 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
     session_start();
     if (isset($_SESSION["user"]["admin"])) {
         header("location:/manager/main/main-manager.php");
     }
 
     // Lấy dữ liệu từ lần nhập form trước (nếu có)
-    $email_or_phone = $_POST["email_or_phone"] ?? "";
-    $passwd = $_POST["passwd"] ?? "";
+    $email_or_phone = null;
+    if (isset($_POST["email_or_phone"])) {
+        $email_or_phone = htmlspecialchars($_POST["email_or_phone"]);
+    } else {
+        $email_or_phone = "";
+    }
+
+    $passwd = null;
+    if (isset($_POST["passwd"])) {
+        $passwd = htmlspecialchars($_POST["passw$passwd"]);
+    } else {
+        $passwd = "";
+    }
 ?>
 
 <!DOCTYPE html>

@@ -15,7 +15,6 @@ if (basename($_SERVER['PHP_SELF']) == "check-admin-signed-in.php") {
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-check_admin_signed_in(2);
 
 function check_admin_signed_in(int $level) {
     if (!is_admin_signed_in() || !is_admin_rank_valid($level)) {

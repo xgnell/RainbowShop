@@ -37,18 +37,18 @@ check_exact_admin_signed_in($admin_id);
 $admin = null;
 if (!empty($_POST)) {
     $admin = [
-        'id' => $admin_id,
-        'name' => $_POST["name"] ?? null,
-        'gender' => $_POST["gender"] ?? null,
+        'id' => htmlspecialchars($admin_id),
+        'name' => htmlspecialchars($_POST["name"] ?? null),
+        'gender' => htmlspecialchars($_POST["gender"] ?? null),
         
-        'birth_year' => $_POST["birth_year"] ?? null,
-        'birth_month' => $_POST["birth_month"] ?? null,
-        'birth_day' => $_POST["birth_day"] ?? null,
+        'birth_year' => htmlspecialchars($_POST["birth_year"] ?? null),
+        'birth_month' => htmlspecialchars($_POST["birth_month"] ?? null),
+        'birth_day' => htmlspecialchars($_POST["birth_day"] ?? null),
     
-        'phone' => $_POST["phone"] ?? null,
-        'email' => $_POST["email"] ?? null
+        'phone' => htmlspecialchars($_POST["phone"] ?? null),
+        'email' => htmlspecialchars($_POST["email"] ?? null)
     ];
-    $admin_passwd = $_POST["passwd"] ?? null;
+    $admin_passwd = htmlspecialchars($_POST["passwd"] ?? null);
 } else {
     display_notification_page(
         false,
@@ -74,11 +74,10 @@ if (!is_numeric($admin["id"])) {
     display_notification_page(
         false,
         $notification_title,
-        "Mã admin không hợp lệ",
-        "",
-        // "Có phải bạn đã truy cập trái phép để sửa mã của admin ?",
-        "Xem danh sách admin",
-        "/manager/admins/admins-manager.php"
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
     );
     exit();
 }
@@ -91,14 +90,15 @@ if (mysqli_num_rows($admin_id) != 1) {
     display_notification_page(
         false,
         $notification_title,
-        "Admin không tồn tại",
-        "",
-        // "Có phải bạn đã truy cập trái phép để sửa mã của admin ?",
-        "Xem danh sách admin",
-        "/manager/admins/admins-manager.php"
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
     );
     exit();
 }
+$return_path .= "?id={$admin['id']}";
+
 
 // Kiểm tra tên
 function remove_ascent ($name) {

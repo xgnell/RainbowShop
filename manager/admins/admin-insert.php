@@ -1,4 +1,6 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
     define("MENU_OPTION", "admin");
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
@@ -10,7 +12,7 @@
 
     // Lấy dữ liệu được gửi trả lại nếu có
     $admin = [
-        'name' => $_POST["name"] ?? "",
+        'name' => htmlspecialchars($_POST["name"] ?? null) ?? "",
         'gender' => $_POST["gender"] ?? "",
         
         'birth_year' => $_POST["birth_year"] ?? "",

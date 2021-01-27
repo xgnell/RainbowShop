@@ -1,6 +1,7 @@
 <?php
-$notification_title = "Quản lý câu hỏi";
-$return_path = "/manager/questions/questions-manager.php";
+define("MENU_OPTION", "customer");
+$notification_title = "Quản lý khách hàng";
+$return_path = "/manager/customers/customers-manager.php";
 $root_path = $_SERVER["DOCUMENT_ROOT"];
 
 // Check signed in
@@ -10,9 +11,9 @@ check_admin_signed_in(2);
 require_once($root_path . "/config/db.php");
 require_once($root_path . "/manager/templates/notification-page.php");
 
-
-$qna_id = $_GET["id"] ?? null;
-if ($qna_id == null) {
+// Lấy id của khách hàng được gửi lên
+$customer_id = $_GET["id"] ?? null;
+if ($customer_id == null) {
     display_notification_page(
         false,
         $notification_title,
@@ -25,7 +26,7 @@ if ($qna_id == null) {
 }
 
 /* Kiểm tra tính hợp lệ của id */
-if (!is_numeric($qna_id)) {
+if (!is_numeric($customer_id)) {
     display_notification_page(
         false,
         $notification_title,
@@ -36,12 +37,12 @@ if (!is_numeric($qna_id)) {
     );
     exit();
 }
-$qna_id_db = sql_query("
+$customer_id_db = sql_query("
     SELECT *
-    FROM qna
-    WHERE id = {$qna_id};
+    FROM customers
+    WHERE id = {$customer_id};
 ");
-if (mysqli_num_rows($qna_id_db) != 1) {
+if (mysqli_num_rows($customer_id_db) != 1) {
     display_notification_page(
         false,
         $notification_title,
@@ -55,15 +56,26 @@ if (mysqli_num_rows($qna_id_db) != 1) {
 
 
 
-sql_cmd("
-    DELETE FROM qna
-    WHERE id = $qna_id;
+// Chuyển đổi trạng thái của khách hàng
+$customer_state_id = sql_query("
+    SELECT id_state
+    FROM customers
+    WHERE id = $customer_id;
 ");
-display_notification_page(
-    false,
-    $notification_title,
-    "Xóa thành công",
-    "",
-    "Quay lại",
-    "/manager/questions/questions-manager.php"
-);
+$customer_state_id = mysqli_fetch_array($customer_state_id)["id_state"];
+
+if ($customer_state_id == 1) {
+    $customer_state_id = 2;
+} else {
+    $customer_state_id = 1;
+}
+
+// Update trạng thái của khách hàng
+sql_cmd("
+    UPDATE customers
+    SET
+        id_state = $customer_state_id
+    WHERE
+        id = $customer_id;
+");
+header("location:$return_path");

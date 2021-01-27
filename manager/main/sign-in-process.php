@@ -3,9 +3,21 @@ $root_path = $_SERVER["DOCUMENT_ROOT"];
 require_once($root_path . "/config/db.php");
 
 // Lấy các thông tin được gửi lên từ form
-$admin_email_or_phone = $_POST["email_or_phone"];
-$admin_passwd = $_POST["passwd"];
+require_once($root_path . "/notification/display-error-page.php");
+
+if (empty($_POST)) {
+    display_error_page(404, "Không tìm thấy trang");
+    exit();
+}
+
+$admin_email_or_phone = $_POST["email_or_phone"] ?? null;
+$admin_passwd = $_POST["passwd"] ?? null;
+
 $admin_passwd = preg_replace('/(\'|\;|\ |\"|\#)/', '', $admin_passwd);
+
+// Mã hóa dữ liệu
+$admin_email_or_phone = htmlspecialchars($admin_email_or_phone);
+$admin_passwd = htmlspecialchars($admin_passwd);
 
 
 // Validate các thông tin gửi lên
@@ -28,7 +40,16 @@ if (is_numeric($admin_email_or_phone)) {
         ");
         if (mysqli_num_rows($result) == 1) {
             // Tài khoản có tồn tại
-            $is_sign_in_success = true;
+            $result = mysqli_fetch_array($result);
+
+            // Kiểm tra tài khoản có bị khóa không
+            if ($result["id_state"] == 2) {
+                $is_sign_in_success = false;
+                display_admin_lock();
+                exit();
+            } else {
+                $is_sign_in_success = true;
+            }
         } else {
             // Tài khoản không tồn tại
             $is_sign_in_success = false;
@@ -57,7 +78,16 @@ if (is_numeric($admin_email_or_phone)) {
         ");
         if (mysqli_num_rows($result) == 1) {
             // Tài khoản có tồn tại
-            $is_sign_in_success = true;
+            $result = mysqli_fetch_array($result);
+
+            // Kiểm tra tài khoản có bị khóa không
+            if ($result["id_state"] == 2) {
+                $is_sign_in_success = false;
+                display_admin_lock();
+                exit();
+            } else {
+                $is_sign_in_success = true;
+            }
         } else {
             // Tài khoản không tồn tại
             $is_sign_in_success = false;
@@ -71,9 +101,10 @@ if (is_numeric($admin_email_or_phone)) {
     }
 }
 
+
 // Đăng nhập thành công
 if ($sign_in_success) {
-    $admin = mysqli_fetch_array($result);
+    $admin = $result;
 
     // Lấy thứ hạng (rank) của admin
     $admin_rank = sql_query("
@@ -131,6 +162,33 @@ function display_admin_sign_in_failure($message, $admin_email_or_phone) {
                     <input type="text" name="email_or_phone" value="<?= $admin_email_or_phone ?>" hidden>
                     <input id="btn-try-again" type="submit" value="Thử lại">
                 </form>
+            </div>
+        </div>
+    </body>
+    </html>
+    <?php
+}
+
+function display_admin_lock() {
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+
+        <title>Đăng nhập thất bại</title>
+        <link rel="stylesheet" href="/manager/templates/css/all.css">
+        <link rel="stylesheet" href="/manager/main/css/sign-in-process-style.css">
+    </head>
+    <body>
+        <div id="admin-sign-in-process">
+            <div class="container">
+                <h2 style="color: red;">Tài khoản của bạn đã bị khóa</h2>
+                <p>Vui lòng liên hệ lại để biết thêm chi tiết</p>
             </div>
         </div>
     </body>

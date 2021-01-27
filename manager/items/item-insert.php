@@ -1,4 +1,6 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
     define("MENU_OPTION", "item");
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
@@ -7,6 +9,28 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
+
+    // Lấy dữ liệu được gửi ngược lại    
+    $item_sizes_data_from_db = sql_query("
+        SELECT *
+        FROM item_sizes;
+    ");
+    $item = [
+        'name' => $_POST["name"] ?? "",
+        'price' => $_POST["price"] ?? "",
+        'description' => $_POST["description"] ?? "",
+        'type_id' => $_POST["type"] ?? "",
+        'color_id' => $_POST["color"] ?? ""
+    ];
+
+    $item_sizes = [];
+    foreach ($item_sizes_data_from_db as $item_size_from_db) {
+        $get_size = $_POST["size-" . $item_size_from_db["id"]] ?? "0";
+        $item_sizes[$item_size_from_db["id"]] = $get_size;
+    }
+    $item['sizes'] = $item_sizes;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +43,7 @@
     
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <script src="/manager/templates/js/common-validate.js"></script>
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -30,7 +55,13 @@
         <!-- Main content -->
         <div class="page-content">
             <!-- Item insertion form -->
-            <form action="/manager/items/item-insert-process.php" method="POST" enctype="multipart/form-data">
+            <form onsubmit="return validate_all_for_item({
+                    'name': [/^(?:[a-zA-Z0-9]+\ ?)+[a-zA-Z0-9]$/, 'Tên không hợp lệ (Không chấp nhận các kí tự đặc biệt)'],
+                    'price': null,
+                },
+                ['type', 'color'],
+                ['description', 'picture']);"
+                action="/manager/items/item-insert-process.php" method="POST" enctype="multipart/form-data">
                 <div style="width: 100%; display: flex;">
                 <table class="edit-table">
                     <!-- Tên -->
@@ -39,7 +70,7 @@
                             Tên
                         </td>
                         <td>
-                            <input id="input-name" type="text" name="name">
+                            <input id="input-name" type="text" name="name" value="<?= $item['name'] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +83,7 @@
                             Ảnh
                         </td>
                         <td>
-                            <input id="input-picture" type="file" name="picture">
+                            <input id="input-picture" type="file" accept="image/*" name="picture">
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +96,7 @@
                             Giá
                         </td>
                         <td>
-                            <input id="input-price" type="number" name="price">
+                            <input id="input-price" type="text" name="price" value="<?= $item['price'] ?>">
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +109,7 @@
                             Mô tả
                         </td>
                         <td>
-                            <textarea id="input-description" name="description" cols="50" rows="5"></textarea>
+                            <textarea id="input-description" name="description"><?= $item['description'] ?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -92,6 +123,7 @@
                         </td>
                         <td>
                             <select name="type" id="select-type">
+                                <option value="" disabled selected hidden>Chọn loại áo</option>
                                 <?php
                                     $item_types = sql_query("
                                         SELECT *
@@ -99,7 +131,7 @@
                                     ");
                                     foreach ($item_types as $item_type) {
                                         ?>
-                                        <option value="<?= $item_type['id'] ?>"><?= $item_type['type'] ?></option>;
+                                        <option value="<?= $item_type['id'] ?>" <?php if ($item['type_id'] == $item_type['id']) echo "selected"; ?> ><?= $item_type['type'] ?></option>;
                                         <?php
                                     }
                                 ?>
@@ -130,15 +162,15 @@
 
                                     echo json_encode($color_data);
                                 ?>;
-                                console.log(color_data);
                             </script>
                             <div style="display: flex;">
-                            <div id="display-color"></div>
+                            <div id="display-color" style="border: 1px black solid;"></div>
                             <select name="color" id="select-color" style="width: 250px;" onchange="change_color()">
+                                <option value="" disabled selected hidden>Chọn màu</option>
                                 <?php
                                     foreach ($item_colors as $item_color) {
                                         ?>
-                                        <option value="<?= $item_color['id'] ?>"><?= $item_color['color'] ?></option>
+                                        <option value="<?= $item_color['id'] ?>" <?php if ($item['color_id'] == $item_color['id']) echo "selected"; ?> ><?= $item_color['color'] ?></option>
                                         <?php
                                     }
                                 ?>
@@ -190,7 +222,7 @@
                                     <?= $item_size["size"] ?>
                                 </td>
                                 <td>
-                                    <input id="input-size-<?= $item_size["size"] ?>" name="size-<?= $item_size["id"] ?>" type="number">
+                                    <input id="input-size-<?= $item_size["size"] ?>" name="size-<?= $item_size["id"] ?>" type="text" value="<?= $item['sizes'][$item_size["id"]] ?>">
                                 </td>
                             </tr>
                             <tr>
@@ -223,6 +255,49 @@
             }
         }
         change_color();
+
+        function is_valid_size() {
+            let is_passed = true;
+            <?php foreach ($item_sizes as $item_size): ?>
+                {
+                    let inside_passed = true;
+                    let input = document.getElementById(`input-size-<?= $item_size["size"] ?>`);
+                    let error = document.getElementById(`display-error-size-<?= $item_size["size"] ?>`);
+                    
+                    if (!is_not_blank(input, error)) {
+                        if (inside_passed) inside_passed = false;
+                    }
+
+                    // Kiểm tra số lượng có phải số không
+                    if (isNaN(input.value)) {
+                        display_error(input, error, "Size phải là số");
+                        if (inside_passed) inside_passed = false;
+                    }
+
+                    // Kiểm tra số lượng ko âm
+                    if (parseFloat(input.value) < 0) {
+                        display_error(input, error, "Size không thể là số âm");
+                        if (inside_passed) inside_passed = false;
+                    }
+
+                    if (inside_passed) {
+                        display_error(input, error, '');
+                    } else {
+                        if (is_passed) is_passed = false;
+                    }
+                }
+            <?php endforeach ?>
+            return is_passed;
+        }
+        function validate_all_for_item(regex_list, select_list, textarea_list = null) {
+            let is_passed = validate_all(regex_list, select_list, textarea_list);
+
+            if (!is_valid_size()) {
+                if (is_passed) is_passed = false;
+            }
+
+            return is_passed;
+        }
     </script>
 </body>
 </html>

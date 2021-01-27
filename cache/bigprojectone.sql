@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 25, 2021 at 04:17 AM
+-- Generation Time: Jan 27, 2021 at 07:17 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -35,19 +35,20 @@ CREATE TABLE `admins` (
   `phone` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `passwd` varchar(100) NOT NULL,
-  `id_rank` int(11) NOT NULL
+  `id_rank` int(11) NOT NULL,
+  `id_state` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `id_rank`) VALUES
-(8, 'Đặng Hoàng Nam', 2, '2020-12-16', '0983221316', 'hoangnam@gmail.com', '123', 1),
-(17, 'Hương', 1, '1997-04-01', '0912556327', 'huong123@gmail.com', 'abcd1234', 2),
-(18, 'Tuấn', 2, '1993-05-31', '0976311269', 'tuankhi@gmail.com', 'abcd1234', 2),
-(19, 'Đạt', 2, '2000-10-01', '0892176312', 'Dat09@gmail.com', 'abcd1234', 2),
-(20, 'Trần Thùy Linh', 1, '2016-05-10', '0313236168', 'linhlonglanh@bkacad.edu.vn', 'abcd1234', 2);
+INSERT INTO `admins` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `id_rank`, `id_state`) VALUES
+(8, 'Đặng Hoàng Nam', 2, '2020-12-16', '0983221316', 'hoangnam@gmail.com', 'abcd1234', 1, 1),
+(17, 'Hương', 1, '1997-04-01', '0912556327', 'huong123@gmail.com', 'abcd1234', 2, 1),
+(18, 'Tuấn', 2, '1993-05-31', '0976311269', 'tuankhi@gmail.com', 'abcd1234', 2, 1),
+(19, 'Đạt', 2, '2000-10-01', '0892176312', 'Dat09@gmail.com', 'abcd1234', 2, 1),
+(20, 'Trần Thùy Linh', 1, '2016-05-10', '0313236168', 'linhlonglanh@bkacad.edu.vn', 'abcd1234', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -68,6 +69,26 @@ CREATE TABLE `admin_ranks` (
 INSERT INTO `admin_ranks` (`id`, `name`, `level`) VALUES
 (1, 'Super admin', 1),
 (2, 'Admin', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_states`
+--
+
+CREATE TABLE `admin_states` (
+  `id` int(11) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `color` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_states`
+--
+
+INSERT INTO `admin_states` (`id`, `state`, `color`) VALUES
+(1, 'Bình thường', 'green'),
+(2, 'Bị khóa', 'red');
 
 -- --------------------------------------------------------
 
@@ -96,40 +117,20 @@ CREATE TABLE `bills` (
   `id_state` int(11) NOT NULL,
   `purchase_time` datetime NOT NULL,
   `id_admin` int(11) DEFAULT NULL,
-  `id_action` int(11) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`, `id_admin`, `id_action`, `updated_at`) VALUES
-(13, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 04:03:55', 8, 1, '2021-01-13 02:54:43'),
-(14, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 08:23:46', 8, 1, '2021-01-27 03:17:22'),
-(15, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 3, '2021-01-17 17:50:17', 17, 2, '2021-01-28 03:17:11'),
-(16, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-19 05:45:22', 18, 1, '2021-01-28 03:16:01'),
-(17, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 3, '2021-01-19 09:06:24', 17, 2, '2021-01-25 03:00:44'),
-(18, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 1, '2021-01-19 10:27:59', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bill_actions`
---
-
-CREATE TABLE `bill_actions` (
-  `id` int(11) NOT NULL,
-  `action` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bill_actions`
---
-
-INSERT INTO `bill_actions` (`id`, `action`) VALUES
-(1, 'Duyệt hóa đơn'),
-(2, 'Hủy hóa đơn');
+INSERT INTO `bills` (`id`, `id_customer`, `receiver`, `address`, `phone`, `id_state`, `purchase_time`, `id_admin`, `updated_at`) VALUES
+(13, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 04:03:55', 8, '2021-01-25 09:54:43'),
+(14, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-16 08:23:46', 8, '2021-01-27 10:17:22'),
+(15, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 3, '2021-01-17 17:50:17', 17, '2021-01-28 10:17:11'),
+(16, 7, 'Ngọc', '244 Nguyễn Trãi, Thanh Xuân, Hà Nội', '0915327117', 2, '2021-01-19 05:45:22', 18, '2021-01-28 10:16:01'),
+(17, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 3, '2021-01-19 09:06:24', 17, '2021-01-25 10:00:44'),
+(18, 8, 'Huệ', '247 Nguyễn Văn Linh, Vĩnh Trung, Thanh Khê, Đà Nẵng', '0976311269', 2, '2021-01-19 10:27:59', 19, '2021-01-27 17:22:44');
 
 -- --------------------------------------------------------
 
@@ -214,17 +215,38 @@ CREATE TABLE `customers` (
   `phone` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `passwd` varchar(100) NOT NULL,
-  `address` varchar(100) DEFAULT NULL
+  `address` varchar(100) DEFAULT NULL,
+  `id_state` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `address`) VALUES
-(5, 'Hà', 1, '2018-01-10', '0983226319', 'ha@gmail.com', '123', 'Đà Nẵng'),
-(7, 'Ngọc', 1, '2016-12-07', '0521369442', 'ngoc@gmail.com', '123', 'Cần Thơ'),
-(8, 'Huệ', 1, '2020-12-28', '0363912348', 'hue@gmail.com', '456', 'Ninh Bình');
+INSERT INTO `customers` (`id`, `name`, `gender`, `birth`, `phone`, `email`, `passwd`, `address`, `id_state`) VALUES
+(5, 'Hà', 1, '2018-01-10', '0983226319', 'ha@gmail.com', '123', 'Đà Nẵng', 1),
+(7, 'Ngọc', 1, '2016-12-07', '0521369442', 'ngoc@gmail.com', '123', 'Cần Thơ', 1),
+(8, 'Huệ', 1, '2020-12-28', '0363912348', 'hue@gmail.com', '456', 'Ninh Bình', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_states`
+--
+
+CREATE TABLE `customer_states` (
+  `id` int(11) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `color` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer_states`
+--
+
+INSERT INTO `customer_states` (`id`, `state`, `color`) VALUES
+(1, 'Bình thường', 'green'),
+(2, 'Bị khóa', 'red');
 
 -- --------------------------------------------------------
 
@@ -352,7 +374,7 @@ INSERT INTO `item_details` (`id_item`, `id_size`, `amount`) VALUES
 (36, 4, 352),
 (36, 5, 12),
 (37, 1, 12),
-(37, 2, 9),
+(37, 2, 21),
 (37, 3, 412),
 (37, 4, 51),
 (37, 5, 12),
@@ -420,7 +442,7 @@ CREATE TABLE `qna` (
 --
 
 INSERT INTO `qna` (`id`, `question`, `answer`) VALUES
-(1, 'Địa chỉ shop ở đâu ý nhỉ?', 'Shop ở trong tim bạn đó <3'),
+(1, 'Địa chỉ shop ở đâu ý nhỉ?', 'Shop ở trong tim bạn đó &lt;3'),
 (2, 'Tại sao shop lại nhiều đồ đẹp thế?', 'Bởi vì shop có 1 đội thiết kế rất oki đó'),
 (3, 'Khi nào thì shop mở cửa đơn khách vậy?', 'Lúc nào shop cũng chờ đón bạn nhé'),
 (5, 'Làm sao để biết size thế nào là vừa?', 'Hiện Rainbow Kitty đang cung cấp sẵn bảng size để khách hàng có căn cứ lựa chọn. 1 bảng có thông tin chiều cao, cân nặng và 1 bảng là thông số đo của áo. Vì chọn size theo chiều cao, cân nặng chỉ mang tính chất ước lượng, bạn nên tham khảo thêm bảng thông số chiều dài, chiều rộng của áo để có thể lựa chọn size cho phù hợp. Rất đơn giản, bạn hãy lấy một chiếc áo mà mình đang mặc vừa và thoải mái nhất đo 2 thông số: dài áo và rộng vai, sau đó đối chiếu với bảng size mà Sales cung cấp để biết được size vừa với mình nhất nhé!'),
@@ -437,7 +459,8 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `phone` (`phone`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `id_rank` (`id_rank`);
+  ADD KEY `id_rank` (`id_rank`),
+  ADD KEY `id_state` (`id_state`);
 
 --
 -- Indexes for table `admin_ranks`
@@ -445,6 +468,12 @@ ALTER TABLE `admins`
 ALTER TABLE `admin_ranks`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `admin_states`
+--
+ALTER TABLE `admin_states`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `backgrounds`
@@ -459,14 +488,7 @@ ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_customer` (`id_customer`),
   ADD KEY `id_state` (`id_state`),
-  ADD KEY `id_admin` (`id_admin`),
-  ADD KEY `id_action` (`id_action`);
-
---
--- Indexes for table `bill_actions`
---
-ALTER TABLE `bill_actions`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `id_admin` (`id_admin`);
 
 --
 -- Indexes for table `bill_details`
@@ -494,7 +516,14 @@ ALTER TABLE `contact`
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `phone` (`phone`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `id_state` (`id_state`);
+
+--
+-- Indexes for table `customer_states`
+--
+ALTER TABLE `customer_states`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `items`
@@ -553,6 +582,12 @@ ALTER TABLE `admin_ranks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `admin_states`
+--
+ALTER TABLE `admin_states`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `backgrounds`
 --
 ALTER TABLE `backgrounds`
@@ -563,12 +598,6 @@ ALTER TABLE `backgrounds`
 --
 ALTER TABLE `bills`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `bill_actions`
---
-ALTER TABLE `bill_actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bill_states`
@@ -589,10 +618,16 @@ ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `customer_states`
+--
+ALTER TABLE `customer_states`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `item_colors`
@@ -616,7 +651,7 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `qna`
 --
 ALTER TABLE `qna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -626,7 +661,8 @@ ALTER TABLE `qna`
 -- Constraints for table `admins`
 --
 ALTER TABLE `admins`
-  ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`id_rank`) REFERENCES `admin_ranks` (`id`);
+  ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`id_rank`) REFERENCES `admin_ranks` (`id`),
+  ADD CONSTRAINT `admins_ibfk_2` FOREIGN KEY (`id_state`) REFERENCES `admin_states` (`id`);
 
 --
 -- Constraints for table `bills`
@@ -634,8 +670,7 @@ ALTER TABLE `admins`
 ALTER TABLE `bills`
   ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`id_state`) REFERENCES `bill_states` (`id`),
-  ADD CONSTRAINT `bills_ibfk_3` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id`),
-  ADD CONSTRAINT `bills_ibfk_4` FOREIGN KEY (`id_action`) REFERENCES `bill_actions` (`id`);
+  ADD CONSTRAINT `bills_ibfk_3` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id`);
 
 --
 -- Constraints for table `bill_details`
@@ -643,6 +678,12 @@ ALTER TABLE `bills`
 ALTER TABLE `bill_details`
   ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`id_bill`) REFERENCES `bills` (`id`),
   ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`id_item`,`id_size`) REFERENCES `item_details` (`id_item`, `id_size`);
+
+--
+-- Constraints for table `customers`
+--
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`id_state`) REFERENCES `customer_states` (`id`);
 
 --
 -- Constraints for table `items`

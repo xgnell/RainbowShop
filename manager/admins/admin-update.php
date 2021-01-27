@@ -1,4 +1,6 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
+
     define("MENU_OPTION", "admin");
     $notification_title = "Quản lý admin";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
@@ -25,7 +27,17 @@
         );
         exit();
     }
-
+    if (!is_numeric($admin_id)) {
+        display_notification_page(
+            false,
+            $notification_title,
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước đó
+        );
+        exit();
+    }
     $id_db = sql_query("
         SELECT *
         FROM admins

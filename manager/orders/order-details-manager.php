@@ -1,36 +1,79 @@
 <?php
-    define("MENU_OPTION", "order");
-    $root_path = $_SERVER["DOCUMENT_ROOT"];
-    
-    // Check signed in
-    require_once($root_path . "/manager/templates/check-admin-signed-in.php");
-    require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/default.php");
-    check_admin_signed_in(2);
+define("MENU_OPTION", "order");
+$notification_title = "Quản lý hóa đơn";
+$root_path = $_SERVER["DOCUMENT_ROOT"];
 
-    // Get all orders
-    $bill_id = $_GET["id"];
+// Check signed in
+require_once($root_path . "/manager/templates/check-admin-signed-in.php");
+check_admin_signed_in(2);
 
-    $bill_state_id = sql_query("
-        SELECT id_state
-        FROM bills
-        WHERE id = {$bill_id};
-    ");
-    $bill_state_id = mysqli_fetch_array($bill_state_id)["id_state"];
-    
-    $bill_state = sql_query("
-        SELECT *
-        FROM bill_states
-        WHERE id = $bill_state_id;
-    ");
-    $bill_state = mysqli_fetch_array($bill_state);
 
-    $bill_details = sql_query("
-        SELECT *
-        FROM bill_details
-        WHERE id_bill = $bill_id;
-    ");
+require_once($root_path . "/config/default.php");
+require_once($root_path . "/config/db.php");
+require_once($root_path . "/manager/templates/notification-page.php");
 
+// Lấy mã hóa đơn được gửi lên
+$bill_id = $_GET["id"] ?? null;
+if ($bill_id == null) {
+    display_notification_page(
+        false,
+        $notification_title,
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
+    );
+    exit();
+}
+
+/* Kiểm tra tính hợp lệ của id */
+if (!is_numeric($bill_id)) {
+    display_notification_page(
+        false,
+        $notification_title,
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
+    );
+    exit();
+}
+$bill_id_db = sql_query("
+    SELECT *
+    FROM bills
+    WHERE id = $bill_id;
+");
+if (mysqli_num_rows($bill_id_db) != 1) {
+    display_notification_page(
+        false,
+        $notification_title,
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay lại trang trước đó
+    );
+    exit();
+}
+
+$bill_state_id = sql_query("
+    SELECT id_state
+    FROM bills
+    WHERE id = {$bill_id};
+");
+$bill_state_id = mysqli_fetch_array($bill_state_id)["id_state"];
+
+$bill_state = sql_query("
+    SELECT *
+    FROM bill_states
+    WHERE id = $bill_state_id;
+");
+$bill_state = mysqli_fetch_array($bill_state);
+
+$bill_details = sql_query("
+    SELECT *
+    FROM bill_details
+    WHERE id_bill = $bill_id;
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +87,7 @@
     <title>Quản lý hoá đơn</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <script src="/manager/templates/js/confirm-action.js"></script>
     <style>
         :root {
             --min-width--display-item-name: 150px;
@@ -148,11 +192,11 @@
                                 case 1:
                                     ?>
                                     <div style="display: flex; justify-content: space-around; width: 300px;">
-                                        <a href="/manager/orders/order-accept-process.php?id=<?= $bill_id ?>">
+                                        <a onclick="confirm_action('Bạn có chắc chắn muốn duyệt đơn hàng này ?', '/manager/orders/order-accept-process.php?id=<?= $bill_id ?>')">
                                             <svg style="position: relative; top: 2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                             <span style="position: relative; top: -10px; color: <?= $bill_state["color"] ?>;">Duyệt</span>
                                         </a>
-                                        <a href="/manager/orders/order-cancel-process.php?id=<?= $bill_id ?>">
+                                        <a onclick="confirm_action('Bạn có chắc chắn muốn hủy đơn hàng này ?', '/manager/orders/order-cancel-process.php?id=<?= $bill_id ?>')">
                                             <svg style="position: relative; top: 2px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
                                             <span style="position: relative; top: -10px; color: <?= $bill_state["color"] ?>;">Hủy</span>
                                         </a>
