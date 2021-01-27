@@ -2,6 +2,17 @@
 ------------------------------------------------------------------------------------------------------------------------------------
 Triệu
 
+Footer
+Phan trang
+Validate dia chi (
+	front-ennd: trong
+	back-end: remove_acent -> htmlspecialchars)
+Validate id backend sp chi tiet
+Validate trang sp chi tiet (so luong: )
+Validate trang thong tin nguoi nhan
+khi dang ki tài khoản thì cho trang thái mặc định là bthg
+
+
 - [X] qna: thêm sửa xoá qna + qna trang khách hàng
 - [X] Validate tất cả form có sờ tới
 - [X] Validate ở phần back-end

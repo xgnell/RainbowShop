@@ -60,6 +60,7 @@
             margin-right: 10%;
             background-color: white;
             width: 80%;
+            min-width: 917px;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
             display: flex;
@@ -86,29 +87,29 @@
             /* width: 80%;
             height: 65%; */
             background-image: url('<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>');
-            width: 400px;
-            height: 400px;
+            width: 380px;
+            height: 380px;
             background-size: cover;
         }
 
         #item-detail {
-            width: 60%;
-            height: 470px;
+            width: 50%;
+            height: 450px;
             padding: 10px 20px 20px 20px;
             /* background-color: #ccc; */
         }
 
         #item-detail .item-name {
-            line-height: 29px;
+            line-height: 20px;
             width: 100%;
             /* background-color: #ffdec9; */
-            margin-bottom: 10px;
+            margin-bottom: 0px;
         }
 
         #item-detail .item-price {
-            line-height: 57px;
+            line-height: 50px;
             width: 100%;
-            height: 160px;
+            height: 100px;
             /* background-color: #ffdec9; */
             margin-bottom: 10px;
         }
@@ -213,6 +214,7 @@
             margin-right: 10%;
             background-color: white;
             width: 80%;
+            min-width: 917px;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
         }
@@ -252,7 +254,7 @@
                 <!-- Tên sản phẩm  -->
                     <tr class="item-name">
                         <td colspan="3">
-                            <span style="font-size: 45px;">
+                            <span style="font-size: 40px;">
                                 <?= $item["name"] ?>
                             </span>
                         </td>

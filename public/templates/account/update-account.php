@@ -139,8 +139,8 @@ $customer = mysqli_fetch_array(sql_query("
                                 <select id="select-gender" name="gender" class="input">
                                     <option value="" disabled selected hidden>Chọn giới tính</option>
                                     <option value="1" <?php if ($customer["gender"] == 1) echo "selected"; ?> >Nam</option>
-                                    <option value="0" <?php if ($customer["gender"] == 0) echo "selected"; ?> >Nữ</option>
-                                    <option value="2" <?php if ($customer["gender"] == 2) echo "selected"; ?> >Giới tính khác</option>
+                                    <option value="0" <?php if ($customer["gender"] == 2) echo "selected"; ?> >Nữ</option>
+                                    <option value="2" <?php if ($customer["gender"] == 3) echo "selected"; ?> >Giới tính khác</option>
                                 </select>
                             </td>
                         </tr>
@@ -229,7 +229,7 @@ $customer = mysqli_fetch_array(sql_query("
                                 <label>Mật khẩu</label>
                             </td>
                             <td>
-                                <input type="password" name="passwd" placeholder="Nhập mật khẩu" id="input-passwd" class="input">
+                                <input type="password" name="passwd" placeholder="Nhập mật khẩu" id="input-passwd" class="input" value="<?= $customer["passwd"] ?>">
                             </td>
                         </tr>
                         <tr>
@@ -240,7 +240,7 @@ $customer = mysqli_fetch_array(sql_query("
                             <td colspan="2" style="height: 50px;">
                                 <div class="action-area">
                                     <input type="submit" value="Lưu" class="bottom">
-                                    <input type="reset" value="Trở lại" class="bottom">
+                                    <input type="reset" value="Làm lại" class="bottom">
                                 </div>
                             </td>
                         </tr>
