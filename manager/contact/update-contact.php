@@ -58,28 +58,34 @@
             $address = mysqli_fetch_array(sql_query($sql_address));
         ?>
         <div class="page-content">
-            <div class="scrollable">
-                <table id="content-table">
-                    <tr class="table-bar-header" style="top: 0;">
-                        <td>Số điện thoại liên hệ</td>
-                        <td>Địa chỉ</td>
-                        <td>Sửa thông tin</td>
+            <form action="/manager/contact/update-contact-process.php" method="POST">
+                <table class="edit-table">
+                    <tr>
+                        <td class="table-title">
+                            Số điện thoại liên hệ
+                        </td>
+                        <td>
+                            <input type="text" id="input-number" name="phone" value="<?= $phone['value'] ?>">
+                        </td>
                     </tr>
                     <tr>
-                        <td>
-                            <?= $phone["value"] ?>
+                        <td class="table-title">
+                            Địa chỉ
                         </td>
                         <td>
-                            <?= $address["value"] ?>
-                        </td>
-                        <td>
-                            <a href="/manager/contact/update-contact.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-                            </a>
+                            <textarea name="address" cols="30" rows="5"><?= $address['value'] ?></textarea>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="action-area">
+                                <input type="submit" value="Xác nhận sửa">
+                                <input type="reset" value="Làm lại">
+                            </div>
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
         </div>
     </div>
 </body>
