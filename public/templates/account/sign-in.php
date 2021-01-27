@@ -86,7 +86,7 @@
 
             <div class="form-footer">
                 <a href="/public/templates/account/sign-up.php">Tạo tài khoản mới</a>
-                <a href="#">Quên tài khoản ?</a>
+                <a href="/public/templates/account/forget-account.php">Quên tài khoản ?</a>
             </div>
         </form>
     </div>

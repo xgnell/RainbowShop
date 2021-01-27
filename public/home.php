@@ -220,12 +220,20 @@
                     $skip = ($page_now - 1) * $sum_items_a_page; 
 
                     // \\\\\\\\\\\\\\\\\\\\      show item have limit
-                    $query_item_data = "
-                        SELECT id
-                        FROM items
-                        WHERE name LIKE '%$search%'
-                        limit $sum_items_a_page offset $skip
-                    ";
+                    if ($type_id == 0) {
+                        $query_item_data = "
+                            SELECT id
+                            FROM items
+                            WHERE name LIKE '%$search%'
+                        ";
+                    } else {
+                        $query_item_data = "
+                            SELECT id
+                            FROM items
+                            WHERE name LIKE '%$search%' and id_type = $type_id
+                        ";
+                    }
+                    $query_item_data .= " limit $sum_items_a_page offset $skip";
                     $item_data = sql_query($query_item_data); // Kết quả đúng
 
 
@@ -245,7 +253,7 @@
             <br>
             <div style="text-align:center;">
                 <?php for ($i = 1; $i <= $sum_pages; $i++) { ?>
-                    <a href="?page=<?php echo $i ?>&search=<?php echo $search ?>">
+                    <a href="?page=<?php echo $i ?>&search=<?php echo $search ?>&type_id=<?php echo $type_id ?>">
                         <?php echo $i ?>
                     </a>
                 <?php } ?>
