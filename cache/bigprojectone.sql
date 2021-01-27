@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 27, 2021 at 07:17 PM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Jan 27, 2021 at 08:32 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,6 +101,13 @@ CREATE TABLE `backgrounds` (
   `name` varchar(100) NOT NULL,
   `picture` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `backgrounds`
+--
+
+INSERT INTO `backgrounds` (`id`, `name`, `picture`) VALUES
+(1, 'Background 1', 'bg1.png');
 
 -- --------------------------------------------------------
 
@@ -198,7 +205,7 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `type`, `value`) VALUES
-(1, 'Điện thoại', '19001221'),
+(1, 'Điện thoại', '19001222'),
 (2, 'Địa chỉ', 'Tầng 28, Tòa nhà trung tâm Lotte Hà Nội, 54 Liễu Giai, phường Cống Vị, Quận Ba Đình, Hà Nội.');
 
 -- --------------------------------------------------------
@@ -591,7 +598,7 @@ ALTER TABLE `admin_states`
 -- AUTO_INCREMENT for table `backgrounds`
 --
 ALTER TABLE `backgrounds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bills`
