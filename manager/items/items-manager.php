@@ -12,30 +12,8 @@
     require_once($root_path . "/manager/templates/notification-page.php");
 
 
-    $page = $_GET['page'] ?? 1;
-    $item_per_page = DEFAULT_ITEM_PER_PAGE;
-
-    // Kiểm tra tính hợp lệ của page
-    if (!is_numeric($page)) {
-        display_notification_page(
-            false,
-            $notification_title,
-            "404",
-            "Không tìm thấy trang",
-            "Quay lại"
-            // Quay lại trang trước đó
-        );
-        exit();
-    }
-
-    // Lấy tổng số sản phẩm
-    $count = sql_query("
-        SELECT COUNT(id) as number_of_items
-        FROM items;
-    ");
-    $count = mysqli_fetch_array($count)["number_of_items"];
-    // Tính số trang
-    $number_of_page = ceil($count / $item_per_page);
+    $pagination_table = 'items';
+    require_once($root_path . "/manager/templates/pagination-header.php");
 
 ?>
 <!DOCTYPE html>
@@ -204,11 +182,7 @@
                 <tr class="table-bar-footer" style="bottom: 0;">
                     <td colspan="9">
                         <?php
-                            for ($i = 1; $i <= $number_of_page; $i++ ) {
-                                ?>
-                                    <a class="page-number <?php if ($page == $i) echo "current-page"; ?>" href="/manager/items/items-manager.php?page=<?= $i ?>"><?= $i ?></a>
-                                <?php
-                            }
+                        require_once($root_path . "/manager/templates/pagination-footer.php");
                         ?>
                     </td>
                 </tr>

@@ -117,6 +117,12 @@ QnA -> XSS
 Đang thêm trang sửa thông tin liên hệ
 
 
+- [ ] Kiểm tra đăng kí đăng nhập khi đang đăng nhập tài khoản admin
+- [ ] Thêm notification page ở phía khách hàng
+- [ ] Validate tất cả id phần trang khách hàng
+- [ ] Kiểm tra contact với background phía admin
+- [ ] Phân trang chưa hoạt động đúng ở khách hàng homepage
+- [ ] Nếu có thời gian xử lý thêm một lỗi tên sản phẩm (hay các chỗ khác quá dài)
 - [X] Set min-width cho phan san pham
 - [X] Validate phần xóa sản phẩm
 - [X] Confim xóa sản phẩm

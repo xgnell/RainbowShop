@@ -1,7 +1,7 @@
 <style>
     .display-item {
         text-align: center;
-        font-size: 17px;
+        font-size: 15px;
         margin: 20px 25px 40px 25px;
         border-radius: 5px;
         padding: 15px 10px 0px 10px;
@@ -19,31 +19,33 @@
         transition: 0.3s;
         transform: scale(1.1);
     }
+    .display-item:hover .item-price {
+        background-color: #363e7e;
+        color: white;
+        transition: 0.3s;
+    }
 
     .display-item .item-name {
+        /* background-color: blue; */
         display: inline-block;
-        font-size: 30px;
+        width: 90%;
+        height: 70px;
+        font-size: 25px;
         font-weight: bold;
         margin: 5px 10px 5px 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .display-item .item-price {
         display: inline-block;
+        background-color: #dedede;
+        width: 90%;
+        padding-top: 5px;
+        height: 30px;
         font-size: 20px;
-        margin: 20px 10px 15px 10px;
+        margin: 0px 10px 10px 10px;
     }
-
-    /* .display-item .btn-add-to-cart {
-        display: inline-block;
-        padding: 10px 10px 10px 10px;
-        background-color: red;
-        font-weight: bold;
-        color: white;
-        border-radius: 5px
-    }
-    .display-item .btn-add-to-cart:hover {
-        color: yellow;
-    } */
 </style>
 <?php function spawn_item($item_id) { ?>
     <?php
@@ -56,18 +58,17 @@
         ");
         $item = mysqli_fetch_array($item);
 
-        $string_length = strlen($item["name"]);
-        $item_name;
-        if ($string_length <= 10) {
-            $item_name = $item["name"];
-        } else {
-            $item_name = substr($item["name"],0 ,10) . "...";
-        }
+        // $string_length = strlen($item["name"]);
+        $item_name = $item["name"];
+        // if ($string_length < 20) {
+        //     $item_name = $item["name"];
+        // } else {
+        //     $item_name = substr($item["name"], 0, 20) . "...";
+        // }
     ?>
     <div class="display-item" onclick="goto_item_details(<?= $item_id ?>)">
         <img width="200px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
         <span class="item-name" id="name-item"><?= $item_name ?></span><br><br>
-        <span class="item-price"><?= $item["price"] ?>đ</span><br>
-        <!-- <a class="btn-add-to-cart" onclick="add_item_to_cart(<?= $item_id ?>)">Add item to cart</a> -->
+        <span class="item-price"><?= number_format($item['price'], 0, ',', '.') ?>đ</span><br>
     </div>
 <?php } ?>

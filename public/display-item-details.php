@@ -25,7 +25,7 @@
 
     // Get item all size types possible
     $item_sizes = sql_query("
-        SELECT id_size
+        SELECT id_size, amount
         FROM item_details
         WHERE id_item = $item_id;
     ");
@@ -52,35 +52,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm: <?php echo $item['name']; ?></title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
+    <link rel="stylesheet" href="/public/templates/css/display-item-details-style.css">
     <style>
-        #page-item {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            margin-left: 10%;
-            margin-right: 10%;
-            background-color: white;
-            width: 80%;
-            min-width: 917px;
-            border-radius: 7px;
-            box-shadow: 1px 1px 5px #ccc;
-            display: flex;
-            flex-wrap: wrap;
-            flex-grow: 2;
-            padding: 20px;
-            /* height: 500px; */
-        }
-        #page-item * {
-            font-size: 20px;
-        }
-
-        #item-img {
-            width: 40%;
-            height: 100%;
-            padding: 20px;
-            margin: auto;
-            /* background-color: #ffdec9; */
-        }
-
         #item-img .item-image {
             background-color: #ff8030;
             margin: auto;
@@ -91,145 +64,6 @@
             height: 380px;
             background-size: cover;
         }
-
-        #item-detail {
-            width: 50%;
-            height: 450px;
-            padding: 10px 20px 20px 20px;
-            /* background-color: #ccc; */
-        }
-
-        #item-detail .item-name {
-            line-height: 20px;
-            width: 100%;
-            /* background-color: #ffdec9; */
-            margin-bottom: 0px;
-        }
-
-        #item-detail .item-price {
-            line-height: 50px;
-            width: 100%;
-            height: 100px;
-            /* background-color: #ffdec9; */
-            margin-bottom: 10px;
-        }
-
-        #item-detail .item-size {
-            width: 100%;
-            /* background-color: #ffdec9; */
-            margin-bottom: 10px;
-        }
-
-        #item-detail .item-number {
-            /* background-color: #ffdec9; */
-            width: 100%;
-            /* height: 60px; */
-            /* padding-top: 20px; */
-            margin-bottom: 10px;
-        }
-
-        #item-detail .div-buy-item {
-            /* background-color: #ffdec9; */
-            width: 100%;
-            /* height: 60px; */
-            padding-bottom: 0px;
-            margin-bottom: 0px;
-        }
-
-        #item-detail .div-buy-item .add-to-cart {
-            width: 200px;
-            height: 50px;
-            font-size: 17px;
-            color: white;
-            background-color: rgba(54, 62, 126, 70%);
-            /* background-color: red; */
-            /* border-radius: 5px; */
-            border: 0px;
-            border-color: #363e7e;
-            border-style: solid;
-            outline: none;
-            cursor: pointer;
-        }
-        
-        /* #item-detail .div-buy-item .add-to-cart:hover {
-            color: yellow;
-        } */
-
-        #item-detail .div-buy-item .move-to-cart {
-            color: white;
-            width: 200px;
-            height: 50px;
-            font-size: 17px;
-            background-color: #363e7e;
-            border-style: none;
-            outline: none;
-            cursor: pointer;
-        }
-
-        #div-line {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 70px;
-        }
-
-        #div-description {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #item-detail .btn-amount {
-            display: inline-block;
-            text-align: center;
-            width: 30px;
-            font-size: 22px;
-            padding: 3px 4px 3px 4px;
-            background-color: #f7f7f7;
-            cursor: pointer;
-        }
-        #item-detail .btn-amount:hover {
-            background-color: rgb(208, 209, 214);
-        }
-
-        #item-detail .input-amount{
-            width: 70px;
-            margin: 0;
-            text-align: center;
-            padding: 5px 5px 5px 5px;
-            border-radius: 0px;
-            border: 0px;
-            border-left: 1px gray solid;
-            border-right: 1px gray solid;
-            background-color: #f7f7f7;
-            color: black;
-        }
-
-        .same-item {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            margin-left: 10%;
-            margin-right: 10%;
-            background-color: white;
-            width: 80%;
-            min-width: 917px;
-            border-radius: 7px;
-            box-shadow: 1px 1px 5px #ccc;
-        }
-        .same-item .show-same-item {
-            background-color: white;
-            border-radius: 7px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-        .same-item .show-same-item .small-item {
-            float: left;
-            margin-left: 20px;
-            margin-right: 20px;
-            background-color: #ccc;
-        }
     </style>
 </head>
 
@@ -238,7 +72,7 @@
     <?php include_once($root_path . "/public/templates/ui/menu.php"); ?>
 
     <div id="page-item">
-        <div id="item-img">
+        <div id="item-img" style="width: 50%;">
             <!-- ========== Ảnh sản phẩm ở đây ============= -->
             <div class="item-image">
             </div>
@@ -250,8 +84,8 @@
             <!-- ============= Form để chuyển các thông tin sang giỏ hàng =========== -->
             <form action="/public/templates/cart/add-item-to-cart.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $item_id; ?>">
-                <table style="height: 100%; width: 100%;">
-                <!-- Tên sản phẩm  -->
+                <table style="height: 100%; width: 100%">
+                    <!-- Tên sản phẩm  -->
                     <tr class="item-name">
                         <td colspan="3">
                             <span style="font-size: 40px;">
@@ -259,19 +93,23 @@
                             </span>
                         </td>
                     </tr>
-                <!-- Giá sản phẩm  -->
+
+
+                    <!-- Giá sản phẩm  -->
                     <tr class="item-price">
                         <td colspan="3">
                             <b>
                                 <span style="font-size: 30px; vertical-align: top;">
-                                    <?= $item["price"] ?> đ
+                                    <?= number_format($item['price'], 0, ',', '.') ?> VNĐ
                                 </span>
                             </b>
                         </td>
                     </tr>
-                <!-- Màu sắc -->
+
+
+                    <!-- Màu sắc -->
                     <tr>
-                        <td>
+                        <td class="display-title">
                             <span>Màu sắc</span>
                         </td>
                         <td>
@@ -286,24 +124,21 @@
                             </div>
                         </td>
                     </tr>
-                <!-- Loại sản phẩm -->
+
+
+                    <!-- Loại sản phẩm -->
                     <tr class="item-type">
-                        <td>
+                        <td class="display-title">
                             <span">Loại</span>
                         </td>
                         <td>
                             <span><?= $item_type ?></span>
                         </td>
-                        <!-- <td>
-                            <span>
-                                Còn lại
-                                <input type="text" value="12" disabled>
-                                sản phẩm
-                            </span>
-                        </td> -->
                     </tr>
+
+                    <!-- Size -->
                     <tr class="item-size">
-                        <td>
+                        <td class="display-title">
                             <span>Size</span>
                         </td>
                         <td colspan="2">
@@ -316,48 +151,62 @@
                                     ");
                                     $size_name = mysqli_fetch_array($size_name)["size"];  
                                 ?>
+                                <div>
                                 <label id="<?php echo $item_size['size']; ?>">
-                                    <input type="radio" name="size_id" value="<?php echo $item_size['id_size']; ?>" id="<?php echo $size_names; ?>" checked>
-                                    <?php echo " ", $size_name; ?>
+                                    <input class="choose-size"
+                                        type="radio"
+                                        name="size_id"
+                                        value="<?php echo $item_size['id_size']; ?>"
+                                        id="<?php echo $size_names; ?>" checked
+                                        onchange="change_size()">
+                                    <span class="choose-label"><?php echo " ", $size_name; ?></span>
                                 </label>
+                                </div>
                             <?php endforeach ?>
                         </td>
                     </tr>
-                <!-- Cột số lượng -->
+
+
+                    <!-- Cột số lượng -->
                     <tr class="item-number">
-                        <td>
+                        <td class="display-title">
                             <span>Số lượng</span>
                         </td>
                         <td>
+                            <script>
+                                let size_data = <?php
+                                    $size_data = [];
+                                    foreach ($item_sizes as $size) {
+                                        $size_data[$size['id_size']] = intval($size['amount']);
+                                    }
+                                    echo json_encode($size_data);
+                                ?>;
+                                // console.log(size_data);
+                            </script>
                             <span style="display: inline-block; border-radius: 5px; border: 1px gray solid;">
                                 <div style="display: flex; justify-content: space-around;">
-                                    <a onclick="change_amount(0)" class="btn-amount" style="border-radius: 5px 0 0 5px;">
-                                        -
+                                    <a onclick="change_amount(0)" id="decrease-amount" class="btn-amount" style="border-radius: 5px 0 0 5px;">
+                                        <svg style="position: relative; top: 3px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13H5v-2h14v2z"/></svg>
                                     </a>
                                     <input id="input-amount" class="input-amount" type="text" name="amount" value="1" readonly>
-                                    <a onclick="change_amount(1)" class="btn-amount" style="border-radius: 0 5px 5px 0;">
-                                        +
+                                    <a onclick="change_amount(1)" id="increase-amount" class="btn-amount" style="border-radius: 0 5px 5px 0;">
+                                        <svg style="position: relative; top: 3px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                                     </a>
                                 </div>
                             </span>
                         </td>
-                        <!-- <td>
-                            <span>
-                                Còn lại
-                                <input type="text" value="12" disabled>
-                                sản phẩm
-                            </span>
-                        </td> -->
+                        
                     </tr>
-                <!-- Cột thêm vào giỏ hàng -->
+
+
+                    <!-- Cột thêm vào giỏ hàng -->
                     <tr class="div-buy-item">
                         <td colspan="3">
-                            <!-- <a href="/public/templates/add-item-to-cart.php"> -->
-                                <button type="submit" class="add-to-cart" onclick="return add_item_to_cart(0)">Thêm vào giỏ hàng</button>
-                            <!-- </a> -->
+                            <button type="submit" class="add-to-cart" onclick="return add_item_to_cart(0)">Thêm vào giỏ hàng</button>
                             <button type="submit" class="move-to-cart" onclick="return add_item_to_cart(1)">Mua ngay</button>
                         </td>
                     </tr>
+
                 </table>
                 <input id="input-redirect" type="text" name="redirect" value="" hidden>
             </form>
@@ -374,34 +223,42 @@
             </div>
         </div>
     </div>
+
+
+    <?php
+        $sql = "
+            select *
+            from items
+            where id_type = ('$item[id_type]') and id != '$item[id]'
+            limit 4;
+        ";
+        $same_item = sql_query($sql);
+    ?>
+    <?php if (mysqli_num_rows($same_item) > 0): ?>
     <div class="same-item">
-        <div style="padding-left: 80px; padding-top:20px; font-size: 30px; font-weight: bold;" >Sản phẩm tương tự</div>
+        <div style="padding-left: 70px; padding-top:20px; font-size: 30px; font-weight: bold;" >
+            Sản phẩm tương tự
+        </div>
         <div class="show-same-item">
-            <div style="display: flex; justify-content:center;">
-                <?php
-                $sql = "
-                    select *
-                    from items
-                    where id_type = ('$item[id_type]') and id != '$item[id]'
-                    limit 7
-                ";
-                    $same_item = sql_query($sql);
-                ?>
+            <div style="display: flex; text-align: center; padding-left: 50px;">
+                
                 <?php foreach ($same_item as $each) { ?>
                     <input type="text" name="id" value="<?php echo $each['id']; ?>" hidden>
                     <a href="/public/display-item-details.php?id=<?php echo $each['id']; ?>">
-                        <div style="margin-left: 10px; margin-right:10px">
-                            <span style="width: 150px;">
+                        <div class="show-item">
+                            <span style="width: 150px; padding: 10px 10px 0px 10px;">
                                 <img src="<?php echo $image_patch . $each["picture"] ?>" alt="<?php echo $each["picture"] ?>" style="width: 150px;">
                             </span>
                             <br>
-                            <span><?php echo $each["name"] ?></span>
+                            <span style="display: inline-block; width: 90%; height: 50px; overflow: hidden; text-overflow: ellipsis; color: black;"><?php echo $each["name"] ?></span>
                         </div>
                     </a>
                 <?php } ?>
             </div>
         </div>
     </div>
+    <?php endif ?>
+
     <script defer>
         let amount = 1;
         let input_amount = document.getElementById('input-amount');
@@ -409,15 +266,37 @@
             switch (action) {
                 case 0:
                     // Decrease
-                    amount--;
+                    if (amount > 1) {
+                        amount--;
+                    } else {
+                        document.getElementById('decrease-amount').disable = true;
+                    }
                     break;
                 case 1:
                     // Increase
-                    amount++;
+                    // Get current size
+                    let max_amount = 1;
+                    let sizes = document.getElementsByName('size_id');
+                    for (const size of sizes) {
+                        if (size.checked) {
+                            max_amount = size_data[parseInt(size.value)];
+                            if (amount < max_amount) {
+                                amount++;
+                            } else {
+                                document.getElementById('increase-amount').disable = true;
+                            }
+                            break;
+                        }
+                    }
                     break;
                 default:
                     break;
             }
+            input_amount.value = amount;
+        }
+
+        function change_size() {
+            amount = 1;
             input_amount.value = amount;
         }
 
@@ -427,7 +306,6 @@
                 ?>
                 document.getElementById("input-redirect").value = redirect;
                 return true;
-                // window.location.href = `/public/templates/item-detail.php?id=${item_id}`;
                 <?php
             } else {
                 ?>
@@ -438,9 +316,6 @@
             ?>
         }
     </script>
-
-    <!-- <?php //include_once($root_path . "/public/templates/counselor.php"); 
-            ?> -->
 
     <!--///////////////  Here is include footer /////////////-->
     <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>

@@ -63,10 +63,12 @@
                 <a href="/manager/backgrounds/background-insert.php"><li>Thêm mới</li></a>
             </ul>
         </li> -->
+        <a href="/manager/contact/view-contact.php">
         <li class="<?php if (MENU_OPTION == "contact") echo "current-option"; ?>">
             <ul>
-                <a href="/manager/contact/view-contact.php">Contact</a>
+                Contact
             </ul>
         </li>
+        </a>
     </ul>
 </div>
