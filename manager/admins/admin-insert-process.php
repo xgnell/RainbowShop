@@ -23,16 +23,16 @@ $admin = null;
 if (!empty($_POST)) {
     $admin = [
         'name' => htmlspecialchars($_POST["name"] ?? null),
-        'gender' => $_POST["gender"] ?? null,
+        'gender' => htmlspecialchars($_POST["gender"] ?? null),
         
-        'birth_year' => $_POST["birth_year"] ?? null,
-        'birth_month' => $_POST["birth_month"] ?? null,
-        'birth_day' => $_POST["birth_day"] ?? null,
+        'birth_year' => htmlspecialchars($_POST["birth_year"] ?? null),
+        'birth_month' => htmlspecialchars($_POST["birth_month"] ?? null),
+        'birth_day' => htmlspecialchars($_POST["birth_day"] ?? null),
     
-        'phone' => $_POST["phone"] ?? null,
-        'email' => $_POST["email"] ?? null
+        'phone' => htmlspecialchars($_POST["phone"] ?? null),
+        'email' => htmlspecialchars($_POST["email"] ?? null)
     ];
-    $admin_passwd = $_POST["passwd"] ?? null;
+    $admin_passwd = htmlspecialchars($_POST["passwd"] ?? null);
 } else {
     display_notification_page(
         false,

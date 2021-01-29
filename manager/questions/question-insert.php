@@ -22,17 +22,6 @@
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
     <script src="/manager/templates/js/common-validate.js"></script>
     <?php require_once($root_path . "/config/db.php"); ?>
-    <style>
-        #display-size {
-            border: 1px black solid;
-            border-collapse: collapse;
-            margin: 5px 5px 5px 5px;
-        }
-        #display-size tr td {
-            border: 1px black solid;
-            padding: 5px 5px 5px 5px;
-        }
-    </style>
 </head>
 <body>
     <!-- Header menu -->

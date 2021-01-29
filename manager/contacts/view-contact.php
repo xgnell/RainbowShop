@@ -7,7 +7,6 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/background.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,21 +17,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     
-    <title>Quản lý background</title>
+    <title>Quản lý liên hệ</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
-    <style>
-        #display-size {
-            width: 100%;
-            border: 1px #ccc solid;
-            border-collapse: collapse;
-            /* margin: 5px 5px 5px 5px; */
-        }
-        #display-size tr td {
-            border: 1px #ccc solid;
-            padding: 5px 5px 5px 5px;
-        }
-    </style>
 </head>
 <body>
     <!-- Header menu -->
@@ -58,34 +45,28 @@
             $address = mysqli_fetch_array(sql_query($sql_address));
         ?>
         <div class="page-content">
-            <form action="/manager/contact/update-contact-process.php" method="POST">
-                <table class="edit-table">
-                    <tr>
-                        <td class="table-title">
-                            Số điện thoại liên hệ
-                        </td>
-                        <td>
-                            <input type="text" id="input-number" name="phone" value="<?= $phone['value'] ?>">
-                        </td>
+            <div class="scrollable">
+                <table id="content-table">
+                    <tr class="table-bar-header" style="top: 0;">
+                        <td style="min-width: 220px;">Điện thoại liên hệ</td>
+                        <td>Địa chỉ</td>
+                        <td>Sửa</td>
                     </tr>
                     <tr>
-                        <td class="table-title">
-                            Địa chỉ
+                        <td>
+                            <?= $phone["value"] ?>
                         </td>
                         <td>
-                            <textarea name="address" cols="30" rows="5"><?= $address['value'] ?></textarea>
-                        </td>  
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <div class="action-area">
-                                <input type="submit" value="Xác nhận sửa">
-                                <input type="reset" value="Làm lại">
-                            </div>
+                            <?= $address["value"] ?>
+                        </td>
+                        <td>
+                            <a class="btn-action" href="/manager/contacts/update-contact.php">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                            </a>
                         </td>
                     </tr>
                 </table>
-            </form>
+            </div>
         </div>
     </div>
 </body>

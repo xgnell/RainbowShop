@@ -56,17 +56,17 @@
                 <a href="/manager/questions/question-insert.php"><li>Thêm mới</li></a>
             </ul>
         </li>
-        <!-- <li class="<?php if (MENU_OPTION == "background") echo "current-option"; ?>">
-            <a href="#">Custom background</a>
+        <li class="<?php if (MENU_OPTION == "background") echo "current-option"; ?>">
+            <a href="#">Background</a>
             <ul class="sub-menu" hidden>
                 <a href="/manager/backgrounds/background-manager.php"><li>Xem tất cả</li></a>
                 <a href="/manager/backgrounds/background-insert.php"><li>Thêm mới</li></a>
             </ul>
-        </li> -->
-        <a href="/manager/contact/view-contact.php">
+        </li>
+        <a href="/manager/contacts/view-contact.php">
         <li class="<?php if (MENU_OPTION == "contact") echo "current-option"; ?>">
             <ul>
-                Contact
+                Liên hệ
             </ul>
         </li>
         </a>

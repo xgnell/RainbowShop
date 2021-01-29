@@ -14,8 +14,8 @@ require_once($root_path . "/manager/templates/notification-page.php");
 $qna = null;
 if (!empty($_POST)) {
     $qna = [
-        'question' => $_POST["question"] ?? null,
-        'answer' => $_POST["answer"] ?? null
+        'question' => htmlspecialchars($_POST["question"] ?? null),
+        'answer' => htmlspecialchars($_POST["answer"] ?? null)
     ];
 } else {
     display_notification_page(

@@ -37,11 +37,11 @@ $item_sizes_data_from_db = sql_query("
     FROM item_sizes;
 ");
 $item = [
-    'name' => $_POST["name"] ?? null,
-    'price' => $_POST["price"] ?? null,
-    'description' => $_POST["description"] ?? null,
-    'type_id' => $_POST["type"] ?? null,
-    'color_id' => $_POST["color"] ?? null
+    'name' => htmlspecialchars($_POST["name"] ?? null),
+    'price' => htmlspecialchars($_POST["price"] ?? null),
+    'description' => htmlspecialchars($_POST["description"] ?? null),
+    'type_id' => htmlspecialchars($_POST["type"] ?? null),
+    'color_id' => htmlspecialchars($_POST["color"] ?? null)
 ];
 $item_picture = $_FILES["picture"] ?? null;
 

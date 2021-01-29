@@ -18,6 +18,14 @@
     <title>Super Kitty</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
+    <style>
+        .background {
+            width: 100%;
+            height: 100%;
+            background-image: url('/public/assets/backgrounds/nyancat.jpg');
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <!-- Header menu -->
@@ -28,8 +36,10 @@
         <?php include_once("../templates/menu.php"); ?>
 
         <!-- Main content -->
-        <div class="page-content">
-            <h1>Xin chào <?= $_SESSION["user"]["admin"]["name"] ?></h1>
+        <div class="page-content" style="padding: 0; margin: 0; text-align: center;">
+            <div class="background">
+                <h1 style="color: yellow; padding-top: 35px; font-size: 3em;">Rainbow Kitty</h1>
+            </div>
         </div>
 
     </div>

@@ -65,7 +65,7 @@
         $item = [
             'name' => $_POST["name"] ?? "",
             'price' => $_POST["price"] ?? "",
-            'description' => htmlspecialchars($_POST["description"] ?? null) ?? "",
+            'description' => $_POST["description"] ?? "",
             'id_type' => $_POST["type"] ?? "",
             'id_color' => $_POST["color"] ?? ""
         ];
