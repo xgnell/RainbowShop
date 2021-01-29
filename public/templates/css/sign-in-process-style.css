@@ -1,0 +1,30 @@
+#customer-sign-in-process {
+    --background-color-all: #f1f1f1;
+    --btn-try-again-background-color: white;
+    --btn-try-again-background-color-hover: #dedede;
+    --btn-try-again-border-color: #ccc;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-all);
+}
+
+#customer-sign-in-process * {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#customer-sign-in-process #btn-try-again {
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    background-color: var(--btn-try-again-background-color);
+    border: 1px var(--btn-try-again-border-color) solid;
+}
+
+#customer-sign-in-process #btn-try-again:hover {
+    background-color: var(--btn-try-again-background-color-hover);
+}

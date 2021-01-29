@@ -1,3 +1,4 @@
+<script defer src="/public/templates/js/customer-sign-in-action.js"></script>
 <style>
     #sign-in-form {
         visibility: hidden;
@@ -75,11 +76,13 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </a><br>
         <span class="form-title">Đăng nhập</span><br><br>
-        <form action="/public/templates/account/sign-in-process.php" method="POST">
+        <form onsubmit="customer_sign_in_form_validate(event)" action="/public/templates/account/sign-in-process.php" method="POST">
             
             <div class="form-content">
-                <input type="text" name="email" placeholder="Email"><br><br>
-                <input type="password" name="passwd" placeholder="Mật khẩu"><br><br>
+                <input type="text" name="email" placeholder="Email" id="input-email">
+                <div id="display-error-email" style="color: red;"></div><br>
+                <input type="password" name="passwd" placeholder="Mật khẩu" id="input-passwd">
+                <div id="display-error-passwd" style="color: red;"></div><br>
             </div>
             
             <input class="btn-sign-in" type="submit" value="Đăng nhập"><br><br>
@@ -91,22 +94,3 @@
         </form>
     </div>
 </div>
-
-
-<!-- <script>
-    function add_item_to_cart() {
-        <?php
-        if (customer_signed_in()) {
-            ?>
-            return true;
-            // window.location.href = `/public/templates/item-detail.php?id=${item_id}`;
-            <?php
-        } else {
-            ?>
-            document.getElementById('sign-in-form').style.visibility = 'visible';
-            return false;
-            <?php
-        }
-        ?>
-    }
-</script> -->

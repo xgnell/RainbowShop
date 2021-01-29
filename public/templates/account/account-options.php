@@ -1,3 +1,13 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/notification/display-error-page.php");
+	if (basename($_SERVER['PHP_SELF']) == "account-options.php") {
+    display_error_page(404, "Không tìm thấy trang");
+    exit();
+}
+?>
 <style>
 	#account-options {
 		visibility: hidden;

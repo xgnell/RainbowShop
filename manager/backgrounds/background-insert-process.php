@@ -7,6 +7,11 @@
 
     require_once($root_path . "/config/db.php");
 
+    if (empty($_POST["name"]) || empty($_FILES["picture"])) {
+        header('location:/manager/backgrounds/fail.php');
+        exit();
+    }
+
      // Get all input data
      $item_name = $_POST["name"];
      $item_picture = $_FILES["picture"];

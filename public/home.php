@@ -4,12 +4,16 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/background.php");
+    require_once($root_path . "/config/default.php");
     include_once($root_path . "/public/templates/item/item.php");
 
     $search = $_GET["search"] ?? "";
     $type_id = $_GET["type_id"] ?? 0;
 
+    $backgrounds = sql_query("
+        select *
+        from backgrounds
+    ");
     $background = mysqli_fetch_array(sql_query("
         select *
         from backgrounds
@@ -63,6 +67,8 @@
         .background {
             border-radius: 5px;
             height: 550px;
+            background-image: url('<?= BACKGROUND_IMAGE_SOURCE_PATH . $background['picture'] ?>');
+            background-size: cover;
         }
 
         .item-menu-area {
@@ -153,10 +159,15 @@
 
         <!-- Display background -->
         <div class="panel">
-        <!-- <div> -->
-            <?php include_once('/xampp/htdocs/bigprojectone/public/templates/ui/backgrounds/background.php')?>
+            <div class="background" id="background">
+                <button onclick="prev_background()" style="float: left;width: 50px; height: 50px; border-radius: 50%; border-color:gray; position:relative; top: 43%; left: -25px; margin:auto; border: 1px gray solid; outline:none; cursor:pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/></svg>
+                </button>
+                <button onclick="next_background()" style="float: right;width: 50px; height: 50px; border-radius: 50%; border-color:gray; position:relative; top: 43%; right: -25px; border: 1px gray solid; outline:none; cursor:pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
+                </button>
+            </div>
         </div>
-        <!-- </div> -->
 
         <!-- Display items -->
         <div class="panel">
@@ -259,6 +270,27 @@
                 <?php } ?>
             </div>
             <script defer>
+                var slider_img = document.querySelector('.background');
+                var background = [];
+                <?php foreach ($backgrounds as $each): ?>
+                    background.push('<?php echo $each['picture'] ?>');
+                <?php endforeach ?>
+                var i = 0;
+                function next_background () {
+                    if (i >= background.length - 1) i = -1;
+                    i++;
+                    return setImg();
+                }
+                function prev_background () {
+                    if (i <= 0) i = background.length;
+                    i--;
+                    return setImg();
+                }
+                function setImg() {
+                    document.getElementById('background').style.backgroundImage = 'url("<?= BACKGROUND_IMAGE_SOURCE_PATH ?>bg4.png")';
+                    // return slider_img.setAttribute(<?= BACKGROUND_IMAGE_SOURCE_PATH ?> + background[i]);
+                }
+
                 function goto_item_details(item_id) {
                     window.location.href = `/public/display-item-details.php?id=${item_id}`;
                 }

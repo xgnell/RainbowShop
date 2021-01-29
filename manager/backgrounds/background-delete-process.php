@@ -7,6 +7,11 @@
 
     require_once($root_path . "/config/db.php");
 
+    if (empty($_GET["id"])) {
+        header('location:/manager/backgrounds/fail.php');
+        exit();
+    }
+
     // Get item id
     $background_id = $_GET["id"];
 

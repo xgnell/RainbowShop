@@ -4,6 +4,7 @@
         from backgrounds
         where id = 1
     ");
+    mysqli_fetch_array($backgrounds);
 ?>
 
 <!DOCTYPE html>
