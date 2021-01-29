@@ -67,6 +67,9 @@
 =======
         </li> -->
         <a href="/manager/contact/view-contact.php">
+<<<<<<< HEAD
+>>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
+=======
 >>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
         <li class="<?php if (MENU_OPTION == "contact") echo "current-option"; ?>">
             <ul>
