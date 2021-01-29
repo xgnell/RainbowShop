@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
     .cart-item {
         margin: 30px 0 30px 0;
         padding: 15px 10px 15px 10px;
@@ -8,15 +8,6 @@
         box-shadow: 0px 2px 3px #ccc;
         width: 1075px;
     }
-
-    /* .cart-item .div-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .cart-item .div-title .item-name {
-        text-align: center;
-    } */
 
     .cart-item .disp-color {
         display: inline-block;
@@ -29,16 +20,7 @@
         border-collapse: collapse;
         text-align: center;
         vertical-align: middle;
-        /* width: 100%; */
-        /* background-color: gray; */
-        /* height: 100%; */
-        /* padding: 10px 10px 10px 10px; */
     }
-    /* .cart-item .table-info .table-header {
-        height: 30px;
-        background-color: #363e7e;
-        color: white;
-    } */
     .cart-item .table-info tr {
         border: 2px white solid;
     }
@@ -90,7 +72,7 @@
         padding: 10px 10px 10px 10px;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 20%);
     }
-</style>
+</style> -->
 <?php function spawn_cart_item($item_id, $size_id, $amount) { ?>
     <?php
         require_once($_SERVER["DOCUMENT_ROOT"] . "/config/default.php");
@@ -117,117 +99,102 @@
         $item_type = mysqli_fetch_array($item_type)["type"];
 
         $item_color = sql_query("
-            SELECT color
+            SELECT code
             FROM item_colors
             WHERE id = {$item['id_color']};
         ");
-        $item_color = mysqli_fetch_array($item_color)["color"];
+        $item_color = mysqli_fetch_array($item_color)["code"];
     ?>
 
-    <div class="cart-item">
-        <!-- <div class="div-title">
-            <h4 class="item-name"><?= $item["name"] ?></h4>
-            <div class="functions">
-                
-            </div>
-        </div> -->
+    <tr>
+        <td>
+            <img width="100px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
+        </td>
 
-        <div class="item-details">
-            <table class="table-info">
-                <tr>
-                    <td style="width: 150px; min-width: 150px;">
-                        <img width="100px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
-                    </td>
+        <td>
+            <span><?= $item["name"] ?></span>
+        </td>
 
-                    <td style="width: 170px; min-width: 170px">
-                        <span><?= $item["name"] ?></span>
-                    </td>
+        <td>
+            <span><?= number_format($item['price'], 0, ',', '.') ?> đ</span>
+        </td>
 
-                    <td style="width: 120px; min-width: 120px;">
-                        <span><?= $item["price"] ?> đ</span>
-                    </td>
+        <td>
+            <span><?= $item_type ?></span>
+        </td>
 
-                    <td style="width: 120px; min-width: 120px;">
-                        <span><?= $item_type ?></span>
-                    </td>
+        <td>
+            <span class="disp-color" style="background-color: <?= $item_color ?>; <?php if ($item_color == 'white') echo 'border: 1px black solid;' ?>"></span>
+        </td>
 
-                    <td style="width: 100px; min-width: 100px;">
-                        <span class="disp-color" style="background-color: <?= $item_color ?>;"></span>
-                    </td>
+        <td>
+            <span><?= $size_name ?></span>
+        </td>
 
-                    <td style="width: 100px; min-width: 100px;">
-                        <span><?= $size_name ?></span>
-                    </td>
-
-                    <td style="width: 200px; min-width: 200px;">
-                        <span style="display: inline-block; border-radius: 5px; border: 1px gray solid;">
-                            <div style="display: flex; justify-content: space-around;">
-                                <?php
-                                    if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] > 1) {
-                                        ?>
-                                        <a href="/public/templates/item/change-item-amount.php?action=0&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 5px 0 0 5px;">
-                                            -
-                                        </a>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <a class="btn-amount" style="color: gray; border-radius: 5px 0 0 5px;">
-                                            -
-                                        </a>
-                                        <?php
-                                    }
-                                ?>
-                                
-                                <input class="input-amount" type="text" value="<?= $amount ?>" disabled>
-                                
+        <td>
+            <span style="display: inline-block; border-radius: 5px; border: 1px gray solid;">
+                <div style="display: flex; justify-content: space-around;">
+                    <?php
+                        if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] > 1) {
+                            ?>
+                            <a href="/public/templates/item/change-item-amount.php?action=0&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 5px 0 0 5px;">
+                                -
+                            </a>
+                            <?php
+                        } else {
+                            ?>
+                            <a class="btn-amount" style="color: gray; border-radius: 5px 0 0 5px;">
+                                -
+                            </a>
+                            <?php
+                        }
+                    ?>
                     
-                                <?php
-                                    $remain_amount = sql_query("
-                                        SELECT amount
-                                        FROM item_details
-                                        WHERE id_item = $item_id AND id_size = $size_id;
-                                    ");
-                                    $remain_amount = mysqli_fetch_array($remain_amount)["amount"] ?? 0;
+                    <input class="input-amount" type="text" value="<?= $amount ?>" disabled>
+                    
+        
+                    <?php
+                        $remain_amount = sql_query("
+                            SELECT amount
+                            FROM item_details
+                            WHERE id_item = $item_id AND id_size = $size_id;
+                        ");
+                        $remain_amount = mysqli_fetch_array($remain_amount)["amount"] ?? 0;
 
-                                    // Xu ly van de hang con chua ton tai trong kho
-                                    // ... (Nhung ma neu lam chuan muc thi ko can cai check nay)
+                        // Xu ly van de hang con chua ton tai trong kho
+                        // ... (Nhung ma neu lam chuan muc thi ko can cai check nay)
 
-                                    if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] < $remain_amount) {
-                                        ?>
-                                        <a href="/public/templates/item/change-item-amount.php?action=1&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 0 5px 5px 0;">
-                                            +
-                                        </a>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <a class="btn-amount" style="color: gray; border-radius: 0 5px 5px 0;">
-                                            +
-                                        </a>
-                                        <?php
-                                    }
-                                ?>
-                            </div>
-                        </span>
-                    </td>
+                        if ($_SESSION["user"]["customer"]["cart"][$item_id][$size_id] < $remain_amount) {
+                            ?>
+                            <a href="/public/templates/item/change-item-amount.php?action=1&id=<?= $item_id ?>&size_id=<?= $size_id ?>" class="btn-amount" style="color: black; border-radius: 0 5px 5px 0;">
+                                +
+                            </a>
+                            <?php
+                        } else {
+                            ?>
+                            <a class="btn-amount" style="color: gray; border-radius: 0 5px 5px 0;">
+                                +
+                            </a>
+                            <?php
+                        }
+                    ?>
+                </div>
+            </span>
+        </td>
 
-                    <td style="width: 70px; min-width: 70px;">
-                        <a class="btn-function" href="/public/templates/item/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>"
-                            onmouseover="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'visible'"
-                            onmouseout="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'hidden'">
-                            
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-                            <div style="color: black;" class="popup-box" id="btn-delete-<?= $item_id . '-' . $size_id?>">
-                                Xóa sản phẩm khỏi giỏ hàng
-                            </div>
-                        </a>
-                    </td>
+        <td>
+            <a class="btn-function" href="/public/templates/item/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>"
+                onmouseover="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'visible'"
+                onmouseout="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'hidden'">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                <div style="color: black;" class="popup-box" id="btn-delete-<?= $item_id . '-' . $size_id?>">
+                    Xóa sản phẩm khỏi giỏ hàng
+                </div>
+            </a>
+        </td>
 
-                </tr>
-            </table>
-
-        </div>
-
-    </div>
+    </tr>
     <?php
         return $item["price"] * $amount;
     ?>

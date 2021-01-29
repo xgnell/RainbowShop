@@ -81,7 +81,7 @@
             /* border-top: 1px #ccc solid; */
         }
 
-        #delete_order {
+        /* #delete_order {
             width: 500px;
             height: 300px;
             background-color: white;
@@ -92,6 +92,16 @@
             z-index: 100%;
             box-shadow: 0px 5px 10px #ccc;
             display: none;
+        } */
+
+        .display-delete-order > div {
+            font-size: bold;
+            color: gray;
+            margin-top: 100px;
+            text-align: left;
+        }
+        .display-delete-order > div p:hover {
+            color: red;
         }
     </style>
 </head>
@@ -133,9 +143,9 @@
                             <th>Địa chỉ nhận hàng</th>
                             <th>Điện thoại</th>
                             <th>Thời gian đặt hàng</th>
-                            <th>Tình trạng</th>
-                            <th></th>
-                            <th>Huỷ</th>
+                            <th colspan="2">Tình trạng</th>
+                            <th>Chi tiết</th>
+                            <!-- <th>Huỷ</th> -->
                         </tr>
                         <?php
                         foreach ($orders as $order) {
@@ -143,6 +153,13 @@
                         }
                         ?>
                     </table>
+                    
+                    <div class="display-delete-order">
+                        <div>
+                            <p>Liên hệ lại với chúng tôi nếu bạn có nhu cầu hủy đơn hàng</p>
+                            <p>Lưu ý: chúng tôi chỉ cho phép hủy đơn hàng trước 24h kể từ lúc đặt hàng</p>
+                        </div>
+                    </div>
                     <?php
 
                 }
@@ -157,7 +174,7 @@
         ?>
     </div>
 
-    <div id="delete_order" style="padding: 20px; align-items: center;">
+    <!-- <div id="delete_order" style="padding: 20px; align-items: center;">
         <div style="padding-bottom: 30px;">
             <h1 style="text-align: center;">Thông báo</h1>
             <button style="position: absolute; top:10px; right:10px;" onclick="show_delete_info()">X</button>
@@ -171,7 +188,7 @@
             <br>
             Xin chân thành cảm ơn!
         </div>
-    </div>
+    </div> -->
 
     <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
     <!-- </div> -->

@@ -108,7 +108,7 @@
                         <td><img style="height: 100px;" src="<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>"></td>
                         <td><?= $item['description'] ?></td>
                         <td>
-                            <?= number_format($item['price'], 0, ',', '.') ?>
+                            <?= number_format($item['price'], 0, ',', '.') ?> đ
                         </td>
                         <td><?= $item_type ?></td>
                         <td>

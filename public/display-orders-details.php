@@ -4,9 +4,22 @@
     define("PAGE_NAME", "cart");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    include_once($root_path . "/public/templates/order/order-detail-item.php");
+    require_once($root_path . "/public/templates/order/order-detail-item.php");
+    require_once($root_path . "/public/templates/ui/notification/notification-page.php");
 
-    $bill_id = $_GET["id"];
+    $bill_id = $_GET["id"] ?? null;
+    // Validate id
+    if ($bill_id == null || !is_numeric($bill_id)) {
+        display_front_notification_page(
+            false,
+            "Rainbow Kitty",
+            "404",
+            "Không tìm thấy trang",
+            "Quay lại"
+            // Quay lại trang trước
+        );
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,8 +87,19 @@
             /* transition: 0.3s; */
         }
 
+        .table-header .disp-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+
         .table-header .display-total {
-            text-align: left;
+            text-align: right;
+        }
+        .table-header .display-total th {
+            background-color: #dedede;
+            color: red;
+            font-size: 1.3em;
         }
         /****************************************************/
 
@@ -112,7 +136,7 @@
                 <tr>
                     <th>Ảnh</th>
                     <th>Tên</th>
-                    <th>Giá</th>
+                    <th>Giá (VNĐ)</th>
                     <th>Loại</th>
                     <th>Màu</th>
                     <th>Size</th>
@@ -134,7 +158,7 @@
 
                 <tr class="display-total">
                     <th colspan="7">
-                        Tổng tiền: <?= $total ?>
+                        Tổng tiền: <?= number_format($total, 0, ',', '.') ?> VNĐ
                     </th>
                 </tr>
             </table>

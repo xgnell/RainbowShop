@@ -100,60 +100,39 @@
         $item_type = mysqli_fetch_array($item_type)["type"];
 
         $item_color = sql_query("
-            SELECT color
+            SELECT code
             FROM item_colors
             WHERE id = {$item['id_color']};
         ");
-        $item_color = mysqli_fetch_array($item_color)["color"];
+        $item_color = mysqli_fetch_array($item_color)["code"];
     ?>
+    <tr>
+        <td>
+            <img width="100px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
+        </td>
 
-    <!-- <div class="order-detail-item"> -->
-        <!-- <div class="div-title">
-            <h4 class="item-name"><?= $item["name"] ?></h4>
-            <div class="functions">
-                
-            </div>
-        </div> -->
+        <td>
+            <span><?= $item["name"] ?></span>
+        </td>
 
-        <!-- <div class="item-details">
-            <table class="table-info"> -->
-                <tr>
-                    <td>
-                        <img width="100px" src="<?= ITEM_IMAGE_SOURCE_PATH . $item["picture"] ?>"><br>
-                    </td>
+        <td>
+            <span><?= number_format($price, 0, ',', '.') ?> đ</span>
+        </td>
 
-                    <td>
-                        <span><?= $item["name"] ?></span>
-                    </td>
+        <td>
+            <span><?= $item_type ?></span>
+        </td>
 
-                    <td>
-                        <span><?= $price ?> đ</span>
-                    </td>
+        <td>
+            <span class="disp-color" style="background-color: <?= $item_color ?>; <?php if ($item_color == 'white') echo 'border: 1px black solid;' ?>"></span>
+        </td>
 
-                    <td>
-                        <span><?= $item_type ?></span>
-                    </td>
+        <td>
+            <span><?= $size_name ?></span>
+        </td>
 
-                    <td>
-                        <span class="disp-color" style="background-color: <?= $item_color ?> !important;"></span>
-                    </td>
-
-                    <td>
-                        <span><?= $size_name ?></span>
-                    </td>
-
-                    <td>
-                        <span><?= $amount ?></span>
-                    </td>
-
-                    <!-- <td style="width: 70px; min-width: 70px;">
-                        <span></span>
-                    </td> -->
-
-                </tr>
-            <!-- </table>
-
-        </div> -->
-
-    <!-- </div> -->
+        <td>
+            <span><?= $amount ?></span>
+        </td>
+    </tr>
 <?php } ?>

@@ -117,6 +117,12 @@ QnA -> XSS
 Đang thêm trang sửa thông tin liên hệ
 
 
+- [X] Đã update giao diện account option
+
+- [ ] Background khi kéo vào nó sẽ bị co lại trông ko được đẹp
+- [ ] (Phân trang trang hóa đơn
+- [ ] Tự động điền thông tin đăng kí khi đặt hàng
+- [ ] Khi chỉnh sửa thông tin khách hàng đang trong phiên đăng nhập => Cập nhật lại thông tin vào SESSION
 - [ ] Kiểm tra đăng kí đăng nhập khi đang đăng nhập tài khoản admin
 - [ ] Thêm notification page ở phía khách hàng
 - [ ] Validate tất cả id phần trang khách hàng

@@ -274,19 +274,23 @@
                     break;
                 case 1:
                     // Increase
-                    // Get current size
-                    let max_amount = 1;
-                    let sizes = document.getElementsByName('size_id');
-                    for (const size of sizes) {
-                        if (size.checked) {
-                            max_amount = size_data[parseInt(size.value)];
-                            if (amount < max_amount) {
-                                amount++;
-                            } else {
-                                document.getElementById('increase-amount').disable = true;
+                    if (amount < <?= MAX_ITEM_CAN_PUT_INTO_CART ?>) {
+                        // Get current size
+                        let max_amount = 1;
+                        let sizes = document.getElementsByName('size_id');
+                        for (const size of sizes) {
+                            if (size.checked) {
+                                max_amount = size_data[parseInt(size.value)];
+                                if (amount < max_amount) {
+                                    amount++;
+                                } else {
+                                    document.getElementById('increase-amount').disable = true;
+                                }
+                                break;
                             }
-                            break;
                         }
+                    } else {
+                        document.getElementById('increase-amount').disable = true;
                     }
                     break;
                 default:
