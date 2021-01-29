@@ -159,7 +159,7 @@ $bill_details = sql_query("
                             <td>
                                 <img style="height: 100px;" src="<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>">
                             </td>
-                            <td><?= number_format($bill_detail['price'], 0, ',', '.') ?></td>
+                            <td><?= number_format($bill_detail['price'], 0, ',', '.') ?> đ</td>
                             <td><?= $item_type ?></td>
                             <td>
                                 <div style="

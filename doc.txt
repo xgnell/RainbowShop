@@ -34,7 +34,6 @@
 • Khách hàng chưa có tài khoản
     ◦ Đăng ký tài khoản mới
     ◦ Xem thông tin đầy đủ của sản phẩm
-    ◦ Tìm kiếm sản phẩm
     ◦ Xem các câu hỏi phổ biến và câu trả lời tương ứng (Q&A)
 
 • Khách hàng có tài khoản

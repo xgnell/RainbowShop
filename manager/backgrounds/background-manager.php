@@ -8,6 +8,9 @@
 
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/default.php");
+
+    $pagination_table = 'backgrounds';
+    require_once($root_path . "/manager/templates/pagination-header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

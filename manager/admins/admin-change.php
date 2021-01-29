@@ -110,8 +110,6 @@
                 ['gender', 'birth']);
                 "
                 action="/manager/admins/admin-change-process.php" method="POST">
-                <input type="text" name="from" value="<?= $_GET["from_option"] ?? "" ?>" hidden>
-                <input type="number" name="id" value="<?= $admin["id"] ?>" hidden><br>
                 <table class="edit-table">
                     <!-- Tên -->
                     <tr>

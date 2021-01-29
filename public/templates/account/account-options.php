@@ -15,7 +15,7 @@
 		position: absolute;
 		top: 75px;
 		right: 70px;
-		width: 200px;
+		width: 220px;
 		height: 300px;
 		background-color: white;
 		padding: 15px 10px 15px 10px;
@@ -31,7 +31,7 @@
 		background-color: white;
 		position: absolute;
 		top: -10px;
-		left: 55px;
+		left: 75px;
 		z-index: -1;
 		transform: rotate(-45deg);
 	}
@@ -40,7 +40,7 @@
 	#account-options .hello {
 		display: inline-block;
 		width: 100%;
-		border: 2px black solid;
+		/* border: 2px black solid; */
 		border-radius: 3px;
 		text-align: center;
 		font-size: 20px;
@@ -61,7 +61,7 @@
 	#account-options ul li:hover {
 		background-color: rgb(208, 209, 214);
 	}
-	#account-options ul li a {
+	#account-options ul a {
 		color: black;
 	}
 </style>
@@ -69,10 +69,20 @@
 <div id="account-options"
 	onmouseleave="document.getElementById('account-options').style.visibility = 'hidden'">
 	<span class="hello"><?= $_SESSION["user"]["customer"]["name"] ?></span><br>
+	<div style="display: flex; justify-content: center;">
+		<hr width="170px" style="color: #dedede; margin: 10px 0 10px 0;">
+	</div>
 	<ul>
-		<li><a href="/public/templates/account/update-account.php?id=<?php echo $_SESSION["user"]["customer"]["id"] ?>">Chỉnh sửa thông tin</a></li>
-		<li><a href="/public/display-orders.php">Lịch sử mua hàng</a></li>
-		<!-- <li><a>Cài đặt</a></li> -->
-		<li><a href="/public/templates/account/sign-out-process.php">Đăng xuất</a></li>
+		<a href="/public/templates/account/update-account.php?id=<?php echo $_SESSION["user"]["customer"]["id"] ?>">
+			<li>Chỉnh sửa thông tin</li>
+		</a>
+
+		<a href="/public/display-orders.php">
+			<li>Lịch sử mua hàng</li>
+		</a>
+
+		<a href="/public/templates/account/sign-out-process.php">
+			<li>Đăng xuất</li>
+		</a>
 	</ul>
 </div>

@@ -6,14 +6,42 @@
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/default.php");
     include_once($root_path . "/public/templates/item/item.php");
+    require_once($root_path . "/public/templates/ui/notification/notification-page.php");
 
     $search = $_GET["search"] ?? "";
     $type_id = $_GET["type_id"] ?? 0;
 
-    $backgrounds = sql_query("
-        select *
-        from backgrounds
-    ");
+    // Validate
+    // Kiểm tra tính hợp lệ
+    if (!is_numeric($type_id)) {
+        display_front_notification_page(
+            false,
+            "Rainbow Kitty",
+            "404",
+            "Không tìm thấy trang",
+            "Quay về trang chủ",
+            "/public/home.php"
+        );
+        exit();
+    }
+
+    $page_now = $_GET['page'] ?? 1;
+    // Validate page
+    if (!is_numeric($page_now)) {
+        display_front_notification_page(
+            false,
+            "Rainbow Kitty",
+            "404",
+            "Không tìm thấy trang",
+            "Quay về trang chủ",
+            "/public/home.php"
+        );
+        exit();
+    }
+
+    // Mã hóa
+    $search = htmlspecialchars($search);
+
     $background = mysqli_fetch_array(sql_query("
         select *
         from backgrounds
@@ -25,132 +53,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true"> -->
-
     <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
     <link rel="icon" href="/public/img/socials/logo_1.png">
-    <style>
-        /* .disp-items > div {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin: 20px 20px 20px 20px;
-            padding: 10px 5px 10px 5px;
-            background-color: white;
-            border-radius: 7px;
-            height: 500px;
-            min-width: 800;
-        } */
-
-        .panel {
-            margin: 30px 5% 30px 5%;
-            /* padding: 5px 5px 5px 5px; */
-            background-color: white;
-            border-radius: 7px;
-            box-shadow: 1px 1px 5px #ccc;
-            /* min-width: 917px; */
-        }
-
-        .notification {
-            width: 100%;
-            padding: 10%;
-            text-align: center;
-        }
-        .notification * {
-            margin-bottom: 15px;
-        }
-
-        .background {
-            border-radius: 5px;
-            height: 550px;
-            background-image: url('<?= BACKGROUND_IMAGE_SOURCE_PATH . $background['picture'] ?>');
-            background-size: cover;
-        }
-
-        .item-menu-area {
-            display: inline-block;
-            width: 95%;
-            margin: 5px 25px 50px 25px;
-            min-width: 867px;
-        }
-        .item-menu-area .container {
-            margin-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            border-radius: 5px;
-            /* border: 1px #ccc solid;  */
-            box-shadow: 0px 10px 50px #ccc;
-            /* box-shadow: 0px 1px 3px #ccc; */
-        }
-        /* .item-menu-area .container:hover {
-            box-shadow: 0px 10px 3px #ccc;
-        } */
-    
-        .item-menu-area .container #input-type {
-            margin: 5px 15px 5px 15px;
-            width: 200px;
-            height: 40px;
-            border: 1px #ccc solid;
-            /* border-radius: 5px; */
-            background-color: white;
-            padding: 5px 15px 5px 15px;
-            /* box-shadow: 0px 10px 150px 5px #ccc; */
-            cursor: pointer;
-            z-index: 2;
-        }
-        /* .item-menu-area #type-input:hover {
-            background-color: #f7f7f7;
-        } */
-
-        .item-menu-area .container #search-bar {
-            margin: 5px 10px 5px 15px;
-            width: 500px;
-            height: 40px;
-            /* border-radius: 10px; */
-            border: 1px #ccc solid;
-            /* box-shadow: 0px 10px 150px 5px #ccc; */
-            padding: 5px 10px 5px 15px;
-            z-index: 2;
-        }
-        /* .item-menu-area #search-bar:hover {
-            background-color: #f7f7f7;
-        } */
-
-        .item-menu-area .container #btn-search {
-            text-align: center;
-            vertical-align: middle;
-            display: inline-block;
-            border: 1px #ccc solid;
-            background-color: white;
-            margin-top: 5px;
-            margin-right: 15px;
-            width: 50px;
-            height: 40px;
-        }
-        .item-menu-area .container #btn-search:hover {
-            background-color: #f7f7f7;
-        }
-        .item-menu-area .container #btn-search * {
-            margin: 7px;
-        }
-
-        .item-data-area {
-            /* display: flex;
-            flex-wrap: wrap; */
-            /* justify-content: space-between; */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            justify-content: center;
-            align-content: center;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/public/templates/css/home-style.css">
 </head>
-
 <body>
     <!-- <div> -->
         <?php include_once($root_path . "/public/templates/ui/header.php"); ?>
@@ -159,19 +66,12 @@
 
         <!-- Display background -->
         <div class="panel">
-            <div class="background" id="background">
-                <button onclick="prev_background()" style="float: left;width: 50px; height: 50px; border-radius: 50%; border-color:gray; position:relative; top: 43%; left: -25px; margin:auto; border: 1px gray solid; outline:none; cursor:pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/></svg>
-                </button>
-                <button onclick="next_background()" style="float: right;width: 50px; height: 50px; border-radius: 50%; border-color:gray; position:relative; top: 43%; right: -25px; border: 1px gray solid; outline:none; cursor:pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
-                </button>
-            </div>
+            <?php include_once($root_path . '/public/templates/ui/backgrounds/background.php')?>
         </div>
 
         <!-- Display items -->
         <div class="panel">
-            <div class="item-menu-area">
+            <div class="item-menu-area" id="item-menu-area">
                 <div class="container">
                     <?php
                         // Get all item types
@@ -193,65 +93,65 @@
                         ?>
                     </select>
                     <div style="display: flex;">
-                        <input id="search-bar" type="text" placeholder="Tìm kiếm tên sản phẩm">
-                        <!-- <button id="btn-search">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                        </button> -->
+                        <input id="search-bar" type="text" placeholder="Tìm kiếm sản phẩm">
                         <a id="btn-search" onclick="search_items()" style="cursor: pointer;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="item-data-area">
+
+            <?php
+                // Lất tất cả sản phẩm
+                $query_item_data = "
+                SELECT items.id
+                FROM items
+                INNER JOIN item_types
+                    ON items.id_type = item_types.id
+                INNER JOIN item_colors
+                    ON items.id_color = item_colors.id
+                WHERE
+                    (name LIKE '%$search%'
+                    OR
+                    type LIKE '%$search%'
+                    OR
+                    color LIKE '%$search%')
+                ";
+
+                if ($type_id != 0) {
+                    $query_item_data .= " AND id_type = $type_id";
+                }
+                // Đếm sản phẩm để phân trang
+                $item_data = sql_query($query_item_data);
+                $sum_items = mysqli_num_rows($item_data);
+                
+                
+                $sum_items_a_page = 4;
+                $sum_pages = ceil($sum_items / $sum_items_a_page);
+
+                $skip = ($page_now - 1) * $sum_items_a_page; 
+
+                // Giới hạn số sản phẩm trên một trang và đẩy trang
+                $query_item_data .= " limit $sum_items_a_page offset $skip";
+                $item_data = sql_query($query_item_data); // Kết quả đúng
+            ?>
+
+            <div style="display: flex; justify-content: center; margin: 10px 0 20px 0;">
                 <?php
-                // \\\\\\\\\\\\\\\\\\    Show all items
-                    $query_item_data = "
-                        SELECT id
-                        FROM items
-                        WHERE name LIKE '%$search%'
-                    ";
-
-                    if ($type_id == 0) {
-                        $query_item_data .= ";";
-                    } else {
-                        $query_item_data .= " AND id_type = $type_id";
+                    if ($search != null && $search != "") {
+                        ?>
+                        <h2 style="color: red;">Tìm thấy <?= $sum_items ?> kết quả với: "<?= $search ?>"</h3>
+                        <?php
                     }
-                    // .................Count all item..................
-                    $item_data = sql_query($query_item_data);
-                    $sum_items = mysqli_num_rows($item_data);
-                    $sum_items_a_page = 4;
-                    $sum_pages = ceil($sum_items / $sum_items_a_page);
+                ?>
+            </div>
 
-                    $page_now = 1;
-                    if(isset($_GET['page'])){
-                        $page_now = $_GET['page'];
-                    }
-
-                    $skip = ($page_now - 1) * $sum_items_a_page; 
-
-                    // \\\\\\\\\\\\\\\\\\\\      show item have limit
-                    if ($type_id == 0) {
-                        $query_item_data = "
-                            SELECT id
-                            FROM items
-                            WHERE name LIKE '%$search%'
-                        ";
-                    } else {
-                        $query_item_data = "
-                            SELECT id
-                            FROM items
-                            WHERE name LIKE '%$search%' and id_type = $type_id
-                        ";
-                    }
-                    $query_item_data .= " limit $sum_items_a_page offset $skip";
-                    $item_data = sql_query($query_item_data); // Kết quả đúng
-
-
+            <div class="item-data-area" id="item-data-area">
+                <?php
                     if (mysqli_num_rows($item_data) == 0) {
                         ?>
                         <div class="notification">
-                            <h1>Không tìm thấy sản phẩm tương ứng</h1>
+                            <h1>Không tìm thấy sản phẩm nào</h1>
                         </div>
                         <?php
                     } else {
@@ -262,12 +162,32 @@
                 ?>
             </div>
             <br>
-            <div style="text-align:center;">
+            <div style="text-align:center; display: flex; justify-content: center;">
+                <?php
+                    if ($page_now > 1) {
+                        ?>
+                        <a class="page-direction" href="?page=<?= $page_now - 1 ?>&search=<?= $search ?>&type_id=<?= $type_id ?>#item-menu-area">
+                            <svg style="position: relative; margin-left: 6px;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/></svg>
+                        </a>
+                        <?php
+                    }
+                ?>
+                
                 <?php for ($i = 1; $i <= $sum_pages; $i++) { ?>
-                    <a href="?page=<?php echo $i ?>&search=<?php echo $search ?>&type_id=<?php echo $type_id ?>">
+                    <a class="page-number <?php if ($i == $page_now) echo "current-page" ?>" href="?page=<?php echo $i ?>&search=<?php echo $search ?>&type_id=<?php echo $type_id ?>#item-menu-area">
                         <?php echo $i ?>
                     </a>
                 <?php } ?>
+                
+                <?php
+                    if ($page_now < $sum_pages) {
+                        ?>
+                        <a class="page-direction" href="?page=<?= $page_now + 1 ?>&search=<?= $search ?>&type_id=<?= $type_id ?>#item-menu-area">
+                            <svg style="position: relative; margin-left: 1px;" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z"/></svg>
+                        </a>
+                        <?php
+                    }
+                ?>
             </div>
             <script defer>
                 var slider_img = document.querySelector('.background');
@@ -297,12 +217,12 @@
 
                 function search_items() {
                     let search_text = document.getElementById('search-bar').value;
-                    window.location.href = `/public/home.php?search=${search_text}`;
+                    window.location.href = `?search=${search_text}#item-menu-area`;
                 }
 
                 function display_item_by_type() {
                     let item_type_id = parseInt(document.getElementById('input-type').value);
-                    window.location.href = `/public/home.php?type_id=${item_type_id}`;
+                    window.location.href = `?type_id=${item_type_id}#item-menu-area`;
                 }
             </script>
         </div>

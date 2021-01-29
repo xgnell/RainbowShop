@@ -23,7 +23,7 @@
         /* margin: auto;
         z-index: 999; */
         /* margin-bottom: 90px; */
-        min-width: 1000px;
+        /* min-width: 1000px; */
     }
 
     #nav-header .logo-name {
@@ -78,6 +78,8 @@
 </style>
 
 <?php
+require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
+
 if (customer_signed_in()) {
     include_once($root_path . "/public/templates/account/account-options.php");
 } else {
@@ -145,8 +147,10 @@ if (is_admin_signed_in()) {
 
     window.onclick = function(event) {        
         if (event.target == sign_in_form) {
+            clear_all_signin_errors();
             sign_in_form.style.visibility = 'hidden';
         } else if (event.target == get_info_form) {
+            clear_all_info_errors();
             get_info_form.style.visibility = 'hidden';
         }
     }

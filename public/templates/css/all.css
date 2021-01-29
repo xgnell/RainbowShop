@@ -15,3 +15,36 @@ body {
     background-color: #f5f5f5;
     /* font-family: sans-serif; */
 }
+
+.page-direction {
+    display: inline-block;
+    padding-top: 3px;
+    margin: 0 3px 10px 3px;
+    width: 30px;
+    height: 30px;
+    border: 1px #ccc solid;
+    color: black;
+}
+.page-direction:hover {
+    background-color: #dedede;
+}
+.page-number {
+    display: inline-block;
+    padding-top: 5px;
+    margin: 0 3px 10px 3px;
+    width: 30px;
+    height: 30px;
+    border: 1px #ccc solid;
+    color: black;
+}
+.page-number:hover {
+    background-color: #dedede;
+}
+.current-page {
+    border: 1px #363e7e solid;
+    background-color: #363e7e;
+    color: white;
+}
+.current-page:hover {
+    background-color: #2e356b;
+}

@@ -26,6 +26,7 @@
         margin: 5px 45px 5px 45px;
     }
     #get-info-form .form-content > input {
+        border: 1px #ccc solid;
         width: 100%;
         height: 50px;
     }
@@ -66,22 +67,32 @@
         color: black;
         background-color: rgb(208, 209, 214);
     } */
+
+    .error-input {
+        border: 1px red solid !important;
+    }
 </style>
 
 
 <div id="get-info-form">
     <div class="form-frame">
-        <a class="btn-close" onclick="document.getElementById('get-info-form').style.visibility = 'hidden'">
+        <a class="btn-close" onclick="clear_all_info_errors(); document.getElementById('get-info-form').style.visibility = 'hidden'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </a><br>
         <span class="form-title">Thông tin người nhận</span>
         <form action="/public/templates/order/process-order.php" method="POST">
-            
             <div class="form-content">
-            <input type="text" name="id_customer" value="<?= $_SESSION["user"]["customer"]["id"]?>" style="visibility: hidden;">
-                <input style="padding-left: 10px;" type="text" name="receiver" placeholder="Tên người nhận" id="receiver" autocomplete="off"><br><br>
-                <input style="padding-left: 10px;" type="text" name="phone" placeholder="Số điện thoại" id="phone" autocomplete="off"><br><br>
-                <input style="padding-left: 10px;" type="text" name="address" placeholder="Địa chỉ" id="address" autocomplete="off"><br><br>
+                <input style="padding-left: 10px;" type="text" name="receiver" placeholder="Tên người nhận" id="receiver" autocomplete="off">
+
+                <br><br>
+                
+                <input style="padding-left: 10px;" type="text" name="phone" placeholder="Số điện thoại" id="phone" autocomplete="off">
+                
+                <br><br>
+                
+                <input style="padding-left: 10px;" type="text" name="address" placeholder="Địa chỉ" id="address" autocomplete="off">
+                
+                <br><br>
             </div>
             
             <input class="btn-order" type="submit" value="Đặt hàng" onclick="return submit_order()"><br><br>
@@ -94,10 +105,10 @@
         var receiver = document.getElementById("receiver").value;
         var receiver_pattern = /^[A-Za-z ]+$/;
         if (receiver_pattern.test(receiver)) {
-            document.getElementById("receiver").style.borderColor = "#14e348";
+            document.getElementById("receiver").classList.remove('error-input');
             return true;
         } else {
-            document.getElementById("receiver").style.borderColor = "red";
+            document.getElementById("receiver").classList.add('error-input');
             return false;
         }
     }
@@ -105,10 +116,10 @@
         var address = document.getElementById("address").value;
         var address_pattern = /^[A-Za-z ]+$/;
         if (address_pattern.test(address)) {
-            document.getElementById("address").style.borderColor = "#14e348";
+            document.getElementById("address").classList.remove('error-input');
             return true;
         } else {
-            document.getElementById("address").style.borderColor = "red";
+            document.getElementById("address").classList.add('error-input');
             return false;
         }
     }
@@ -116,10 +127,10 @@
         var phone = document.getElementById("phone").value;
         var phone_pattern = /^(03|05|07|08|09)+([0-9]{8})\b$/;
         if (phone_pattern.test(phone)) {
-            document.getElementById("phone").style.borderColor = "#14e348";
+            document.getElementById("phone").classList.remove('error-input');
             return true;
         } else {
-            document.getElementById("phone").style.borderColor = "red";
+            document.getElementById("phone").classList.add('error-input');
             return false;
         }
     }
@@ -133,5 +144,12 @@
         } else {
             return false;
         }
+    }
+
+
+    function clear_all_info_errors() {
+        document.getElementById("receiver").classList.remove('error-input');
+        document.getElementById("address").classList.remove('error-input');
+        document.getElementById("phone").classList.remove('error-input');
     }
 </script>

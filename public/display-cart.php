@@ -20,15 +20,9 @@
             background-color: white;
             border-radius: 7px;
             box-shadow: 1px 1px 5px #ccc;
-            width: 1110px;
+            /* width: 1110px; */
             min-height: 400px;
         }
-        
-        /* .table-header-container {
-            display: grid;
-            grid-template-columns: 170px auto;
-            gap: 20px;
-        } */
 
         .notification {
             width: 100%;
@@ -40,21 +34,70 @@
         }
 
         .table-header {
+            width: 100%;
             text-align: center;
             border: 2px white solid;
             border-collapse: collapse;
             /* width: 100%; */
         }
         .table-header tr {
-            border: 2px white solid;
+            border: 3px white solid;
         }
         .table-header tr th {
-            /* color: white; */
             padding: 7px 0 7px 0;
-            /* background-color: #363e7e; */
-            /* background-color: #f7f7f7; */
+            background-color: #363e7e;
+            color: white;
+        }
+        .table-header tr {
+            background-color: #f2f2f2;
+        }
+        .table-header tr:hover {
             background-color: #dedede;
-            border: 2px white solid;
+        }
+        .table-header tr:first-child {
+            position: relative;
+            box-shadow: 0px 5px 10px #ccc;
+
+        }
+        .table-header .btn-amount {
+            display: inline-block;
+            width: 30px;
+            font-size: 22px;
+            padding: 3px 4px 3px 4px;
+            background-color: #f7f7f7;
+            cursor: pointer;
+        }
+        .table-header .btn-amount:hover {
+            background-color: rgb(208, 209, 214);
+        }
+
+        .table-header .input-amount{
+            width: 70px;
+            margin: 0;
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+            border-radius: 0px;
+            border: 0px;
+            border-left: 1px gray solid;
+            border-right: 1px gray solid;
+            background-color: #f7f7f7;
+            color: black;
+        }
+
+        .table-header .popup-box {
+            visibility: hidden;
+            position: absolute;
+            right: 3em;
+            background-color: white;
+            border: 1px #ccc solid;
+            padding: 10px 10px 10px 10px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 20%);
+        }
+
+        .table-header .disp-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
         }
 
         .disp-total {
@@ -114,29 +157,29 @@
                 ?>
                 <table class="table-header">
                     <tr>
-                        <th style="width: 160px; min-width: 160px;">Ảnh</th>
-                        <th style="width: 170px; min-width: 170px;">Tên</th>
-                        <th style="width: 120px; min-width: 120px;">Giá</th>
-                        <th style="width: 120px; min-width: 120px;">Loại</th>
-                        <th style="width: 100px; min-width: 100px;">Màu</th>
-                        <th style="width: 100px; min-width: 100px;">Size</th>
-                        <th style="width: 200px; min-width: 200px;">Số lượng</th>
-                        <th style="width: 90px; min-width: 90px;"></th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th>Giá (VNĐ)</th>
+                        <th>Loại</th>
+                        <th>Màu</th>
+                        <th>Size</th>
+                        <th style="width: 100px; min-width: 100px;">Số lượng</th>
+                        <th style="min-width: 50px;">Xóa</th>
                     </tr>
-                </table>
-                <?php
-
-                // Cart has items
-                foreach ($_SESSION["user"]["customer"]["cart"] as $item_id => $data) {
-                    foreach ($data as $size_id => $amount) {
-                        $total_price += spawn_cart_item($item_id, $size_id, $amount);
+                    <?php
+                    // Cart has items
+                    foreach ($_SESSION["user"]["customer"]["cart"] as $item_id => $data) {
+                        foreach ($data as $size_id => $amount) {
+                            $total_price += spawn_cart_item($item_id, $size_id, $amount);
+                        }
                     }
-                }
-                ?>
+                    ?>
+                </table>
+                
                 <!-- Total panel -->
-                <div class="disp-total">
+                <div class="disp-total" style="margin-top: 100px;">
                     <a class="btn-delete-all-cart" onclick="confirm_delete_all_cart()">Xoá toàn bộ giỏ hàng</a>
-                    <span style="font-size: 20px; color: red; margin-right: 30px;">Tổng: <?= $total_price ?> VNĐ</span>
+                    <span style="font-size: 20px; color: red; margin-right: 30px;">Tổng: <?= number_format($total_price, 0, ',', '.') ?> VNĐ</span>
                 </div>
                 <br>
                 <div style="display: flex; justify-content: flex-end;">

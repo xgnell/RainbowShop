@@ -23,7 +23,7 @@
         width: 100%;
         background-color: #21264f;
         /* transition: top 0.3s; */
-        min-width: 1000px;
+        /* min-width: 1000px; */
     }
     #nav-menu {
         margin: auto;

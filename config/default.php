@@ -18,3 +18,4 @@ define('DEFAULT_ADMIN_PASSWORD', 'abcd1234');
 define("ITEM_IMAGE_SOURCE_PATH", "/public/assets/items/");
 define("BACKGROUND_IMAGE_SOURCE_PATH", "/public/assets/backgrounds/");
 define("DEFAULT_ITEM_PER_PAGE", 10);
+define("MAX_ITEM_CAN_PUT_INTO_CART", "50");

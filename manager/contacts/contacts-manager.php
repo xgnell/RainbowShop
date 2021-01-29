@@ -4,6 +4,10 @@ $root_path = $_SERVER["DOCUMENT_ROOT"];
 // Check signed in
 require_once($root_path . "/manager/templates/check-admin-signed-in.php");
 check_admin_signed_in(2);
+
+$pagination_table = 'contact';
+require_once($root_path . "/manager/templates/pagination-header.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +75,8 @@ check_admin_signed_in(2);
                     <tr class="table-bar-footer" style="bottom: 0;">
                     <td colspan="9">
                         <?php
-                            for ($i = 1; $i <= $number_of_page; $i++ ) {
-                                ?>
-                                    <a class="page-number <?php if ($page == $i) echo "current-page"; ?>" href="/manager/admins/admins-manager.php?page=<?= $i ?>"><?= $i ?></a>
-                                <?php
-                            }
-                            ?>
+                        require_once($root_path . "/manager/templates/pagination-footer.php");
+                        ?>
                     </td>
                 </tr>
                 </table>
