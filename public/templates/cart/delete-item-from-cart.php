@@ -1,7 +1,7 @@
 <?php
 $root_path = $_SERVER["DOCUMENT_ROOT"];
 
-require_once($root_path . "/public/templates/check-customer-signed-in.php");
+require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
 require_once($root_path . "/public/templates/ui/notification/notification-page.php");
 
 if (customer_signed_in()) {

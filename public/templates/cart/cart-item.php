@@ -183,7 +183,7 @@
         </td>
 
         <td>
-            <a class="btn-function" href="/public/templates/item/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>"
+            <a style="cursor: pointer" class="btn-function" onclick="confirm_action('Bạn có chắc chắn muốn xóa sản phẩm khỏi giỏ hàng ?', '/public/templates/cart/delete-item-from-cart.php?id=<?= $item_id ?>&size_id=<?= $size_id ?>')"
                 onmouseover="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'visible'"
                 onmouseout="document.getElementById('btn-delete-<?= $item_id . '-' . $size_id ?>').style.visibility = 'hidden'">
                 
@@ -195,6 +195,7 @@
         </td>
 
     </tr>
+    <script src="/public/templates/js/confirm-action.js"></script>
     <?php
         return $item["price"] * $amount;
     ?>

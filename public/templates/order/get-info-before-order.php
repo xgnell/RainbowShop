@@ -81,11 +81,9 @@
         </a><br>
         <span class="form-title">Thông tin người nhận</span>
         <form action="/public/templates/order/process-order.php" method="POST">
-            
             <div class="form-content">
-            <input type="text" name="id_customer" value="<?= $_SESSION["user"]["customer"]["id"]?>" style="visibility: hidden;">
                 <input style="padding-left: 10px;" type="text" name="receiver" placeholder="Tên người nhận" id="receiver" autocomplete="off">
-                
+
                 <br><br>
                 
                 <input style="padding-left: 10px;" type="text" name="phone" placeholder="Số điện thoại" id="phone" autocomplete="off">

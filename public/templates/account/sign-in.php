@@ -41,9 +41,6 @@
         left: 220px;
         top: 5px;
     }
-    /*#sign-in-form .btn-close:hover {
-        background-color: rgb(208, 209, 214);
-    }*/
 
 
     #sign-in-form .btn-sign-in {
@@ -95,6 +92,6 @@
 
 <script>
     function clear_all_signin_errors() {
-        
+
     }
 </script>

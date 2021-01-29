@@ -62,6 +62,8 @@
 </style>
 
 <?php
+require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
+
 if (customer_signed_in()) {
     include_once($root_path . "/public/templates/account/account-options.php");
 } else {

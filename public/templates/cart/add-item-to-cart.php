@@ -1,7 +1,6 @@
 <?php
     $root_path = $_SERVER["DOCUMENT_ROOT"];
 
-    define("PAGE_NAME", "home");
     require_once($root_path . "/config/db.php");
     require_once($root_path . "/config/default.php");
     require_once($root_path . "/public/templates/ui/notification/notification-page.php");
@@ -17,6 +16,7 @@
             "Không tìm thấy trang",
             "Quay lại"
         );
+        exit();
     }
 
     $item_id = $_POST["id"] ?? null;
@@ -134,6 +134,9 @@
     }
 
     // Check if item in cart
+    if (empty($_SESSION["user"]["customer"]["cart"][$item_id])) {
+        $_SESSION["user"]["customer"]["cart"][$item_id] = [];
+    }
     if (array_key_exists($item_size_id, $_SESSION["user"]["customer"]["cart"][$item_id])) {
         // Update
         $_SESSION["user"]["customer"]["cart"][$item_id][$item_size_id] += $item_amount;
@@ -144,9 +147,9 @@
 
     if ($redirect == 0) {
         display_front_notification_page(
-            false,
+            true,
             "Rainbow Kitty",
-            "Thêm sản phẩm vào giỏ hàng thành công",
+            "Thêm vào giỏ hàng thành công",
             "",
             "Quay lại mua sắm",
             "/public/home.php"

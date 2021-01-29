@@ -18,21 +18,23 @@ require_once($root_path . "/config/default.php");
 require_once($root_path . "/manager/admins/admin-notification.php");
 require_once($root_path . "/manager/templates/notification-page.php");
 
-// Lấy tất cả dữ liệu từ form gửi lên
-$admin_id = $_POST["id"] ?? null;
-if ($admin_id == null) {
-    display_notification_page(
-        false,
-        $notification_title,
-        "404",
-        "Không tìm thấy trang",
-        "Quay lại"
-        // Quay lại trang trước đó
-    );
-    exit();
-}
+check_admin_signed_in(2);
 
-check_exact_admin_signed_in($admin_id);
+// Lấy tất cả dữ liệu từ form gửi lên
+$admin_id = $_SESSION["user"]["admin"]["id"];
+// if ($admin_id == null) {
+//     display_notification_page(
+//         false,
+//         $notification_title,
+//         "404",
+//         "Không tìm thấy trang",
+//         "Quay lại"
+//         // Quay lại trang trước đó
+//     );
+//     exit();
+// }
+
+// check_exact_admin_signed_in($admin_id);
 
 $admin = null;
 if (!empty($_POST)) {
