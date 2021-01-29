@@ -119,8 +119,8 @@ QnA -> XSS
 
 - [X] Đã update giao diện account option
 
-- [ ] Validate fronend của background
-- [ ] Validate fronend của contact
+- [X] Validate fronend của background
+- [X] Validate fronend của contact
 - [ ] Background khi kéo vào nó sẽ bị co lại trông ko được đẹp
 - [ ] (Phân trang trang hóa đơn
 - [ ] Tự động điền thông tin đăng kí khi đặt hàng
@@ -141,7 +141,7 @@ QnA -> XSS
 - [X] Validate form sign in chặt chẽ hơn
 - [X] Thêm chức năng khóa admin
 - [ ] Kiểm tra sự liên kết giữa phần hóa đơn phía khách hàng và admin
-- [ ] Sửa lại giao diện các trang liên hệ sau
+- [X] Sửa lại giao diện các trang liên hệ sau
 - [X] Sửa lại menu admin với những phần chỉ có 1 option ở submenu
 - [X] Thêm chức năng chặn khách hàng
 - [X] Sửa from_option thành from
@@ -151,7 +151,7 @@ QnA -> XSS
 - [X] Validate truy cập cho các trang trong config
 - [X] Thay đổi lại thư mục img chuyển nó sang default
 
-- [ ] Sửa bảng hóa đơn, làm giao diện, validate toàn bộ trang admin, thêm phần thông tin liên hệ, thêm phần background, Thêm phần quên tài khoản, Làm phân trang
+- [X] Sửa bảng hóa đơn, làm giao diện, validate toàn bộ trang admin, thêm phần thông tin liên hệ, thêm phần background, Thêm phần quên tài khoản, Làm phân trang
 - [X] Refactor code phần kiểm tra admin đăng nhập
 - [X] Thêm chức năng reset mật khẩu cho admin
 - [X] Bill table: + id_admin , updated_at

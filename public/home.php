@@ -4,8 +4,8 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-    require_once($root_path . "/config/background.php");
-    require_once($root_path . "/public/templates/item/item.php");
+    require_once($root_path . "/config/default.php");
+    include_once($root_path . "/public/templates/item/item.php");
     require_once($root_path . "/public/templates/ui/notification/notification-page.php");
 
     $search = $_GET["search"] ?? "";
@@ -55,7 +55,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
-    <link rel="icon" href="/public/img/socials/logo_1.png">
     <link rel="stylesheet" href="/public/templates/css/home-style.css">
 </head>
 <body>
@@ -190,6 +189,27 @@
                 ?>
             </div>
             <script defer>
+                var slider_img = document.querySelector('.background');
+                var background = [];
+                <?php foreach ($backgrounds as $each): ?>
+                    background.push('<?php echo $each['picture'] ?>');
+                <?php endforeach ?>
+                var i = 0;
+                function next_background () {
+                    if (i >= background.length - 1) i = -1;
+                    i++;
+                    return setImg();
+                }
+                function prev_background () {
+                    if (i <= 0) i = background.length;
+                    i--;
+                    return setImg();
+                }
+                function setImg() {
+                    document.getElementById('background').style.backgroundImage = 'url("<?= BACKGROUND_IMAGE_SOURCE_PATH ?>bg4.png")';
+                    // return slider_img.setAttribute(<?= BACKGROUND_IMAGE_SOURCE_PATH ?> + background[i]);
+                }
+
                 function goto_item_details(item_id) {
                     window.location.href = `/public/display-item-details.php?id=${item_id}`;
                 }

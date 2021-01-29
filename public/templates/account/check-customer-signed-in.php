@@ -1,4 +1,9 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/notification/display-error-page.php");
+if (basename($_SERVER['PHP_SELF']) == "check-customer-signed-in.php") {
+    display_error_page(404, "Không tìm thấy trang");
+    exit();
+}
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

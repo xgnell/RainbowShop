@@ -2,6 +2,7 @@
 $root_path = $_SERVER["DOCUMENT_ROOT"];
 
 define("PAGE_NAME", "signup");
+require_once($root_path . "/config/db.php");
 require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
 
 if (isset($_SESSION['user']['customer'])) {

@@ -62,6 +62,7 @@
                 <a href="/manager/backgrounds/background-manager.php"><li>Xem tất cả</li></a>
                 <a href="/manager/backgrounds/background-insert.php"><li>Thêm mới</li></a>
             </ul>
+
         </li>
         <a href="/manager/contacts/view-contact.php">
         <li class="<?php if (MENU_OPTION == "contact") echo "current-option"; ?>">

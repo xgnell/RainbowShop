@@ -2,7 +2,7 @@
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/manager/templates/notification-page.php");
-    if (basename($_SERVER['PHP_SELF']) == "header.php") {
+    if (basename($_SERVER['PHP_SELF']) == "footer.php") {
         display_notification_page(
             false,
             "Quản lý admin",

@@ -125,11 +125,25 @@ if (customer_signed_in()) {
         // Insert data
         foreach ($data as $size_id => $amount) {
             // Update amount from items details
-            sql_cmd("
-                UPDATE item_details
-                SET amount = amount - $amount
+            $amount_db = sql_query("
+                SELECT amount
+                FROM item_details
                 WHERE id_item = $item_id AND id_size = $size_id;
             ");
+            $amount_db = mysqli_fetch_array($amount_db)["amount"];
+            if ($amount_db - $amount <= 0) {
+                // Delete size from db
+                // sql_cmd("
+                //     DELETE FROM item_details
+                //     WHERE id_item = $item_id AND id_size = $size_id;
+                // ");
+            } else {
+                sql_cmd("
+                    UPDATE item_details
+                    SET amount = amount - $amount
+                    WHERE id_item = $item_id AND id_size = $size_id;
+                ");
+            }
             
             // Insert into bill details
             sql_cmd("
