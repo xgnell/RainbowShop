@@ -76,10 +76,10 @@
         <form onsubmit="customer_sign_in_form_validate(event)" action="/public/templates/account/sign-in-process.php" method="POST">
             
             <div class="form-content">
-                <input type="text" name="email" placeholder="Email" id="input-email">
-                <div id="display-error-email" style="color: red;"></div><br>
-                <input type="password" name="passwd" placeholder="Mật khẩu" id="input-passwd">
-                <div id="display-error-passwd" style="color: red;"></div><br>
+                <input type="text" name="email" placeholder="Email" id="input-email-sign-in">
+                <div id="display-error-email-sign-in" style="color: red;"></div><br>
+                <input type="password" name="passwd" placeholder="Mật khẩu" id="input-passwd-sign-in">
+                <div id="display-error-passwd-sign-in" style="color: red;"></div><br>
             </div>
             
             <input class="btn-sign-in" type="submit" value="Đăng nhập"><br><br>
@@ -91,10 +91,3 @@
         </form>
     </div>
 </div>
-
-
-<script>
-    function clear_all_signin_errors() {
-
-    }
-</script>

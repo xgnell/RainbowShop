@@ -109,7 +109,6 @@ $customer = mysqli_fetch_array(sql_query("
                         name: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Tên không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'],
                         phone: [/^0[0-9]{9,9}$/, 'Số điện thoại không hợp lệ (Chỉ chứa số, số mở đầu phải bằng 0 và đủ 10 số)'],
                         email: [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Email không hợp lệ'],
-                        address: [/^(?:[a-zA-Z]+\ ?)+[a-zA-Z]$/, 'Địa chỉ không hợp lệ (Không chấp nhận số hoặc các kí tự đặc biệt)'], 
                         passwd: true,
                     },
                     ['gender', 'birth']);
@@ -254,18 +253,6 @@ $customer = mysqli_fetch_array(sql_query("
 </body>
 
 <script>
-    function check_address() {
-        var city = document.getElementById('city').value;
-        var district = document.getElementById('district').value;
-        var xa = document.getElementById('xa').value;
-        if (city == "" || district == 0 || xa == 0) {
-            document.getElementById('display-error-address').innerHTML = "Không được để trống địa chỉ";
-            return false;
-        } else {
-            document.getElementById('display-error-address').innerHTML = "";
-            return true;
-        }
-    }
     generate_day(<?= $birth_day ?>);
 </script>
 </html>

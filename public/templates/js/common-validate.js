@@ -73,6 +73,20 @@ function is_valid_name(regex, message) {
     return true;
 }
 
+function is_valid_address(regex, message) {
+    let input_data = document.getElementById(`input-address`).value;
+    let error = document.getElementById(`display-error-address`);
+
+    if (!is_not_blank(input_data, error)) return false;
+
+    /* Kiểm tra regex */
+    input_data = remove_ascent(input_data);
+    if (!is_pass_regex(input_data, error, regex, message)) return false;
+
+    display_error(error, '');
+    return true;
+}
+
 function is_valid_password(check_power) {
     let input_data = document.getElementById(`input-passwd`).value;
     let error = document.getElementById(`display-error-passwd`);
@@ -154,6 +168,14 @@ function validate_all(regex_list, select_list) {
         if (!is_valid_name(
                 regex_list['name'][0],
                 regex_list['name'][1])) {
+            if (is_passed == true) is_passed = false;
+        }
+    }
+
+    if ('address' in regex_list) {
+        if (!is_valid_address(
+                regex_list['address'][0],
+                regex_list['address'][1])) {
             if (is_passed == true) is_passed = false;
         }
     }

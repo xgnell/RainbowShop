@@ -1,4 +1,5 @@
 <?php
+    $notificaton_title = "Quản lý khách hàng";
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
