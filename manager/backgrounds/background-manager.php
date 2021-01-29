@@ -7,11 +7,7 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
-<<<<<<< HEAD
     require_once($root_path . "/config/default.php");
-=======
-    require_once($root_path . "/config/background.php");
->>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
 
     $pagination_table = 'backgrounds';
     require_once($root_path . "/manager/templates/pagination-header.php");

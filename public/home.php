@@ -4,13 +4,8 @@
     define("PAGE_NAME", "home");
     require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
     require_once($root_path . "/config/db.php");
-<<<<<<< HEAD
     require_once($root_path . "/config/default.php");
     include_once($root_path . "/public/templates/item/item.php");
-=======
-    require_once($root_path . "/config/background.php");
-    require_once($root_path . "/public/templates/item/item.php");
->>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
     require_once($root_path . "/public/templates/ui/notification/notification-page.php");
 
     $search = $_GET["search"] ?? "";
