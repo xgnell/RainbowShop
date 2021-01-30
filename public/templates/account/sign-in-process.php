@@ -48,12 +48,12 @@ if (preg_match($email_regex_pattern, $customer_email)) {
     } else {
         // Tài khoản không tồn tại
         $is_sign_in_success = false;
-        display_customer_sign_in_failure("Bạn nhập sai email hoặc mật khẩu! Vui lòng thử lại", $customer_email);
+        display_customer_sign_in_failure("Bạn nhập sai email hoặc mật khẩu! Vui lòng thử lại");
         exit();
     }
 
 } else {
-    display_customer_sign_in_failure("Email $customer_email không hợp lệ! Vui lòng thử lại", $customer_email);
+    display_customer_sign_in_failure("Email $customer_email không hợp lệ! Vui lòng thử lại");
     exit();
 }
 
@@ -76,14 +76,14 @@ if ($sign_in_success) {
     header("location:/public/home.php");
 } else {
     // Đăng nhập thất bại
-    display_customer_sign_in_failure("Bạn nhập sai email hoặc mật khẩu", $customer_email);
+    display_customer_sign_in_failure("Bạn nhập sai email hoặc mật khẩu");
 }
 
 
 
 
 
-function display_customer_sign_in_failure($message, $customer_email) {
+function display_customer_sign_in_failure($message) {
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -102,10 +102,9 @@ function display_customer_sign_in_failure($message, $customer_email) {
         <div id="customer-sign-in-process">
             <div class="container">
                 <h2 style="color: red;"><?= $message ?></h2>
-                <form action="/public/home.php" method="POST">
-                    <input type="text" name="email_or_phone" value="<?= $customer_email ?>" hidden>
-                    <input id="btn-try-again" type="submit" value="Thử lại">
-                </form>
+                <!-- <form action="/public/home.php" method="POST"> -->
+                    <button id="btn-try-again" onclick="window.history.back();">Thử lại</button>
+                <!-- </form> -->
             </div>
         </div>
     </body>

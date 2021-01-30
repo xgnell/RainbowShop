@@ -155,7 +155,7 @@ $bill_details = sql_query("
 
                         ?>
                         <tr>
-                            <td><?= $item["name"] ?></td>
+                            <td><?= htmlspecialchars($item["name"]) ?></td>
                             <td>
                                 <img style="height: 100px;" src="<?= ITEM_IMAGE_SOURCE_PATH . $item['picture'] ?>">
                             </td>

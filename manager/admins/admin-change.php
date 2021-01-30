@@ -9,50 +9,10 @@
     require_once($root_path . "/manager/templates/notification-page.php");
 
     $notification_title = "Thay đổi thông tin tài khoản admin";
-    
-    // Lấy thông tin admin được gửi lên
-    $admin_id = $_GET["id"] ?? null;
-    if ($admin_id == null) {
-        display_notification_page(
-            false,
-            $notification_title,
-            "404",
-            "Không tìm thấy trang",
-            "Quay lại"
-            // Về trang trước đó
-        );
-        exit();
-    }
-    if (!is_numeric($admin_id)) {
-        display_notification_page(
-            false,
-            $notification_title,
-            "404",
-            "Không tìm thấy trang",
-            "Quay lại"
-            // Quay lại trang trước đó
-        );
-        exit();
-    }
-    $id_db = sql_query("
-        SELECT *
-        FROM admins
-        WHERE id = $admin_id;
-    ");
-    if (mysqli_num_rows($id_db) != 1) {
-        display_notification_page(
-            false,
-            $notification_title,
-            "404",
-            "Không tìm thấy trang",
-            "Quay lại"
-            // Quay về trang trước đó
-        );
-        exit();
-    }
 
-    check_exact_admin_signed_in($admin_id);
+    check_admin_signed_in(2);
 
+    $admin_id = $_SESSION["user"]["admin"]["id"];
     if (!empty($_POST)) {
         $admin = [
             'id' => $admin_id,

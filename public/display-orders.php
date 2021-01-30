@@ -97,7 +97,7 @@
         .display-delete-order > div {
             font-size: bold;
             color: gray;
-            margin-top: 100px;
+            margin-top: 30px;
             text-align: left;
         }
         .display-delete-order > div p:hover {

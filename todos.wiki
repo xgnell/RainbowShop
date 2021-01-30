@@ -119,15 +119,17 @@ QnA -> XSS
 
 - [X] Đã update giao diện account option
 
+- [X] Validate fronend của background
+- [X] Validate fronend của contact
 - [ ] Background khi kéo vào nó sẽ bị co lại trông ko được đẹp
 - [ ] (Phân trang trang hóa đơn
 - [ ] Tự động điền thông tin đăng kí khi đặt hàng
 - [ ] Khi chỉnh sửa thông tin khách hàng đang trong phiên đăng nhập => Cập nhật lại thông tin vào SESSION
 - [ ] Kiểm tra đăng kí đăng nhập khi đang đăng nhập tài khoản admin
-- [ ] Thêm notification page ở phía khách hàng
-- [ ] Validate tất cả id phần trang khách hàng
-- [ ] Kiểm tra contact với background phía admin
-- [ ] Phân trang chưa hoạt động đúng ở khách hàng homepage
+- [X] Thêm notification page ở phía khách hàng
+- [O] Validate tất cả id phần trang khách hàng
+- [O] Kiểm tra contact với background phía admin
+- [X] Phân trang chưa hoạt động đúng ở khách hàng homepage
 - [ ] Nếu có thời gian xử lý thêm một lỗi tên sản phẩm (hay các chỗ khác quá dài)
 - [X] Set min-width cho phan san pham
 - [X] Validate phần xóa sản phẩm
@@ -139,7 +141,7 @@ QnA -> XSS
 - [X] Validate form sign in chặt chẽ hơn
 - [X] Thêm chức năng khóa admin
 - [ ] Kiểm tra sự liên kết giữa phần hóa đơn phía khách hàng và admin
-- [ ] Sửa lại giao diện các trang liên hệ sau
+- [X] Sửa lại giao diện các trang liên hệ sau
 - [X] Sửa lại menu admin với những phần chỉ có 1 option ở submenu
 - [X] Thêm chức năng chặn khách hàng
 - [X] Sửa from_option thành from
@@ -149,7 +151,7 @@ QnA -> XSS
 - [X] Validate truy cập cho các trang trong config
 - [X] Thay đổi lại thư mục img chuyển nó sang default
 
-- [ ] Sửa bảng hóa đơn, làm giao diện, validate toàn bộ trang admin, thêm phần thông tin liên hệ, thêm phần background, Thêm phần quên tài khoản, Làm phân trang
+- [X] Sửa bảng hóa đơn, làm giao diện, validate toàn bộ trang admin, thêm phần thông tin liên hệ, thêm phần background, Thêm phần quên tài khoản, Làm phân trang
 - [X] Refactor code phần kiểm tra admin đăng nhập
 - [X] Thêm chức năng reset mật khẩu cho admin
 - [X] Bill table: + id_admin , updated_at

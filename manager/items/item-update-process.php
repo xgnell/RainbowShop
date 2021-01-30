@@ -33,12 +33,12 @@ $item_sizes_data_from_db = sql_query("
 
 // Get all input data
 $item = [
-    'id' => $_POST["id"] ?? null,
-    'name' => $_POST["name"] ?? null,
-    'price' => $_POST["price"] ?? null,
-    'description' => $_POST["description"] ?? null,
-    'type_id' => $_POST["type"] ?? null,
-    'color_id' => $_POST["color"] ?? null
+    'id' => htmlspecialchars($_POST["id"] ?? null),
+    'name' => htmlspecialchars($_POST["name"] ?? null),
+    'price' => htmlspecialchars($_POST["price"] ?? null),
+    'description' => htmlspecialchars($_POST["description"] ?? null),
+    'type_id' => htmlspecialchars($_POST["type"] ?? null),
+    'color_id' => htmlspecialchars($_POST["color"] ?? null)
 ];
 
 $item_sizes = [];
@@ -140,8 +140,6 @@ if ($item['description'] == null) {
     );
     exit();
 }
-$item['description'] = htmlspecialchars($item['description']);
-
 
 // Kiểm tra type id
 if ($item['type_id'] == null ||

@@ -12,7 +12,7 @@
 
     // Lấy dữ liệu được gửi trả lại nếu có
     $admin = [
-        'name' => htmlspecialchars($_POST["name"] ?? null) ?? "",
+        'name' => $_POST["name"] ?? "",
         'gender' => $_POST["gender"] ?? "",
         
         'birth_year' => $_POST["birth_year"] ?? "",

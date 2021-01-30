@@ -1,16 +1,16 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/manager/templates/notification-page.php");
-if (basename($_SERVER['PHP_SELF']) == "background-notification.php") {
+if (basename($_SERVER['PHP_SELF']) == "contact-notification.php") {
     display_notification_page(
         false,
-        "Quản lý background",
+        "Quản lý liên hệ",
         "404",
         "Không tìm thấy trang",
         "Quay lại"
         // Quay về trang trước đó
 );
 }
-function display_background_notification_page(
+function display_contact_notification_page(
     $state,
     $title,
     $message,
@@ -50,8 +50,11 @@ function display_background_notification_page(
                         if ($state == false) {
                             ?>
                             <form action="<?= $return_path ?>" method="POST">
-                                <!-- Tên -->
-                                <input hidden type="text" name="name" value="<?= $data['name'] ?>">
+                                <!-- Số điện thoại -->
+                                <input hidden type="text" name="phone" value="<?= $data['phone'] ?>">
+
+                                <!-- Địa chỉ -->
+                                <input hidden type="text" name="address" value="<?= $data['address'] ?>">
 
                                 <!-- Quay lại -->
                                 <button class="btn-back"><?= $return_title ?></button>

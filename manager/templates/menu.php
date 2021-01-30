@@ -57,23 +57,17 @@
             </ul>
         </li>
         <li class="<?php if (MENU_OPTION == "background") echo "current-option"; ?>">
-            <a href="#">Custom background</a>
+            <a href="#">Background</a>
             <ul class="sub-menu" hidden>
                 <a href="/manager/backgrounds/background-manager.php"><li>Xem tất cả</li></a>
                 <a href="/manager/backgrounds/background-insert.php"><li>Thêm mới</li></a>
             </ul>
-<<<<<<< HEAD
+
         </li>
-=======
-        </li> -->
-        <a href="/manager/contact/view-contact.php">
-<<<<<<< HEAD
->>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
-=======
->>>>>>> c77e7ab95a7e09441835069a863e1b9f614fffb3
+        <a href="/manager/contacts/view-contact.php">
         <li class="<?php if (MENU_OPTION == "contact") echo "current-option"; ?>">
             <ul>
-                Contact
+                Liên hệ
             </ul>
         </li>
         </a>

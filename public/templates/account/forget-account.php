@@ -1,3 +1,14 @@
+<?php
+    $root_path = $_SERVER["DOCUMENT_ROOT"];
+    require_once($root_path . "/config/db.php");
+
+    $phone = sql_query("
+        SELECT *
+        FROM contact
+        WHERE id = 1;
+    ");
+    $phone = mysqli_fetch_array($phone)['value'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +32,17 @@
             align-items: center;
             background-color: var(--background-color-all);
         }
+
+        #forget-account div {
+            color: red;
+            margin-top: -100px;
+        }
     </style>
 </head>
 <body>
     <div id="forget-account">
         <div>
-            <h3>Vui lòng liên hệ 19001009 để thực hiện các bước lấy lại tài khoản</h3>
+            <h3>Vui lòng liên hệ lại theo số <?= $phone ?> để thực hiện các bước lấy lại tài khoản</h3>
         </div>
     </div>
 </body>

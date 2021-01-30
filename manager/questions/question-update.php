@@ -95,7 +95,7 @@
                             Câu hỏi:
                         </td>
                         <td>
-                            <textarea name="question" id="input-question"><?= htmlspecialchars_decode($qna["question"]) ?></textarea><br>
+                            <textarea name="question" id="input-question"><?= $qna["question"] ?></textarea><br>
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +107,7 @@
                             Câu trả lời:
                         </td>
                         <td>
-                            <textarea name="answer" id="input-answer"><?= htmlspecialchars_decode($qna["answer"]) ?></textarea><br>
+                            <textarea name="answer" id="input-answer"><?= $qna["answer"] ?></textarea><br>
                         </td>
                     </tr>
                     <tr>

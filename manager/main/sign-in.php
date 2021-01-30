@@ -9,14 +9,14 @@
     // Lấy dữ liệu từ lần nhập form trước (nếu có)
     $email_or_phone = null;
     if (isset($_POST["email_or_phone"])) {
-        $email_or_phone = htmlspecialchars($_POST["email_or_phone"]);
+        $email_or_phone = $_POST["email_or_phone"];
     } else {
         $email_or_phone = "";
     }
 
     $passwd = null;
     if (isset($_POST["passwd"])) {
-        $passwd = htmlspecialchars($_POST["passw$passwd"]);
+        $passwd = $_POST["passw$passwd"];
     } else {
         $passwd = "";
     }

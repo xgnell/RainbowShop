@@ -1,7 +1,7 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] . "/config/prevent-expired.php");
 
-    define("MENU_OPTION", "background");
+    define("MENU_OPTION", "contact");
     $root_path = $_SERVER["DOCUMENT_ROOT"];
     
     // Check signed in
@@ -9,6 +9,31 @@
     check_admin_signed_in(2);
 
     require_once($root_path . "/config/db.php");
+    require_once($root_path . "/manager/templates/notification-page.php");
+    require_once($root_path . "/manager/contacts/contact-notification.php");
+
+    // Lấy dữ liệu được gủi lại từ form
+    $contact = null;
+    if (!empty($_POST)) {
+        $contact = [
+            'phone' => $_POST['phone'] ?? "",
+            'address' => $_POST['address'] ?? ""
+        ];
+    } else {
+        $contact = [
+            'phone' => mysqli_fetch_array(sql_query("
+                select *
+                from contact
+                where id = 1
+            "))['value'],
+            'address' => mysqli_fetch_array(sql_query("
+                select *
+                from contact
+                where id = 2
+            "))['value']
+        ];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +44,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     
+    <title>Quản lý liên hệ</title>
     <link rel="stylesheet" href="/manager/templates/css/all.css">
     <link rel="stylesheet" href="/manager/templates/css/layout.css">
-    <title>Quản lý background</title>
     <script src="/manager/templates/js/common-validate.js"></script>
 </head>
 <body>
@@ -29,48 +54,47 @@
     <?php include_once($root_path . "/manager/templates/header.php"); ?>
     <div class="page-body">
         <!-- Slide menu -->
-        <?php include_once($root_path . "/manager/templates/menu.php"); ?>
+        <div class="page-menu">
+            <?php include_once($root_path . "/manager/templates/menu.php"); ?>
+        </div>
         <!-- Main content -->
         <div class="page-content">
             <form onsubmit="return validate_all({
-                name: [/^(?:[a-zA-Z0-9]+\ ?)+[a-zA-Z0-9]$/, 'Tên không hợp lệ (Không chấp nhận các kí tự đặc biệt)'],
+                phone: [/^0[0-9]{9,9}$/, 'Số điện thoại không hợp lệ (Số điện thoại gồm 10 đến 11 số và chỉ chấp nhận số)'],
             },
             [],
-            ['picture']);"
-            
-            action="/manager/backgrounds/background-insert-process.php" method="POST" enctype="multipart/form-data">
-                <div style="width: 100%; display:flex;"></div>
-                <!-- Tên -->
+            ['address']);"
+                
+                action="/manager/contacts/update-contact-process.php" method="POST">
                 <table class="edit-table">
                     <tr>
-                        <td class="table-title" rowspan="2">
-                            Tên ảnh
+                        <td rowspan="2" class="table-title">
+                            Điện thoại liên hệ
                         </td>
                         <td>
-                            <input id="input-name" type="text" name="name">
+                            <input type="text" id="input-phone" name="phone" value="<?= $contact['phone'] ?>">
                         </td>
                     </tr>
                     <tr>
-                        <td class="display-error" id="display-error-name"></td>
+                        <td class="display-error" id="display-error-phone"></td>
                     </tr>
-                    <!-- Ảnh -->
+
                     <tr>
-                        <td class="table-title" rowspan="2">
-                            Ảnh
+                        <td rowspan="2" class="table-title">
+                            Địa chỉ
                         </td>
                         <td>
-                            <input id="input-picture" type="file" name="picture">
-                        </td>
+                            <textarea name="address" id="input-address"><?= $contact['address'] ?></textarea>
+                        </td>  
                     </tr>
                     <tr>
-                        <td class="display-error" id="display-error-picture"></td>
+                        <td class="display-error" id="display-error-address"></td>
                     </tr>
-                    
-                    <!-- Action -->
+
                     <tr>
                         <td colspan="2">
                             <div class="action-area">
-                                <input type="submit" value="Thêm background">
+                                <input type="submit" value="Xác nhận sửa">
                                 <input type="reset" value="Làm lại">
                             </div>
                         </td>

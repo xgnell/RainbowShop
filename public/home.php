@@ -55,7 +55,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Rainbow fashion</title>
     <link rel="stylesheet" href="/public/templates/css/all.css">
-    <link rel="icon" href="/public/img/socials/logo_1.png">
     <link rel="stylesheet" href="/public/templates/css/home-style.css">
 </head>
 <body>

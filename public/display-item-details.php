@@ -24,11 +24,16 @@
     $item_type = mysqli_fetch_array($item_type)["type"];
 
     // Get item all size types possible
+    $no_more_item = false;
     $item_sizes = sql_query("
         SELECT id_size, amount
         FROM item_details
-        WHERE id_item = $item_id;
+        WHERE id_item = $item_id AND amount > 0;
     ");
+    if (mysqli_num_rows($item_sizes) == 0) {
+        // Sản phẩm đã hết hàng
+        $no_more_item = true;
+    }
 
     // Get color item
     $item_color = sql_query("
@@ -137,6 +142,7 @@
                     </tr>
 
                     <!-- Size -->
+                    <?php if (!$no_more_item): ?>
                     <tr class="item-size">
                         <td class="display-title">
                             <span>Size</span>
@@ -165,7 +171,6 @@
                             <?php endforeach ?>
                         </td>
                     </tr>
-
 
                     <!-- Cột số lượng -->
                     <tr class="item-number">
@@ -199,6 +204,7 @@
                     </tr>
 
 
+
                     <!-- Cột thêm vào giỏ hàng -->
                     <tr class="div-buy-item">
                         <td colspan="3">
@@ -206,6 +212,15 @@
                             <button type="submit" class="move-to-cart" onclick="return add_item_to_cart(1)">Mua ngay</button>
                         </td>
                     </tr>
+                    <?php else: ?>
+                    <tr class="div-buy-item">
+                        <td colspan="3">
+                            <button type="button" class="no-more-item">Hết hàng</button>
+                        </td>
+                    </tr>
+                    <?php endif ?>
+
+
 
                 </table>
                 <input id="input-redirect" type="text" name="redirect" value="" hidden>
@@ -259,6 +274,7 @@
     </div>
     <?php endif ?>
 
+    <?php if (!$no_more_item): ?>
     <script defer>
         let amount = 1;
         let input_amount = document.getElementById('input-amount');
@@ -320,6 +336,7 @@
             ?>
         }
     </script>
+    <?php endif ?>
 
     <!--///////////////  Here is include footer /////////////-->
     <?php include_once($root_path . "/public/templates/ui/footer.php"); ?>
