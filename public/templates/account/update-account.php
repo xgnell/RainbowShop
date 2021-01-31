@@ -6,13 +6,43 @@ require_once($root_path . "/public/templates/account/check-customer-signed-in.ph
 check_customer_signed_in(1);
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/config/db.php");
+require_once($root_path . "/public/templates/ui/notification/notification-page.php");
+require_once($root_path . "/public/templates/account/signup-notification.php");
+
 
 // if (!isset($_SESSION['user']['customer'])) {
 //     header('location:/public/home.php');
 //     exit();
 // }
 // Get selected customer
-$customer_id = $_GET["id"];
+$customer_id = $_SESSION["user"]["customer"]["id"];
+
+// if ($customer_id == null || !is_numeric($customer_id)) {
+//     display_front_notification_page(
+//         false,
+//         "Rainbow Kitty",
+//         "404",
+//         "Không tìm thấy trang",
+//         "Quay lại"
+//         // Quay về trang trước đó
+//     );
+//     exit();
+// }
+$customer = [];
+if (!empty($_POST)) {
+    $customer = [
+        'id' => $customer_id,
+        'name' => htmlspecialchars($_POST["name"] ?? null) ?? "",
+        'email' => htmlspecialchars($_POST["email"] ?? null) ?? "",
+        'gender' => htmlspecialchars($_POST["gender"] ?? null) ?? "",
+        'address' => htmlspecialchars($_POST["address"] ?? null) ?? "",
+        'birth_year' => htmlspecialchars($_POST["birth_year"] ?? null) ?? "",
+        'birth_month' => htmlspecialchars($_POST["birth_month"] ?? null) ?? "",
+        'birth_day' => htmlspecialchars($_POST["birth_day"] ?? null) ?? "",
+        'phone' => htmlspecialchars($_POST["phone"] ?? null) ?? "",
+        'passwd' => ''
+    ];
+}
 $customer = mysqli_fetch_array(sql_query("
     SELECT *
     FROM customers
@@ -48,20 +78,29 @@ $customer = mysqli_fetch_array(sql_query("
         .panel .form-title {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .panel .form-sign-up {
+            border-collapse: collapse;
             width: 100%;
+        }
+        .panel .form-sign-up tr td {
+            vertical-align: top;
+            height: 20px;
         }
 
         .panel .form-sign-up .display-error {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9em;
             color: red;
         }
 
         .panel .form-sign-up .title {
-            font-size: 15px;
+            font-size: 17px;
             width: 200px;
             height: 40px;
+            padding-top: 5px;
             padding-bottom: 5px;
         }
 
@@ -69,16 +108,18 @@ $customer = mysqli_fetch_array(sql_query("
             font-size: 15px;
             width: 400px;
             min-width: 300px;
-            height: 40px;
+            height: 50px;
             padding: 5px 10px 5px 10px;
             border: 1px #ccc solid;
+            background-color: white;
         }
         .panel .form-sign-up .select {
             font-size: 15px;
             width: 124px;
-            height: 40px;
+            height: 50px;
             border: 1px #ccc solid;
             margin-right: 10px;
+            background-color: white;
         }
 
         .panel .form-sign-up .bottom {
@@ -111,11 +152,12 @@ $customer = mysqli_fetch_array(sql_query("
                         email: [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, 'Email không hợp lệ'],
                         passwd: true,
                     },
-                    ['gender', 'birth']);
+                    ['gender', 'birth'],
+                    ['address']);
                     "
                     action="/public/templates/account/update-account-process.php"
                     method="POST">
-                    <input type="number" name="id" value="<?= $customer["id"] ?>" hidden><br>
+                    <!-- <input type="number" name="id" value="<?= $customer["id"] ?>" hidden><br> -->
                     <table class="form-sign-up">
                     <!-- Đây là Họ tên -->
                         <tr>
@@ -137,9 +179,9 @@ $customer = mysqli_fetch_array(sql_query("
                             <td>
                                 <select id="select-gender" name="gender" class="input">
                                     <option value="" disabled selected hidden>Chọn giới tính</option>
-                                    <option value="1" <?php if ($customer["gender"] == 1) echo "selected"; ?> >Nam</option>
-                                    <option value="0" <?php if ($customer["gender"] == 2) echo "selected"; ?> >Nữ</option>
-                                    <option value="2" <?php if ($customer["gender"] == 3) echo "selected"; ?> >Giới tính khác</option>
+                                    <option value="1" <?php if ($customer["gender"] == 1) echo "selected" ?> >Nữ</option>
+                                    <option value="2" <?php if ($customer["gender"] == 2) echo "selected" ?> >Nam</option>
+                                    <option value="3" <?php if ($customer["gender"] == 3) echo "selected" ?> >Giới tính khác</option>
                                 </select>
                             </td>
                         </tr>

@@ -125,7 +125,7 @@
                 $sum_items = mysqli_num_rows($item_data);
                 
                 
-                $sum_items_a_page = 4;
+                $sum_items_a_page = 12;
                 $sum_pages = ceil($sum_items / $sum_items_a_page);
 
                 $skip = ($page_now - 1) * $sum_items_a_page; 

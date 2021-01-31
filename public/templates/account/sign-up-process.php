@@ -1,35 +1,34 @@
 <?php
 $root_path = $_SERVER["DOCUMENT_ROOT"];
+$notification_title = "Rainbow Kitty";
+$return_path = "/public/templates/account/sign-up.php";
 require_once($root_path . "/config/db.php");
-
-//Check sign in
-// require_once($root_path . "/manager/admins/admin-notification.php");
-// require_once($root_path . "/public/templates/account/check-customer-signed-in.php");
-// check_customer_signed_in(2);
+require_once($root_path . "/public/templates/ui/notification/notification-page.php");
+require_once($root_path . "/public/templates/account/signup-notification.php");
 
 //Lấy hết dữ liệu từ form gửi lên
 $customer = null;
 if (!empty($_POST)) {
     $customer = [
         'name' => htmlspecialchars($_POST["name"] ?? null),
-        'email' => $_POST["email"] ?? null,
-        'gender' => $_POST["gender"] ?? null,
-        'address' => $_POST["address"] ?? null,
-        'birth_year' => $_POST["birth_year"] ?? null,
-        'birth_month' => $_POST["birth_month"] ?? null,
-        'birth_day' => $_POST["birth_day"] ?? null,
-    	'phone' => $_POST["phone"] ?? null
+        'email' => htmlspecialchars($_POST["email"] ?? null),
+        'gender' => htmlspecialchars($_POST["gender"] ?? null),
+        'address' => htmlspecialchars($_POST["address"] ?? null),
+        'birth_year' => htmlspecialchars($_POST["birth_year"] ?? null),
+        'birth_month' => htmlspecialchars($_POST["birth_month"] ?? null),
+        'birth_day' => htmlspecialchars($_POST["birth_day"] ?? null),
+    	'phone' => htmlspecialchars($_POST["phone"] ?? null)
     ];
-    $customer_passwd = $_POST["passwd"] ?? null;
+    $customer_passwd = htmlspecialchars($_POST["passwd"] ?? null);
 } else {
-    // display_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "404",
-    //     "Không tìm thấy trang",
-    //     "Quay lại"
-    //     // Quay về trang trước đó
-    // );
+    display_front_notification_page(
+        false,
+        $notification_title,
+        "404",
+        "Không tìm thấy trang",
+        "Quay lại"
+        // Quay về trang trước đó
+    );
     exit();
 }
 
@@ -57,84 +56,83 @@ function remove_ascent ($name) {
 }
 $customer_name = remove_ascent($customer['name']);
 if ($customer['name'] == null || !preg_match($regex["name"], $customer_name)) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Tên không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Tên không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra giới tính
 if ($customer['gender'] == null || !preg_match($regex["gender"], $customer["gender"])) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Giới tính không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Giới tính không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra email
 if ($customer['email'] == null || !preg_match($regex['email'], $customer['email'])) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Email không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Email không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra địa chỉ
-$customer_address = remove_ascent($customer['address']);
-if ($customer['address'] == null || !preg_match($regex["address"], $customer_address)) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Tên không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+if ($customer['address'] == null) {
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Địa chỉ không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra ngày tháng năm sinh
 if ($customer['birth_year'] == null || !is_numeric($customer['birth_year']) || $customer['birth_year'] < 1900 || $customer['birth_year'] > date("Y")) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Năm sinh không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Năm sinh không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 if ($customer['birth_month'] == null || !is_numeric($customer['birth_month']) || $customer['birth_month'] < 1 || $customer['birth_month'] > 12) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Tháng sinh không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Tháng sinh không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
@@ -162,29 +160,29 @@ if ($customer['birth_day'] == null || !is_numeric($customer['birth_day']) ||
         $customer['birth_month'],
         $customer['birth_day']
     )) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Ngày sinh không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Ngày sinh không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra số điện thoại
 if ($customer['phone'] == null || !preg_match($regex['phone'], $customer['phone'])) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Số điện thoại không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Số điện thoại không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 // Kiểm tra số điện thoại có trùng
@@ -194,74 +192,74 @@ $customer_phone = sql_query("
     WHERE phone = '{$customer['phone']}';
 ");
 if (mysqli_num_rows($customer_phone) != 0) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Số điện thoại đã tồn tại",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Số điện thoại đã tồn tại",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra email
 if ($customer['email'] == null || !preg_match($regex['email'], $customer['email'])) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Email không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Email không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 // Kiểm tra email có trùng
-$admin_email = sql_query("
+$customer_email = sql_query("
     SELECT *
     FROM customers
     WHERE email = '{$customer['email']}';
 ");
 if (mysqli_num_rows($customer_email) != 0) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Email đã tồn tại",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Email đã tồn tại",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
 // Kiểm tra passwd
 if ($customer_passwd == null || preg_match('/(\'|\"|\#|\;|\ )/', $customer_passwd)) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Mật khẩu không hợp lệ",
-    //     "",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Mật khẩu không hợp lệ",
+        "",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 // Kiểm tra độ mạnh mật khẩu
 if (!preg_match("/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/", $customer_passwd)) {
-    // display_admin_notification_page(
-    //     false,
-    //     $notification_title,
-    //     "Mật khẩu không đủ mạnh",
-    //     "Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép",
-    //     "Thử lại",
-    //     $return_path,
-    //     $admin
-    // );
+    display_signup_notification_page(
+        false,
+        $notification_title,
+        "Mật khẩu không đủ mạnh",
+        "Mật khẩu phải chứa ít nhất 8 kí tự, bao gồm cả số, chữ và các kí tự đặc biệt được cho phép",
+        "Thử lại",
+        $return_path,
+        $customer
+    );
     exit();
 }
 
@@ -289,40 +287,11 @@ sql_cmd("
         1
     );
 ");
-?>
-<script>
-	alert("Thanh Cong");
-</script>
-<!-- // display_notification_page(
-//     true,
-//     $notification_title,
-//     "Đăng ký thành công",
-//     "",
-//     "Xem danh sách admin",
-//     "/manager/admins/admins-manager.php"
-// );
-
-// if (empty($_POST["name"]) || empty($_POST["email"]) || 
-// 	empty($_POST["gender"]) || empty($_POST["passwd"]) || 
-// 	empty($_POST["address"]) || empty($_POST["birth_year"]) || 
-// 	empty($_POST["birth_month"]) || empty($_POST["birth_day"]) || 
-// 	empty($_POST["phone"])) {
-// 	header('location:/public/templates/account/fail.php');
-// }
-// // Get all signup data
-// $customer_name = $_POST["name"];
-// $customer_email = $_POST["email"];
-// $customer_gender = $_POST["gender"];
-// $customer_passwd = $_POST["passwd"];
-// $customer_address = $_POST["address"];
-// $customer_birth_year = $_POST["birth_year"];
-// $customer_birth_month = $_POST["birth_month"];
-// $customer_birth_day = $_POST["birth_day"];
-// $customer_phone = $_POST["phone"];
-
-// sql_cmd("
-// 	INSERT INTO customers (name, gender, birth, phone, email, passwd, address)
-// 	VALUES ('$customer_name', $customer_gender, '$customer_birth_year-$customer_birth_month-$customer_birth_day', '$customer_phone', '$customer_email', '$customer_passwd', '$customer_address');
-// ");
-// 	header('location:/public/templates/account/success.php');
-// ?> -->
+display_front_notification_page(
+    true,
+    $notification_title,
+    "Đăng kí tài khoản thành công",
+    "",
+    "Quay lại",
+    "/public/home.php"
+);

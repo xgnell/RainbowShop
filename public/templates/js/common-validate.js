@@ -73,19 +73,19 @@ function is_valid_name(regex, message) {
     return true;
 }
 
-function is_valid_address(regex, message) {
-    let input_data = document.getElementById(`input-address`).value;
-    let error = document.getElementById(`display-error-address`);
+// function is_valid_address(regex, message) {
+//     let input_data = document.getElementById(`input-address`).value;
+//     let error = document.getElementById(`display-error-address`);
 
-    if (!is_not_blank(input_data, error)) return false;
+//     if (!is_not_blank(input_data, error)) return false;
 
-    /* Kiểm tra regex */
-    input_data = remove_ascent(input_data);
-    if (!is_pass_regex(input_data, error, regex, message)) return false;
+//     /* Kiểm tra regex */
+//     input_data = remove_ascent(input_data);
+//     if (!is_pass_regex(input_data, error, regex, message)) return false;
 
-    display_error(error, '');
-    return true;
-}
+//     display_error(error, '');
+//     return true;
+// }
 
 function is_valid_password(check_power) {
     let input_data = document.getElementById(`input-passwd`).value;
@@ -159,9 +159,26 @@ function is_valid_birth() {
     return true;
 }
 
+function validate_simple(input_list) {
+    let is_passed = true;
+    for (const type of input_list) {
+        let input = document.getElementById(`input-${type}`);
+        let error = document.getElementById(`display-error-${type}`);
+
+        if (!is_not_blank(input.value, error)) {
+            if (is_passed) is_passed = false;
+        } else {
+            display_error(error, '');
+        }
+
+    }
+
+    return is_passed;
+}
+
 
 // Hàm validate chính
-function validate_all(regex_list, select_list) {
+function validate_all(regex_list, select_list, textarea_list = null) {
     let is_passed = true;
 
     if ('name' in regex_list) {
@@ -172,13 +189,13 @@ function validate_all(regex_list, select_list) {
         }
     }
 
-    if ('address' in regex_list) {
-        if (!is_valid_address(
-                regex_list['address'][0],
-                regex_list['address'][1])) {
-            if (is_passed == true) is_passed = false;
-        }
-    }
+    // if ('address' in regex_list) {
+    //     if (!is_valid_address(
+    //             regex_list['address'][0],
+    //             regex_list['address'][1])) {
+    //         if (is_passed == true) is_passed = false;
+    //     }
+    // }
 
     if ('passwd' in regex_list) {
         if (!is_valid_password(regex_list['passwd'])) {
@@ -206,6 +223,12 @@ function validate_all(regex_list, select_list) {
             if (!is_valid_select(name)) {
                 if (is_passed == true) is_passed = false;
             }
+        }
+    }
+
+    if (textarea_list != null) {
+        if (!validate_simple(textarea_list)) {
+            if (is_passed == true) is_passed = false;
         }
     }
 
